@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "23d258369754a68869c48baa98cc64c9",
+    "revision": "4ddb0fb10854c3b9b988eb463ce5eed9",
     "url": "/uniquefit/index.html"
   },
   {
-    "revision": "0d95b29414e37bd86e61",
+    "revision": "6805a0b872d7a04e2c89",
     "url": "/uniquefit/static/css/main.5f361e03.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uniquefit/static/js/2.2d4f49c6.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0d95b29414e37bd86e61",
-    "url": "/uniquefit/static/js/main.7f60cd01.chunk.js"
+    "revision": "6805a0b872d7a04e2c89",
+    "url": "/uniquefit/static/js/main.4870ae3c.chunk.js"
   },
   {
     "revision": "80ca6c9fc2b5b5d70e00",
