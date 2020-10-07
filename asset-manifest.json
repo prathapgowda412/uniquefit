@@ -1,23 +1,38 @@
 {
   "files": {
     "main.css": "/uniquefit/static/css/main.5f361e03.chunk.css",
-    "main.js": "/uniquefit/static/js/main.4870ae3c.chunk.js",
-    "main.js.map": "/uniquefit/static/js/main.4870ae3c.chunk.js.map",
+    "main.js": "/uniquefit/static/js/main.db048f94.chunk.js",
+    "main.js.map": "/uniquefit/static/js/main.db048f94.chunk.js.map",
     "runtime-main.js": "/uniquefit/static/js/runtime-main.dcf89e55.js",
     "runtime-main.js.map": "/uniquefit/static/js/runtime-main.dcf89e55.js.map",
-    "static/js/2.2d4f49c6.chunk.js": "/uniquefit/static/js/2.2d4f49c6.chunk.js",
-    "static/js/2.2d4f49c6.chunk.js.map": "/uniquefit/static/js/2.2d4f49c6.chunk.js.map",
+    "static/js/2.d187f482.chunk.js": "/uniquefit/static/js/2.d187f482.chunk.js",
+    "static/js/2.d187f482.chunk.js.map": "/uniquefit/static/js/2.d187f482.chunk.js.map",
     "index.html": "/uniquefit/index.html",
-    "precache-manifest.98d8e1ac5700d5990f87021eabb033dd.js": "/uniquefit/precache-manifest.98d8e1ac5700d5990f87021eabb033dd.js",
+    "precache-manifest.6c5fe89f2c69d1e7746c21fbc29a54d5.js": "/uniquefit/precache-manifest.6c5fe89f2c69d1e7746c21fbc29a54d5.js",
     "service-worker.js": "/uniquefit/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/uniquefit/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.2d4f49c6.chunk.js.LICENSE.txt": "/uniquefit/static/js/2.2d4f49c6.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "/uniquefit/static/media/logo.5d5d9eef.svg"
+    "static/js/2.d187f482.chunk.js.LICENSE.txt": "/uniquefit/static/js/2.d187f482.chunk.js.LICENSE.txt",
+    "static/media/Uniquefit logo.svg": "/uniquefit/static/media/Uniquefit logo.78c97c29.svg",
+    "static/media/about1.png": "/uniquefit/static/media/about1.7059e448.png",
+    "static/media/about2.png": "/uniquefit/static/media/about2.fda7fbab.png",
+    "static/media/about22.png": "/uniquefit/static/media/about22.2a6b9549.png",
+    "static/media/avatr1.jpg": "/uniquefit/static/media/avatr1.de9b37f0.jpg",
+    "static/media/facebook-f-brands.svg": "/uniquefit/static/media/facebook-f-brands.53757d93.svg",
+    "static/media/formalboy.jpg": "/uniquefit/static/media/formalboy.274a0ba6.jpg",
+    "static/media/girl.jpg": "/uniquefit/static/media/girl.aac71222.jpg",
+    "static/media/girlwhite.jpg": "/uniquefit/static/media/girlwhite.0eb1451f.jpg",
+    "static/media/instagram-brands.svg": "/uniquefit/static/media/instagram-brands.e75317fa.svg",
+    "static/media/manblack.jpg": "/uniquefit/static/media/manblack.71c481e8.jpg",
+    "static/media/mancolor.jpg": "/uniquefit/static/media/mancolor.539a574c.jpg",
+    "static/media/rightarrow.svg": "/uniquefit/static/media/rightarrow.ba26f6d9.svg",
+    "static/media/shopping-cart.svg": "/uniquefit/static/media/shopping-cart.d49a3e9d.svg",
+    "static/media/twitter-brands.svg": "/uniquefit/static/media/twitter-brands.6620c8ae.svg",
+    "static/media/whatsapp-brands.svg": "/uniquefit/static/media/whatsapp-brands.a8812701.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.dcf89e55.js",
-    "static/js/2.2d4f49c6.chunk.js",
+    "static/js/2.d187f482.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.4870ae3c.chunk.js"
+    "static/js/main.db048f94.chunk.js"
   ]
 }
