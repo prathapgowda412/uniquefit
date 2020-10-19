@@ -1,27 +1,31 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f29da3b446f956677b2608ebe0cd25d4",
+    "revision": "24ac9ee8c91b028d9c0eb7fcc838bdea",
     "url": "/uniquefit/index.html"
   },
   {
-    "revision": "3cd003c9e08262b3c81d",
-    "url": "/uniquefit/static/css/main.5f361e03.chunk.css"
+    "revision": "c493cbc9859ed54bdf96",
+    "url": "/uniquefit/static/css/main.8e737580.chunk.css"
   },
   {
-    "revision": "783180bd6eae61b63ea2",
-    "url": "/uniquefit/static/js/2.d187f482.chunk.js"
+    "revision": "b9c50ab3a19a934d37c7",
+    "url": "/uniquefit/static/js/2.59235d88.chunk.js"
   },
   {
-    "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/uniquefit/static/js/2.d187f482.chunk.js.LICENSE.txt"
+    "revision": "0f370c3b65ba9c03abd89acf4a63537f",
+    "url": "/uniquefit/static/js/2.59235d88.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3cd003c9e08262b3c81d",
-    "url": "/uniquefit/static/js/main.db048f94.chunk.js"
+    "revision": "c493cbc9859ed54bdf96",
+    "url": "/uniquefit/static/js/main.96ac8a6f.chunk.js"
   },
   {
     "revision": "80ca6c9fc2b5b5d70e00",
     "url": "/uniquefit/static/js/runtime-main.dcf89e55.js"
+  },
+  {
+    "revision": "d292f52c8869b0158098e19313068334",
+    "url": "/uniquefit/static/media/Group.d292f52c.svg"
   },
   {
     "revision": "78c97c29f9bfab503c55477e427fd324",
@@ -40,8 +44,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uniquefit/static/media/about22.2a6b9549.png"
   },
   {
+    "revision": "cd1867ce2ed06622b4c1635b28ce39a1",
+    "url": "/uniquefit/static/media/aboutsecond.cd1867ce.png"
+  },
+  {
     "revision": "de9b37f03f318e679ec4d64e178ec654",
     "url": "/uniquefit/static/media/avatr1.de9b37f0.jpg"
+  },
+  {
+    "revision": "eb4e9b8f8b919fff76f5fb81fcb9ab26",
+    "url": "/uniquefit/static/media/casualgoogles.eb4e9b8f.jpg"
   },
   {
     "revision": "53757d9306796cd8c19df677d30a10c7",
@@ -72,12 +84,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/uniquefit/static/media/mancolor.539a574c.jpg"
   },
   {
+    "revision": "7e2604dbe3f71483d130f65875c3411b",
+    "url": "/uniquefit/static/media/qoutes.7e2604db.svg"
+  },
+  {
     "revision": "ba26f6d93166adcc13d55c0b505bb5ea",
     "url": "/uniquefit/static/media/rightarrow.ba26f6d9.svg"
   },
   {
     "revision": "d49a3e9d888e67e72319df7c76ddb22d",
     "url": "/uniquefit/static/media/shopping-cart.d49a3e9d.svg"
+  },
+  {
+    "revision": "d26b036879380b5209aad511cd1fbaee",
+    "url": "/uniquefit/static/media/suitwalink.d26b0368.jpg"
   },
   {
     "revision": "6620c8ae2cac90067a9aa78339bb808d",
