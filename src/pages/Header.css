@@ -1,0 +1,26 @@
+.menuicon {
+	font-size: 24px;
+	display: none;
+}
+.nav {
+	display: flex;
+	flex-direction: row;
+	width: fit-content;
+	justify-content: space-between;
+}
+.nav-mob {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+	/* align-items: left; */
+	justify-content: left;
+}
+
+@media (max-width: 960px) {
+	.menuicon {
+		display: block;
+	}
+	.nav {
+		display: none;
+	}
+}

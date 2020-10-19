@@ -1,0 +1,14 @@
+[
+	{
+		"id": "1",
+		"name": "dark blue shirt",
+		"type": "formal",
+		"price": "1299"
+	},
+	{
+		"id": "2",
+		"name": "light blue shirt",
+		"type": "formal",
+		"price": "1399"
+	}
+]

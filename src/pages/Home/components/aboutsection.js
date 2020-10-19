@@ -66,7 +66,7 @@ function Aboutsection() {
 					best online experience. We’re dedicated to deliver the best fit without compromising on the fabric
 					or the styling.
 				</Typography>
-				<Link className={classes.knowmore} to="/About">
+				<Link className={classes.knowmore} to="/Aboutus">
 					<Button variant="outlined" className={classes.knowmorebutton}>
 						KNOW MORE
 						<img src={rightarrow} />

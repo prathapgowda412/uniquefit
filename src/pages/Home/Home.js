@@ -5,6 +5,8 @@ import Shopfav from './components/shopfavaroite';
 import Offerssection from './components/Offerssection';
 import Aboutsection from './components/aboutsection';
 import { Grid } from '@material-ui/core';
+import Welcom from '../welcom';
+import Testimonialsection from './components/Testimonial';
 
 function Home() {
 	return (
@@ -14,6 +16,7 @@ function Home() {
 			<Shopfav />
 			<Offerssection />
 			<Aboutsection />
+			<Testimonialsection />
 		</Grid>
 	);
 }

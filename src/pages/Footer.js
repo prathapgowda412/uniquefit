@@ -1,6 +1,7 @@
 import { Box, Grid, Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import uniquefitlogo from '../logos/Uniquefit logo.svg';
 
 const useStyles = makeStyles((theme) => ({
 	footer: {
@@ -8,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
 		maxHeight: 'fit-content',
 		backgroundColor: '#f2f2f2',
 		position: 'relative',
-		marginTop: '100px',
+		marginTop: '200px',
 	},
 	footertop: {
 		display: 'flex',
@@ -46,9 +47,8 @@ const useStyles = makeStyles((theme) => ({
 	foterbotom: {
 		minHeight: '250px',
 		maxHeight: 'fit-content',
-		borderTop: '1px solid grey',
-		backgroundColor: 'white',
-		paddingTop: '93px',
+		borderTop: '1.5px solid #CCCCCC',
+		paddingTop: '50px',
 	},
 	listbox: {
 		listStyleType: 'none',
@@ -56,6 +56,12 @@ const useStyles = makeStyles((theme) => ({
 	listhead: {
 		fontWeight: 'bold',
 		marginBottom: '10px',
+	},
+	logo: {
+		height: '120px',
+		[theme.breakpoints.down('sm')]: {
+			height: '90px',
+		},
 	},
 }));
 function Footer() {
@@ -120,7 +126,7 @@ function Footer() {
 			</Grid>
 			<Grid item container xs={10} justify="center" className={classes.foterbotom}>
 				<Grid item container sm={10} md={5}>
-					Uniquefit
+					<img src={uniquefitlogo} className={classes.logo} />
 				</Grid>
 				<Grid item container justify="center" sm={10} md={6}>
 					<Grid item container justify="center" xs={12} sm={6}>
