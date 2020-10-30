@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "24ac9ee8c91b028d9c0eb7fcc838bdea",
+    "revision": "dad4cecdbf6b770032c385c3b7e8ee62",
     "url": "/uniquefit/index.html"
   },
   {
-    "revision": "c493cbc9859ed54bdf96",
-    "url": "/uniquefit/static/css/main.8e737580.chunk.css"
+    "revision": "1e5bf3b0f59b467fdf37",
+    "url": "/uniquefit/static/css/main.de98308a.chunk.css"
   },
   {
-    "revision": "b9c50ab3a19a934d37c7",
-    "url": "/uniquefit/static/js/2.59235d88.chunk.js"
+    "revision": "e8b9dc696c110c836580",
+    "url": "/uniquefit/static/js/2.0e5f2b16.chunk.js"
   },
   {
     "revision": "0f370c3b65ba9c03abd89acf4a63537f",
-    "url": "/uniquefit/static/js/2.59235d88.chunk.js.LICENSE.txt"
+    "url": "/uniquefit/static/js/2.0e5f2b16.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c493cbc9859ed54bdf96",
-    "url": "/uniquefit/static/js/main.96ac8a6f.chunk.js"
+    "revision": "1e5bf3b0f59b467fdf37",
+    "url": "/uniquefit/static/js/main.d13cabfd.chunk.js"
   },
   {
     "revision": "80ca6c9fc2b5b5d70e00",
@@ -50,10 +50,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "de9b37f03f318e679ec4d64e178ec654",
     "url": "/uniquefit/static/media/avatr1.de9b37f0.jpg"
-  },
-  {
-    "revision": "eb4e9b8f8b919fff76f5fb81fcb9ab26",
-    "url": "/uniquefit/static/media/casualgoogles.eb4e9b8f.jpg"
   },
   {
     "revision": "53757d9306796cd8c19df677d30a10c7",

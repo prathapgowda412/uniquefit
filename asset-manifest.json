@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/uniquefit/static/css/main.8e737580.chunk.css",
-    "main.js": "/uniquefit/static/js/main.96ac8a6f.chunk.js",
-    "main.js.map": "/uniquefit/static/js/main.96ac8a6f.chunk.js.map",
+    "main.css": "/uniquefit/static/css/main.de98308a.chunk.css",
+    "main.js": "/uniquefit/static/js/main.d13cabfd.chunk.js",
+    "main.js.map": "/uniquefit/static/js/main.d13cabfd.chunk.js.map",
     "runtime-main.js": "/uniquefit/static/js/runtime-main.dcf89e55.js",
     "runtime-main.js.map": "/uniquefit/static/js/runtime-main.dcf89e55.js.map",
-    "static/js/2.59235d88.chunk.js": "/uniquefit/static/js/2.59235d88.chunk.js",
-    "static/js/2.59235d88.chunk.js.map": "/uniquefit/static/js/2.59235d88.chunk.js.map",
+    "static/js/2.0e5f2b16.chunk.js": "/uniquefit/static/js/2.0e5f2b16.chunk.js",
+    "static/js/2.0e5f2b16.chunk.js.map": "/uniquefit/static/js/2.0e5f2b16.chunk.js.map",
     "index.html": "/uniquefit/index.html",
-    "precache-manifest.f631418ee67f29049c0fb0e7b879d359.js": "/uniquefit/precache-manifest.f631418ee67f29049c0fb0e7b879d359.js",
+    "precache-manifest.21b3edd2d599254e7ca9837e3d57d39c.js": "/uniquefit/precache-manifest.21b3edd2d599254e7ca9837e3d57d39c.js",
     "service-worker.js": "/uniquefit/service-worker.js",
-    "static/css/main.8e737580.chunk.css.map": "/uniquefit/static/css/main.8e737580.chunk.css.map",
-    "static/js/2.59235d88.chunk.js.LICENSE.txt": "/uniquefit/static/js/2.59235d88.chunk.js.LICENSE.txt",
+    "static/css/main.de98308a.chunk.css.map": "/uniquefit/static/css/main.de98308a.chunk.css.map",
+    "static/js/2.0e5f2b16.chunk.js.LICENSE.txt": "/uniquefit/static/js/2.0e5f2b16.chunk.js.LICENSE.txt",
     "static/media/Group.svg": "/uniquefit/static/media/Group.d292f52c.svg",
     "static/media/Uniquefit logo.svg": "/uniquefit/static/media/Uniquefit logo.78c97c29.svg",
     "static/media/about1.png": "/uniquefit/static/media/about1.7059e448.png",
@@ -19,7 +19,6 @@
     "static/media/about22.png": "/uniquefit/static/media/about22.2a6b9549.png",
     "static/media/aboutsecond.png": "/uniquefit/static/media/aboutsecond.cd1867ce.png",
     "static/media/avatr1.jpg": "/uniquefit/static/media/avatr1.de9b37f0.jpg",
-    "static/media/casualgoogles.jpg": "/uniquefit/static/media/casualgoogles.eb4e9b8f.jpg",
     "static/media/facebook-f-brands.svg": "/uniquefit/static/media/facebook-f-brands.53757d93.svg",
     "static/media/formalboy.jpg": "/uniquefit/static/media/formalboy.274a0ba6.jpg",
     "static/media/girl.jpg": "/uniquefit/static/media/girl.aac71222.jpg",
@@ -36,8 +35,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.dcf89e55.js",
-    "static/js/2.59235d88.chunk.js",
-    "static/css/main.8e737580.chunk.css",
-    "static/js/main.96ac8a6f.chunk.js"
+    "static/js/2.0e5f2b16.chunk.js",
+    "static/css/main.de98308a.chunk.css",
+    "static/js/main.d13cabfd.chunk.js"
   ]
 }
