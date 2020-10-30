@@ -1,14 +1,47 @@
 [
 	{
-		"id": "1",
-		"name": "dark blue shirt",
+		"productid": "1",
+		"name": "Blue plain shirt",
 		"type": "formal",
-		"price": "1299"
+		"color": "blue",
+		"pattern": "plain",
+		"tagcolor": "blue",
+		"fabric": "cotton",
+		"price": "1599",
+		"desc": " this is shirt of shirt from shirt for goo shirt",
+		"images": [
+			"https://i0.wp.com/www.thelibasstore.com/wp-content/uploads/2020/09/LSRAYSH99INDIGOBLFILAFILAUG17-4.jpg?fit=510%2C593&ssl=1",
+			"https://i1.wp.com/www.thelibasstore.com/wp-content/uploads/2020/09/LSRAYSH99INDIGOBLFILAFILAUG17-3.jpg?fit=510%2C597&ssl=1"
+		]
 	},
 	{
-		"id": "2",
-		"name": "light blue shirt",
+		"productid": "2",
+		"name": "Light blue strips",
 		"type": "formal",
-		"price": "1399"
+		"pattern": "strips",
+		"color": "light blue",
+		"tagcolor": "blue",
+		"fabric": "cotton",
+		"price": "1399",
+		"desc": " this is shirt of shirt from shirt for goo shirt",
+		"images": [
+			"https://i0.wp.com/www.thelibasstore.com/wp-content/uploads/2020/09/LSSOKSH144SKBLBLSTRPTWAUG17-4.jpg?fit=510%2C593&ssl=1",
+			"https://i0.wp.com/www.thelibasstore.com/wp-content/uploads/2020/09/LSSOKSH144SKBLBLSTRPTWAUG17-3.jpg?fit=510%2C597&ssl=1"
+		]
+	},
+	{
+		"productid": "3",
+		"name": "White plain shirt",
+		"type": "formal",
+		"color": "white ",
+		"tagcolor": "white",
+		"pattern": "plain",
+		"fabric": "cotton",
+		"price": "999",
+		"desc": " this is shirt of shirt from shirt for goo shirt",
+		"images": [
+			"https://i2.wp.com/www.thelibasstore.com/wp-content/uploads/2020/05/LSADSHCOTLIN64WHITECHMAR122-0.jpg?resize=600%2C703&ssl=1",
+			"https://i1.wp.com/www.thelibasstore.com/wp-content/uploads/2020/05/LSADSHCOTLIN64WHITECHMAR122.jpg?resize=600%2C512&ssl=1"
+		]
 	}
 ]

@@ -1,19 +1,3 @@
-// import { Grid, makeStyles } from '@material-ui/core';
-// import React from 'react';
-
-// const useStyles = makeStyles((theme) => ({
-// 	main: {
-// 		height: '500px',
-// 		backgroundColor: '#f2f2f2',
-// 	},
-// }));
-
-// function Profilepage() {
-// 	const classes = useStyles();
-// 	return <Grid item container xs={12} className={classes.main}></Grid>;
-// }
-// export default Profilepage;
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,7 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Hidden } from '@material-ui/core';
 import { width } from '@material-ui/system';
 
 function TabPanel(props) {
@@ -38,7 +22,6 @@ function TabPanel(props) {
 		</div>
 	);
 }
-
 TabPanel.propTypes = {
 	children: PropTypes.node,
 	index: PropTypes.any.isRequired,
@@ -55,7 +38,7 @@ function a11yProps(index) {
 const useStyles = makeStyles((theme) => ({
 	main: {
 		flexGrow: 1,
-		backgroundColor: 'white',
+		backgroundColor: '#fff',
 		display: 'flex',
 		minHeight: '60vh',
 		maxHeight: 'fit-content',
@@ -66,16 +49,34 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'white',
 	},
 	tabs: {
-		width: '300px',
+		width: 'fit-content',
+		margin: 'auto',
 	},
 	tablink: {
 		backgroundColor: '#f2f2f2',
-		margin: '5px 0 5px 10px',
+		margin: '10px 0',
 		color: '#111',
+		width: '250px',
 		borderRadius: '5px',
 		'&:active': {
 			backgroundColor: '#fff',
 		},
+	},
+	rightpanel: {
+		backgroundColor: '#f2f2f2',
+		width: '92%',
+		[theme.breakpoints.down('sm')]: {
+			margin: 'auto',
+		},
+	},
+	mobleftpanel: {
+		width: '90%',
+		backgroundColor: '#f2f2f2',
+		margin: 'auto',
+		height: '65px',
+		marginBottom: '20px',
+		borderRadius: '10px',
+		padding: '5px 10px',
 	},
 }));
 function Profilepage() {
@@ -88,31 +89,36 @@ function Profilepage() {
 
 	return (
 		<Grid item container xs={12} className={classes.main}>
-			<Grid xs={12} sm={3}>
-				<Tabs
-					indicatorColor="none"
-					orientation="vertical"
-					value={value}
-					onChange={handleChange}
-					aria-label="Vertical tabs example"
-					className={classes.tabs}>
-					<Tab className={classes.tablink} label="Account Info" {...a11yProps(0)} />
-					<Tab className={classes.tablink} label="My orders" {...a11yProps(1)} />
-					<Tab className={classes.tablink} label="My cart" {...a11yProps(2)} />
-					<Tab className={classes.tablink} label="Settings" {...a11yProps(3)} />
-				</Tabs>
+			<Grid xs={12} md={3}>
+				<Hidden mdUp>
+					<Container className={classes.mobleftpanel}>for mob</Container>
+				</Hidden>
+				<Hidden smDown>
+					<Tabs
+						indicatorColor="none"
+						orientation="vertical"
+						value={value}
+						onChange={handleChange}
+						aria-label="Vertical tabs example"
+						className={classes.tabs}>
+						<Tab className={classes.tablink} label="Account Info" {...a11yProps(0)} />
+						<Tab className={classes.tablink} label="My orders" {...a11yProps(1)} />
+						<Tab className={classes.tablink} label="My cart" {...a11yProps(2)} />
+						<Tab className={classes.tablink} label="Settings" {...a11yProps(3)} />
+					</Tabs>
+				</Hidden>
 			</Grid>
-			<Grid xs={12} sm={9}>
-				<TabPanel value={value} index={0} style={{ backgroundColor: 'white', width: '100%' }}>
-					{/* <Container style={{ backgroundColor: 'white', height: '200px' }}></Container> */}
+			<Grid xs={12} md={9}>
+				<TabPanel value={value} index={0} className={classes.rightpanel}>
+					sccount info
 				</TabPanel>
-				<TabPanel value={value} index={1} style={{ backgroundColor: 'white', width: '100%' }}>
+				<TabPanel value={value} index={1} className={classes.rightpanel}>
 					My orders
 				</TabPanel>
-				<TabPanel value={value} index={2} style={{ backgroundColor: 'white', width: '100%' }}>
+				<TabPanel value={value} index={2} className={classes.rightpanel}>
 					My cart
 				</TabPanel>
-				<TabPanel value={value} index={3} style={{ backgroundColor: 'white', width: '100%' }}>
+				<TabPanel value={value} index={3} className={classes.rightpanel}>
 					Settings
 				</TabPanel>
 			</Grid>

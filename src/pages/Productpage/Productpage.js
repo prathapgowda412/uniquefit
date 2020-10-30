@@ -1,12 +1,14 @@
-import { Grid, withStyles, makeStyles, Box, Container, Button } from '@material-ui/core';
 import React, { Component } from 'react';
+import { useParams } from 'react-router-dom';
+import { Grid, withStyles, makeStyles, Box, Container, Button } from '@material-ui/core';
 import { render } from 'react-dom';
 
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import '../../custom.css';
+
+import products from '../../data/dummydata.json';
 
 const useStyles = makeStyles((theme) => ({
 	main: {
@@ -81,69 +83,56 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Productpage() {
+	const { id } = useParams();
 	const classes = useStyles();
 
+	const productdetail = products.filter((product, index) => {
+		return product.id == id;
+	});
+	console.log(productdetail.name);
 	return (
-		<Grid item container xs={12} className={classes.main}>
-			<Grid item container xs={12} sm={6} className={classes.leftgrid}>
-				<Tabs className={classes.tabss}>
-					<Grid xs={12} className={classes.tabpanelbox}>
-						<TabPanel className={classes.paneltab}>
-							<img
-								className={classes.bigimage}
-								src={require('../Home/components/statics/images/casualgoogles.jpg')}
-							/>
-						</TabPanel>
-						<TabPanel className={classes.paneltab}>
-							<img
-								className={classes.bigimage}
-								src={require('../Home/components/statics/images/formalboy.jpg')}
-							/>
-						</TabPanel>
-						<TabPanel className={classes.paneltab}>
-							<img
-								className={classes.bigimage}
-								src={require('../Home/components/statics/images/mancolor.jpg')}
-							/>
-						</TabPanel>
-					</Grid>
+		<>
+			{productdetail.map((singleproduct, index) => {
+				return (
+					<Grid item container xs={12} className={classes.main} key={singleproduct.id}>
+						<Grid item container xs={12} sm={6} className={classes.leftgrid}>
+							<Tabs className={classes.tabss}>
+								<Grid xs={12} className={classes.tabpanelbox}>
+									{singleproduct.images.map((bigimage, index) => (
+										<TabPanel className={classes.paneltab} key={index}>
+											<img className={classes.bigimage} src={bigimage} />
+										</TabPanel>
+									))}
+								</Grid>
 
-					<Grid xs={12} className={classes.tablistbotom}>
-						<TabList className={classes.tablist}>
-							<Tab className={classes.tabitem}>
-								<img
-									className={classes.iconimage}
-									src={require('../Home/components/statics/images/casualgoogles.jpg')}
-								/>
-							</Tab>
-							<Tab className={classes.tabitem}>
-								<img
-									className={classes.iconimage}
-									src={require('../Home/components/statics/images/formalboy.jpg')}
-								/>
-							</Tab>
-							<Tab className={classes.tabitem}>
-								<img
-									className={classes.iconimage}
-									src={require('../Home/components/statics/images/mancolor.jpg')}
-								/>
-							</Tab>
-						</TabList>
+								<Grid xs={12} className={classes.tablistbotom}>
+									<TabList className={classes.tablist}>
+										{singleproduct.images.map((tabimage, index) => (
+											<Tab className={classes.tabitem} key={index}>
+												<img className={classes.iconimage} src={tabimage} />
+											</Tab>
+										))}
+									</TabList>
+								</Grid>
+							</Tabs>
+						</Grid>
+						<Grid item container xs={12} sm={6} className={classes.showdesc}>
+							<Container maxWidth="md" style={{ height: '100px', marginTop: '10px' }}>
+								<Typography variant="h4">{singleproduct.name}</Typography>
+								<Typography variant="body1"> Shirt Type:{singleproduct.type}</Typography>
+								<Typography variant="body1">Product Color: {singleproduct.color}</Typography>
+								<Typography variant="body1">Our Price : {singleproduct.price} </Typography>
+								<Typography variant="body2">
+									<b>Product Description: </b> {singleproduct.desc}
+								</Typography>
+								<Button className={classes.customizebutton}>Customize now</Button>
+							</Container>
+						</Grid>
 					</Grid>
-				</Tabs>
-			</Grid>
-			<Grid item container xs={12} sm={6} className={classes.showdesc}>
-				<Container maxWidth="md" style={{ height: '100px', marginTop: '10px' }}>
-					<Typography variant="h4">BLue shirt some</Typography>
-					<Typography variant="body1">PRoduct Color: red</Typography>
-					<Typography variant="body1">Our Price : 1299</Typography>
-					<Typography variant="body2">
-						<b>Product Description: </b> helo there this is a shirt of some color
-					</Typography>
-					<Button className={classes.customizebutton}>Customize now</Button>
-				</Container>
-			</Grid>
-		</Grid>
+				);
+			})}
+		</>
 	);
 }
+
 export default Productpage;

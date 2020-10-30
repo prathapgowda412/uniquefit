@@ -141,13 +141,13 @@ function Footer() {
 						<Grid xs={6}>
 							<ul className={classes.listbox}>
 								<li className={classes.listhead}> Shop</li>
-								<li> Formals</li>
-								<li> Casual</li>
+								<li> Strips</li>
+								<li> Plain</li>
 								<li> Design shirt</li>
 							</ul>
 						</Grid>
 					</Grid>
-					<Grid item container xs={12} sm={6}>
+					{/* <Grid item container xs={12} sm={6}>
 						<Grid xs={6}>
 							<ul className={classes.listbox}>
 								<li className={classes.listhead}> Shop</li>
@@ -164,7 +164,7 @@ function Footer() {
 								<li> Design shirt</li>
 							</ul>
 						</Grid>
-					</Grid>
+					</Grid> */}
 				</Grid>
 			</Grid>
 		</Grid>

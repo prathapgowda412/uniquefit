@@ -5,11 +5,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import Login from './pages/sign/Login';
+import ScrollToTop from './common/scrolltop';
 
 ReactDOM.render(
 	<React.StrictMode>
 		{/* <Login /> */}
 		<BrowserRouter>
+			<ScrollToTop />
 			<App />
 		</BrowserRouter>
 	</React.StrictMode>,

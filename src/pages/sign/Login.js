@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { makeStyles, Grid, Hidden, Container, CssBaseline, Box, Typography, Button, Avatar } from '@material-ui/core';
+import {
+	makeStyles,
+	Grid,
+	Hidden,
+	AppBar,
+	Container,
+	CssBaseline,
+	Box,
+	Typography,
+	Button,
+	Avatar,
+} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import FilledInput from '@material-ui/core/FilledInput';
@@ -15,10 +26,15 @@ import ArrowRightAltSharpIcon from '@material-ui/icons/ArrowRightAltSharp';
 import { Link } from 'react-router-dom';
 import Group from './images/Group.svg';
 
+import Uniquefit_blacklogosvg from '../../logos/Uniquefit logo.svg';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		height: '85vh',
 		maxWidth: '100%',
+	},
+	appbar: {
+		backgroundColor: 'white',
+		paddingLeft: '5%',
 	},
 	lineText: {
 		width: '100%',
@@ -96,6 +112,9 @@ const useStyles = makeStyles((theme) => ({
 			lineHeight: '16px',
 		},
 	},
+	logo: {
+		height: '53px',
+	},
 	textField: {
 		background: '#E5E5E5',
 		borderRadius: '5px',
@@ -135,6 +154,11 @@ export default function Login() {
 
 	return (
 		<Grid item container className={classes.root} xs={12}>
+			<AppBar className={classes.appbar} position="sticky" elevation="0">
+				<Link to="/">
+					<img className={classes.logo} src={Uniquefit_blacklogosvg} />
+				</Link>
+			</AppBar>
 			{/* <Grid container> */}
 			<Grid item container sm={12} md={6} direction="column">
 				<Container maxWidth="sm">

@@ -144,7 +144,7 @@ function Trending() {
 						<CardContent>
 							<Typography className={classes.name}> heding </Typography>
 
-							<Link component={Button} to="/ProductPage/1" className={classes.shopbutton}>
+							<Link component={Button} to="/ProductPage" className={classes.shopbutton}>
 								Shop now
 							</Link>
 						</CardContent>
@@ -156,7 +156,7 @@ function Trending() {
 						<CardContent>
 							<Typography className={classes.name}> heding </Typography>
 
-							<Link component={Button} to="/ProductPage/10" className={classes.shopbutton}>
+							<Link component={Button} to="/ProductPage" className={classes.shopbutton}>
 								Shop now
 							</Link>
 						</CardContent>
@@ -168,7 +168,7 @@ function Trending() {
 						<CardContent>
 							<Typography className={classes.name}> heding </Typography>
 
-							<Link component={Button} to="/ProductPage/10" className={classes.shopbutton}>
+							<Link component={Button} to="/ProductPage" className={classes.shopbutton}>
 								Shop now
 							</Link>
 						</CardContent>

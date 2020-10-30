@@ -2,7 +2,6 @@ import { Grid } from '@material-ui/core';
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import Header from './pages/Header';
 
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home/Home';
@@ -15,20 +14,29 @@ import Productpage from './pages/Productpage/Productpage';
 import Signup from './pages/sign/SignUp';
 import Login from './pages/sign/Login';
 import Profilepage from './pages/Profilepage/Profilepage';
+import Product from './pages/Shop/Product';
+import './css/scrollbar.css';
+// import Main from './pages/Main/Main';
+import Header from './pages/Header';
+import Cart from './pages/cart/Cartpage';
 function App() {
 	return (
-		<Grid xs={12}>
-			<Header />
-
+		<Grid container xs={12}>
 			<Switch>
 				<Route path="/Shop">
+					<Header />
 					<Shop />
+					<Footer />
 				</Route>
 				<Route path="/Aboutus">
+					<Header />
 					<Aboutus />
+					<Footer />
 				</Route>
 				<Route path="/Profile">
+					<Header />
 					<Profilepage />
+					<Footer />
 				</Route>
 
 				<Route path="/Login">
@@ -38,13 +46,22 @@ function App() {
 					<Signup />
 				</Route>
 				<Route path="/ProductPage/:id">
+					<Header />
 					<Productpage />
+					<Footer />
 				</Route>
+				<Route path="/Cart">
+					<Header />
+					<Cart />
+					<Footer />
+				</Route>
+
 				<Route path="/">
+					<Header />
 					<Home />
+					<Footer />
 				</Route>
 			</Switch>
-			<Footer />
 		</Grid>
 	);
 }

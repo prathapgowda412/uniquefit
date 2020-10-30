@@ -22,17 +22,17 @@ import {
 	Paper,
 	IconButton,
 	Container,
+	Hidden,
 } from '@material-ui/core';
 import '../custom.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
 // import Aboutsection from './aboutsection';
 import { Link, NavLink } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import { styled } from '@material-ui/core/styles';
 import breakpoint from 'styled-components-breakpoint';
-
-import './Header.css';
+import users from '../data/users.json';
 import { width } from '@material-ui/system';
 
 const styles = (theme) => ({
@@ -44,12 +44,13 @@ const styles = (theme) => ({
 		position: 'sticky',
 		height: '70px',
 		elevation: '1',
+		textDecoration: 'none',
 		color: 'black',
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
 		textDecoration: 'none',
-		boxShadow: '0 5px 10px -8px rgba(17, 17, 17, 0.329)',
+		boxShadow: '0 5px 8px -8px rgba(17, 17, 17, 0.329)',
 		// box-shadow: '0 5px 10px #111',
 	},
 	linkactive: {
@@ -105,15 +106,12 @@ const styles = (theme) => ({
 			cursor: 'pointer',
 		},
 	},
-	// nav: {
-	// 	display: 'flex',
-	// 	flexDirection: 'row',
-	// 	width: '60%',
-	// 	justifyContent: 'space-between',
-	// 	[theme.breakpoints.down('sm')]: {
-	// 		display: 'none',
-	// 	},
-	// },
+	nav: {
+		display: 'flex',
+		flexDirection: 'row',
+		width: 'fit-content',
+		justifyContent: 'space-between',
+	},
 
 	sideBarIcon: {
 		padding: 0,
@@ -130,6 +128,7 @@ const styles = (theme) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		color: 'black',
+		alignItems: 'center',
 		textDecoration: 'none',
 		'&:hover': {
 			textDecoration: 'none',
@@ -195,12 +194,36 @@ const styles = (theme) => ({
 		},
 	},
 
+	navprofile: {
+		display: 'flex',
+		flexDirection: 'row',
+		width: '80%',
+		justifyContent: 'space-between',
+	},
+
 	drawerpaper: {
 		width: '250px',
 		position: 'relative',
 	},
+	menuicon: {
+		fontSize: '24px',
+	},
+	link: {
+		textDecoration: 'none',
+		color: 'black',
+		transition: 'all 0.1s',
+		'&:hover': {
+			color: '#034b46',
+		},
+	},
+	drawer: {
+		transition: '1s',
+	},
+	carticon: {
+		fontSize: '22px',
+	},
 });
-
+// use popper for drop down
 class Header extends Component {
 	constructor() {
 		super();
@@ -211,25 +234,36 @@ class Header extends Component {
 	};
 	handleToggle = () => this.setState({ open: !this.state.open });
 	render() {
-		const { classes } = this.props;
-		return (
-			<AppBar elevation="0" className={classes.header}>
-				<Toolbar className={classes.toolbar}>
-					{/* <FontAwesomeIcon icon={faBars}   className={classes.barsicon} /> */}
-					{/* drawer setion here start */}
-					{/* <Button style={{ fontSize: '24px' }} onClick={this.handleToggle}>
-						menu
-					</Button> */}
-					<Button onClick={this.handleToggle}>
-						<FontAwesomeIcon
-							Component="button"
-							icon={faBars}
-							className="menuicon"
-							style={{ fontSize: '28px' }}
-						/>
-					</Button>
+		const userid = 1;
+		const user = users.filter((user, index) => {
+			return user.id == userid;
+		});
+		console.log(user);
+		console.log(
+			user.map((user) => {
+				return user.name;
+			})
+		);
 
-					<Drawer open={this.state.open} onBackdropClick={this.handleDrawerClose}>
+		const { classes } = this.props;
+
+		return (
+			<AppBar user={user} elevation="0" className={classes.header}>
+				<Toolbar className={classes.toolbar}>
+					<Hidden mdUp>
+						<Button onClick={this.handleToggle}>
+							{/* <Typography variant="h6">hello</Typography> */}
+							<FontAwesomeIcon
+								Component="button"
+								icon={faBars}
+								className={classes.menuicon}
+								style={{ fontSize: '28px' }}
+							/>
+						</Button>
+					</Hidden>
+
+					{/* drawer setion here start */}
+					<Drawer className={classes.drawer} open={this.state.open} onBackdropClick={this.handleDrawerClose}>
 						<Paper elevation={0} square className={classes.drawerpaper}>
 							<div className={classes.closebox}>
 								<Button onClick={this.handleToggle} style={{ float: 'right' }}>
@@ -247,13 +281,25 @@ class Header extends Component {
 										<Link className={classes.limob} to="/Shop" onClick={this.handleToggle}>
 											Shop Products
 										</Link>
-										{/* <Link className={classes.limob} onClick={this.handleToggle}>
-											Shop Categories
-										</Link> */}
+
 										<Link className={classes.limob} onClick={this.handleToggle} to="/Aboutus">
 											About us
 										</Link>
 									</ul>
+									<Container
+										style={{
+											backgroundColor: '#f2f2f2',
+											padding: '10px 5px',
+											marginTop: '10px',
+											marginBottom: '10px',
+											borderRadius: '10px',
+										}}>
+										<Link className={classes.profilelink} to="/Profile" onClick={this.handleToggle}>
+											<Avatar className={classes.profilepic} src={profileavat} />
+											<Typography>My Profile </Typography>
+										</Link>
+										<Button>V</Button>
+									</Container>
 									<Button className={classes.requestcallbutton}>request</Button>
 								</nav>
 							</Container>
@@ -264,37 +310,39 @@ class Header extends Component {
 					<Link to="/">
 						<img className={classes.logo} src={Uniquefit_blacklogosvg} />
 					</Link>
-					<nav className="nav">
-						<ul className={classes.ul}>
-							<li className={classes.li}>
-								<Link className={classes.li} to="/Home">
-									Home
-								</Link>
-							</li>
-							{/* <li className={classes.li}>Shop Products</li> */}
-							<li className={classes.li}>
-								<Link className={classes.li} to="/Shop">
-									Shop Products
-								</Link>
-							</li>
-							<li className={classes.li}>
-								<Link className={classes.li} to="/Aboutus">
-									About Us
-								</Link>
-							</li>
-						</ul>
-						<Button className={classes.requestcallbutton}>Request Call Back</Button>
-					</nav>
+					<Hidden smDown>
+						<Box className={classes.navprofile}>
+							<nav className={classes.nav}>
+								<ul className={classes.ul}>
+									<li className={classes.li}>
+										<Link className={classes.li} to="/Home">
+											Home
+										</Link>
+									</li>
+									<li className={classes.li}>
+										<Link className={classes.li} to="/Shop">
+											Shop Products
+										</Link>
+									</li>
+									<li className={classes.li}>
+										<Link className={classes.li} to="/Aboutus">
+											About Us
+										</Link>
+									</li>
+								</ul>
+								<Button className={classes.requestcallbutton}>Request Call Back</Button>
+							</nav>
+							<Link to="/Login">Login</Link>
+							<Link className={classes.profilelink} to="/Profile">
+								<Avatar className={classes.profilepic} src={profileavat} />
+								<Typography>My Profile </Typography>
+							</Link>
+						</Box>
+					</Hidden>
 					<Box className={classes.profilecart}>
-						{/* <Link className={classes.loginbutton} to="/Login">
-							Login
-						</Link> */}
-						<Link className={classes.profilelink} to="/Profile">
-							<Avatar className={classes.profilepic} src={profileavat} />
-							<Typography>My Profile</Typography>
+						<Link className={classes.link} to="/Cart">
+							<FontAwesomeIcon className={classes.carticon} icon={faShoppingCart} />
 						</Link>
-
-						{/* <img className={classes.shopingcart} src={shopingcart} /> */}
 					</Box>
 				</Toolbar>
 			</AppBar>
