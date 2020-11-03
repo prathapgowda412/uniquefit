@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dad4cecdbf6b770032c385c3b7e8ee62",
+    "revision": "43aa51af30004a2bd559993abacec5d3",
     "url": "/uniquefit/index.html"
   },
   {
-    "revision": "1e5bf3b0f59b467fdf37",
+    "revision": "a5e677aa7264dbf86dad",
     "url": "/uniquefit/static/css/main.de98308a.chunk.css"
   },
   {
-    "revision": "e8b9dc696c110c836580",
-    "url": "/uniquefit/static/js/2.0e5f2b16.chunk.js"
+    "revision": "8f1514599ba74eaad3f3",
+    "url": "/uniquefit/static/js/2.1c629eb9.chunk.js"
   },
   {
     "revision": "0f370c3b65ba9c03abd89acf4a63537f",
-    "url": "/uniquefit/static/js/2.0e5f2b16.chunk.js.LICENSE.txt"
+    "url": "/uniquefit/static/js/2.1c629eb9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "1e5bf3b0f59b467fdf37",
-    "url": "/uniquefit/static/js/main.d13cabfd.chunk.js"
+    "revision": "a5e677aa7264dbf86dad",
+    "url": "/uniquefit/static/js/main.c75d6600.chunk.js"
   },
   {
     "revision": "80ca6c9fc2b5b5d70e00",
@@ -50,6 +50,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "de9b37f03f318e679ec4d64e178ec654",
     "url": "/uniquefit/static/media/avatr1.de9b37f0.jpg"
+  },
+  {
+    "revision": "f6a44be5dc74fd6dcacdfde545efbe63",
+    "url": "/uniquefit/static/media/collars-club.f6a44be5.svg"
   },
   {
     "revision": "53757d9306796cd8c19df677d30a10c7",
@@ -98,6 +102,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "6620c8ae2cac90067a9aa78339bb808d",
     "url": "/uniquefit/static/media/twitter-brands.6620c8ae.svg"
+  },
+  {
+    "revision": "acf0c4d7f3547c67b0de083747905c0c",
+    "url": "/uniquefit/static/media/uniquefitlogowhite.acf0c4d7.svg"
   },
   {
     "revision": "a881270183c6e504d3d92cae4e9a097f",
