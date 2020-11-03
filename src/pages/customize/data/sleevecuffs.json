@@ -1,0 +1,22 @@
+[
+	{
+		"sleeveid": "1",
+		"name": "half sleeve",
+		"image": "https://www.bombayshirts.com/static/img/sleeve/half.svg"
+	},
+	{
+		"sleeveid": "2",
+		"name": "single convertible",
+		"image": "https://www.bombayshirts.com/static/img/sleeve/single-convertible.svg"
+	},
+	{
+		"sleeveid": "3",
+		"name": "double bond",
+		"image": "https://www.bombayshirts.com/static/img/sleeve/double-bond.svg"
+	},
+	{
+		"sleeveid": "4",
+		"name": "The Neopolitan",
+		"image": "https://www.bombayshirts.com/static/img/sleeve/the-neopolitan.svg"
+	}
+]

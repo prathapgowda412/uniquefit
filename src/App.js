@@ -19,6 +19,8 @@ import './css/scrollbar.css';
 // import Main from './pages/Main/Main';
 import Header from './pages/Header';
 import Cart from './pages/cart/Cartpage';
+import Customize from './pages/customize/customize';
+
 function App() {
 	return (
 		<Grid container xs={12}>
@@ -54,6 +56,9 @@ function App() {
 					<Header />
 					<Cart />
 					<Footer />
+				</Route>
+				<Route path="/Customize/:id">
+					<Customize />
 				</Route>
 
 				<Route path="/">

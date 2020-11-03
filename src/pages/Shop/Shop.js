@@ -183,7 +183,7 @@ function Shop() {
 				</Grid>
 				<Grid item container xs={12} sm={9} direction="row" cols={3} className={classes.productsbox}>
 					{dummydata.map((product) => {
-						return <Product key={product.id} product={product} />;
+						return <Product key={product.productid} product={product} />;
 					})}
 				</Grid>
 			</Grid>

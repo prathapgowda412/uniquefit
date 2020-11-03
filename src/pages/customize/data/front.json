@@ -1,0 +1,17 @@
+[
+	{
+		"frontid": "1",
+		"name": "Regular",
+		"image": "https://www.bombayshirts.com/static/img/front/front-regular.svg"
+	},
+	{
+		"frontid": "2",
+		"name": "French",
+		"image": "https://www.bombayshirts.com/static/img/front/front-french.svg"
+	},
+	{
+		"frontid": "3",
+		"name": "Pencil",
+		"image": "https://www.bombayshirts.com/static/img/front/front-pencil.svg"
+	}
+]

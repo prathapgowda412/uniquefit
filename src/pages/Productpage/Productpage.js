@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Grid, withStyles, makeStyles, Box, Container, Button } from '@material-ui/core';
 import { render } from 'react-dom';
 
@@ -87,14 +87,14 @@ function Productpage() {
 	const classes = useStyles();
 
 	const productdetail = products.filter((product, index) => {
-		return product.id == id;
+		return product.productid == id;
 	});
-	console.log(productdetail.name);
+
 	return (
 		<>
 			{productdetail.map((singleproduct, index) => {
 				return (
-					<Grid item container xs={12} className={classes.main} key={singleproduct.id}>
+					<Grid item container xs={12} className={classes.main} key={singleproduct.productid}>
 						<Grid item container xs={12} sm={6} className={classes.leftgrid}>
 							<Tabs className={classes.tabss}>
 								<Grid xs={12} className={classes.tabpanelbox}>
@@ -125,7 +125,9 @@ function Productpage() {
 								<Typography variant="body2">
 									<b>Product Description: </b> {singleproduct.desc}
 								</Typography>
-								<Button className={classes.customizebutton}>Customize now</Button>
+								<Link to={`/Customize/${singleproduct.productid}`}>
+									<Button className={classes.customizebutton}>Customize now</Button>
+								</Link>
 							</Container>
 						</Grid>
 					</Grid>

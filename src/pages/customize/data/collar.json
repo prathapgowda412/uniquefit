@@ -1,0 +1,27 @@
+[
+	{
+		"collarid": "1",
+		"name": "spread eagle",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-spread-eagle.svg"
+	},
+	{
+		"collarid": "2",
+		"name": "prince charlie",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-prince-charlie.svg"
+	},
+	{
+		"collarid": "3",
+		"name": "Madmen",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-madmen.svg"
+	},
+	{
+		"collarid": "4",
+		"name": "bandhgala",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-bandhgala.svg"
+	},
+	{
+		"collarid": "5",
+		"name": "hipster",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-hipster.svg"
+	}
+]

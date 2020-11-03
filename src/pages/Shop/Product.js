@@ -59,14 +59,16 @@ function Product(props) {
 	let { product } = props;
 	const classes = useStyles();
 	return (
-		<Container className={classes.pro} key={product.id}>
+		<Container className={classes.pro} key={product.productid}>
 			<Card className={classes.card} elevation="0" square>
-				<Box className={classes.topimag}>
-					<img className={classes.cardimg} src={product.images[0]} />
-				</Box>
+				<Link to={`/ProductPage/${product.productid}`}>
+					<Box className={classes.topimag}>
+						<img className={classes.cardimg} src={product.images[0]} />
+					</Box>
+				</Link>
 				<CardActionArea className={classes.cardbody}>
 					<Container>
-						<Link className={classes.link} to={`/ProductPage/${product.id}`}>
+						<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
 							<Typography variant="h2" className={classes.productname}>
 								{product.name}
 							</Typography>
