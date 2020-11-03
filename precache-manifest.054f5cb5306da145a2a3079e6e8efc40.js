@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "43aa51af30004a2bd559993abacec5d3",
+    "revision": "5c18caacf7b20064265b06d88dfa49b5",
     "url": "/uniquefit/index.html"
   },
   {
-    "revision": "a5e677aa7264dbf86dad",
+    "revision": "c8a55fab53113cb9d336",
     "url": "/uniquefit/static/css/main.de98308a.chunk.css"
   },
   {
-    "revision": "8f1514599ba74eaad3f3",
-    "url": "/uniquefit/static/js/2.1c629eb9.chunk.js"
+    "revision": "27329690d20232bd7ecd",
+    "url": "/uniquefit/static/js/2.35e1025d.chunk.js"
   },
   {
     "revision": "0f370c3b65ba9c03abd89acf4a63537f",
-    "url": "/uniquefit/static/js/2.1c629eb9.chunk.js.LICENSE.txt"
+    "url": "/uniquefit/static/js/2.35e1025d.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a5e677aa7264dbf86dad",
-    "url": "/uniquefit/static/js/main.c75d6600.chunk.js"
+    "revision": "c8a55fab53113cb9d336",
+    "url": "/uniquefit/static/js/main.01ea55d0.chunk.js"
   },
   {
     "revision": "80ca6c9fc2b5b5d70e00",
@@ -50,10 +50,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "de9b37f03f318e679ec4d64e178ec654",
     "url": "/uniquefit/static/media/avatr1.de9b37f0.jpg"
-  },
-  {
-    "revision": "f6a44be5dc74fd6dcacdfde545efbe63",
-    "url": "/uniquefit/static/media/collars-club.f6a44be5.svg"
   },
   {
     "revision": "53757d9306796cd8c19df677d30a10c7",
