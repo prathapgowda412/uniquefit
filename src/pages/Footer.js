@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from '@material-ui/core';
+import { Grid, Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import uniquefitlogo from '../logos/Uniquefit logo.svg';
@@ -77,9 +77,9 @@ function Footer() {
 				</Typography>
 				<div className={classes.mediabox}>
 					<Grid item container xs={12} alignItems="stretch">
-						<Grid xs={6} sm={3}>
+						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
-							<Paper square elevation="0" className={classes.socialbox}>
+							<Paper square elevation={0} className={classes.socialbox}>
 								{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
 								<img
 									className={classes.mediaicon}
@@ -88,9 +88,9 @@ function Footer() {
 								@uniquefit
 							</Paper>
 						</Grid>
-						<Grid xs={6} sm={3}>
+						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
-							<Paper square elevation="0" className={classes.socialbox}>
+							<Paper square elevation={0} className={classes.socialbox}>
 								{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
 								<img
 									className={classes.mediaicon}
@@ -99,9 +99,9 @@ function Footer() {
 								@uniquefit
 							</Paper>
 						</Grid>
-						<Grid xs={6} sm={3}>
+						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
-							<Paper square elevation="0" className={classes.socialbox}>
+							<Paper square elevation={0} className={classes.socialbox}>
 								{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
 								<img
 									className={classes.mediaicon}
@@ -110,9 +110,9 @@ function Footer() {
 								@uniquefit
 							</Paper>
 						</Grid>
-						<Grid xs={6} sm={3}>
+						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
-							<Paper square elevation="0" className={classes.socialbox}>
+							<Paper square elevation={0} className={classes.socialbox}>
 								{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
 								<img
 									className={classes.mediaicon}
@@ -138,7 +138,7 @@ function Footer() {
 								<li> Design shirt</li>
 							</ul>
 						</Grid>
-						<Grid xs={6}>
+						<Grid item container xs={6}>
 							<ul className={classes.listbox}>
 								<li className={classes.listhead}> Shop</li>
 								<li> Strips</li>

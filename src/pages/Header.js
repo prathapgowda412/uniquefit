@@ -23,6 +23,7 @@ import {
 	IconButton,
 	Container,
 	Hidden,
+	Grid,
 } from '@material-ui/core';
 import '../custom.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -248,104 +249,112 @@ class Header extends Component {
 		const { classes } = this.props;
 
 		return (
-			<AppBar user={user} elevation="0" className={classes.header}>
-				<Toolbar className={classes.toolbar}>
-					<Hidden mdUp>
-						<Button onClick={this.handleToggle}>
-							{/* <Typography variant="h6">hello</Typography> */}
-							<FontAwesomeIcon
-								Component="button"
-								icon={faBars}
-								className={classes.menuicon}
-								style={{ fontSize: '28px' }}
-							/>
-						</Button>
-					</Hidden>
+			<Grid item Container>
+				<AppBar user={user} elevation={0} className={classes.header}>
+					<Toolbar className={classes.toolbar}>
+						<Hidden mdUp>
+							<Button onClick={this.handleToggle}>
+								{/* <Typography variant="h6">hello</Typography> */}
+								<FontAwesomeIcon
+									Component="button"
+									icon={faBars}
+									className={classes.menuicon}
+									style={{ fontSize: '28px' }}
+								/>
+							</Button>
+						</Hidden>
 
-					{/* drawer setion here start */}
-					<Drawer className={classes.drawer} open={this.state.open} onBackdropClick={this.handleDrawerClose}>
-						<Paper elevation={0} square className={classes.drawerpaper}>
-							<div className={classes.closebox}>
-								<Button onClick={this.handleToggle} style={{ float: 'right' }}>
-									<FontAwesomeIcon icon={faTimes} style={{ fontSize: '28px' }}>
-										menu
-									</FontAwesomeIcon>
-								</Button>
-							</div>
-							<Container className={classes.drawercont}>
-								<nav style={{ position: 'relative' }}>
-									<ul className={classes.ulmob}>
-										<Link className={classes.limob} to="/Home" onClick={this.handleToggle}>
-											Home
-										</Link>
-										<Link className={classes.limob} to="/Shop" onClick={this.handleToggle}>
-											Shop Products
-										</Link>
+						{/* drawer setion here start */}
+						<Drawer
+							className={classes.drawer}
+							open={this.state.open}
+							onBackdropClick={this.handleDrawerClose}>
+							<Paper elevation={0} square className={classes.drawerpaper}>
+								<div className={classes.closebox}>
+									<Button onClick={this.handleToggle} style={{ float: 'right' }}>
+										<FontAwesomeIcon icon={faTimes} style={{ fontSize: '28px' }}>
+											menu
+										</FontAwesomeIcon>
+									</Button>
+								</div>
+								<Container className={classes.drawercont}>
+									<nav style={{ position: 'relative' }}>
+										<ul className={classes.ulmob}>
+											<Link className={classes.limob} to="/Home" onClick={this.handleToggle}>
+												Home
+											</Link>
+											<Link className={classes.limob} to="/Shop" onClick={this.handleToggle}>
+												Shop Products
+											</Link>
 
-										<Link className={classes.limob} onClick={this.handleToggle} to="/Aboutus">
-											About us
-										</Link>
+											<Link className={classes.limob} onClick={this.handleToggle} to="/Aboutus">
+												About us
+											</Link>
+										</ul>
+										<Container
+											style={{
+												backgroundColor: '#f2f2f2',
+												padding: '10px 5px',
+												marginTop: '10px',
+												marginBottom: '10px',
+												borderRadius: '10px',
+											}}>
+											<Link
+												className={classes.profilelink}
+												to="/Profile"
+												onClick={this.handleToggle}>
+												<Avatar className={classes.profilepic} src={profileavat} />
+												<Typography>My Profile </Typography>
+											</Link>
+											<Button>V</Button>
+										</Container>
+										<Button className={classes.requestcallbutton}>request</Button>
+									</nav>
+								</Container>
+							</Paper>
+						</Drawer>
+						{/* drawer setion here end */}
+
+						<Link to="/">
+							<img className={classes.logo} src={Uniquefit_blacklogosvg} />
+						</Link>
+						<Hidden smDown>
+							<Box className={classes.navprofile}>
+								<nav className={classes.nav}>
+									<ul className={classes.ul}>
+										<li className={classes.li}>
+											<Link className={classes.li} to="/Home">
+												Home
+											</Link>
+										</li>
+										<li className={classes.li}>
+											<Link className={classes.li} to="/Shop">
+												Shop Products
+											</Link>
+										</li>
+										<li className={classes.li}>
+											<Link className={classes.li} to="/Aboutus">
+												About Us
+											</Link>
+										</li>
 									</ul>
-									<Container
-										style={{
-											backgroundColor: '#f2f2f2',
-											padding: '10px 5px',
-											marginTop: '10px',
-											marginBottom: '10px',
-											borderRadius: '10px',
-										}}>
-										<Link className={classes.profilelink} to="/Profile" onClick={this.handleToggle}>
-											<Avatar className={classes.profilepic} src={profileavat} />
-											<Typography>My Profile </Typography>
-										</Link>
-										<Button>V</Button>
-									</Container>
-									<Button className={classes.requestcallbutton}>request</Button>
+									<Button className={classes.requestcallbutton}>Request Call Back</Button>
 								</nav>
-							</Container>
-						</Paper>
-					</Drawer>
-					{/* drawer setion here end */}
-
-					<Link to="/">
-						<img className={classes.logo} src={Uniquefit_blacklogosvg} />
-					</Link>
-					<Hidden smDown>
-						<Box className={classes.navprofile}>
-							<nav className={classes.nav}>
-								<ul className={classes.ul}>
-									<li className={classes.li}>
-										<Link className={classes.li} to="/Home">
-											Home
-										</Link>
-									</li>
-									<li className={classes.li}>
-										<Link className={classes.li} to="/Shop">
-											Shop Products
-										</Link>
-									</li>
-									<li className={classes.li}>
-										<Link className={classes.li} to="/Aboutus">
-											About Us
-										</Link>
-									</li>
-								</ul>
-								<Button className={classes.requestcallbutton}>Request Call Back</Button>
-							</nav>
-							<Link to="/Login">Login</Link>
-							<Link className={classes.profilelink} to="/Profile">
-								<Avatar className={classes.profilepic} src={profileavat} />
-								<Typography>My Profile </Typography>
+								<Link to="/Login">Login</Link>
+								<Link className={classes.profilelink} to="/Profile">
+									<Avatar className={classes.profilepic} src={profileavat} />
+									<Typography>My Profile </Typography>
+								</Link>
+							</Box>
+						</Hidden>
+						<Box className={classes.profilecart}>
+							<Link className={classes.link} to="/Cart">
+								<FontAwesomeIcon className={classes.carticon} icon={faShoppingCart} />
 							</Link>
 						</Box>
-					</Hidden>
-					<Box className={classes.profilecart}>
-						<Link className={classes.link} to="/Cart">
-							<FontAwesomeIcon className={classes.carticon} icon={faShoppingCart} />
-						</Link>
-					</Box>
-				</Toolbar>
-			</AppBar>
+					</Toolbar>
+				</AppBar>
+			</Grid>
 		);
 	}
 }

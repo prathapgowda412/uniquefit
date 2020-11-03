@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
 		maxHeight: 'fit-content',
 		marginTop: '120px',
 		position: 'relative',
-		position: 'relative',
 	},
 	shopimg: {
 		height: '438px',

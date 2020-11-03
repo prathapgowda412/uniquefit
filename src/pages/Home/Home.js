@@ -10,7 +10,7 @@ import Testimonialsection from './components/Testimonial';
 
 function Home() {
 	return (
-		<Grid container xs={12} justify="center">
+		<Grid item container xs={12} justify="center">
 			<Firstsec />
 			<Trending />
 			<Shopfav />

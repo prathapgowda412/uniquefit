@@ -23,7 +23,7 @@ import Customize from './pages/customize/customize';
 
 function App() {
 	return (
-		<Grid container xs={12}>
+		<Grid container item xs={12}>
 			<Switch>
 				<Route path="/Shop">
 					<Header />

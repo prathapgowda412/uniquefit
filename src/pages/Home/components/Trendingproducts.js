@@ -81,7 +81,7 @@ function Trending() {
 	const classes = useStyles();
 	return (
 		<Grid item container xs={12} className={classes.root}>
-			<Container justify="center" alignContent="center" style={{ marginBottom: '35px' }}>
+			<Container justify="center" style={{ marginBottom: '35px' }}>
 				<Typography variant="h5">Trending</Typography>
 			</Container>
 			{/* <div className={classes.grid}>
@@ -139,36 +139,36 @@ function Trending() {
 
 			<Grid item container xs={12} alignContent="stretch" spacing={2} justify="space-around">
 				<Grid item container xs={10} sm={3}>
-					<Card elevation="0" square>
+					<Card elevation={0} square>
 						<CardMedia component="img" image={imgs} title="" />
 						<CardContent>
 							<Typography className={classes.name}> heding </Typography>
 
-							<Link component={Button} to="/ProductPage" className={classes.shopbutton}>
+							<Link component={Button} to="/ProductPage/1" className={classes.shopbutton}>
 								Shop now
 							</Link>
 						</CardContent>
 					</Card>
 				</Grid>
 				<Grid item container xs={10} sm={3}>
-					<Card elevation="0" square>
+					<Card elevation={0} square>
 						<CardMedia component="img" image={imgs} title="" />
 						<CardContent>
 							<Typography className={classes.name}> heding </Typography>
 
-							<Link component={Button} to="/ProductPage" className={classes.shopbutton}>
+							<Link component={Button} to="/ProductPage/2" className={classes.shopbutton}>
 								Shop now
 							</Link>
 						</CardContent>
 					</Card>
 				</Grid>
 				<Grid item container xs={10} sm={3}>
-					<Card elevation="0" square>
+					<Card elevation={0} square>
 						<CardMedia component="img" image={imgs} title="" />
 						<CardContent>
 							<Typography className={classes.name}> heding </Typography>
 
-							<Link component={Button} to="/ProductPage" className={classes.shopbutton}>
+							<Link component={Button} to="/ProductPage/3" className={classes.shopbutton}>
 								Shop now
 							</Link>
 						</CardContent>

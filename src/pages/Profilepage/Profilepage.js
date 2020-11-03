@@ -89,7 +89,7 @@ function Profilepage() {
 
 	return (
 		<Grid item container xs={12} className={classes.main}>
-			<Grid xs={12} md={3}>
+			<Grid item container xs={12} md={3}>
 				<Hidden mdUp>
 					<Container className={classes.mobleftpanel}>for mob</Container>
 				</Hidden>
@@ -108,7 +108,7 @@ function Profilepage() {
 					</Tabs>
 				</Hidden>
 			</Grid>
-			<Grid xs={12} md={9}>
+			<Grid item container xs={12} md={9}>
 				<TabPanel value={value} index={0} className={classes.rightpanel}>
 					sccount info
 				</TabPanel>

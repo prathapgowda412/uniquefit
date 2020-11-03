@@ -36,7 +36,7 @@ function Offerssection() {
 	return (
 		<Grid item container xs={12} alignContent="stretch" className={classes.main}>
 			<Grid item container xs={12} sm={6}>
-				<Card elevation="0" square className={classes.card}>
+				<Card elevation={0} square className={classes.card}>
 					<CardMedia component="img" image={oferimg} title="" />
 					<Box className={classes.offerbox}>
 						<Typography variant="body1" className={classes.offertext}>
@@ -47,7 +47,7 @@ function Offerssection() {
 				</Card>
 			</Grid>
 			<Grid item container xs={12} sm={6}>
-				<Card elevation="0" square className={classes.card}>
+				<Card elevation={0} square className={classes.card}>
 					<CardMedia component="img" image={oferimg} title="" />
 					<Box className={classes.offerbox}>
 						<Typography variant="body1" className={classes.offertext}>
@@ -58,7 +58,7 @@ function Offerssection() {
 				</Card>
 			</Grid>
 			<Grid item container xs={12} sm={6}>
-				<Card elevation="0" square className={classes.card}>
+				<Card elevation={0} square className={classes.card}>
 					<CardMedia component="img" image={oferimg} title="" />
 					<Box className={classes.offerbox}>
 						<Typography variant="body1" className={classes.offertext}>
@@ -69,7 +69,7 @@ function Offerssection() {
 				</Card>
 			</Grid>
 			<Grid item container xs={12} sm={6}>
-				<Card elevation="0" square className={classes.card}>
+				<Card elevation={0} square className={classes.card}>
 					<CardMedia component="img" image={oferimg} title="" />
 					<Box className={classes.offerbox}>
 						<Typography variant="body1" className={classes.offertext}>

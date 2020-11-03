@@ -81,14 +81,14 @@ const useStyles = makeStyles((theme) => ({
 function Testimonialsection() {
 	const classes = useStyles();
 	return (
-		<Grid xs={12} className={classes.main}>
-			<Grid xs={11} sm={9} className={classes.cont}>
+		<Grid item container xs={12} className={classes.main}>
+			<Grid item container xs={11} sm={9} className={classes.cont}>
 				<Typography variant="body2" className={classes.peoplesaying}>
 					What are people saying!
 				</Typography>
 				<Paper elevation={0} className={classes.paperbox}>
 					<img className={classes.qoutes} src={require('./statics/icons/qoutes.svg')} />
-					<Grid container xs={12} justify="center">
+					<Grid item container xs={12} justify="center">
 						<Grid item container xs={10} sm={6}>
 							<Typography variant="body2" className={classes.content}>
 								The Tailors customization tool is just beyond expectations. Helped me design the shirt I
@@ -96,7 +96,7 @@ function Testimonialsection() {
 								best place!
 							</Typography>
 						</Grid>
-						<Grid xs={12} sm={1} />
+						<Grid item xs={12} sm={1} />
 						<Grid
 							item
 							container
@@ -106,13 +106,13 @@ function Testimonialsection() {
 							className={classes.testwriter}
 							// justifyContent="center"
 							style={{ height: 'fit-content' }}>
-							<Grid xs={4} sm={10} className={classes.justcent}>
+							<Grid item container xs={4} sm={10} className={classes.justcent}>
 								<Avatar
 									className={classes.avatar}
 									src={require('./statics/images/avatr1.jpg')}></Avatar>
 							</Grid>
-							<Grid xs={7} sm={10} className={classes.justcent}>
-								<Typography variant>Rohith Dhanala</Typography>
+							<Grid item container xs={7} sm={10} className={classes.justcent}>
+								<Typography>Rohith Dhanala</Typography>
 								<Typography>Founder MaxC</Typography>
 							</Grid>
 						</Grid>

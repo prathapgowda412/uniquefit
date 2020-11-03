@@ -7,8 +7,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 
-import collarimg from './types/color/collars-club.svg';
-
 import collars from './data/collar.json';
 import frontt from './data/front.json';
 import Butoons from './data/buttons.json';
@@ -16,7 +14,6 @@ import sleevecuffss from './data/sleevecuffs.json';
 import { Link, useParams } from 'react-router-dom';
 
 import products from '../../data/dummydata.json';
-import prods from '../../data/dummydata.json';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -208,44 +205,36 @@ function Customize() {
 		return product.productid == id;
 	});
 
-	const [customizedproduct, setCustomizedproduct] = React.useState([
-		{
-			product_id: '',
-			collarname: '',
-			front: '',
-			buttonname: '',
-			pocket: '',
-			sleevecuff: '',
-		},
-	]);
-
-	// collar value chnage handling below
+	// collar value change handling below
 	const [collarnamevalue, setcollarnameValue] = React.useState('');
+	let collarname = 'onecollar';
 	const handlecollarChange = (event) => {
+		collarname = event.value;
 		setcollarnameValue(event.target.value);
+		// customizedproduct[0].collarname=
 	};
-	// collar value chnage handling above
+	// collar value change handling above
 
-	// sleevecuff value chnage handling below
+	// sleevecuff value change handling below
 	const [sleevecuffvalue, setsleevecuffValue] = React.useState('');
 	const handlesleevecuffChange = (event) => {
 		setsleevecuffValue(event.target.value);
 	};
-	// sleevecuff value chnage handling above
+	// sleevecuff value change handling above
 
-	// butoons  value chnage handling below
+	// butoons  value change handling below
 	const [butoonvalue, setbutoonvalue] = React.useState('');
 	const handlebutoonChange = (event) => {
 		setbutoonvalue(event.target.value);
 	};
-	// butoons  value chnage handling above
+	// butoons  value change handling above
 
-	// butoons  value chnage handling below
+	// butoons  value change handling below
 	const [frontvalue, setfrontvalue] = React.useState('');
 	const handlefrontChange = (event) => {
 		setfrontvalue(event.target.value);
 	};
-	// butoons  value chnage handling above
+	// butoons  value change handling above
 
 	// tabs handling below
 	const [tabvalue, settabValue] = React.useState(0);
@@ -253,10 +242,27 @@ function Customize() {
 		settabValue(newValue);
 	};
 	// tabs handling top
+	// customized total product below
+	let customizedproduct = [
+		{
+			product_id: id,
+			collarname: collarnamevalue,
+			frontname: frontvalue,
+			buttonname: butoonvalue,
+			slevevecuff: sleevecuffvalue,
+			quantity: '1',
+		},
+	];
+	console.log('printing prod below');
+	let finalprod = customizedproduct[0];
+	console.log(finalprod);
+	console.log('printing prod above');
+	console.log();
+	// customized total product above
 	return (
 		<>
 			<Hidden smDown>
-				<Grid container xs={12} className={classes.root} key={productdetail.productid}>
+				<Grid item container xs={12} className={classes.root} key={productdetail.productid}>
 					<Grid xs={12} className={classes.topbar}>
 						<Grid xs={2} className={classes.logobox}>
 							<Link to="/">
@@ -298,6 +304,7 @@ function Customize() {
 								);
 							})}
 							helos
+							{customizedproduct.buttonname}
 						</Grid>
 						{/* middle preview  tab above */}
 
@@ -435,6 +442,11 @@ function Customize() {
 						</Grid>
 						{/* right subtype selection tab above */}
 					</Grid>
+				</Grid>
+			</Hidden>
+			<Hidden mdUp>
+				<Grid item container xs={12}>
+					mobile
 				</Grid>
 			</Hidden>
 		</>
