@@ -3,14 +3,13 @@ import {
 	makeStyles,
 	Grid,
 	Hidden,
+	AppBar,
 	Container,
 	CssBaseline,
 	Box,
 	Typography,
 	Button,
 	Avatar,
-	FormLabel,
-	FormGroup,
 } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
@@ -27,9 +26,21 @@ import ArrowRightAltSharpIcon from '@material-ui/icons/ArrowRightAltSharp';
 import { Link } from 'react-router-dom';
 import Group from './images/Group.svg';
 
+import axio from 'axios';
+
+// not used
+
+import Uniquefit_blacklogosvg from '../../logos/Uniquefit logo.svg';
+import Login from './Login';
+import { Toys } from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
 	root: {
-		height: '100%',
+		height: '85vh',
+		maxWidth: '100%',
+	},
+	appbar: {
+		backgroundColor: 'white',
+		paddingLeft: '5%',
 	},
 	lineText: {
 		width: '100%',
@@ -53,13 +64,17 @@ const useStyles = makeStyles((theme) => ({
 		fontFamily: 'Lora',
 		fontStyle: 'normal',
 		fontWeight: 'bold',
-		color: 'black',
 		fontSize: '2.5rem',
-		lineHeight: '36px',
 		backgroundColor: 'white',
+		lineHeight: '36px',
+		color: 'black',
 		[theme.breakpoints.down('sm')]: {
 			fontSize: '2rem',
 		},
+	},
+	link: {
+		textDecoration: 'none',
+		color: '#387A76',
 	},
 	googleLoginButton: {
 		background: '#FFFFFF',
@@ -103,6 +118,16 @@ const useStyles = makeStyles((theme) => ({
 			lineHeight: '16px',
 		},
 	},
+	logo: {
+		height: '53px',
+	},
+	errorname: {
+		color: 'red',
+		fontSize: '14px',
+	},
+	response: {
+		color: 'green',
+	},
 	textField: {
 		background: '#E5E5E5',
 		borderRadius: '5px',
@@ -114,37 +139,41 @@ const useStyles = makeStyles((theme) => ({
 		fontSize: '1rem',
 		lineHeight: '18px',
 	},
-	link: {
-		color: '#387A76',
-		textDecoration: 'none',
-	},
 	iconSize: {
 		width: '1.25rem',
 		height: '1.25rem',
 		marginRight: '10px',
 	},
-	formname: {
-		fontSize: '30px',
-		color: 'black',
-		fontWeight: 'bold',
-	},
 }));
-
-export default function SignUp() {
+function Register() {
 	const classes = useStyles();
 	const [values, setValues] = React.useState({
 		password: '',
 		showPassword: false,
 	});
 
-	const [name, setname] = React.useState('');
-	const [email, setemail] = React.useState('');
-	const [phonenumber, setphonenumber] = React.useState('');
-	const [password, setpassword] = React.useState('');
-	const [password2, setpassword2] = React.useState('');
+	const [name, setName] = React.useState('');
+	const [email, setEmail] = React.useState('');
+	const [mobile, setMobile] = React.useState('');
+
+	const handleEmail = (event) => {
+		setEmail(event.target.value);
+		// console.log(email);
+	};
+	const handleName = (event) => {
+		setName(event.target.value);
+		// console.log(name);
+	};
+	const handleMobile = (event) => {
+		setMobile(event.target.value);
+		// console.log(email);
+	};
+
+	const [password, setPassword] = React.useState('');
 
 	const handleChange = (prop) => (event) => {
 		setValues({ ...values, [prop]: event.target.value });
+		setPassword(event.target.value);
 	};
 
 	const handleClickShowPassword = () => {
@@ -154,86 +183,92 @@ export default function SignUp() {
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
-	// setting values for variables
-	const nameChnage = (event) => {
-		setname(event.target.value);
+
+	let [errorname, seterrorname] = React.useState();
+	let [response, setresponse] = React.useState();
+	const OnloginClick = (event) => {
 		console.log(`Name: ${name}`);
+		console.log(`mobile: ${mobile}`);
+		console.log(`email: ${email}`);
+		console.log(`password: ${password}`);
+
+		const formdata = {
+			username: `${name}`,
+			email: `${email}`,
+			mobile: `${mobile}`,
+			password: `${password}`,
+		};
+
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
+
+		axio.post('http://localhost:4000/user/signup', JSON.stringify(formdata), config)
+			.then((resp) => {
+				console.log(resp);
+				setresponse('user registered successfully');
+			})
+			.catch((err) => {
+				console.log(err.response.data);
+				console.log(err.response.data.msg);
+				seterrorname(err.response.data.msg);
+				console.log(err.response);
+			});
 	};
-	const setMobile = (event) => {
-		setphonenumber(event.target.value);
-		console.log(`Name: ${phonenumber}`);
-	};
-	const setEmail = (event) => {
-		setemail(event.target.value);
-		console.log(`Name: ${email}`);
-	};
-	const setPassword = (event) => {
-		setpassword(event.target.value);
-		console.log(password);
-		console.log(`Name: ${password}`);
-	};
-	console.log(name);
-	console.log(email);
-	console.log(password);
-	console.log(phonenumber);
 
 	return (
-		<Grid item container xs={12} className={classes.root}>
-			<Grid item sm={12} md={6} container direction="column">
+		<Grid item container className={classes.root} xs={12}>
+			<AppBar className={classes.appbar} position="sticky" elevation="0">
+				<Link to="/">
+					<img className={classes.logo} src={Uniquefit_blacklogosvg} />
+				</Link>
+			</AppBar>
+			{/* <Grid container> */}
+			<Grid item container sm={12} md={6} direction="column">
 				<Container maxWidth="sm">
-					<FormControl>
-						<FormLabel className={classes.formname}>Name:</FormLabel>
-						<FormGroup onChange={nameChnage}>
-							<Input placeholder="name" />
-						</FormGroup>
-					</FormControl>
-
+					{/* <Box component="div"> */}
+					{/* <Box component="div"> */}
+					{/* <Box my={4}>
+									<Typography align="center" color="initial" className={classes.loginHeading}>
+										Login
+									</Typography>
+								</Box> */}
+					{/* <Button
+									variant="contained"
+									className={classes.googleLoginButton}
+									fullWidth
+									size="large">
+									<Avatar
+										className={classes.iconSize}
+										src={'https://www.flaticon.com/svg/static/icons/svg/300/300221.svg'}
+									/>
+									Login with Google
+								</Button> */}
+					<Box my={5}>
+						<Typography component="div" align="center" color="initial">
+							<Box component="div" className={classes.lineText}>
+								<Box component="span" className={classes.loginHeading}>
+									Sign Up
+								</Box>
+							</Box>
+						</Typography>
+					</Box>
 					<form noValidate autoComplete="off">
-						<Box mt={3}>
-							<label className={classes.labelFont}>First Name</label>
-						</Box>
+						<label className={classes.labelFont}>Name</label>
 						<TextField
-							id="fName"
+							id="name"
 							size="medium"
 							required
 							// placeholder="Email"
 							margin="normal"
 							fullWidth
+							onChange={handleName}
 							variant="outlined"
 							className={classes.textField}></TextField>
 
-						{/* <TextField
-							id="lName"
-							size="medium"
-							required
-							// placeholder="Email"
-							margin="normal"
-							fullWidth
-							variant="outlined"
-							className={classes.textField}>
-							{' '}
-							helo
-						</TextField> */}
-
-						<Box mt={3}>
-							<label className={classes.labelFont}>Phone</label>
-						</Box>
-						<TextField
-							size="medium"
-							required
-							margin="normal"
-							fullWidth
-							onChange={setMobile}
-							id="phone"
-							className={classes.textField}
-							InputProps={{
-								startAdornment: <InputAdornment position="start">+91</InputAdornment>,
-							}}
-							variant="outlined"
-						/>
-						<Box mt={3}>
-							<label className={classes.labelFont}>Email</label>
-						</Box>
+						<label className={classes.labelFont}>Email</label>
 						<TextField
 							id="email"
 							size="medium"
@@ -241,7 +276,23 @@ export default function SignUp() {
 							// placeholder="Email"
 							margin="normal"
 							fullWidth
-							onChange={setEmail}
+							onChange={handleEmail}
+							variant="outlined"
+							className={classes.textField}></TextField>
+						<Container>
+							<Typography variant="caption" className={classes.errorname}>
+								{errorname}
+							</Typography>
+						</Container>
+						<label className={classes.labelFont}>Mobile </label>
+						<TextField
+							id="mobile"
+							size="medium"
+							required
+							// placeholder="Email"
+							margin="normal"
+							fullWidth
+							onChange={handleMobile}
 							variant="outlined"
 							className={classes.textField}></TextField>
 
@@ -253,7 +304,6 @@ export default function SignUp() {
 							size="medium"
 							margin="normal"
 							variant="outlined"
-							onChange={setPassword}
 							className={classes.textField}>
 							{/* <InputLabel htmlFor="password">Password</InputLabel> */}
 							<OutlinedInput
@@ -274,37 +324,15 @@ export default function SignUp() {
 								}
 							/>
 						</FormControl>
-						<Box mt={3}>
-							<label className={classes.labelFont}>Confirm Password</label>
-						</Box>
-						<FormControl
-							fullWidth
-							size="medium"
-							margin="normal"
-							variant="outlined"
-							className={classes.textField}>
-							{/* <InputLabel htmlFor="password">Password</InputLabel> */}
-							<OutlinedInput
-								id="confirm-password"
-								type={values.showPassword ? 'text' : 'password'}
-								value={values.password2}
-								//   placeholder='Password'
-								onChange={handleChange('password')}
-								endAdornment={
-									<InputAdornment position="end">
-										<IconButton
-											aria-label="toggle password visibility"
-											onClick={handleClickShowPassword}
-											onMouseDown={handleMouseDownPassword}>
-											{values.showPassword ? <VisibilityOff /> : <Visibility />}
-										</IconButton>
-									</InputAdornment>
-								}
-							/>
-						</FormControl>
-						{/* <Typography variant="body2" align="right" color="initial" className={classes.labelFont} style={{color: '#555555'}}>
-                    Forgot Password
-                  </Typography> */}
+
+						{/* <Typography
+							variant="body2"
+							align="right"
+							color="initial"
+							className={classes.labelFont}
+							style={{ color: '#555555' }}>
+							Forgot Password
+						</Typography> */}
 						<Box my={4}>
 							<Button
 								variant="contained"
@@ -312,16 +340,20 @@ export default function SignUp() {
 								size="large"
 								disableElevation
 								color="primary"
+								onClick={OnloginClick}
 								endIcon={<ArrowRightAltSharpIcon />}
 								className={classes.loginButton}>
-								Sign Up
+								Login
 							</Button>
+							<Typography className={classes.response} variant="caption">
+								{response}
+							</Typography>
 						</Box>
 					</form>
 					<Box my={4}>
 						<Typography variant="body1" align="center" color="initial" className={classes.labelFont}>
-							Have an Account?
-							<Link to="/Login" className={classes.link}>
+							Already a member?
+							<Link className={classes.link} to="/Login">
 								Login
 							</Link>
 						</Typography>
@@ -330,7 +362,11 @@ export default function SignUp() {
 					{/* </Box> */}
 				</Container>
 			</Grid>
+
 			<Grid item sm={12} md={6} style={{ backgroundImage: `url(${Group})` }}></Grid>
+			{/* </Grid> */}
 		</Grid>
 	);
 }
+
+export default Register;

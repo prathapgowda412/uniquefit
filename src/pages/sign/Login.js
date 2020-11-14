@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
 	makeStyles,
 	Grid,
@@ -23,10 +23,17 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import ArrowRightAltSharpIcon from '@material-ui/icons/ArrowRightAltSharp';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Group from './images/Group.svg';
 
+import axio from 'axios';
+
+// not used
+
 import Uniquefit_blacklogosvg from '../../logos/Uniquefit logo.svg';
+// import { UserContext } from '../../auth';
+
+import { useAuth } from '../../auth';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		height: '85vh',
@@ -131,17 +138,101 @@ const useStyles = makeStyles((theme) => ({
 		height: '1.25rem',
 		marginRight: '10px',
 	},
+	success: {
+		fontSize: '18px',
+		color: 'green',
+	},
+	wrongerror: {
+		fontSize: '14px',
+		color: 'red',
+	},
 }));
 
-export default function Login() {
+function Login(props) {
+	const [isLoggedIn, setLoggedIn] = useState(false);
+	// const [isError, setIsError] = useState(false);
+	// const [userName, setUserName] = useState('');
+	// const [password, setPassword] = useState('');
+	const { setAuthTokens } = useAuth();
+	// const referer = props.location.state ? props.location.state.referer : '/';
+	// const token = localStorage.getItem('token');
+
+	var [islogggedIn, setlogggedIn] = React.useState(false);
 	const classes = useStyles();
 	const [values, setValues] = React.useState({
 		password: '',
 		showPassword: false,
 	});
 
+	// let [islogged,setislogged]=React.useState('')
+
+	const [email, setEmail] = React.useState('');
+	const [loginsuccessful, setloginsuccessfull] = React.useState('');
+	const handleEmail = (event) => {
+		setEmail(event.target.value);
+		setusernameerror('');
+		setpassworderror('');
+
+		// console.log(email);
+	};
+
+	const token = localStorage.getItem('usertoken');
+	const [logpassword, setPassword] = React.useState('');
+
 	const handleChange = (prop) => (event) => {
 		setValues({ ...values, [prop]: event.target.value });
+		setPassword(event.target.value);
+		setpassworderror('');
+		setusernameerror('');
+
+		// console.log(logpassword);
+	};
+	let [passworderror, setpassworderror] = React.useState('');
+	let [usernameerror, setusernameerror] = React.useState('');
+	const logindata = {
+		email: `${email}`,
+		password: `${logpassword}`,
+	};
+	const OnLogClicked = (event) => {
+		// console.log(`email: ${email}`);
+		// console.log(`password: ${logpassword}`);
+		// console.log(logindata);
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		};
+		axio.post('http://localhost:4000/user/login', JSON.stringify(logindata), config)
+			.then((resp) => {
+				// console.log(resp);
+				// console.log(resp.data);
+				// console.log(resp.data.token);
+				// console.log(resp.data.tok);
+				console.log('logged in');
+				setloginsuccessfull('logged in succesfull');
+				setLoggedIn(true);
+				setAuthTokens(resp.data.token);
+				const token = resp.data.token;
+				const tokendata = resp.data;
+				// console.log('following is token:');
+				// console.log(token);
+
+				localStorage.setItem('usertoken', token);
+				setlogggedIn(true);
+			})
+			.catch((err) => {
+				console.log('error came');
+				console.log(err);
+				// console.log(err.response.data);
+				console.log(err.response.data.message);
+				if (err.response.data.message == 'User Not Exist') {
+					setusernameerror('Username does not exist !!! Please Register');
+				} else {
+					setpassworderror('wrong password');
+				}
+				// console.log(err.response.data.errors);
+				// console.log(err.response.data.errors[0].msg);
+			});
 	};
 
 	const handleClickShowPassword = () => {
@@ -152,119 +243,133 @@ export default function Login() {
 		event.preventDefault();
 	};
 
-	return (
-		<Grid item container className={classes.root} xs={12}>
-			<AppBar className={classes.appbar} position="sticky" elevation="0">
-				<Link to="/">
-					<img className={classes.logo} src={Uniquefit_blacklogosvg} />
-				</Link>
-			</AppBar>
-			{/* <Grid container> */}
-			<Grid item container sm={12} md={6} direction="column">
-				<Container maxWidth="sm">
-					{/* <Box component="div"> */}
-					{/* <Box component="div"> */}
-					{/* <Box my={4}>
-									<Typography align="center" color="initial" className={classes.loginHeading}>
+	if (islogggedIn) {
+		return <Redirect to="/" />;
+	} else {
+		return (
+			<Grid item container className={classes.root} xs={12}>
+				<AppBar className={classes.appbar} position="sticky" elevation="0">
+					<Link to="/">
+						<img className={classes.logo} src={Uniquefit_blacklogosvg} />
+					</Link>
+				</AppBar>
+				{/* <Grid container> */}
+				<Grid item container sm={12} md={6} direction="column">
+					<Container maxWidth="sm">
+						{/* <Box component="div"> */}
+						{/* <Box component="div"> */}
+						{/* <Box my={4}>
+										<Typography align="center" color="initial" className={classes.loginHeading}>
+											Login
+										</Typography>
+									</Box> */}
+						{/* <Button
+										variant="contained"
+										className={classes.googleLoginButton}
+										fullWidth
+										size="large">
+										<Avatar
+											className={classes.iconSize}
+											src={'https://www.flaticon.com/svg/static/icons/svg/300/300221.svg'}
+										/>
+										Login with Google
+									</Button> */}
+						<Box my={5}>
+							<Typography component="div" align="center" color="initial">
+								<Box component="div" className={classes.lineText}>
+									<Box component="span" className={classes.loginHeading}>
 										Login
-									</Typography>
-								</Box> */}
-					{/* <Button
-									variant="contained"
-									className={classes.googleLoginButton}
-									fullWidth
-									size="large">
-									<Avatar
-										className={classes.iconSize}
-										src={'https://www.flaticon.com/svg/static/icons/svg/300/300221.svg'}
-									/>
-									Login with Google
-								</Button> */}
-					<Box my={5}>
-						<Typography component="div" align="center" color="initial">
-							<Box component="div" className={classes.lineText}>
-								<Box component="span" className={classes.loginHeading}>
-									Login
+									</Box>
 								</Box>
-							</Box>
-						</Typography>
-					</Box>
-					<form noValidate autoComplete="off">
-						<label className={classes.labelFont}>Email</label>
-						<TextField
-							id="email"
-							size="medium"
-							required
-							// placeholder="Email"
-							margin="normal"
-							fullWidth
-							variant="outlined"
-							className={classes.textField}></TextField>
-
-						<Box mt={3}>
-							<label className={classes.labelFont}>Password</label>
+							</Typography>
 						</Box>
-						<FormControl
-							fullWidth
-							size="medium"
-							margin="normal"
-							variant="outlined"
-							className={classes.textField}>
-							{/* <InputLabel htmlFor="password">Password</InputLabel> */}
-							<OutlinedInput
-								id="password"
-								type={values.showPassword ? 'text' : 'password'}
-								value={values.password}
-								//   placeholder='Password'
-								onChange={handleChange('password')}
-								endAdornment={
-									<InputAdornment position="end">
-										<IconButton
-											aria-label="toggle password visibility"
-											onClick={handleClickShowPassword}
-											onMouseDown={handleMouseDownPassword}>
-											{values.showPassword ? <Visibility /> : <VisibilityOff />}
-										</IconButton>
-									</InputAdornment>
-								}
-							/>
-						</FormControl>
-						<Typography
-							variant="body2"
-							align="right"
-							color="initial"
-							className={classes.labelFont}
-							style={{ color: '#555555' }}>
-							Forgot Password
-						</Typography>
-						<Box my={4}>
-							<Button
-								variant="contained"
+						<form noValidate>
+							<label className={classes.labelFont}>Email</label>
+							<TextField
+								id="email"
+								size="medium"
+								required
+								// placeholder="Email"
+								margin="normal"
 								fullWidth
-								size="large"
-								disableElevation
-								color="primary"
-								endIcon={<ArrowRightAltSharpIcon />}
-								className={classes.loginButton}>
-								Login
-							</Button>
-						</Box>
-					</form>
-					<Box my={4}>
-						<Typography variant="body1" align="center" color="initial" className={classes.labelFont}>
-							Not a member?
-							<Link className={classes.link} to="/Signup">
-								SignUp
-							</Link>
-						</Typography>
-					</Box>
-					{/* </Box> */}
-					{/* </Box> */}
-				</Container>
-			</Grid>
+								onChange={handleEmail}
+								variant="outlined"
+								className={classes.textField}></TextField>
+							<Container>
+								<Typography variant="caption" className={classes.wrongerror}>
+									{usernameerror}
+								</Typography>
+							</Container>
 
-			<Grid item sm={12} md={6} style={{ backgroundImage: `url(${Group})` }}></Grid>
-			{/* </Grid> */}
-		</Grid>
-	);
+							<Box mt={3}>
+								<label className={classes.labelFont}>Password</label>
+							</Box>
+							<FormControl
+								fullWidth
+								size="medium"
+								margin="normal"
+								variant="outlined"
+								className={classes.textField}>
+								{/* <InputLabel htmlFor="password">Password</InputLabel> */}
+								<OutlinedInput
+									id="password"
+									type={values.showPassword ? 'text' : 'password'}
+									value={values.password}
+									//   placeholder='Password'
+									onChange={handleChange('password')}
+									endAdornment={
+										<InputAdornment position="end">
+											<IconButton
+												aria-label="toggle password visibility"
+												onClick={handleClickShowPassword}
+												onMouseDown={handleMouseDownPassword}>
+												{values.showPassword ? <Visibility /> : <VisibilityOff />}
+											</IconButton>
+										</InputAdornment>
+									}
+								/>
+							</FormControl>
+							<Container>
+								<Typography variant="caption" className={classes.wrongerror}>
+									{passworderror}
+								</Typography>
+							</Container>
+
+							<Box my={4}>
+								<Button
+									variant="contained"
+									fullWidth
+									size="large"
+									onClick={OnLogClicked}
+									disableElevation
+									color="primary"
+									endIcon={<ArrowRightAltSharpIcon />}
+									className={classes.loginButton}>
+									Login
+								</Button>
+								<Container>
+									<Typography className={classes.success}>{loginsuccessful}</Typography>
+								</Container>
+							</Box>
+						</form>
+						<Box my={4}>
+							<Typography variant="body1" align="center" color="initial" className={classes.labelFont}>
+								Not a member?
+								<Link className={classes.link} to="/Signup">
+									SignUp
+								</Link>
+							</Typography>
+						</Box>
+						{/* </Box> */}
+						{/* </Box> */}
+					</Container>
+				</Grid>
+
+				<Grid item sm={12} md={6} style={{ backgroundImage: `url(${Group})` }}></Grid>
+				{/* </Grid> */}
+			</Grid>
+		);
+	}
 }
+
+export default Login;

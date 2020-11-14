@@ -63,20 +63,20 @@ function Product(props) {
 			<Card className={classes.card} elevation="0" square>
 				<Link to={`/ProductPage/${product.productid}`}>
 					<Box className={classes.topimag}>
-						<img className={classes.cardimg} src={product.images[0]} />
+						<img className={classes.cardimg} src={product.productimages[0]} />
 					</Box>
 				</Link>
 				<CardActionArea className={classes.cardbody}>
 					<Container>
 						<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
 							<Typography variant="h2" className={classes.productname}>
-								{product.name}
+								{product.productname}
 							</Typography>
 						</Link>
 					</Container>
 					<Container>
 						<Typography variant="body1" className={classes.price}>
-							₹{product.price}
+							₹{product.productprice}
 						</Typography>
 					</Container>
 				</CardActionArea>

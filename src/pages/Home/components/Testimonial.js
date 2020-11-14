@@ -82,7 +82,7 @@ function Testimonialsection() {
 	const classes = useStyles();
 	return (
 		<Grid item container xs={12} className={classes.main}>
-			<Grid item container xs={11} sm={9} className={classes.cont}>
+			<Grid item xs={11} sm={9} className={classes.cont}>
 				<Typography variant="body2" className={classes.peoplesaying}>
 					What are people saying!
 				</Typography>

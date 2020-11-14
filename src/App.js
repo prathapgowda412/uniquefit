@@ -20,54 +20,79 @@ import './css/scrollbar.css';
 import Header from './pages/Header';
 import Cart from './pages/cart/Cartpage';
 import Customize from './pages/customize/customize';
+import Registeruser from './pages/sign/register';
+
+// import { BrowserRouter } from 'react-router-dom';
+
+import ScrollToTop from './common/scrolltop';
+
+import { Provider } from 'react-redux';
+import { AuthContext } from './auth';
+import { useMemo, useState } from 'react';
 
 function App() {
+	const [authTokens, setAuthTokens] = useState(localStorage.getItem('tokens') || '');
+	const setTokens = (data) => {
+		localStorage.setItem('tokens', JSON.stringify(data));
+		setAuthTokens(data);
+	};
 	return (
-		<Grid container item xs={12}>
-			<Switch>
-				<Route path="/Shop">
-					<Header />
-					<Shop />
-					<Footer />
-				</Route>
-				<Route path="/Aboutus">
-					<Header />
-					<Aboutus />
-					<Footer />
-				</Route>
-				<Route path="/Profile">
-					<Header />
-					<Profilepage />
-					<Footer />
-				</Route>
+		<BrowserRouter>
+			<AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+				{/* <UserContext.Provider uservalue={uservalue}> */}
+				<ScrollToTop />
+				<Grid container item xs={12}>
+					<Switch>
+						<Route path="/Shop">
+							<Header />
+							<Shop />
+							<Footer />
+						</Route>
+						<Route path="/Aboutus">
+							<Header />
+							<Aboutus />
+							<Footer />
+						</Route>
+						<Route path="/Profile/:id">
+							<Header />
+							<Profilepage />
+							<Footer />
+						</Route>
 
-				<Route path="/Login">
-					<Login />
-				</Route>
-				<Route path="/Signup">
+						<Route path="/Login">
+							<Login />
+						</Route>
+
+						<Route path="/Signup">
+							<Registeruser />
+						</Route>
+						{/* <Route path="/Signup">
 					<Signup />
-				</Route>
-				<Route path="/ProductPage/:id">
-					<Header />
-					<Productpage />
-					<Footer />
-				</Route>
-				<Route path="/Cart">
-					<Header />
-					<Cart />
-					<Footer />
-				</Route>
-				<Route path="/Customize/:id">
-					<Customize />
-				</Route>
+				</Route> */}
+						<Route path="/ProductPage/:id">
+							<Header />
+							<Productpage />
+							<Footer />
+						</Route>
+						<Route path="/Cart">
+							<Header />
+							<Cart />
+							<Footer />
+						</Route>
+						<Route path="/Customize/:id">
+							<Customize />
+						</Route>
 
-				<Route path="/">
-					<Header />
-					<Home />
-					<Footer />
-				</Route>
-			</Switch>
-		</Grid>
+						<Route path="/">
+							<Header />
+							<Home />
+							<Footer />
+						</Route>
+					</Switch>
+				</Grid>
+				{/* </UserContext.Provider> */}
+			</AuthContext.Provider>
+		</BrowserRouter>
 	);
 }
 

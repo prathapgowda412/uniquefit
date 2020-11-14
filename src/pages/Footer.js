@@ -40,9 +40,18 @@ const useStyles = makeStyles((theme) => ({
 		alignItems: 'center',
 		backgroundColor: 'transparent',
 		padding: '40px 10px',
+		'&:hover': {
+			color: '#034b46',
+		},
 	},
 	mediaicon: {
 		height: '25px',
+	},
+	sociolink: {
+		textDecoration: 'none',
+		'&:hover': {
+			color: '#034b46',
+		},
 	},
 	foterbotom: {
 		minHeight: '250px',
@@ -90,14 +99,16 @@ function Footer() {
 						</Grid>
 						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
-							<Paper square elevation={0} className={classes.socialbox}>
-								{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
-								<img
-									className={classes.mediaicon}
-									src={require('../logos/socialicons/instagram-brands.svg')}
-								/>
-								@uniquefit
-							</Paper>
+							<a className={classes.sociolink} href="https://www.instagram.com/uniquefitindia/?hl=en">
+								<Paper square elevation={0} className={classes.socialbox}>
+									{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
+									<img
+										className={classes.mediaicon}
+										src={require('../logos/socialicons/instagram-brands.svg')}
+									/>
+									@uniquefit
+								</Paper>
+							</a>
 						</Grid>
 						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
@@ -129,7 +140,7 @@ function Footer() {
 					<img src={uniquefitlogo} className={classes.logo} />
 				</Grid>
 				<Grid item container justify="center" sm={10} md={6}>
-					<Grid item container justify="center" xs={12} sm={6}>
+					{/* <Grid item container justify="center" xs={12} sm={6}>
 						<Grid item container xs={6}>
 							<ul className={classes.listbox}>
 								<li className={classes.listhead}> Shop</li>
@@ -146,7 +157,7 @@ function Footer() {
 								<li> Design shirt</li>
 							</ul>
 						</Grid>
-					</Grid>
+					</Grid> */}
 					{/* <Grid item container xs={12} sm={6}>
 						<Grid xs={6}>
 							<ul className={classes.listbox}>

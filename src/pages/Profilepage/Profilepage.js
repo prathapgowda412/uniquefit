@@ -103,7 +103,7 @@ function Profilepage() {
 						className={classes.tabs}>
 						<Tab className={classes.tablink} label="Account Info" {...a11yProps(0)} />
 						<Tab className={classes.tablink} label="My orders" {...a11yProps(1)} />
-						<Tab className={classes.tablink} label="My cart" {...a11yProps(2)} />
+						{/* <Tab className={classes.tablink} label="My cart" {...a11yProps(2)} /> */}
 						<Tab className={classes.tablink} label="Settings" {...a11yProps(3)} />
 					</Tabs>
 				</Hidden>
@@ -115,9 +115,9 @@ function Profilepage() {
 				<TabPanel value={value} index={1} className={classes.rightpanel}>
 					My orders
 				</TabPanel>
-				<TabPanel value={value} index={2} className={classes.rightpanel}>
+				{/* <TabPanel value={value} index={2} className={classes.rightpanel}>
 					My cart
-				</TabPanel>
+				</TabPanel> */}
 				<TabPanel value={value} index={3} className={classes.rightpanel}>
 					Settings
 				</TabPanel>
