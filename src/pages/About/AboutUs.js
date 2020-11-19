@@ -271,7 +271,7 @@ function AboutUs() {
 												you achieve the perfect fit you are looking for.
 											</Typography>
 										</Box>
-										<Box>
+										{/* <Box>
 											<Button
 												variant="contained"
 												size="large"
@@ -281,7 +281,7 @@ function AboutUs() {
 													View our products
 												</Typography>
 											</Button>
-										</Box>
+										</Box> */}
 									</Grid>
 									<Grid
 										item

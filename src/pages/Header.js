@@ -316,7 +316,6 @@ class Header extends Component {
 			if (this.state.username == '') {
 				return (
 					<Button>
-						{' '}
 						<Link to="/Login">Login</Link>
 					</Button>
 				);

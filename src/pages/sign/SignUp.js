@@ -157,25 +157,25 @@ export default function SignUp() {
 	// setting values for variables
 	const nameChnage = (event) => {
 		setname(event.target.value);
-		console.log(`Name: ${name}`);
+		// console.log(`Name: ${name}`);
 	};
 	const setMobile = (event) => {
 		setphonenumber(event.target.value);
-		console.log(`Name: ${phonenumber}`);
+		// console.log(`Name: ${phonenumber}`);
 	};
 	const setEmail = (event) => {
 		setemail(event.target.value);
-		console.log(`Name: ${email}`);
+		// console.log(`Name: ${email}`);
 	};
 	const setPassword = (event) => {
 		setpassword(event.target.value);
 		console.log(password);
-		console.log(`Name: ${password}`);
+		// console.log(`Name: ${password}`);
 	};
-	console.log(name);
-	console.log(email);
-	console.log(password);
-	console.log(phonenumber);
+	// console.log(name);
+	// console.log(email);
+	// console.log(password);
+	// console.log(phonenumber);
 
 	return (
 		<Grid item container xs={12} className={classes.root}>

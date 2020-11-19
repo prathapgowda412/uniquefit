@@ -29,7 +29,8 @@ import ScrollToTop from './common/scrolltop';
 import { Provider } from 'react-redux';
 import { AuthContext } from './auth';
 import { useMemo, useState } from 'react';
-
+import Dashboard from './pages/Dashboard/Dashboard';
+import Getsizes from './pages/getsizes/getsizes';
 function App() {
 	const [authTokens, setAuthTokens] = useState(localStorage.getItem('tokens') || '');
 	const setTokens = (data) => {
@@ -66,9 +67,17 @@ function App() {
 						<Route path="/Signup">
 							<Registeruser />
 						</Route>
+						<Route path="/Getsizes">
+							<Header />
+							<Getsizes />
+							<Footer />
+						</Route>
 						{/* <Route path="/Signup">
 					<Signup />
 				</Route> */}
+						<Route path="/Dashboard">
+							<Dashboard />
+						</Route>
 						<Route path="/ProductPage/:id">
 							<Header />
 							<Productpage />

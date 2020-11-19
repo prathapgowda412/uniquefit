@@ -149,16 +149,12 @@ const styles = makeStyles((theme) => ({
 		fontSize: '15px',
 		color: 'white',
 	},
-	line:{
-
-	},
+	line: {},
 	variation: {
 		color: '#303030',
 		fontSize: '18px',
 	},
 }));
-
-
 
 // function Collargroup() {
 // 	const classes = styles();
@@ -357,7 +353,10 @@ function Customize() {
 						</Grid>
 						<Grid item xs={3} justify="center">
 							<Button className={classes.addcartbutton}>
-								<Typography className={classes.adbutontext}>Add to Cart</Typography>{' '}
+								<Typography className={classes.adbutontext}>Add to Cart</Typography>
+							</Button>
+							<Button className={classes.addcartbutton}>
+								<Typography className={classes.adbutontext}>Go to Cart</Typography>
 							</Button>
 						</Grid>
 					</Grid>

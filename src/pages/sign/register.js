@@ -187,10 +187,10 @@ function Register() {
 	let [errorname, seterrorname] = React.useState();
 	let [response, setresponse] = React.useState();
 	const OnloginClick = (event) => {
-		console.log(`Name: ${name}`);
-		console.log(`mobile: ${mobile}`);
-		console.log(`email: ${email}`);
-		console.log(`password: ${password}`);
+		// console.log(`Name: ${name}`);
+		// console.log(`mobile: ${mobile}`);
+		// console.log(`email: ${email}`);
+		// console.log(`password: ${password}`);
 
 		const formdata = {
 			username: `${name}`,
@@ -205,16 +205,16 @@ function Register() {
 			},
 		};
 
-		axio.post('http://localhost:4000/user/signup', JSON.stringify(formdata), config)
+		axio.post('https://uniquefit.ml/user/regiser', JSON.stringify(formdata), config)
 			.then((resp) => {
 				console.log(resp);
 				setresponse('user registered successfully');
 			})
 			.catch((err) => {
-				console.log(err.response.data);
-				console.log(err.response.data.msg);
+				// console.log(err.response.data);
+				// console.log(err.response.data.msg);
 				seterrorname(err.response.data.msg);
-				console.log(err.response);
+				// console.log(err.response);
 			});
 	};
 
