@@ -2,6 +2,7 @@ import { Grid, Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import uniquefitlogo from '../logos/Uniquefit logo.svg';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	footer: {
@@ -140,6 +141,7 @@ function Footer() {
 					<img src={uniquefitlogo} className={classes.logo} />
 				</Grid>
 				<Grid item container justify="center" sm={10} md={6}>
+					<Link to="/Dashboard">dashboard</Link>
 					{/* <Grid item container justify="center" xs={12} sm={6}>
 						<Grid item container xs={6}>
 							<ul className={classes.listbox}>

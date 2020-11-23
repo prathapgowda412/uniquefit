@@ -23,6 +23,7 @@ import { findDOMNode, ReactDOM } from 'react-dom';
 import dummydata from '../../data/dummydata.json';
 import Product from './Product';
 import Axios, { axio } from 'axios';
+import { CodeSharp } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -105,24 +106,45 @@ const useStyles = makeStyles((theme) => ({
 function Shop() {
 	const classes = useStyles();
 	// const products = [];
-	const [products, setproducts] = React.useState([]);
+	const [products, setproducts] = React.useState();
+	// let productsa = Axios.get('http://localhost:5000/products/get-products');
+	// const resp = await Axios.get('http://uniquefit.ml/products/get-products');
+	// const resp = await Axios.get('http://45.13.132.188:5000/products/get-products');
+	// const resp = await Axios.get('http://localhost:5000/products/get-products');
 	useEffect(() => {
-		Axios.get('http://localhost:4000/products/get-products')
+		console.log('running edffct');
+		Axios.get('http://45.13.132.188:5000/products/get-products')
 			.then((resp) => {
-				try {
-					setproducts(resp.data);
-					// console.log(resp);
-					// console.log(resp.data);
-				} catch (err) {
-					console.log(err);
-				}
-				// console.log(resp);
-				// console.log(products);
+				const result = resp;
+				console.log('resp:');
+				console.log(resp);
 			})
 			.catch((err) => {
+				console.log('err : ');
 				console.log(err);
 			});
-	}, []);
+	});
+
+	//   await Axios.get('http://45.13.132.188:5000/products/get-products');
+	// console.log(productsa);
+	// useEffect(() => {
+	// 	Axios.get('http://localhost:5000/products/get-products')
+	// 		.then((resp) => {
+	// 			try {
+	// 				setproducts(resp.data);
+	// 				console.log(resp.data);
+	// 				// console.log(resp);
+	// 				// console.log(resp.data);
+	// 			} catch (err) {
+	// 				console.log(err);
+	// 			}
+	// 			// console.log(resp);
+	// 			// console.log(products);
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// }, []);
 
 	// console.log('products are below :::');
 	// console.log(products);
@@ -217,9 +239,9 @@ function Shop() {
 							return <> {product.productname} </>;
 						})}
 						*/}
-					{products.map((product) => {
+					{/* {products.map((product) => {
 						return <Product key={product.productid} product={product} />;
-					})}
+					})} */}
 					{/* {products.map((product) => {
 						return <Product key={product.productid} product={product} />;
 					})} */}

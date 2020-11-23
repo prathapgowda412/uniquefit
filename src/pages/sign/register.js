@@ -158,6 +158,7 @@ function Register() {
 
 	const handleEmail = (event) => {
 		setEmail(event.target.value);
+		seterrorname('');
 		// console.log(email);
 	};
 	const handleName = (event) => {
@@ -205,16 +206,13 @@ function Register() {
 			},
 		};
 
-		axio.post('https://uniquefit.ml/user/regiser', JSON.stringify(formdata), config)
+		axio.post('https://uniquefit.ml/users/register', JSON.stringify(formdata), config)
 			.then((resp) => {
 				console.log(resp);
 				setresponse('user registered successfully');
 			})
 			.catch((err) => {
-				// console.log(err.response.data);
-				// console.log(err.response.data.msg);
 				seterrorname(err.response.data.msg);
-				// console.log(err.response);
 			});
 	};
 

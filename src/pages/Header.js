@@ -4,6 +4,8 @@ import Uniquefit_blacklogosvg from '../logos/Uniquefit logo.svg';
 import profileavat from './Home/components/statics/images/avatr1.jpg';
 import shopingcart from '../statics/icons/shopping-cart.svg';
 
+import Grow from '@material-ui/core/Grow';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { withStyles } from '@material-ui/styles';
 import {
 	AppBar,
@@ -26,6 +28,7 @@ import {
 	Grid,
 	ButtonGroup,
 	Popover,
+	Popper,
 } from '@material-ui/core';
 import '../custom.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -255,8 +258,36 @@ class Header extends Component {
 			anchorEl: null,
 			username: '',
 			usertoken: `${localStorage.getItem(`usertoken`)}`,
+			openpopper: false,
+			anchorRef: null,
 		};
 	}
+
+	// for popper below
+	handleClosepopper = (event) => {
+		if (anchorRef.current && anchorRef.current.contains(event.target)) {
+			return;
+		}
+
+		setOpenpopper(false);
+	};
+
+	handleTogglepopper = () => {
+		this.setState({ openpopper: (prevOpen) => !prevOpen });
+		// setOpenpopper((prevOpen) => !prevOpen);
+	};
+
+	handleClosepopper = (event) => {
+		if (anchorRef.current && anchorRef.current.contains(event.target)) {
+			return;
+		}
+		this.setState({ openpopper: false });
+
+		// setOpen(false);
+	};
+
+	// for popper above
+
 	// const uservalue = useContext(UserContext);
 	handleDrawerClose = () => {
 		this.setState({ open: false });
@@ -269,18 +300,18 @@ class Header extends Component {
 				token: `${this.state.usertoken}`,
 			},
 		};
-		axio.get('http://localhost:4000/user/me', config)
-			.then((resp) => {
-				console.log('response below');
-				// console.log(resp);
-				// console.log(resp.data.name);
-				this.setState({ username: resp.data.name });
-				this.state.username = resp.data.name;
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-		console.log('up');
+		// axio.get('http://localhost:5000/user/me', config)
+		// 	.then((resp) => {
+		// 		// console.log('response below');
+		// 		// console.log(resp);
+		// 		// console.log(resp.data.name);
+		// 		this.setState({ username: resp.data.name });
+		// 		this.state.username = resp.data.name;
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+		// console.log('up');
 	}
 
 	handleToggle = () => this.setState({ open: !this.state.open });
@@ -310,10 +341,54 @@ class Header extends Component {
 	};
 
 	render() {
+		const anchorRef = React.useRef(null);
+		const prevOpen = React.useRef(openpopper);
+
+		function handleListKeyDownpopper(event) {
+			if (event.key === 'Tab') {
+				event.preventDefault();
+				setOpenpopper(false);
+			}
+		}
+
+		React.useEffect(() => {
+			if (prevOpen.current === true && openpopper === false) {
+				anchorRef.current.focus();
+			}
+
+			prevOpen.current = openpopper;
+		}, [openpopper]);
+
+		const [openpopper, setOpenpopper] = React.useState(false);
+		const handleTogglepopper = () => {
+			setOpenpopper((prevOpen) => !prevOpen);
+		};
 		const { classes } = this.props;
 		const popopen = Boolean(this.state.anchorEl);
+		// if (!localStorage.getItem('usertoken' == '')) {
+		// 	// console.log('user logged in');
+		// 	const config = {
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 			token: `${localStorage.getItem('usertoken')}`,
+		// 		},
+		// 	};
+		// 	axio.get('http://localhost:5000/user/me', config)
+		// 		.then((resp) => {
+		// 			// console.log('response below');
+		// 			// console.log(resp);
+		// 			// console.log(resp.data.name);
+		// 			// console.log(`user name : ${resp.data.name}`);
+		// 			this.setState({ username: resp.data.name });
+		// 			this.state.username = resp.data.name;
+		// 		})
+		// 		.catch((err) => {
+		// 			console.log(err);
+		// 		});
+		// 	// this.state.username=;
+		// }
 		const Userlog = () => {
-			if (this.state.username == '') {
+			if (this.state.usertoken == '') {
 				return (
 					<Button>
 						<Link to="/Login">Login</Link>
@@ -349,14 +424,19 @@ class Header extends Component {
 							disableRestoreFocus>
 							<Typography>I use Popover.</Typography>
 						</Popover>{' '} */}
-						<Button onClick={this.handlelogout}>Logout</Button>
-						<NavLink
-							activeClassName={classes.activecls}
-							className={classes.profilelink}
-							to={`/Profile/${this.state.usertoken}`}>
-							<Avatar className={classes.profilepic} src={profileavat} />
-							<Typography>Welcome {this.state.username} </Typography>{' '}
-						</NavLink>
+						<Box>
+							<Button onClick={this.handlelogout}>Logout</Button>
+							<NavLink
+								activeClassName={classes.activecls}
+								className={classes.profilelink}
+								to={`/Profile/${this.state.usertoken}`}>
+								<Avatar className={classes.profilepic} src={profileavat} />
+								<Typography>Welcome {this.state.username} </Typography>{' '}
+								<Link className={classes.link} to="/Cart">
+									<FontAwesomeIcon className={classes.carticon} icon={faShoppingCart} />
+								</Link>
+							</NavLink>
+						</Box>
 					</>
 				);
 			}
@@ -460,6 +540,41 @@ class Header extends Component {
 							</nav>
 							<Box>
 								<Userlog />
+								<Button
+									ref={anchorRef}
+									aria-controls={openpopper ? 'menu-list-grow' : undefined}
+									aria-haspopup="true"
+									onClick={handleTogglepopper}>
+									Toggle Menu Grow
+								</Button>
+								<Popper
+									open={openpopper}
+									anchorEl={anchorRef.current}
+									role={undefined}
+									transition
+									disablePortal>
+									{({ TransitionProps, placement }) => (
+										<Grow
+											{...TransitionProps}
+											style={{
+												transformOrigin:
+													placement === 'bottom' ? 'center top' : 'center bottom',
+											}}>
+											<Paper>
+												<ClickAwayListener onClickAway={handleClosepopper}>
+													<MenuList
+														autoFocusItem={openpopper}
+														id="menu-list-grow"
+														onKeyDown={handleListKeyDownpopper}>
+														<MenuItem onClick={handleClosepopper}>Profile</MenuItem>
+														<MenuItem onClick={handleClosepopper}>My account</MenuItem>
+														<MenuItem onClick={handleClosepopper}>Logout</MenuItem>
+													</MenuList>
+												</ClickAwayListener>
+											</Paper>
+										</Grow>
+									)}
+								</Popper>
 								{/* <Loguser /> */}
 								{/* { 
 									if (this.state.username == ' ') {
@@ -502,9 +617,9 @@ class Header extends Component {
 						</Box>
 					</Hidden>
 					<Box className={classes.profilecart}>
-						<Link className={classes.link} to="/Cart">
+						{/* <Link className={classes.link} to="/Cart">
 							<FontAwesomeIcon className={classes.carticon} icon={faShoppingCart} />
-						</Link>
+						</Link> */}
 					</Box>
 				</Toolbar>
 			</AppBar>

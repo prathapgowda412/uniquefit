@@ -202,7 +202,7 @@ function Login(props) {
 				'Content-Type': 'application/json',
 			},
 		};
-		axio.post('http://localhost:4000/user/login', JSON.stringify(logindata), config)
+		axio.post('https://uniquefit.ml/users/login', JSON.stringify(logindata), config)
 			.then((resp) => {
 				// console.log(resp);
 				// console.log(resp.data);

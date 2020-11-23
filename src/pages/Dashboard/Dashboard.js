@@ -24,11 +24,14 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 
 // import { Box } from '@material-ui/core/Box';
+import DropZone from './../../common/Dropzone';
+import { Redirect, useLocation } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	header: {
-		height: '8vh',
+		height: '70px',
 		backgroundColor: 'white',
+		padding: '8px 10px',
 		// borderBottom: '1px solid grey',
 	},
 	bottom: {
@@ -106,7 +109,9 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
+
 		justifyContent: 'space-evenly',
+		// backgroundColor: 'red',
 	},
 	imagepreviewbox: {
 		height: '150px',
@@ -206,6 +211,7 @@ function Dashboard() {
 
 		setselectedfile(e.target.files[0]);
 		setfiles(e.target.files);
+		// console.log(e.target.files);
 	};
 
 	const [productname, setproductname] = React.useState();
@@ -220,32 +226,69 @@ function Dashboard() {
 	const [productoccasion, setproductoccasion] = React.useState();
 	const [productfeel, setproductfeel] = React.useState();
 
-	const onsubmitproduct = () => {
-		const productdata = {
-			productname: productname,
-			productprice: productprice,
-			productsaleprice: productsaleprice,
-			productmaterial: productmaterial,
-			productcolor: productcolor,
-			producttype: producttype,
-			productdescription: productdescription,
-			productpattern: productpattern,
-			productoccasion: productoccasion,
-			productfeel: productfeel,
-			files: files,
-		};
+	const onsubmitproduct = async () => {
+		// const productdata = {
+		// 	productname: productname,
+		// 	productprice: productprice,
+		// 	productsaleprice: productsaleprice,
+		// 	productmaterial: productmaterial,
+		// 	productcolor: productcolor,
+		// 	producttype: producttype,
+		// 	productdescription: productdescription,
+		// 	productpattern: productpattern,
+		// 	productoccasion: productoccasion,
+		// 	productfeel: productfeel,
+		// 	productimages: files,
+		// };
+		const productdata = new FormData();
+		productdata.append('productname', productname);
+		productdata.append('productprice', +productprice);
+		productdata.append('productcolor', productcolor);
+		productdata.append('productdescription', productdescription);
+		productdata.append('productsaleprice', +productsaleprice);
+		productdata.append('productmaterial', productmaterial);
+		productdata.append('productfeel', productfeel);
+		productdata.append('productoccasion', productoccasion);
+		productdata.append('producttype', producttype);
+		productdata.append('productpattern', productpattern);
+		console.log(files);
+		files.map((file) => {
+			productdata.append('pimages', file);
+		});
+		console.log(productdata);
 		const config = {
 			headers: {
-				'Content-Type': 'application/json',
+				'Content-Type': 'multipart/form-data',
 			},
 		};
-		Axios.post('https://uniquefit.ml/products/insert-product', JSON.stringify(productdata), config)
-			.then((resp) => {
-				console.log(resp);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+
+		// const headers = new Headers({
+		// 	'Content-Type': 'multipart/form-data',
+		// });
+
+		// let resp = await fetch('https://uniquefit.ml/products/insert-product', {
+		// 	method: 'POST',
+		// 	headers,
+		// });
+
+		// let resp = await fetch.post('https://uniquefit.ml/products/insert-product', productdata);
+		// Axios.post('https://uniquefit.ml/products/insert-product', JSON.stringify(productdata), config)
+		// 	.then((resp) => {
+		// 		console.log(resp);
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+		// let resp = await Axios.post('https://uniquefit.ml/products/insert-product', productdata);
+		// let resp = await Axios.post('http://localhost:5000/products/insert-product', productdata);
+		let resp = await Axios.post('http://45.13.132.188:5000/products/insert-product', productdata);
+		console.log(resp);
+		console.log(resp.data.message);
+		console.log(resp.status);
+		if (resp.status == 200) {
+			// window.location.reload();
+			console.log('done succes');
+		}
 	};
 
 	const classes = useStyles();
@@ -253,14 +296,16 @@ function Dashboard() {
 		<Grid item container xs={12}>
 			<Grid item container xs={12} className={classes.header}>
 				<Grid xs={2}>
-					<Typography variant="h5">Admin Dashboard</Typography>
+					{/* <Typography variant="h5">Admin Dashboard</Typography> */}
+					<img height="60px" src={require('../../logos/Uniquefit logo.svg')} />
 				</Grid>
 
 				<Grid xs={8}></Grid>
 
 				<Grid xs={2}>
 					<Container className={classes.avatrbox}>
-						<Avatar />
+						{/* <Avatar /> */}
+						<img height="25px" src={require('./user.svg')} />
 						<Typography variant="h6"> Admin</Typography>
 					</Container>
 				</Grid>
@@ -288,7 +333,7 @@ function Dashboard() {
 						<Box className={classes.rightpanel}>
 							<TabPanel className={classes.righttabpanel} value={tabvalue} index={0}></TabPanel>
 							<TabPanel value={tabvalue} index={1}>
-								<form encType="multipart/form-data">
+								<form autoComplete={true} encType="multipart/form-data">
 									<FormControl className={classes.formcontainer}>
 										<FormLabel className={classes.addproductlabel}>Add product</FormLabel>
 										<FormGroup encty>
@@ -469,7 +514,7 @@ function Dashboard() {
 															variant="outlined"
 															margin="normal"
 														/>
-														{producttype}
+														{/* {producttype} */}
 													</Grid>
 												</Grid>
 												<Grid
@@ -527,25 +572,30 @@ function Dashboard() {
 														</FormLabel>
 													</Grid>
 													<Grid xs={6}>
-														<input
+														{/* <input
 															type="file"
 															accept="image/*"
 															multiple={true}
 															onChange={imagechange}
-														/>
+														/> */}
+														<DropZone setFiles={setfiles} />
 														<Box className={classes.imagepreviewbox}>
 															{selectedfile && <img height="60px" src={preview} />}
 														</Box>
 													</Grid>
 												</Grid>
 												<Grid>
-													<input
+													{/* <input
 														className={classes.addproductbutton}
 														type="submit"
 														onSubmit={onsubmitproduct}
 														placeholder="Submit"
-													/>
-													{/* <Button className={classes.addproductbutton}>Add Product</Button> */}
+													/> */}
+													<Button
+														onClick={onsubmitproduct}
+														className={classes.addproductbutton}>
+														Add Product
+													</Button>
 												</Grid>
 											</Container>
 										</FormGroup>
