@@ -1,0 +1,5 @@
+{
+    "getProducts": "/products/get-products",
+    "addToCart":"/products/add-to-cart",
+    "removeFromCart":"/products/remove-from-cart"
+}
