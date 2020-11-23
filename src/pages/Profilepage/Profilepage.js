@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Container, Grid, Hidden } from '@material-ui/core';
 import { width } from '@material-ui/system';
+import { useParams } from 'react-router-dom';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: '5px 10px',
 	},
 }));
-function Profilepage() {
+function Profilepage(pops) {
 	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
 
@@ -109,9 +110,7 @@ function Profilepage() {
 				</Hidden>
 			</Grid>
 			<Grid item container xs={12} md={9}>
-				<TabPanel value={value} index={0} className={classes.rightpanel}>
-					sccount info
-				</TabPanel>
+				<TabPanel value={value} index={0} className={classes.rightpanel}></TabPanel>
 				<TabPanel value={value} index={1} className={classes.rightpanel}>
 					My orders
 				</TabPanel>

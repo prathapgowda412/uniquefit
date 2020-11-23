@@ -44,6 +44,7 @@ import { UserContext } from '../auth';
 
 import axio from 'axios';
 import { config } from '@fortawesome/fontawesome-svg-core';
+import Axios from 'axios';
 
 const styles = (theme) => ({
 	drawerBox: {
@@ -267,57 +268,57 @@ const styles = (theme) => ({
 class Header extends Component {
 	constructor() {
 		super();
+
 		this.state = {
 			open: false,
 			anchorEl: null,
 			username: '',
+			logged: 'yes',
 			usertoken: `${localStorage.getItem(`usertoken`)}`,
-			anchorRef: null,
-			openpopover: Boolean(this.anchorEl),
+			anchorEl: null,
+			popopen: false,
 		};
 	}
 
-	// for popover below
-	// const [anchorEl, setAnchorEl] = React.useState(null);
-
-	handlePopoverOpen = (event) => {
-		// setAnchorEl(event.currentTarget);
-		this.setState({ anchorRef: event.currentTarget });
+	// for popdown below
+	handleClickPopDown = (event) => {
+		if (this.state.anchorEl !== event.currentTarget) {
+			this.setState({ anchorEl: event.currentTarget });
+		}
+		// this.setState({ anchorEl: true });
 	};
 
-	handlePopoverClose = () => {
-		// setAnchorEl(null);
+	handleClosePopDown = () => {
 		this.setState({ anchorEl: null });
 	};
 
-	// const open = Boolean(anchorEl);
-	// for popover above
+	// for popdown hover above
 
 	// const uservalue = useContext(UserContext);
 	handleDrawerClose = () => {
 		this.setState({ open: false });
 	};
 
-	componentDidMount() {
-		const config = {
-			headers: {
-				'Content-Type': 'application/json',
-				token: `${this.state.usertoken}`,
-			},
-		};
-		// axio.get('http://localhost:5000/user/me', config)
-		// 	.then((resp) => {
-		// 		// console.log('response below');
-		// 		// console.log(resp);
-		// 		// console.log(resp.data.name);
-		// 		this.setState({ username: resp.data.name });
-		// 		this.state.username = resp.data.name;
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
-		// console.log('up');
-	}
+	// componentDidMount() {
+	// 	const config = {
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			token: `${this.state.usertoken}`,
+	// 		},
+	// 	};
+	// 	// axio.get('http://localhost:5000/user/me', config)
+	// 	// 	.then((resp) => {
+	// 	// 		// console.log('response below');
+	// 	// 		// console.log(resp);
+	// 	// 		// console.log(resp.data.name);
+	// 	// 		this.setState({ username: resp.data.name });
+	// 	// 		this.state.username = resp.data.name;
+	// 	// 	})
+	// 	// 	.catch((err) => {
+	// 	// 		console.log(err);
+	// 	// 	});
+	// 	// console.log('up');
+	// }
 
 	handleToggle = () => this.setState({ open: !this.state.open });
 
@@ -334,6 +335,30 @@ class Header extends Component {
 
 	render() {
 		const { classes } = this.props;
+
+		const userlogged = async () => {
+			if (localStorage.getItem('usertoken' != '')) {
+				const config = {
+					headers: {
+						'Content-Type': 'application/json',
+						token: `${localStorage.getItem(`usetoken`)}`,
+					},
+				};
+				const user = await Axios.get('http://45.13.132.188:5000/me', config);
+				console.log('use:');
+				console.log(user);
+				this.setState({ logged: 'true' });
+				return user;
+			} else {
+				this.setState({ logged: 'no' });
+				return 'false';
+			}
+		};
+		console.log('user :');
+		console.log(userlogged);
+		console.log('logged or not :');
+
+		console.log(this.state.logged);
 
 		const Userlog = () => {
 			if (this.state.usertoken == '') {
@@ -377,7 +402,7 @@ class Header extends Component {
 							<NavLink
 								activeClassName={classes.activecls}
 								className={classes.profilelink}
-								to={`/Profile/${this.state.usertoken}`}>
+								to={`/Profile/1`}>
 								<Avatar className={classes.profilepic} src={profileavat} />
 								<Typography>Welcome {this.state.username} </Typography>{' '}
 								<Link className={classes.link} to="/Cart">
@@ -488,36 +513,32 @@ class Header extends Component {
 							</nav>
 							<Box>
 								<Userlog />
+								<div>
+									<Button
+										aria-owns={this.anchorEl ? 'simple-menu' : undefined}
+										aria-haspopup="true"
+										onClick={this.handleClickPopDown}
+										onMouseOver={this.handleClickPopDown}>
+										{/* <Avatar /> */}
+										Profile
+									</Button>
+									<Menu
+										anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+										transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+										id="simple-menu"
+										anchorEl={this.state.anchorEl}
+										open={Boolean(this.state.anchorEl)}
+										onClose={this.handleClosePopDown}
+										MenuListProps={{ onMouseLeave: this.handleClosePopDown }}
+										getContentAnchorEl={null}>
+										hwlo
+										{/* <MenuItem onClick={this.handleClosePopDown}>Profile</MenuItem>
+										<MenuItem onClick={this.handleClosePopDown}>My account</MenuItem>
+										<MenuItem onClick={this.handleClosePopDown}>Logout</MenuItem> */}
+									</Menu>
+								</div>
 							</Box>
 
-							<div>
-								<Typography
-									aria-owns={this.openpopover ? 'mouse-over-popover' : undefined}
-									aria-haspopup="true"
-									className={classes.popoverbox}
-									onMouseEnter={this.handlePopoverOpen}
-									onMouseLeave={this.handlePopoverClose}>
-									Hover with a Popover.
-								</Typography>
-								<Popover
-									id="mouse-over-popover"
-									className={classes.popover}
-									classes={{ paper: classes.paper }}
-									open={this.openpopover}
-									anchorEl={this.anchorEl}
-									anchorOrigin={{
-										vertical: 'bottom',
-										horizontal: 'left',
-									}}
-									transformOrigin={{
-										vertical: 'top',
-										horizontal: 'left',
-									}}
-									onClose={this.handlePopoverClose}
-									disableRestoreFocus>
-									<Typography variant="h4">I use Popover.</Typography>
-								</Popover>
-							</div>
 							{/* <Loguser /> */}
 							{/* { 
 									if (this.state.username == ' ') {

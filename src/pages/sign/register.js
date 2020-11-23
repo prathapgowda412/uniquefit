@@ -208,7 +208,7 @@ function Register() {
 
 		axio.post('https://uniquefit.ml/users/register', JSON.stringify(formdata), config)
 			.then((resp) => {
-				console.log(resp);
+				// console.log(resp);
 				setresponse('user registered successfully');
 			})
 			.catch((err) => {
