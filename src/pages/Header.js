@@ -225,6 +225,20 @@ const styles = (theme) => ({
 		width: '250px',
 		position: 'relative',
 	},
+	popover: {
+		// pointerEvents: 'none',
+		pointerEvents: 'none',
+		cursor: 'pointer',
+		'&:hover': {
+			cursor: 'pointer',
+		},
+	},
+	popoverbox: {
+		padding: '2px',
+		'&:hover': {
+			cursor: 'pointer',
+		},
+	},
 	menuicon: {
 		fontSize: '24px',
 	},
@@ -258,35 +272,26 @@ class Header extends Component {
 			anchorEl: null,
 			username: '',
 			usertoken: `${localStorage.getItem(`usertoken`)}`,
-			openpopper: false,
 			anchorRef: null,
+			openpopover: Boolean(this.anchorEl),
 		};
 	}
 
-	// for popper below
-	handleClosepopper = (event) => {
-		if (anchorRef.current && anchorRef.current.contains(event.target)) {
-			return;
-		}
+	// for popover below
+	// const [anchorEl, setAnchorEl] = React.useState(null);
 
-		setOpenpopper(false);
+	handlePopoverOpen = (event) => {
+		// setAnchorEl(event.currentTarget);
+		this.setState({ anchorRef: event.currentTarget });
 	};
 
-	handleTogglepopper = () => {
-		this.setState({ openpopper: (prevOpen) => !prevOpen });
-		// setOpenpopper((prevOpen) => !prevOpen);
+	handlePopoverClose = () => {
+		// setAnchorEl(null);
+		this.setState({ anchorEl: null });
 	};
 
-	handleClosepopper = (event) => {
-		if (anchorRef.current && anchorRef.current.contains(event.target)) {
-			return;
-		}
-		this.setState({ openpopper: false });
-
-		// setOpen(false);
-	};
-
-	// for popper above
+	// const open = Boolean(anchorEl);
+	// for popover above
 
 	// const uservalue = useContext(UserContext);
 	handleDrawerClose = () => {
@@ -318,19 +323,6 @@ class Header extends Component {
 
 	// for on hover drop down for profile down
 
-	// const classes = useStyles();
-	//   const [anchorEl, setAnchorEl] = React.useState(null);
-
-	handlePopoverOpen = (event) => {
-		this.setState({ anchorEl: event.currentTarget });
-		// setAnchorEl(event.currentTarget);
-	};
-
-	handlePopoverClose = () => {
-		this.setState({ anchorEl: null });
-		// setAnchorEl(null);
-	};
-
 	//   const open = Boolean(anchorEl);
 	// for on hover drop down for profile top
 
@@ -341,52 +333,8 @@ class Header extends Component {
 	};
 
 	render() {
-		const anchorRef = React.useRef(null);
-		const prevOpen = React.useRef(openpopper);
-
-		function handleListKeyDownpopper(event) {
-			if (event.key === 'Tab') {
-				event.preventDefault();
-				setOpenpopper(false);
-			}
-		}
-
-		React.useEffect(() => {
-			if (prevOpen.current === true && openpopper === false) {
-				anchorRef.current.focus();
-			}
-
-			prevOpen.current = openpopper;
-		}, [openpopper]);
-
-		const [openpopper, setOpenpopper] = React.useState(false);
-		const handleTogglepopper = () => {
-			setOpenpopper((prevOpen) => !prevOpen);
-		};
 		const { classes } = this.props;
-		const popopen = Boolean(this.state.anchorEl);
-		// if (!localStorage.getItem('usertoken' == '')) {
-		// 	// console.log('user logged in');
-		// 	const config = {
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 			token: `${localStorage.getItem('usertoken')}`,
-		// 		},
-		// 	};
-		// 	axio.get('http://localhost:5000/user/me', config)
-		// 		.then((resp) => {
-		// 			// console.log('response below');
-		// 			// console.log(resp);
-		// 			// console.log(resp.data.name);
-		// 			// console.log(`user name : ${resp.data.name}`);
-		// 			this.setState({ username: resp.data.name });
-		// 			this.state.username = resp.data.name;
-		// 		})
-		// 		.catch((err) => {
-		// 			console.log(err);
-		// 		});
-		// 	// this.state.username=;
-		// }
+
 		const Userlog = () => {
 			if (this.state.usertoken == '') {
 				return (
@@ -540,43 +488,38 @@ class Header extends Component {
 							</nav>
 							<Box>
 								<Userlog />
-								<Button
-									ref={anchorRef}
-									aria-controls={openpopper ? 'menu-list-grow' : undefined}
+							</Box>
+
+							<div>
+								<Typography
+									aria-owns={this.openpopover ? 'mouse-over-popover' : undefined}
 									aria-haspopup="true"
-									onClick={handleTogglepopper}>
-									Toggle Menu Grow
-								</Button>
-								<Popper
-									open={openpopper}
-									anchorEl={anchorRef.current}
-									role={undefined}
-									transition
-									disablePortal>
-									{({ TransitionProps, placement }) => (
-										<Grow
-											{...TransitionProps}
-											style={{
-												transformOrigin:
-													placement === 'bottom' ? 'center top' : 'center bottom',
-											}}>
-											<Paper>
-												<ClickAwayListener onClickAway={handleClosepopper}>
-													<MenuList
-														autoFocusItem={openpopper}
-														id="menu-list-grow"
-														onKeyDown={handleListKeyDownpopper}>
-														<MenuItem onClick={handleClosepopper}>Profile</MenuItem>
-														<MenuItem onClick={handleClosepopper}>My account</MenuItem>
-														<MenuItem onClick={handleClosepopper}>Logout</MenuItem>
-													</MenuList>
-												</ClickAwayListener>
-											</Paper>
-										</Grow>
-									)}
-								</Popper>
-								{/* <Loguser /> */}
-								{/* { 
+									className={classes.popoverbox}
+									onMouseEnter={this.handlePopoverOpen}
+									onMouseLeave={this.handlePopoverClose}>
+									Hover with a Popover.
+								</Typography>
+								<Popover
+									id="mouse-over-popover"
+									className={classes.popover}
+									classes={{ paper: classes.paper }}
+									open={this.openpopover}
+									anchorEl={this.anchorEl}
+									anchorOrigin={{
+										vertical: 'bottom',
+										horizontal: 'left',
+									}}
+									transformOrigin={{
+										vertical: 'top',
+										horizontal: 'left',
+									}}
+									onClose={this.handlePopoverClose}
+									disableRestoreFocus>
+									<Typography variant="h4">I use Popover.</Typography>
+								</Popover>
+							</div>
+							{/* <Loguser /> */}
+							{/* { 
 									if (this.state.username == ' ') {
 										return (
 											<>
@@ -599,7 +542,6 @@ class Header extends Component {
 										);
 									}
 								} */}
-							</Box>
 							{/* <Link to="/Login">Login</Link>
 							<Box>
 								<Button
