@@ -42,10 +42,12 @@ import breakpoint from 'styled-components-breakpoint';
 import users from '../data/users.json';
 import { width } from '@material-ui/system';
 import { UserContext } from '../auth';
-
+import CloseIcon from '@material-ui/icons/Close';
 import axio from 'axios';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Axios from 'axios';
+import { green } from '@material-ui/core/colors';
+import { ImageSearchRounded } from '@material-ui/icons';
 
 const styles = (theme) => ({
 	drawerBox: {
@@ -110,11 +112,12 @@ const styles = (theme) => ({
 	li: {
 		backgroundColor: 'white',
 		width: 'fit-content',
-		fontWeight: 700,
+		fontWeight: 500,
 		color: 'black',
 		fontSize: '16px',
 		margin: '5px 10px',
-		transistion: '0.2s',
+		transition: '0.2s',
+		textTransform: 'uppercase',
 		textDecoration: 'none',
 
 		'&:hover': {
@@ -132,6 +135,7 @@ const styles = (theme) => ({
 		transition: '0.3s',
 		borderBottom: '2px solid #034b46',
 	},
+
 	nav: {
 		display: 'flex',
 		width: 'auto',
@@ -162,6 +166,11 @@ const styles = (theme) => ({
 			color: '#387A76',
 			cursor: 'pointer',
 		},
+	},
+	drawerprofile: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
 	},
 	drawer: {
 		width: '400px',
@@ -232,10 +241,17 @@ const styles = (theme) => ({
 		width: '80%',
 		justifyContent: 'space-between',
 	},
-
+	closebuton: {
+		// color: white,
+		// backgroundColor: 'white',
+	},
 	drawerpaper: {
-		width: '250px',
+		width: '290px',
 		position: 'relative',
+	},
+	logoutname: {
+		color: 'white',
+		fontSize: '16px',
 	},
 	popover: {
 		// pointerEvents: 'none',
@@ -246,7 +262,9 @@ const styles = (theme) => ({
 		},
 	},
 	comingsoon: {
-		color: '#EE5F73',
+		color: 'black',
+		textDecoration: 'none',
+		transition: 'all 1.3s',
 	},
 	popoverbox: {
 		padding: '2px',
@@ -285,6 +303,17 @@ const styles = (theme) => ({
 	loginbuton: {
 		textDecoration: 'none',
 	},
+	drawerheader: {
+		minHeight: '120px',
+		maxHeight: 'fit-content',
+		width: '100%',
+		backgroundColor: '#387A76',
+		paddingBottom: '5px',
+	},
+	logindrawer: {
+		padding: '7px 12px',
+		color: 'white',
+	},
 });
 
 // use popper for drop down
@@ -298,6 +327,7 @@ class Header extends Component {
 			anchorEl: null,
 			username: '',
 			logged: 'yes',
+			tshirtcomingsoon: 'Tshirts',
 			usertoken: `${localStorage.getItem(`usertoken`)}`,
 		};
 	}
@@ -315,7 +345,9 @@ class Header extends Component {
 	handleDrawerClose = () => {
 		this.setState({ open: false });
 	};
-
+	handleToggle = () => {
+		this.setState({ open: this.state.open ? false : true });
+	};
 	// componentDidMount() {
 	// 	const config = {
 	// 		headers: {
@@ -339,6 +371,16 @@ class Header extends Component {
 
 	//   const open = Boolean(anchorEl);
 	// for on hover drop down for profile top
+
+	// coming soon change below
+
+	handlecomingsoon = () => {
+		this.setState({ tshirtcomingsoon: 'Coming soon *' });
+	};
+	handlecomingsoonchange = () => {
+		this.setState({ tshirtcomingsoon: 'Tshirts' });
+	};
+	// coming soon change above
 
 	handlelogout = () => {
 		this.setState({ username: '' });
@@ -385,6 +427,11 @@ class Header extends Component {
 								Signup
 							</Link>
 						</Button>
+						<Link to="/login">
+							<Button>
+								<img src={require('../statics/header/bag_icon.svg')} />
+							</Button>
+						</Link>
 					</Box>
 				);
 			} else {
@@ -438,18 +485,50 @@ class Header extends Component {
 								<MenuItem onClick={this.handleRequestClose}>Logout</MenuItem>
 							</Menu>
 						</div> */}
+						{/* <Button onClick={this.handlelogout}>Logout</Button> */}
 
 						<Box className={classes.loginsignup}>
-							<Button onClick={this.handlelogout}>Logout</Button>
-							<NavLink className={classes.profilelink} to={`/Profile/1`}>
-								<Avatar className={classes.profilepic} src={profileavat} />
-								<Typography>Welcome {this.state.username} </Typography>{' '}
-								<Link className={classes.link} to="/Cart">
-									<FontAwesomeIcon className={classes.carticon} icon={faShoppingCart} />
-								</Link>
-							</NavLink>
+							<Link className={classes.profilelink} to={`/Profile`}>
+								<Button>
+									<img src={require('../statics/header/header_profile_icon.svg')} />
+								</Button>
+							</Link>
+							<Link to="/Cart">
+								<Button>
+									<img src={require('../statics/header/bag_icon.svg')} />
+								</Button>
+							</Link>
 						</Box>
 					</>
+				);
+			}
+		};
+
+		const Mobuserlog = () => {
+			if (localStorage.getItem('usetoken') !== '') {
+				return (
+					<Container>
+						<Link className={classes.link} to="login">
+							<Button className={classes.logindrawer}>Login</Button>
+						</Link>
+						<Link className={classes.link} to="Signup">
+							<Button className={classes.logindrawer}>signup</Button>
+						</Link>
+					</Container>
+				);
+			} else {
+				return (
+					<Container className={classes.drawerprofile}>
+						<Link className={classes.profilelink} to={`/Profile`}>
+							<Button onClick={this.handleToggle}>
+								<img src={require('../statics/header/profilepicmob.svg')} />
+							</Button>
+						</Link>
+
+						<Button onClick={this.handlelogout}>
+							<Typography className={classes.logoutname}>Logout</Typography>
+						</Button>
+					</Container>
 				);
 			}
 		};
@@ -472,13 +551,14 @@ class Header extends Component {
 					{/* drawer setion here start */}
 					<Drawer className={classes.drawer} open={this.state.open} onBackdropClick={this.handleDrawerClose}>
 						<Paper elevation={0} square className={classes.drawerpaper}>
-							<div className={classes.closebox}>
-								<Button onClick={this.handleToggle} style={{ float: 'right' }}>
-									<FontAwesomeIcon icon={faTimes} style={{ fontSize: '28px' }}>
-										menu
-									</FontAwesomeIcon>
-								</Button>
-							</div>
+							<Box className={classes.drawerheader}>
+								<div className={classes.closebox}>
+									<Button onClick={this.handleToggle} style={{ float: 'right' }}>
+										<CloseIcon fontSize="large" color="green" className={classes.closebuton} />
+									</Button>
+								</div>
+								<Mobuserlog />
+							</Box>
 							<Container className={classes.drawercont}>
 								<nav style={{ position: 'relative' }}>
 									<ul className={classes.ulmob}>
@@ -494,9 +574,7 @@ class Header extends Component {
 											About us
 										</Link>
 									</ul>
-									<Box>
-										<Userlog />
-									</Box>
+									<Box>{/* <Userlog /> */}</Box>
 									{/* <Container
 										style={{
 											backgroundColor: '#f2f2f2',
@@ -511,7 +589,7 @@ class Header extends Component {
 										</Link>
 										<Button>V</Button>
 									</Container> */}
-									<Button className={classes.requestcallbutton}>request</Button>
+									{/* <Button className={classes.requestcallbutton}>request</Button> */}
 								</nav>
 							</Container>
 						</Paper>
@@ -530,12 +608,17 @@ class Header extends Component {
 											Shirts
 										</NavLink>
 									</li>
-									<li>
-										<NavLink className={classes.li} to="/">
-											T shirts <br />
-											<Typography className={classes.comingsoon} variant="caption">
+									<li className={classes.li}>
+										<NavLink
+											onMouseEnter={this.handlecomingsoon}
+											onMouseLeave={this.handlecomingsoonchange}
+											className={classes.comingsoon}
+											to="/">
+											{/* T shirts  */}
+											{this.state.tshirtcomingsoon}
+											{/* <Typography className={classes.comingsoon} variant="caption">
 												coming soon *
-											</Typography>
+											</Typography> */}
 										</NavLink>
 									</li>
 									<li className={classes.li}>
@@ -551,7 +634,7 @@ class Header extends Component {
 											activeClassName={classes.activecls}
 											className={classes.li}
 											to="/Contact">
-											Conatct
+											Contact
 										</NavLink>
 									</li>
 									<li className={classes.li}>
@@ -563,84 +646,18 @@ class Header extends Component {
 										</NavLink>
 									</li>
 								</ul>
-								{/* <Button className={classes.requestcallbutton}>
-									<Typography variant="button" className={classes.requestbuton}>
-										Request Call Back
-									</Typography>
-								</Button> */}
 							</nav>
-							<Box>
-								<Userlog />
-							</Box>
-
-							{/* <Loguser /> */}
-							{/* { 
-									if (this.state.username == ' ') {
-										return (
-											<>
-												<Button>
-													<Link to="/Login">Login</Link>
-												</Button>
-											</>
-										);
-									} else {
-										return (
-											<>
-												<NavLink
-													activeClassName={classes.activecls}
-													className={classes.profilelink}
-													to="/Profile">
-													<Avatar className={classes.profilepic} src={profileavat} />
-													<Typography>Welcome {this.state.username} </Typography>
-												</NavLink>
-											</>
-										);
-									}
-								} */}
-							{/* <Link to="/Login">Login</Link>
-							<Box>
-								<Button
-									onClick={() => {
-										localStorage.setItem('usertoken', '');
-									}}>
-									logout
-								</Button>
-							</Box>
-
-							<NavLink activeClassName={classes.activecls} className={classes.profilelink} to="/Profile">
-								<Avatar className={classes.profilepic} src={profileavat} />
-								<Typography>Welcome {this.state.username} </Typography>
-							</NavLink> */}
+							<Box></Box>
 						</Box>
 					</Hidden>
 					<Box className={classes.profilecart}>
-						{/* <Link className={classes.link} to="/Cart">
-							<FontAwesomeIcon className={classes.carticon} icon={faShoppingCart} />
-						</Link> */}
+						<Hidden smDown>
+							<Userlog />
+						</Hidden>
 					</Box>
 				</Toolbar>
 			</AppBar>
 		);
-		// function Loguser() {
-		// 	if (localStorage.getItem('usertoken') == '') {
-		// 		return (
-		// 			<>
-		// 				<Button>
-		// 					<Link to="/Login">Login</Link>
-		// 				</Button>
-		// 			</>
-		// 		);
-		// 	} else {
-		// 		return (
-		// 			<>
-		// 				<NavLink activeClassName={classes.activecls} className={classes.profilelink} to="/Profile">
-		// 					<Avatar className={classes.profilepic} src={profileavat} />
-		// 					<Typography>Welcome {this.state.username} </Typography>
-		// 				</NavLink>
-		// 			</>
-		// 		);
-		// 	}
-		// }
 	}
 }
 

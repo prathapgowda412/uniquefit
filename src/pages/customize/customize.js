@@ -315,20 +315,20 @@ function Customize() {
 	// tabs handling top
 	// customized total product below
 	const hancleclickcart = () => {
-		const product = {
-			productid: cd,
-			productname: screen,
-			productprice: screen,
-			productsaleprice: jn,
-			productmaterial: df,
-			productcolor: color,
-			productpattern: patenrb,
-			productdesc: desc,
-			producttype: type,
-			productoccassion: ocasion,
-			productfeel: frameElement,
-			productimages: img,
-		};
+		// const product = {
+		// 	productid: cd,
+		// 	productname: screen,
+		// 	productprice: screen,
+		// 	productsaleprice: jn,
+		// 	productmaterial: df,
+		// 	productcolor: color,
+		// 	productpattern: patenrb,
+		// 	productdesc: desc,
+		// 	producttype: type,
+		// 	productoccassion: ocasion,
+		// 	productfeel: frameElement,
+		// 	productimages: img,
+		// };
 
 		let customisations = {
 			collar: collarnamevalue,
@@ -342,10 +342,25 @@ function Customize() {
 			back: backvalue,
 			backbottom: backbottomvalue,
 		};
-		const cusomproduct = {
-			userId: userid,
-			items: erfss,
-		};
+		// customproduct={
+		// 	productid: cd,
+		// 	productname: screen,
+		// 	productprice: screen,
+		// 	productsaleprice: jn,
+		// 	productmaterial: df,
+		// 	productcolor: color,
+		// 	productpattern: patenrb,
+		// 	productdesc: desc,
+		// 	producttype: type,
+		// 	productoccassion: ocasion,
+		// 	productfeel: frameElement,
+		// 	productimages: img,
+		// 	customisations:
+		// }
+		// const cartproduct = {
+		// 	userId: userid,
+		// 	items: customproduct,
+		// };
 
 		console.log(customisations);
 	};

@@ -8,8 +8,11 @@ import {
 	CardContent,
 	Button,
 	makeStyles,
+	CardActions,
+	CardActionArea,
+	Box,
 } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -17,10 +20,12 @@ import { styled } from '@material-ui/core/styles';
 import imgs from './statics/images/girlwhite.jpg';
 import dummydata from '../../../data/dummydata.json';
 import { Link } from 'react-router-dom';
+import Axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		position: 'relative',
+		marginTop: '40px',
 	},
 	grid: {
 		display: 'flex',
@@ -72,18 +77,149 @@ const useStyles = makeStyles((theme) => ({
 			width: '500px',
 		},
 	},
+	pricebox: {
+		display: 'flex',
+		alignItems: 'center',
+	},
 	gridcard: {
 		height: '450px',
+	},
+	// from product below
+	pro: {
+		height: '370px',
+		width: '350px',
+		marginTop: '20px',
+		position: 'relative',
+	},
+	cardimg: {
+		height: '100%',
+		width: '100%',
+		transition: '0.3s',
+		'&:hover': {
+			transform: 'scale(1.1)',
+		},
+	},
+
+	card: {
+		backgroundColor: '#fff',
+		height: '370px',
+		borderRadius: '0px',
+		'&:hover': {
+			boxShadow: '0px 2px 2px rgba(50,50,71,0.06) , 0px 2px 4px rgba(50,50,71,0.06)',
+		},
+	},
+	topimag: {
+		width: '100%',
+		height: '70%',
+		backgroundColor: 'white',
+		position: 'relative',
+		overflow: 'hidden',
+	},
+	cardbody: {
+		height: '30%',
+		position: 'relative',
+	},
+	productname: {
+		color: 'black',
+		fontSize: '16px',
+		fontWeight: '500',
+		marginBottom: '10px',
+		'&:hover': {
+			color: '#387A76',
+		},
+	},
+	saleprice: {
+		fontSize: '16px',
+		color: '#282C3F',
+		fontWeight: '400',
+	},
+	originprice: {
+		fontSize: '14px',
+		color: '#6B6E7B',
+	},
+	link: {
+		textDecoration: 'none',
+		color: 'black',
+	},
+	productbox: {
+		height: 'fit-content',
 	},
 }));
 
 function Trending() {
 	const classes = useStyles();
+	const [products, setproducts] = React.useState([]);
+	useEffect(() => {
+		Axios.get('http://45.13.132.188:5000/products/get-products')
+			.then((resp) => {
+				const result = resp;
+				// console.log(resp);
+				// console.log(resp.data);
+				// console.log(resp.data);
+				setproducts(resp.data);
+			})
+			.catch((err) => {
+				console.log('err : ');
+				console.log(err);
+			}, []);
+	}, []);
+	// console.log(products);
+
 	return (
-		<Grid item container xs={12} className={classes.root}>
+		<Grid item container xs={12} justify="center" className={classes.root}>
 			<Container justify="center" style={{ marginBottom: '35px' }}>
 				<Typography variant="h5">Trending</Typography>
 			</Container>
+
+			<Grid item container xs={12} sm={11} justify="space-evenly">
+				{products.slice(0, 4).map((product) => {
+					return (
+						<Grid xs={5} sm={4} md={2}>
+							<Card className={classes.card} elevation="0" square>
+								<Link to={`/ProductPage/${product.productid}`}>
+									<Box className={classes.topimag}>
+										<img
+											className={classes.cardimg}
+											src={`http://45.13.132.188:5000${product.productimages[0]}`}
+										/>
+									</Box>
+								</Link>
+								<CardActionArea className={classes.cardbody}>
+									<Container style={{ marginTop: '-20px' }}>
+										<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
+											<Typography variant="h1" className={classes.productname}>
+												{product.productname}
+											</Typography>
+										</Link>
+									</Container>
+									<Container className={classes.pricebox}>
+										<Typography variant="body1" className={classes.saleprice}>
+											₹{product.productsaleprice}
+										</Typography>
+										<Typography variant="body2" className={classes.originprice}>
+											₹<strike className={classes.originprice}> {product.productprice}</strike>
+										</Typography>
+									</Container>
+								</CardActionArea>
+							</Card>
+						</Grid>
+					);
+				})}
+
+				{/* <Grid xs={5} sm={4} md={2} style={{ backgroundColor: '#bdb' }}>
+					<Card> helo</Card>
+				</Grid>
+				<Grid xs={5} sm={4} md={2} style={{ backgroundColor: '#fdff' }}>
+					<Card> helo</Card>
+				</Grid>
+				<Grid xs={5} sm={4} md={2} style={{ backgroundColor: '#bdb' }}>
+					<Card> helo</Card>
+				</Grid>
+				<Grid xs={5} sm={4} md={2} style={{ backgroundColor: '#fdff' }}>
+					<Card> helo</Card>
+				</Grid> */}
+			</Grid>
+
 			{/* <div className={classes.grid}>
 				<GridList className={classes.gridList} cols={1.7}>
 					<GridListTile className={classes.gridcard}>
@@ -137,7 +273,8 @@ function Trending() {
 				</Card>
 			</Container> */}
 
-			<Grid item container xs={12} alignContent="stretch" spacing={2} justify="space-around">
+			{/* new one below */}
+			{/* <Grid item container xs={12} alignContent="stretch" spacing={2} justify="space-around">
 				<Grid item container xs={10} sm={3}>
 					<Card elevation={0} square>
 						<CardMedia component="img" image={imgs} title="" />
@@ -174,7 +311,7 @@ function Trending() {
 						</CardContent>
 					</Card>
 				</Grid>
-			</Grid>
+			</Grid> */}
 		</Grid>
 	);
 }

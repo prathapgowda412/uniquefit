@@ -1,6 +1,17 @@
 import React from 'react';
 import { styled } from '@material-ui/core/styles';
-import { Grid, makeStyles, Paper, Box, Container, Card, CardMedia, Button, Typography } from '@material-ui/core';
+import {
+	Grid,
+	makeStyles,
+	Paper,
+	Box,
+	Container,
+	Card,
+	CardMedia,
+	Button,
+	Typography,
+	Hidden,
+} from '@material-ui/core';
 // import manimage from '../statics/images/manblack.jpg';
 // import girlimage from '../statics/images/girl.jpg';
 import manimage from './statics/images/manblack.jpg';
@@ -10,12 +21,12 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		overflow: 'hidden',
-		height: '250px',
+		height: 'auto',
 		backgroundColor: 'grey',
 		position: 'relative',
-		height: '70vh',
+		// height: '70vh',
 		[theme.breakpoints.down('sm')]: {
-			height: '35vh',
+			height: 'fit-content',
 		},
 	},
 
@@ -52,13 +63,23 @@ const useStyles = makeStyles((theme) => ({
 			backgroundColor: '#034b46',
 		},
 	},
+	heroimg: {
+		width: '100%',
+	},
 }));
 
 function Firstsec() {
 	const classes = useStyles();
 	return (
 		<Grid item container xs={12} alignContent="stretch" className={classes.root}>
-			<Box className={classes.headingbox}>
+			<Hidden smUp>
+				<img className={classes.heroimg} src={require('./statics/images/Herosectionmob.png')} />
+			</Hidden>
+			<Hidden xsDown>
+				<img className={classes.heroimg} src={require('./statics/images/Hero_section.jpg')} />
+			</Hidden>
+			{/* <Hidden> two</Hidden> */}
+			{/* <Box className={classes.headingbox}>
 				<Typography variant="h1" className={classes.headingone}>
 					Customize your cloths on your own preferences
 				</Typography>
@@ -67,17 +88,14 @@ function Firstsec() {
 					<Link className={classes.link} to="/Shop">
 						Shop Now
 					</Link>
-					{/* <a href="/src/pages/Shop/Shop.js"> shop</a> */}
 				</Button>
 			</Box>
 			<Grid item container xs={6} sm={6}>
 				<img src={manimage} width="100%" height="100%" />
-				{/* <CardMedia component="img" image={require('../statics/images/manblack.jpg')} title="" /> */}
 			</Grid>
 			<Grid item container xs={6} sm={6}>
 				<img src={girlimage} width="100%" />
-				{/* <CardMedia component="img" image={girlimage} title="" /> */}
-			</Grid>
+			</Grid> */}
 		</Grid>
 	);
 }

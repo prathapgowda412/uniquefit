@@ -141,8 +141,8 @@ function Footer() {
 					<img src={uniquefitlogo} className={classes.logo} />
 				</Grid>
 				<Grid item container justify="center" sm={10} md={6}>
-					<Link to="/Dashboard">dashboard</Link>
-					{/* <Grid item container justify="center" xs={12} sm={6}>
+					{/* <Link to="/Dashboard">dashboard</Link> */}
+					<Grid item container justify="center" xs={12} sm={6}>
 						<Grid item container xs={6}>
 							<ul className={classes.listbox}>
 								<li className={classes.listhead}> Shop</li>
@@ -159,8 +159,8 @@ function Footer() {
 								<li> Design shirt</li>
 							</ul>
 						</Grid>
-					</Grid> */}
-					{/* <Grid item container xs={12} sm={6}>
+					</Grid>
+					<Grid item container xs={12} sm={6}>
 						<Grid xs={6}>
 							<ul className={classes.listbox}>
 								<li className={classes.listhead}> Shop</li>
@@ -177,7 +177,7 @@ function Footer() {
 								<li> Design shirt</li>
 							</ul>
 						</Grid>
-					</Grid> */}
+					</Grid>
 				</Grid>
 			</Grid>
 		</Grid>

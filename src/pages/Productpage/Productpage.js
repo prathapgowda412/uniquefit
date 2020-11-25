@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 	main: {
 		marginTop: '5px',
 		height: 'fit-content',
+		backgroundColor: 'white',
 	},
 	leftgrid: {
 		height: '600px',
@@ -147,7 +148,10 @@ function Productpage() {
 							<TabList className={classes.tablist}>
 								{/* {product.productimages.map((tabimage, index) => (
 									<Tab className={classes.tabitem} key={index}>
-										<img className={classes.iconimage} src={tabimage} />
+										<img
+											className={classes.iconimage}
+											src={`http://localhost:5000/${product.productimages}`}
+										/>
 									</Tab>
 								))} */}
 							</TabList>

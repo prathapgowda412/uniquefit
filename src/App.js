@@ -63,7 +63,7 @@ function App() {
 								<Aboutus />
 								<Footer />
 							</Route>
-							<Route path="/Profile/:id">
+							<Route path="/Profile">
 								<Header />
 								<Profilepage />
 								<Footer />
@@ -80,7 +80,9 @@ function App() {
 								<Uploadshirt />
 							</Route>
 							<Route path="/Contact">
+								<Header />
 								<Contact />
+								<Footer />
 							</Route>
 							<Route path="/Getsizes">
 								<Header />
