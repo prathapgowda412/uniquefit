@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Product(props) {
 	let { product } = props;
+	// console.log;
 	const classes = useStyles();
 	return (
 		<Container className={classes.pro} key={product.productid}>

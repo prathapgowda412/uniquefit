@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import imgs from './images/suitwalink.jpg';
 import { findDOMNode, ReactDOM } from 'react-dom';
 
-import dummydata from '../../data/dummydata.json';
+// import dummydata from '../../data/dummydata.json';
 import Product from './Product';
 import Axios, { axio } from 'axios';
 import { CodeSharp } from '@material-ui/icons';
@@ -105,55 +105,23 @@ const useStyles = makeStyles((theme) => ({
 
 function Shop() {
 	const classes = useStyles();
-	// const products = [];
-	const [products, setproducts] = React.useState();
-	// let productsa = Axios.get('http://localhost:5000/products/get-products');
-	// const resp = await Axios.get('http://uniquefit.ml/products/get-products');
-	// const resp = await Axios.get('http://45.13.132.188:5000/products/get-products');
-	// const resp = await Axios.get('http://localhost:5000/products/get-products');
+	const [products, setproducts] = React.useState([]);
+
 	useEffect(() => {
-		console.log('running edffct');
 		Axios.get('http://45.13.132.188:5000/products/get-products')
 			.then((resp) => {
 				const result = resp;
-				console.log('resp:');
-				console.log(resp);
+				// console.log(resp);
+				// console.log(resp.data);
+				// console.log(resp.data);
+				setproducts(resp.data);
 			})
 			.catch((err) => {
 				console.log('err : ');
 				console.log(err);
-			});
-	});
+			}, []);
+	}, []);
 
-	//   await Axios.get('http://45.13.132.188:5000/products/get-products');
-	// console.log(productsa);
-	// useEffect(() => {
-	// 	Axios.get('http://localhost:5000/products/get-products')
-	// 		.then((resp) => {
-	// 			try {
-	// 				setproducts(resp.data);
-	// 				console.log(resp.data);
-	// 				// console.log(resp);
-	// 				// console.log(resp.data);
-	// 			} catch (err) {
-	// 				console.log(err);
-	// 			}
-	// 			// console.log(resp);
-	// 			// console.log(products);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
-
-	// console.log('products are below :::');
-	// console.log(products);
-	// console.log(products.length);
-	// console.log(products[0]);
-	// console.log(products[2]);
-	// console.log(products[1]);
-
-	// console.log(products[0].productname);
 	return (
 		<Grid item container xs={12} className={classes.root} justify="center">
 			<Container maxWidth="lg" className={classes.topbox}>
@@ -162,14 +130,14 @@ function Shop() {
 				</Typography>
 			</Container>
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
-				{/* <Grid xs={12} sm={3} id="filterbox" className={classes.filterbox}> */}
-				{/* <Hidden smUp>
+				{/* <Grid xs={12} sm={3} id="filterbox" className={classes.filterbox}>
+					<Hidden smUp>
 						<Container className={classes.hidecomp}>
 							Filters
 							<Button style={{ float: 'right' }}>V</Button>
 						</Container>
-					</Hidden> */}
-				{/* <Container className={classes.flitercont}>
+					</Hidden>
+					<Container className={classes.flitercont}>
 						<>
 							<FormControl>
 								<FormLabel>Color</FormLabel>
@@ -231,17 +199,23 @@ function Shop() {
 								</FormGroup>
 							</FormControl>
 						</>
-					</Container> */}
-				{/* </Grid> */}
+					</Container>
+				</Grid> */}
 				<Grid item container xs={12} sm={10} direction="row" cols={3} className={classes.productsbox}>
-					{/* 					
-						{products.map((product) => {
-							return <> {product.productname} </>;
-						})}
-						*/}
 					{/* {products.map((product) => {
-						return <Product key={product.productid} product={product} />;
+						return (
+							<>
+								<img src={product.productimages} />
+							</>
+						);
 					})} */}
+
+					{/* {products.forEach((pro) => {
+						return <> {pro.productname} </>;
+					})} */}
+					{products.map((product) => {
+						return <Product key={product.productid} product={product} />;
+					})}
 					{/* {products.map((product) => {
 						return <Product key={product.productid} product={product} />;
 					})} */}

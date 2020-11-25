@@ -1,6 +1,7 @@
 import React, { Component, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import Uniquefit_blacklogosvg from '../logos/Uniquefit logo.svg';
+import uniquefit_monogramblack from '../logos/Unique fit monogram.svg';
 import profileavat from './Home/components/statics/images/avatr1.jpg';
 import shopingcart from '../statics/icons/shopping-cart.svg';
 
@@ -53,7 +54,7 @@ const styles = (theme) => ({
 	header: {
 		backgroundColor: 'white',
 		position: 'sticky',
-		height: '70px',
+		height: '80px',
 		elevation: '1',
 		textDecoration: 'none',
 		color: 'black',
@@ -71,13 +72,14 @@ const styles = (theme) => ({
 		width: '90%',
 		display: 'flex',
 		justifyContent: 'space-between',
+		alignItems: 'center',
 	},
 	button: {
 		color: 'black',
 		fontWeight: '600',
 	},
 	logo: {
-		height: '53px',
+		height: '35px',
 	},
 	ul: {
 		listStyleType: 'none',
@@ -119,6 +121,10 @@ const styles = (theme) => ({
 			color: '#034b46',
 			cursor: 'pointer',
 		},
+	},
+	uploadshirt: {
+		textDecoration: 'none',
+		color: '#EE5F73',
 	},
 	activecls: {
 		color: '#034b46',
@@ -214,7 +220,12 @@ const styles = (theme) => ({
 			color: 'white',
 		},
 	},
-
+	loginsignup: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-evenly',
+		alignItems: 'center',
+	},
 	navprofile: {
 		display: 'flex',
 		flexDirection: 'row',
@@ -233,6 +244,9 @@ const styles = (theme) => ({
 		'&:hover': {
 			cursor: 'pointer',
 		},
+	},
+	comingsoon: {
+		color: '#EE5F73',
 	},
 	popoverbox: {
 		padding: '2px',
@@ -261,6 +275,16 @@ const styles = (theme) => ({
 	carticon: {
 		fontSize: '22px',
 	},
+	signupboton: {
+		backgroundColor: '#034b46',
+		textDecoration: 'none',
+		color: 'white',
+		borderRadius: '5px',
+		padding: '7px 12px',
+	},
+	loginbuton: {
+		textDecoration: 'none',
+	},
 });
 
 // use popper for drop down
@@ -275,24 +299,17 @@ class Header extends Component {
 			username: '',
 			logged: 'yes',
 			usertoken: `${localStorage.getItem(`usertoken`)}`,
-			anchorEl: null,
-			popopen: false,
 		};
 	}
 
-	// for popdown below
-	handleClickPopDown = (event) => {
-		if (this.state.anchorEl !== event.currentTarget) {
-			this.setState({ anchorEl: event.currentTarget });
-		}
-		// this.setState({ anchorEl: true });
-	};
-
-	handleClosePopDown = () => {
+	//  new popover down
+	handleClosePop = () => {
 		this.setState({ anchorEl: null });
 	};
-
-	// for popdown hover above
+	handleClickPop = (event) => {
+		this.setState({ anchorEl: event.currentTarget });
+	};
+	//  new popover up
 
 	// const uservalue = useContext(UserContext);
 	handleDrawerClose = () => {
@@ -320,10 +337,6 @@ class Header extends Component {
 	// 	// console.log('up');
 	// }
 
-	handleToggle = () => this.setState({ open: !this.state.open });
-
-	// for on hover drop down for profile down
-
 	//   const open = Boolean(anchorEl);
 	// for on hover drop down for profile top
 
@@ -336,73 +349,99 @@ class Header extends Component {
 	render() {
 		const { classes } = this.props;
 
-		const userlogged = async () => {
-			if (localStorage.getItem('usertoken' != '')) {
-				const config = {
-					headers: {
-						'Content-Type': 'application/json',
-						token: `${localStorage.getItem(`usetoken`)}`,
-					},
-				};
-				const user = await Axios.get('http://45.13.132.188:5000/me', config);
-				console.log('use:');
-				console.log(user);
-				this.setState({ logged: 'true' });
-				return user;
-			} else {
-				this.setState({ logged: 'no' });
-				return 'false';
-			}
-		};
-		console.log('user :');
-		console.log(userlogged);
-		console.log('logged or not :');
+		// const userlogged = async () => {
+		// 	if (localStorage.getItem('usertoken' != '')) {
+		// 		const config = {
+		// 			headers: {
+		// 				'Content-Type': 'application/json',
+		// 				token: `${localStorage.getItem(`usetoken`)}`,
+		// 			},
+		// 		};
+		// 		const user = await Axios.get('http://45.13.132.188:5000/me', config);
+		// 		console.log('use:');
+		// 		console.log(user);
+		// 		this.setState({ logged: 'true' });
+		// 		return user;
+		// 	} else {
+		// 		this.setState({ logged: 'no' });
+		// 		return 'false';
+		// 	}
+		// };
 
-		console.log(this.state.logged);
+		const popoveropen = Boolean(this.state.anchorEl);
+		const id = popoveropen ? 'simple-popover' : undefined;
 
 		const Userlog = () => {
 			if (this.state.usertoken == '') {
 				return (
-					<Button>
-						<Link to="/Login">Login</Link>
-					</Button>
+					<Box className={classes.loginsignup}>
+						<Button>
+							<Link className={classes.loginbuton} to="/Login">
+								Login
+							</Link>
+						</Button>
+						<Button>
+							<Link className={classes.signupboton} to="/Signup">
+								Signup
+							</Link>
+						</Button>
+					</Box>
 				);
 			} else {
 				return (
 					<>
-						{/* <Typography
-							aria-owns={popopen ? 'mouse-over-popover' : undefined}
-							aria-haspopup="true"
-							onMouseEnter={this.handlePopoverOpen}
-							onMouseLeave={this.handlePopoverClose}>
-							Hover with a Popover.
-						</Typography>
-						<Popover
-							id="mouse-over-popover"
-							className={classes.popover}
-							classes={{
-								paper: classes.paper,
-							}}
-							popopen={popopen}
-							anchorEl={this.anchorEl}
-							anchorOrigin={{
-								vertical: 'bottom',
-								horizontal: 'left',
-							}}
-							transformOrigin={{
-								vertical: 'top',
-								horizontal: 'left',
-							}}
-							onClose={this.handlePopoverClose}
-							disableRestoreFocus>
-							<Typography>I use Popover.</Typography>
-						</Popover>{' '} */}
-						<Box>
+						{/* <div style={{ position: 'relative' }}>
+							<Button
+								aria-describedby={id}
+								variant="contained"
+								color="primary"
+								onClick={this.handleClickPop}
+								onMouseEnter={this.handleClickPop}
+								onMouseLeave={this.handleClosePop}>
+								Open Popover
+							</Button>
+							<Popover
+								id={id}
+								// anchorReference="anchorPosition"
+								open={popoveropen}
+								anchorEl={this.state.anchorEl}
+								onClose={this.handleClosePop}
+								anchorOrigin={{
+									vertical: 'right',
+									horizontal: 'center',
+								}}
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'center',
+								}}>
+								<Typography className={classes.typography}>The content of the Popover.</Typography>
+							</Popover>
+						</div> */}
+
+						{/* <div style={{ position: 'relative' }}>
+							<Button
+								aria-owns={this.state.hoveropen ? 'simple-menu' : null}
+								aria-haspopup="true"
+								onClick={this.handleClick}
+								onMouseLeave={this.handleRequestClose}
+								onMouseOver={this.handleClick}>
+								Open Menu
+							</Button>
+							<Menu
+								id="simple-menu"
+								anchorEl={this.state.anchorEl}
+								open={this.state.hoveropen}
+								onRequestClose={this.handleRequestClose}>
+								<Button onClick={this.handlelogout}>Logout</Button>
+								<MenuItem onClick={this.handleRequestClose}>Profile</MenuItem>
+								<MenuItem onClick={this.handleRequestClose}>My account</MenuItem>
+								<MenuItem onClick={this.handleRequestClose}>Logout</MenuItem>
+							</Menu>
+						</div> */}
+
+						<Box className={classes.loginsignup}>
 							<Button onClick={this.handlelogout}>Logout</Button>
-							<NavLink
-								activeClassName={classes.activecls}
-								className={classes.profilelink}
-								to={`/Profile/1`}>
+							<NavLink className={classes.profilelink} to={`/Profile/1`}>
 								<Avatar className={classes.profilepic} src={profileavat} />
 								<Typography>Welcome {this.state.username} </Typography>{' '}
 								<Link className={classes.link} to="/Cart">
@@ -480,20 +519,23 @@ class Header extends Component {
 					{/* drawer setion here end */}
 
 					<Link to="/">
-						<img className={classes.logo} src={Uniquefit_blacklogosvg} />
+						<img className={classes.logo} src={uniquefit_monogramblack} />
 					</Link>
 					<Hidden smDown>
 						<Box className={classes.navprofile}>
 							<nav className={classes.nav}>
 								<ul className={classes.ul}>
 									<li className={classes.li}>
-										<NavLink activeClassName={classes.activecls} className={classes.li} to="/Home">
-											Home
+										<NavLink activeClassName={classes.activecls} className={classes.li} to="/Shop">
+											Shirts
 										</NavLink>
 									</li>
-									<li className={classes.li}>
-										<NavLink activeClassName={classes.activecls} className={classes.li} to="/Shop">
-											Shop Products
+									<li>
+										<NavLink className={classes.li} to="/">
+											T shirts <br />
+											<Typography className={classes.comingsoon} variant="caption">
+												coming soon *
+											</Typography>
 										</NavLink>
 									</li>
 									<li className={classes.li}>
@@ -504,39 +546,31 @@ class Header extends Component {
 											About Us
 										</NavLink>
 									</li>
+									<li className={classes.li}>
+										<NavLink
+											activeClassName={classes.activecls}
+											className={classes.li}
+											to="/Contact">
+											Conatct
+										</NavLink>
+									</li>
+									<li className={classes.li}>
+										<NavLink
+											activeClassName={classes.activecls}
+											className={classes.uploadshirt}
+											to="/Uploadshirt">
+											Shirt On Mind ?
+										</NavLink>
+									</li>
 								</ul>
-								<Button className={classes.requestcallbutton}>
+								{/* <Button className={classes.requestcallbutton}>
 									<Typography variant="button" className={classes.requestbuton}>
 										Request Call Back
 									</Typography>
-								</Button>
+								</Button> */}
 							</nav>
 							<Box>
 								<Userlog />
-								<div>
-									<Button
-										aria-owns={this.anchorEl ? 'simple-menu' : undefined}
-										aria-haspopup="true"
-										onClick={this.handleClickPopDown}
-										onMouseOver={this.handleClickPopDown}>
-										{/* <Avatar /> */}
-										Profile
-									</Button>
-									<Menu
-										anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-										transformOrigin={{ vertical: 'top', horizontal: 'left' }}
-										id="simple-menu"
-										anchorEl={this.state.anchorEl}
-										open={Boolean(this.state.anchorEl)}
-										onClose={this.handleClosePopDown}
-										MenuListProps={{ onMouseLeave: this.handleClosePopDown }}
-										getContentAnchorEl={null}>
-										hwlo
-										{/* <MenuItem onClick={this.handleClosePopDown}>Profile</MenuItem>
-										<MenuItem onClick={this.handleClosePopDown}>My account</MenuItem>
-										<MenuItem onClick={this.handleClosePopDown}>Logout</MenuItem> */}
-									</Menu>
-								</div>
 							</Box>
 
 							{/* <Loguser /> */}

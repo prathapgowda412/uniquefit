@@ -1,17 +1,22 @@
 [
 	{
-		"frontid": "1",
+		"id": "1",
 		"name": "Regular",
 		"image": "https://www.bombayshirts.com/static/img/front/front-regular.svg"
 	},
 	{
-		"frontid": "2",
+		"id": "2",
 		"name": "French",
 		"image": "https://www.bombayshirts.com/static/img/front/front-french.svg"
 	},
 	{
-		"frontid": "3",
+		"id": "3",
 		"name": "Pencil",
 		"image": "https://www.bombayshirts.com/static/img/front/front-pencil.svg"
+	},
+	{
+		"id": "4",
+		"name": "Concealed",
+		"image": "https://www.bombayshirts.com/static/img/front/front-concealed.svg"
 	}
 ]

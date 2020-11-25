@@ -230,9 +230,7 @@ function AboutUs() {
 									</Typography>
 								</Box>
 							</Grid>
-							<Grid item sm={12} md={3}>
-								sdfs
-							</Grid>
+							<Grid item sm={12} md={3}></Grid>
 						</Grid>
 						<Grid container item sm={12} md={1}></Grid>
 					</Grid>

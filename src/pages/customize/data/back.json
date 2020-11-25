@@ -1,0 +1,27 @@
+[
+	{
+		"id": "1",
+		"name": "None",
+		"image": "https://www.bombayshirts.com/static/img/back/none.svg"
+	},
+	{
+		"id": "2",
+		"name": "Box",
+		"image": "https://www.bombayshirts.com/static/img/back/box.svg"
+	},
+	{
+		"id": "3",
+		"name": "Side",
+		"image": "https://www.bombayshirts.com/static/img/back/side.svg"
+	},
+	{
+		"id": "4",
+		"name": "Darts",
+		"image": "https://www.bombayshirts.com/static/img/back/darts.svg"
+	},
+	{
+		"id": "5",
+		"name": "Deep Darts",
+		"image": "https://www.bombayshirts.com/static/img/back/deep-darts.svg"
+	}
+]

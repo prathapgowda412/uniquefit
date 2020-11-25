@@ -281,12 +281,13 @@ function Dashboard() {
 		// 	});
 		// let resp = await Axios.post('https://uniquefit.ml/products/insert-product', productdata);
 		// let resp = await Axios.post('http://localhost:5000/products/insert-product', productdata);
+
 		let resp = await Axios.post('http://45.13.132.188:5000/products/insert-product', productdata);
 		console.log(resp);
 		console.log(resp.data.message);
 		console.log(resp.status);
 		if (resp.status == 200) {
-			// window.location.reload();
+			window.location.reload();
 			console.log('done succes');
 		}
 	};

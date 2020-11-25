@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Grid, withStyles, makeStyles, Box, Container, Button } from '@material-ui/core';
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 
 import Typography from '@material-ui/core/Typography';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import '../../custom.css';
 
-import products from '../../data/dummydata.json';
+// import products from '../../data/dummydata.json';
 import Axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -84,6 +84,11 @@ const useStyles = makeStyles((theme) => ({
 			transform: ' translateY(-1.8px)',
 		},
 	},
+	productdet: {
+		fontSize: '18px',
+		fontWeight: '600',
+		color: '#282C3F',
+	},
 }));
 
 function Productpage() {
@@ -91,26 +96,21 @@ function Productpage() {
 	const { id } = useParams();
 	const [product, setproduct] = React.useState([]);
 	const [productimages, setproductimages] = React.useState([]);
-
+	// console.log(id);
 	useEffect(() => {
 		const config = {
 			headers: {
 				'Content-Type': 'application/json',
-				productid: `${id}`,
+				'x-productid': id,
 			},
 		};
-		Axios.get('http://localhost:4000/products/getsingle-product', config)
+		Axios.get('http://45.13.132.188:5000/products/getproduct-byid', config)
 			.then((resp) => {
 				const response = resp;
-				// console.log(resp.data);
-				setproduct(resp.data);
-				// setproduct(resp.data.productimages);
-				// console.log(product);
-				// console.log(product.productimages);
-				setproductimages(product.productimages);
-				// setproduct(resp);
-
 				// console.log(resp);
+				console.log(resp.data);
+				setproduct(resp.data);
+
 				try {
 				} catch (err) {
 					console.log(err);
@@ -119,13 +119,7 @@ function Productpage() {
 			.catch((err) => {
 				console.log(err);
 			});
-	});
-	// console.log(product);
-	// console.log(id);
-	// const productdetail = products.filter((product, index) => {
-	// 	return product.productid == id;
-	// });
-	// console.log(productdetail);
+	}, []);
 
 	return (
 		<>
@@ -135,13 +129,16 @@ function Productpage() {
 				<Grid item container xs={12} sm={6} className={classes.leftgrid}>
 					<Tabs className={classes.tabss}>
 						<Grid xs={12} className={classes.tabpanelbox}>
-							{productimages}
+							{/* {productimages} */}
 							{/* {productimages.forEach((index) => {
 								return <> {index} </>;
 							})} */}
-							{/* <img className={classes.bigimage} src={product.productimages} /> */}
 							{/* {product.productimages.map((bigimage, index) => (
 								<TabPanel className={classes.paneltab} key={index}>
+									<img
+										className={classes.bigimage}
+										src={`http://localhost:5000/${product.productimages}`}
+									/>
 								</TabPanel>
 							))} */}
 						</Grid>
@@ -164,13 +161,20 @@ function Productpage() {
 						<Typography variant="body1">
 							Our Price : <b> {product.productprice}</b>
 						</Typography>
-						<Box className={classes.spacebox} />
-						<Typography variant="body1"> Shirt Type:{product.producttype}</Typography>
-						<Typography variant="body1">Product Color: {product.productcolor}</Typography>
-						<Typography variant="body2">Product Description: {product.productdesc}</Typography>
 						<Link to={`/Customize/${product.productid}`}>
 							<Button className={classes.customizebutton}>Customize now</Button>
 						</Link>
+						<Box className={classes.spacebox} />
+						<Typography variant="h6"> Product Details </Typography>
+						<br />
+						<Typography variant="body1">
+							Shirt Type: <Typography className={classes.productdet}>{product.producttype}</Typography>
+						</Typography>
+						<Typography variant="body1">
+							Product Color:{' '}
+							<Typography className={classes.productdet}>{product.productcolor}</Typography>{' '}
+						</Typography>
+						<Typography variant="body1">Product Description: {product.productdesc}</Typography>
 					</Container>
 				</Grid>
 			</Grid>

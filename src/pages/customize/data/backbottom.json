@@ -1,0 +1,17 @@
+[
+	{
+		"id": "1",
+		"name": "Rounded",
+		"image": "https://www.bombayshirts.com/static/img/back/rounded.svg"
+	},
+	{
+		"id": "2",
+		"name": "Tail",
+		"image": "https://www.bombayshirts.com/static/img/back/tail.svg"
+	},
+	{
+		"id": "3",
+		"name": "Straight",
+		"image": "https://www.bombayshirts.com/static/img/back/straight.svg"
+	}
+]

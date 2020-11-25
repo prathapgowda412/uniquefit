@@ -1,22 +1,37 @@
 [
 	{
-		"buttonid": "1",
+		"id": "1",
 		"name": "Natural",
 		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/natural.jpg"
 	},
 	{
-		"buttonid": "2",
+		"id": "2",
 		"name": "Black",
 		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/black.jpg"
 	},
 	{
-		"buttonid": "3",
+		"id": "3",
 		"name": "grey",
 		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/grey.jpg"
 	},
 	{
-		"buttonid": "4",
+		"id": "4",
 		"name": "blue",
 		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/blue.jpg"
+	},
+	{
+		"id": "5",
+		"name": "brown",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/brown.jpg"
+	},
+	{
+		"id": "6",
+		"name": "wood",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/wood.jpg"
+	},
+	{
+		"id": "7",
+		"name": "pink",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/pink.jpg"
 	}
 ]
