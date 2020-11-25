@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	Container,
 	Grid,
@@ -11,6 +11,7 @@ import {
 	CardContent,
 	Paper,
 } from '@material-ui/core';
+import { getCartItems } from '../../services/fetchService';
 
 import itemimg from '../Home/components/statics/images/girl.jpg';
 const Styles = makeStyles({
@@ -88,6 +89,17 @@ const Styles = makeStyles({
 // export default Cartpage;
 
 function Cartpage() {
+	let [cartItems, setCartItems] = useState();
+
+	useEffect(() => {
+		getCartItems().then(({ data }) => {
+			const cartIts = data.cartItems;
+			setCartItems(cartIts);
+			console.log(cartIts);
+			console.log(cartIts.items);
+		});
+	}, []);
+
 	const classes = Styles();
 	return (
 		<Grid item container xs={12} className={classes.root} justify="center">
