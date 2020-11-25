@@ -23,3 +23,11 @@ export function removeFromCart(productid) {
   };
   return httpService.post(config.removeFromCart, prodData);
 }
+
+export function getCartIems() {
+  const userId = getUserData();
+  let data = {
+    userId,
+  };
+  return httpService.post(config.getCartItems, data);
+}
