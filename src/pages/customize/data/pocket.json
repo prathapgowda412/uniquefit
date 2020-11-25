@@ -1,21 +1,21 @@
 [
 	{
-		"id": "1",
+		"customid": "1",
 		"name": "none",
 		"image": "https://www.bombayshirts.com/static/img/pocket/none.svg"
 	},
 	{
-		"id": "2",
+		"customid": "2",
 		"name": "Single Angled",
 		"image": "https://www.bombayshirts.com/static/img/pocket/single-angled.svg"
 	},
 	{
-		"id": "3",
+		"customid": "3",
 		"name": "Single Flap",
 		"image": "https://www.bombayshirts.com/static/img/pocket/single-flap.svg"
 	},
 	{
-		"id": "4",
+		"customid": "4",
 		"name": "Double Flap",
 		"image": "https://www.bombayshirts.com/static/img/pocket/double-flap.svg"
 	}

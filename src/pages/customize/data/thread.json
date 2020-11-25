@@ -1,56 +1,56 @@
 [
 	{
-		"id": "1",
+		"customid": "1",
 		"name": "White",
 		"image": "https://www.bombayshirts.com/static/img/button/white.jpg"
 	},
 	{
-		"id": "2",
+		"customid": "2",
 		"name": "Black",
 		"image": "https://www.bombayshirts.com/static/img/button/black.jpg"
 	},
 	{
-		"id": "3",
+		"customid": "3",
 		"name": "Light Blue",
 		"image": "https://www.bombayshirts.com/static/img/button/light-blue.jpg"
 	},
 	{
-		"id": "4",
+		"customid": "4",
 		"name": "Pink",
 		"image": "https://www.bombayshirts.com/static/img/button/pink.jpg"
 	},
 	{
-		"id": "5",
+		"customid": "5",
 		"name": "Brown",
 		"image": "https://www.bombayshirts.com/static/img/button/brown.jpg"
 	},
 	{
-		"id": "6",
+		"customid": "6",
 		"name": "Grey",
 		"image": "https://www.bombayshirts.com/static/img/button/grey.jpg"
 	},
 	{
-		"id": "7",
+		"customid": "7",
 		"name": "Maroon",
 		"image": "https://www.bombayshirts.com/static/img/button/maroon.jpg"
 	},
 	{
-		"id": "8",
+		"customid": "8",
 		"name": "Purple",
 		"image": "https://www.bombayshirts.com/static/img/button/purple.jpg"
 	},
 	{
-		"id": "9",
+		"customid": "9",
 		"name": "Green",
 		"image": "https://www.bombayshirts.com/static/img/button/green.jpg"
 	},
 	{
-		"id": "10",
+		"customid": "10",
 		"name": "Red",
 		"image": "https://www.bombayshirts.com/static/img/button/red.jpg"
 	},
 	{
-		"id": "11",
+		"customid": "11",
 		"name": "Navy Blue",
 		"image": "https://www.bombayshirts.com/static/img/button/navy-blue.jpg"
 	}

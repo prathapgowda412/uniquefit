@@ -250,11 +250,16 @@ function Customize() {
 
 	// collar value change handling below
 	const [collarnamevalue, setcollarnameValue] = React.useState('');
+	const [collarimage, setcollarimage] = React.useState('');
 	const [collarstiff, setcollarstiffness] = React.useState('');
 	// let collarname = '';
 	const handlecollarChange = (event) => {
 		// collarname = event.value;
 		setcollarnameValue(event.target.value);
+		setcollarimage(event.target.image);
+		console.log(collarimage);
+		console.log(collarnamevalue);
+
 		// customizedproduct[0].collarname=
 	};
 	const handlecollarstiffnesschange = (event) => {
@@ -477,17 +482,14 @@ function Customize() {
 										aria-label="gender"
 										name="gender1"
 										value={collarnamevalue}
+										// image={collarimage}
 										onChange={handlecollarChange}
 										className={classes.typepanel}>
 										{collars.map((collar) => {
 											return (
 												<Paper className={classes.typepaper}>
 													<img src={collar.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={collar.name}
-														control={<Radio />}
-														label={collar.name}
-													/>
+													<FormControlLabel control={<Radio />} label={collar.name} />
 												</Paper>
 											);
 										})}

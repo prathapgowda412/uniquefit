@@ -1,56 +1,56 @@
 [
 	{
-		"id": "1",
+		"customid": "1",
 		"name": "Spread Eagle",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-spread-eagle.svg"
 	},
 	{
-		"id": "2",
+		"customid": "2",
 		"name": "Prince Charlie",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-prince-charlie.svg"
 	},
 	{
-		"id": "3",
+		"customid": "3",
 		"name": "Madmen",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-madmen.svg"
 	},
 	{
-		"id": "4",
+		"customid": "4",
 		"name": "Bandhgala",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-bandhgala.svg"
 	},
 	{
-		"id": "5",
+		"customid": "5",
 		"name": "Hipster",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-hipster.svg"
 	},
 	{
-		"id": "6",
+		"customid": "6",
 		"name": "Hipster Rounded",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-hipster-rounded.svg"
 	},
 	{
-		"id": "7",
+		"customid": "7",
 		"name": "Polo",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-polo.svg"
 	},
 	{
-		"id": "8",
+		"customid": "8",
 		"name": "Concealed Polo",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-concealed-polo.svg"
 	},
 	{
-		"id": "9",
+		"customid": "9",
 		"name": "Club",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-club.svg"
 	},
 	{
-		"id": "10",
+		"customid": "10",
 		"name": "Ozwald Boateng",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-ozwald-boateng.svg"
 	},
 	{
-		"id": "11",
+		"customid": "11",
 		"name": "Wing",
 		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-wing.svg"
 	}

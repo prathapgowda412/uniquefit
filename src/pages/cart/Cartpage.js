@@ -73,33 +73,37 @@ const Styles = makeStyles({
 	papercontainer: {
 		marginTop: '5px',
 	},
+	productpricetag: {
+		fontSize: '16px',
+		color: '#282C3F',
+	},
+	productnametag: {
+		fontSize: '18px',
+		color: '#282C3F',
+	},
 });
 
-// export class Cartpage extends Component {
-
-//     render() {
-//         return (
-//             <div>
-
-//             </div>
-//         )
-//     }
-// }
-
-// export default Cartpage;
-
 function Cartpage() {
-	let [cartItems, setCartItems] = useState();
+	let [cartItems, setCartItems] = useState([]);
+	const [cartvalueprice, setcartvalueprice] = useState(0);
 
 	useEffect(() => {
 		getCartItems().then(({ data }) => {
 			const cartIts = data.cartItems;
-			setCartItems(cartIts);
-			console.log(cartIts);
+
+			setCartItems(cartIts.items);
+			// console.log(cartIts);
+			// console.log(cartItems);
 			console.log(cartIts.items);
 		});
-	}, []);
 
+		setcartvalueprice(
+			cartItems.map((ite) => {
+				return cartvalueprice + ite.productsaleprice;
+			})
+		);
+		console.log(cartvalueprice);
+	}, []);
 	const classes = Styles();
 	return (
 		<Grid item container xs={12} className={classes.root} justify="center">
@@ -110,26 +114,39 @@ function Cartpage() {
 			</Box>
 			<Grid item container xs={12} sm={10} className={classes.cartbox} justify="center">
 				<Grid item container xs={12} sm={7} className={classes.leftbox} justify="center">
-					<Card elevation square className={classes.itemcard}>
-						<CardContent className={classes.cardcontent}>
-							<Paper elevation className={classes.cardpaper}>
-								<img className={classes.itemimg} src={itemimg} />
-								<Box className={classes.papercontent}>
-									<Container className={classes.papercontainer}>
-										<Typography variant="h3">light bue shirt</Typography>
-										<Typography>price : 1299</Typography>
-										Quantitiy :
-									</Container>
-								</Box>
-							</Paper>
-						</CardContent>
-						<CardActions className={classes.actioncard}>
-							<Button className={classes.removebutton} size="medium">
-								Remove
-							</Button>
-						</CardActions>
-					</Card>
-					<Card className={classes.itemcard}>
+					{/* single item */}
+					{cartItems.map((ite, index) => {
+						return (
+							<>
+								<Card elevation square className={classes.itemcard} key={index}>
+									<CardContent className={classes.cardcontent}>
+										<Paper elevation className={classes.cardpaper}>
+											<img
+												className={classes.itemimg}
+												src={`http://45.13.132.188:5000${ite.productimages[0]}`}
+											/>
+											<Box className={classes.papercontent}>
+												<Container className={classes.papercontainer}>
+													<Typography className={classes.productnametag} variant="h3">
+														{ite.productname}
+													</Typography>
+													<Typography>{ite.productsaleprice}</Typography>
+												</Container>
+											</Box>
+										</Paper>
+									</CardContent>
+									<CardActions className={classes.actioncard}>
+										<Button className={classes.removebutton} size="medium">
+											Remove
+										</Button>
+									</CardActions>
+								</Card>
+							</>
+						);
+					})}
+
+					{/* single item */}
+					{/* <Card className={classes.itemcard}>
 						<CardContent className={classes.cardcontent}>
 							<Paper elevation className={classes.cardpaper}></Paper>
 						</CardContent>
@@ -148,7 +165,7 @@ function Cartpage() {
 								Remove
 							</Button>
 						</CardActions>
-					</Card>
+					</Card> */}
 				</Grid>
 				<Grid item container xs={10} sm={5} className={classes.rightbox}></Grid>
 			</Grid>
