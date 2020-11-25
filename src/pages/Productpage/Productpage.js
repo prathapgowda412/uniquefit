@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Grid, withStyles, makeStyles, Box, Container, Button } from '@material-ui/core';
 // import { render } from 'react-dom';
@@ -10,10 +10,11 @@ import '../../custom.css';
 
 // import products from '../../data/dummydata.json';
 import Axios from 'axios';
+import { productContext } from './../../contexts/ProductContext';
 
 const useStyles = makeStyles((theme) => ({
 	main: {
-		marginTop: '5px',
+		marginTop: '48px',
 		height: 'fit-content',
 		backgroundColor: 'white',
 	},
@@ -60,11 +61,15 @@ const useStyles = makeStyles((theme) => ({
 		height: '100%',
 	},
 	bigimage: {
-		width: '80%',
+		width: '60%',
 		[theme.breakpoints.down('sm')]: {
 			width: '100%',
 			height: '90%',
 		},
+	},
+	productnametag: {
+		color: '#282C3F',
+		fontSize: '24px',
 	},
 	spacebox: {
 		height: '20px',
@@ -90,100 +95,114 @@ const useStyles = makeStyles((theme) => ({
 		fontWeight: '600',
 		color: '#282C3F',
 	},
+	pricetag: {
+		color: '#282C3F',
+		fontSize: '24px',
+	},
+	salepricetag: {
+		color: '#6B6E7B',
+		fontSize: '18px',
+	},
+	pricebox: {
+		display: 'flex',
+		width: '200px',
+		justifyContent: 'space-between',
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
 }));
 
 function Productpage() {
 	const classes = useStyles();
 	const { id } = useParams();
+	const { products, setProducts: setproducts } = useContext(productContext);
 	const [product, setproduct] = React.useState([]);
 	const [productimages, setproductimages] = React.useState([]);
 	// console.log(id);
-	useEffect(() => {
-		const config = {
-			headers: {
-				'Content-Type': 'application/json',
-				'x-productid': id,
-			},
-		};
-		Axios.get('http://45.13.132.188:5000/products/getproduct-byid', config)
-			.then((resp) => {
-				const response = resp;
-				// console.log(resp);
-				console.log(resp.data);
-				setproduct(resp.data);
 
-				try {
-				} catch (err) {
-					console.log(err);
-				}
+	useEffect(() => {
+		if (products.length) {
+			console.log(products[0].productimages);
+		}
+		setproduct(
+			products.find((product) => {
+				console.log(product.productid);
+				return product.productid === id;
 			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, []);
+		);
+		console.log(product);
+	}, [products]);
 
 	return (
 		<>
-			{/* {product.map((product, index) => { */}
-			{/* return ( */}
-			<Grid item container xs={12} className={classes.main} key={product.productid}>
-				<Grid item container xs={12} sm={6} className={classes.leftgrid}>
-					<Tabs className={classes.tabss}>
-						<Grid xs={12} className={classes.tabpanelbox}>
-							{/* {productimages} */}
-							{/* {productimages.forEach((index) => {
+			{product && product.productimages ? (
+				<Grid item container xs={12} className={classes.main} key={product.productid}>
+					<Grid item container xs={12} sm={6} className={classes.leftgrid}>
+						<Tabs className={classes.tabss}>
+							<Grid xs={12} className={classes.tabpanelbox}>
+								{/* {productimages} */}
+								{/* {productimages.forEach((index) => {
 								return <> {index} </>;
 							})} */}
-							{/* {product.productimages.map((bigimage, index) => (
-								<TabPanel className={classes.paneltab} key={index}>
-									<img
-										className={classes.bigimage}
-										src={`http://localhost:5000/${product.productimages}`}
-									/>
-								</TabPanel>
-							))} */}
-						</Grid>
-
-						<Grid xs={12} className={classes.tablistbotom}>
-							<TabList className={classes.tablist}>
-								{/* {product.productimages.map((tabimage, index) => (
-									<Tab className={classes.tabitem} key={index}>
+								{product.productimages.map((bigimage, index) => (
+									<TabPanel className={classes.paneltab} key={index}>
 										<img
-											className={classes.iconimage}
-											src={`http://localhost:5000/${product.productimages}`}
+											className={classes.bigimage}
+											src={`http://45.13.132.188:5000${bigimage}`}
 										/>
-									</Tab>
-								))} */}
-							</TabList>
-						</Grid>
-					</Tabs>
+									</TabPanel>
+								))}
+							</Grid>
+
+							<Grid xs={12} className={classes.tablistbotom}>
+								<TabList className={classes.tablist}>
+									{product.productimages.map((tabimage, index) => (
+										<Tab className={classes.tabitem} key={index}>
+											<img
+												className={classes.iconimage}
+												src={`http://45.13.132.188:5000${tabimage}`}
+											/>
+										</Tab>
+									))}
+								</TabList>
+							</Grid>
+						</Tabs>
+					</Grid>
+					<Grid item container xs={12} sm={6} className={classes.showdesc}>
+						<Container maxWidth="md" style={{ height: '100px', marginTop: '10px' }}>
+							<Typography variant="h4" className={classes.productnametag}>
+								{product.productname}
+							</Typography>
+							<Box className={classes.spacebox} />
+							<Box className={classes.pricebox}>
+								<Typography variant="body1" className={classes.pricetag}>
+									Rs :{product.productprice}
+								</Typography>
+								<Typography>
+									Rs <strike className={classes.salepricetag}> {product.productsaleprice}</strike>{' '}
+								</Typography>
+							</Box>
+							<Link to={`/Customize/${product.productid}`}>
+								<Button className={classes.customizebutton}>Customize now</Button>
+							</Link>
+							<Box className={classes.spacebox} />
+							<Typography variant="h6"> Product Details </Typography>
+							<br />
+							<Typography variant="body1">
+								Shirt Type:{' '}
+								<Typography className={classes.productdet}>{product.producttype}</Typography>
+							</Typography>
+							<Typography variant="body1">
+								Product Color:{' '}
+								<Typography className={classes.productdet}>{product.productcolor}</Typography>{' '}
+							</Typography>
+							<Typography variant="body1">Product Description: {product.productdesc}</Typography>
+						</Container>
+					</Grid>
 				</Grid>
-				<Grid item container xs={12} sm={6} className={classes.showdesc}>
-					<Container maxWidth="md" style={{ height: '100px', marginTop: '10px' }}>
-						<Typography variant="h4">{product.productname}</Typography>
-						<Box className={classes.spacebox} />
-						<Typography variant="body1">
-							Our Price : <b> {product.productprice}</b>
-						</Typography>
-						<Link to={`/Customize/${product.productid}`}>
-							<Button className={classes.customizebutton}>Customize now</Button>
-						</Link>
-						<Box className={classes.spacebox} />
-						<Typography variant="h6"> Product Details </Typography>
-						<br />
-						<Typography variant="body1">
-							Shirt Type: <Typography className={classes.productdet}>{product.producttype}</Typography>
-						</Typography>
-						<Typography variant="body1">
-							Product Color:{' '}
-							<Typography className={classes.productdet}>{product.productcolor}</Typography>{' '}
-						</Typography>
-						<Typography variant="body1">Product Description: {product.productdesc}</Typography>
-					</Container>
-				</Grid>
-			</Grid>
-			{/* ); */}
-			{/* })} */}
+			) : (
+				''
+			)}
 		</>
 	);
 }

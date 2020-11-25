@@ -27,6 +27,8 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Axios from 'axios';
 import { PaletteRounded } from '@material-ui/icons';
+import { addToCart } from '../../services/fetchService';
+import { toast } from 'react-toastify';
 
 const styles = makeStyles((theme) => ({
 	root: {
@@ -314,9 +316,10 @@ function Customize() {
 	};
 	// tabs handling top
 	// customized total product below
-	const hancleclickcart = () => {
-		// const product = {
-		// 	productid: cd,
+	const hancleclickcart = async () => {
+		// const {productid, productname, productprice, productsaleprice, productmaterial, productcolor, productpattern, productdesc, producttype, productoccassion, productfeel, productimages} = product
+		// const productc = {
+		// 	productid: product.productid,
 		// 	productname: screen,
 		// 	productprice: screen,
 		// 	productsaleprice: jn,
@@ -330,18 +333,46 @@ function Customize() {
 		// 	productimages: img,
 		// };
 
+		const productc = { ...product };
+
 		let customisations = {
-			collar: collarnamevalue,
-			collarstiff: collarstiff,
-			cuffs: sleevecuffvalue,
-			cuffstiff: cuffstiff,
-			button: butoonvalue,
-			buttontherad: buttonthreadvalue,
-			front: frontvalue,
-			pocket: pocketvalue,
-			back: backvalue,
-			backbottom: backbottomvalue,
+			collar: {
+				name: collarnamevalue,
+			},
+			collarstiff: {
+				name: collarstiff,
+			},
+			cuffs: {
+				name: sleevecuffvalue,
+			},
+			cuffstiff: {
+				name: cuffstiff,
+			},
+			button: {
+				name: butoonvalue,
+			},
+			buttontherad: {
+				name: buttonthreadvalue,
+			},
+			front: {
+				name: frontvalue,
+			},
+			pocket: {
+				name: pocketvalue,
+			},
+			back: {
+				name: backvalue,
+			},
+			backbottom: {
+				name: backbottomvalue,
+			},
 		};
+
+		productc.customisations = customisations;
+
+		delete productc._id;
+		delete productc.__v;
+
 		// customproduct={
 		// 	productid: cd,
 		// 	productname: screen,
@@ -362,7 +393,9 @@ function Customize() {
 		// 	items: customproduct,
 		// };
 
-		console.log(customisations);
+		console.log(productc);
+		const { data: response } = await addToCart(productc);
+		toast(response.message);
 	};
 
 	return (

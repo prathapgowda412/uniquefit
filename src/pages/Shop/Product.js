@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	pro: {
-		height: '450px',
+		height: '370px',
 		width: '350px',
 		marginTop: '20px',
 		position: 'relative',
@@ -37,21 +37,31 @@ const useStyles = makeStyles((theme) => ({
 	},
 	productname: {
 		color: 'black',
-		fontSize: '30px',
+		fontSize: '16px',
 		fontWeight: '500',
-		margin: '0',
+		marginBottom: '10px',
 		'&:hover': {
 			color: '#387A76',
 		},
 	},
-	price: {
+	saleprice: {
 		fontSize: '16px',
-		color: 'grey',
+		color: '#282C3F',
 		fontWeight: '400',
+	},
+	originprice: {
+		fontSize: '14px',
+		color: '#6B6E7B',
 	},
 	link: {
 		textDecoration: 'none',
 		color: 'black',
+	},
+	productbox: {
+		height: 'fit-content',
+	},
+	cardbodytext: {
+		margin: '8px',
 	},
 }));
 
@@ -64,20 +74,23 @@ function Product(props) {
 			<Card className={classes.card} elevation="0" square>
 				<Link to={`/ProductPage/${product.productid}`}>
 					<Box className={classes.topimag}>
-						<img className={classes.cardimg} src={product.productimages[0]} />
+						<img className={classes.cardimg} src={`http://45.13.132.188:5000${product.productimages[0]}`} />
 					</Box>
 				</Link>
 				<CardActionArea className={classes.cardbody}>
-					<Container>
+					<Box className={classes.cardbodytext} style={{ marginTop: '-20px' }}>
 						<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
 							<Typography variant="h2" className={classes.productname}>
 								{product.productname}
 							</Typography>
 						</Link>
-					</Container>
-					<Container>
-						<Typography variant="body1" className={classes.price}>
-							₹{product.productprice}
+					</Box>
+					<Container className={classes.pricebox}>
+						<Typography variant="body1" className={classes.saleprice}>
+							₹{product.productsaleprice}
+						</Typography>
+						<Typography variant="body2" className={classes.originprice}>
+							₹<strike className={classes.originprice}> {product.productprice}</strike>
 						</Typography>
 					</Container>
 				</CardActionArea>

@@ -12,7 +12,7 @@ import {
 	CardActionArea,
 	Box,
 } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -21,6 +21,7 @@ import imgs from './statics/images/girlwhite.jpg';
 import dummydata from '../../../data/dummydata.json';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
+import { productContext } from './../../../contexts/ProductContext';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -89,6 +90,8 @@ const useStyles = makeStyles((theme) => ({
 		height: '370px',
 		width: '350px',
 		marginTop: '20px',
+		marginBottom: '20px',
+
 		position: 'relative',
 	},
 	cardimg: {
@@ -144,11 +147,18 @@ const useStyles = makeStyles((theme) => ({
 	productbox: {
 		height: 'fit-content',
 	},
+	cardbodytext: {
+		margin: '8px',
+	},
 }));
 
 function Trending() {
 	const classes = useStyles();
-	const [products, setproducts] = React.useState([]);
+	// const [products, setproducts] = React.useState([]);
+	const { products, setProducts: setproducts } = useContext(productContext);
+
+	console.log(products);
+
 	useEffect(() => {
 		Axios.get('http://45.13.132.188:5000/products/get-products')
 			.then((resp) => {
@@ -172,7 +182,7 @@ function Trending() {
 			</Container>
 
 			<Grid item container xs={12} sm={11} justify="space-evenly">
-				{products.slice(0, 4).map((product) => {
+				{products.slice(0, 5).map((product) => {
 					return (
 						<Grid xs={5} sm={4} md={2}>
 							<Card className={classes.card} elevation="0" square>
@@ -185,13 +195,13 @@ function Trending() {
 									</Box>
 								</Link>
 								<CardActionArea className={classes.cardbody}>
-									<Container style={{ marginTop: '-20px' }}>
+									<Box className={classes.cardbodytext} style={{ marginTop: '-20px' }}>
 										<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
 											<Typography variant="h1" className={classes.productname}>
 												{product.productname}
 											</Typography>
 										</Link>
-									</Container>
+									</Box>
 									<Container className={classes.pricebox}>
 										<Typography variant="body1" className={classes.saleprice}>
 											₹{product.productsaleprice}
@@ -205,19 +215,6 @@ function Trending() {
 						</Grid>
 					);
 				})}
-
-				{/* <Grid xs={5} sm={4} md={2} style={{ backgroundColor: '#bdb' }}>
-					<Card> helo</Card>
-				</Grid>
-				<Grid xs={5} sm={4} md={2} style={{ backgroundColor: '#fdff' }}>
-					<Card> helo</Card>
-				</Grid>
-				<Grid xs={5} sm={4} md={2} style={{ backgroundColor: '#bdb' }}>
-					<Card> helo</Card>
-				</Grid>
-				<Grid xs={5} sm={4} md={2} style={{ backgroundColor: '#fdff' }}>
-					<Card> helo</Card>
-				</Grid> */}
 			</Grid>
 
 			{/* <div className={classes.grid}>
