@@ -482,14 +482,17 @@ function Customize() {
 										aria-label="gender"
 										name="gender1"
 										value={collarnamevalue}
-										// image={collarimage}
 										onChange={handlecollarChange}
 										className={classes.typepanel}>
 										{collars.map((collar) => {
 											return (
 												<Paper className={classes.typepaper}>
 													<img src={collar.image} className={classes.typeimage} />
-													<FormControlLabel control={<Radio />} label={collar.name} />
+													<FormControlLabel
+														value={collar.name}
+														control={<Radio />}
+														label={collar.name}
+													/>
 												</Paper>
 											);
 										})}
