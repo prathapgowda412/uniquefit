@@ -2,5 +2,8 @@
     "getProducts": "/products/get-products",
     "addToCart":"/products/add-to-cart",
     "removeFromCart":"/products/remove-from-cart",
-    "getCartItems":"/products/get-cart-items"
+    "getCartItems":"/products/get-cart-items",
+    "getOrders":"/products/get-orders",
+    "addOrder":"/products/add-order",
+    "getCustomisations":"/products/get-customisations"
 }
