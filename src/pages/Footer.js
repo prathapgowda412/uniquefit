@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
 	footer: {
 		minHeight: '400px',
 		maxHeight: 'fit-content',
-		backgroundColor: '#f2f2f2',
+		backgroundColor: '#F9F9F9',
 		position: 'relative',
 		marginTop: '200px',
 	},

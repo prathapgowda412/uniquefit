@@ -18,7 +18,7 @@ import collarstiffness from './data/collarstiffness.json';
 import buttonthread from './data/thread.json';
 import back from './data/back.json';
 import backbottom from './data/backbottom.json';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Redirect, useHistory, useParams } from 'react-router-dom';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -313,7 +313,7 @@ function Customize() {
 		setbackbottomvalue(event.target.value);
 	};
 	// back and bac bottom hanfling above
-
+	const history = useHistory();
 	// tabs handling below
 	const [tabvalue, settabValue] = React.useState(0);
 	const handleTabChange = (event, newValue) => {
@@ -322,6 +322,11 @@ function Customize() {
 	// tabs handling top
 	// customized total product below
 	const hancleclickcart = async () => {
+		if (localStorage.getItem('usertoken') == '') {
+			history.push('/Login');
+			toast('please login to add to cart');
+			// <Redirect to="Login" />;
+		}
 		// const {productid, productname, productprice, productsaleprice, productmaterial, productcolor, productpattern, productdesc, producttype, productoccassion, productfeel, productimages} = product
 		// const productc = {
 		// 	productid: product.productid,
@@ -398,9 +403,13 @@ function Customize() {
 		// 	items: customproduct,
 		// };
 
-		console.log(productc);
+		// console.log(productc);
 		const { data: response } = await addToCart(productc);
 		toast(response.message);
+		// console.log(response);
+		if (response.message == 'Product added to cart successfully') {
+			history.push('/Cart');
+		}
 	};
 
 	return (

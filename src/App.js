@@ -101,9 +101,9 @@ function App() {
 								<Footer />
 							</Route>
 							<Route path="/Cart">
-								<Header />
 								<Cart />
-								<Footer />
+								{/* <Header />
+								<Footer /> */}
 							</Route>
 							<Route path="/Customize/:id">
 								<Customize />

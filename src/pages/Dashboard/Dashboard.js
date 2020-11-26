@@ -26,6 +26,7 @@ import Axios from 'axios';
 // import { Box } from '@material-ui/core/Box';
 import DropZone from './../../common/Dropzone';
 import { Redirect, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
 	header: {
@@ -289,6 +290,7 @@ function Dashboard() {
 		if (resp.status == 200) {
 			window.location.reload();
 			console.log('done succes');
+			toast('Product added Successfully');
 		}
 	};
 

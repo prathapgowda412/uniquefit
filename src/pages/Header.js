@@ -32,6 +32,7 @@ import {
 	Popper,
 } from '@material-ui/core';
 import '../custom.css';
+import MenuIcon from '@material-ui/icons/Menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
 // import Aboutsection from './aboutsection';
@@ -75,6 +76,12 @@ const styles = (theme) => ({
 		display: 'flex',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+	},
+	mobtoolbar: {
+		width: '90%',
+		display: 'flex',
+		justifyContent: 'space-between',
+		alignItems: 'space-between',
 	},
 	button: {
 		color: 'black',
@@ -385,6 +392,7 @@ class Header extends Component {
 	handlelogout = () => {
 		this.setState({ username: '' });
 		localStorage.setItem('usertoken', '');
+		localStorage.setItem('tokens', '');
 		window.location.reload();
 	};
 
@@ -436,76 +444,45 @@ class Header extends Component {
 				);
 			} else {
 				return (
-					<>
-						{/* <div style={{ position: 'relative' }}>
-							<Button
-								aria-describedby={id}
-								variant="contained"
-								color="primary"
-								onClick={this.handleClickPop}
-								onMouseEnter={this.handleClickPop}
-								onMouseLeave={this.handleClosePop}>
-								Open Popover
+					<Box className={classes.loginsignup}>
+						<Button onClick={this.handlelogout}>Logout</Button>
+						<Link className={classes.profilelink} to={`/Profile`}>
+							<Button>
+								<img src={require('../statics/header/header_profile_icon.svg')} />
 							</Button>
-							<Popover
-								id={id}
-								// anchorReference="anchorPosition"
-								open={popoveropen}
-								anchorEl={this.state.anchorEl}
-								onClose={this.handleClosePop}
-								anchorOrigin={{
-									vertical: 'right',
-									horizontal: 'center',
-								}}
-								transformOrigin={{
-									vertical: 'top',
-									horizontal: 'center',
-								}}>
-								<Typography className={classes.typography}>The content of the Popover.</Typography>
-							</Popover>
-						</div> */}
-
-						{/* <div style={{ position: 'relative' }}>
-							<Button
-								aria-owns={this.state.hoveropen ? 'simple-menu' : null}
-								aria-haspopup="true"
-								onClick={this.handleClick}
-								onMouseLeave={this.handleRequestClose}
-								onMouseOver={this.handleClick}>
-								Open Menu
+						</Link>
+						<Link to="/Cart">
+							<Button>
+								<img src={require('../statics/header/bag_icon.svg')} />
 							</Button>
-							<Menu
-								id="simple-menu"
-								anchorEl={this.state.anchorEl}
-								open={this.state.hoveropen}
-								onRequestClose={this.handleRequestClose}>
-								<Button onClick={this.handlelogout}>Logout</Button>
-								<MenuItem onClick={this.handleRequestClose}>Profile</MenuItem>
-								<MenuItem onClick={this.handleRequestClose}>My account</MenuItem>
-								<MenuItem onClick={this.handleRequestClose}>Logout</MenuItem>
-							</Menu>
-						</div> */}
-						{/* <Button onClick={this.handlelogout}>Logout</Button> */}
+						</Link>
+					</Box>
+				);
+			}
+		};
 
-						<Box className={classes.loginsignup}>
-							<Link className={classes.profilelink} to={`/Profile`}>
-								<Button>
-									<img src={require('../statics/header/header_profile_icon.svg')} />
-								</Button>
-							</Link>
-							<Link to="/Cart">
-								<Button>
-									<img src={require('../statics/header/bag_icon.svg')} />
-								</Button>
-							</Link>
-						</Box>
-					</>
+		const Mobcartbag = () => {
+			if (localStorage.getItem('usertoken') == '') {
+				return (
+					<Link to="/Login">
+						<Button>
+							<img src={require('../statics/header/bag_icon.svg')} />
+						</Button>
+					</Link>
+				);
+			} else {
+				return (
+					<Link to="/Cart">
+						<Button>
+							<img src={require('../statics/header/bag_icon.svg')} />
+						</Button>
+					</Link>
 				);
 			}
 		};
 
 		const Mobuserlog = () => {
-			if (localStorage.getItem('usetoken') !== '') {
+			if (localStorage.getItem('usetoken') == '') {
 				return (
 					<Container>
 						<Link className={classes.link} to="login">
@@ -535,81 +512,76 @@ class Header extends Component {
 
 		return (
 			<AppBar elevation={0} className={classes.header}>
-				<Toolbar className={classes.toolbar}>
-					<Hidden mdUp>
+				{/* mobile toolbar below */}
+				<Hidden mdUp>
+					<Toolbar className={classes.mobtoolbar}>
 						<Button onClick={this.handleToggle}>
 							{/* <Typography variant="h6">hello</Typography> */}
-							<FontAwesomeIcon
-								Component="button"
-								icon={faBars}
-								className={classes.menuicon}
-								style={{ fontSize: '28px' }}
-							/>
+							<MenuIcon style={{ color: 'white' }} fontSize="large" />
 						</Button>
-					</Hidden>
+						<Link to="/">
+							<img className={classes.logo} src={require('../logos/Unique fit name.svg')} />
+						</Link>
+						<Mobcartbag />
+					</Toolbar>
+				</Hidden>
+				{/* mobile toolbar above */}
 
-					{/* drawer setion here start */}
-					<Drawer className={classes.drawer} open={this.state.open} onBackdropClick={this.handleDrawerClose}>
-						<Paper elevation={0} square className={classes.drawerpaper}>
-							<Box className={classes.drawerheader}>
-								<div className={classes.closebox}>
-									<Button onClick={this.handleToggle} style={{ float: 'right' }}>
-										<CloseIcon fontSize="large" color="green" className={classes.closebuton} />
-									</Button>
-								</div>
-								<Mobuserlog />
-							</Box>
-							<Container className={classes.drawercont}>
-								<nav style={{ position: 'relative' }}>
-									<ul className={classes.ulmob}>
-										<Link className={classes.limob} to="/Home" onClick={this.handleToggle}>
-											Home
-										</Link>
+				{/* drawer setion here start */}
+				<Drawer className={classes.drawer} open={this.state.open} onBackdropClick={this.handleDrawerClose}>
+					<Paper elevation={0} square className={classes.drawerpaper}>
+						<Box className={classes.drawerheader}>
+							<div className={classes.closebox}>
+								<Button onClick={this.handleToggle} style={{ float: 'right' }}>
+									<CloseIcon fontSize="large" color="green" className={classes.closebuton} />
+								</Button>
+							</div>
+							<Mobuserlog />
+						</Box>
+						<Container className={classes.drawercont}>
+							<nav style={{ position: 'relative' }}>
+								<ul className={classes.ulmob}>
+									<Link className={classes.limob} to="/Home" onClick={this.handleToggle}>
+										Home
+									</Link>
 
-										<Link className={classes.limob} to="/Shop" onClick={this.handleToggle}>
-											Shop Products
-										</Link>
+									<Link className={classes.limob} to="/Shop" onClick={this.handleToggle}>
+										Shop Products
+									</Link>
 
-										<Link className={classes.limob} onClick={this.handleToggle} to="/Aboutus">
-											About us
-										</Link>
-									</ul>
-									<Box>{/* <Userlog /> */}</Box>
-									{/* <Container
-										style={{
-											backgroundColor: '#f2f2f2',
-											padding: '10px 5px',
-											marginTop: '10px',
-											marginBottom: '10px',
-											borderRadius: '10px',
-										}}>
-										<Link className={classes.profilelink} to="/Profile" onClick={this.handleToggle}>
-											<Avatar className={classes.profilepic} src={profileavat} />
-											<Typography>My Profile </Typography>
-										</Link>
-										<Button>V</Button>
-									</Container> */}
-									{/* <Button className={classes.requestcallbutton}>request</Button> */}
-								</nav>
-							</Container>
-						</Paper>
-					</Drawer>
-					{/* drawer setion here end */}
+									<Link className={classes.limob} onClick={this.handleToggle} to="/Aboutus">
+										About us
+									</Link>
+									<Link className={classes.limob} to="/Contact">
+										Contact
+									</Link>
 
-					<Link to="/">
-						<img className={classes.logo} src={uniquefit_monogramblack} />
-					</Link>
-					<Hidden smDown>
+									<Link className={classes.uploadshirt} to="/Contact">
+										Shirt On Mind ?
+									</Link>
+								</ul>
+								<Box>{/* <Userlog /> */}</Box>
+							</nav>
+						</Container>
+					</Paper>
+				</Drawer>
+				{/* drawer setion here end */}
+
+				<Hidden smDown>
+					<Toolbar className={classes.toolbar}>
+						<Link to="/">
+							<img className={classes.logo} src={uniquefit_monogramblack} />
+						</Link>
 						<Box className={classes.navprofile}>
 							<nav className={classes.nav}>
 								<ul className={classes.ul}>
 									<li className={classes.li}>
-										<NavLink activeClassName={classes.activecls} className={classes.li} to="/Shop">
+										<Link className={classes.li} to="/Shop">
 											Shirts
-										</NavLink>
+										</Link>
 									</li>
 									<li className={classes.li}>
-										<NavLink
+										<Link
 											onMouseEnter={this.handlecomingsoon}
 											onMouseLeave={this.handlecomingsoonchange}
 											className={classes.comingsoon}
@@ -619,43 +591,34 @@ class Header extends Component {
 											{/* <Typography className={classes.comingsoon} variant="caption">
 												coming soon *
 											</Typography> */}
-										</NavLink>
+										</Link>
 									</li>
 									<li className={classes.li}>
-										<NavLink
-											activeClassName={classes.activecls}
-											className={classes.li}
-											to="/Aboutus">
+										<Link className={classes.li} to="/Aboutus">
 											About Us
-										</NavLink>
+										</Link>
 									</li>
 									<li className={classes.li}>
-										<NavLink
-											activeClassName={classes.activecls}
-											className={classes.li}
-											to="/Contact">
+										<Link className={classes.li} to="/Contact">
 											Contact
-										</NavLink>
+										</Link>
 									</li>
 									<li className={classes.li}>
-										<NavLink
-											activeClassName={classes.activecls}
-											className={classes.uploadshirt}
-											to="/Uploadshirt">
+										<Link className={classes.uploadshirt} to="/Contact">
 											Shirt On Mind ?
-										</NavLink>
+										</Link>
 									</li>
 								</ul>
 							</nav>
 							<Box></Box>
 						</Box>
-					</Hidden>
-					<Box className={classes.profilecart}>
-						<Hidden smDown>
-							<Userlog />
-						</Hidden>
-					</Box>
-				</Toolbar>
+						<Box className={classes.profilecart}>
+							<Hidden smDown>
+								<Userlog />
+							</Hidden>
+						</Box>
+					</Toolbar>
+				</Hidden>
 			</AppBar>
 		);
 	}
