@@ -1,4 +1,4 @@
-import { Grid, Hidden, Box, Paper, Typography, Button, Divider } from '@material-ui/core';
+import { Grid, Hidden, Box, Paper, Typography, Button, Divider, Container, AppBar } from '@material-ui/core';
 import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // import { Tab, Tabs } from 'react-tabs';
@@ -30,6 +30,7 @@ import { PaletteRounded } from '@material-ui/icons';
 import { addToCart } from '../../services/fetchService';
 import { toast } from 'react-toastify';
 import { productContext } from '../../contexts/ProductContext';
+import { width } from '@material-ui/system';
 
 const styles = makeStyles((theme) => ({
 	root: {
@@ -79,7 +80,8 @@ const styles = makeStyles((theme) => ({
 		// backgroundColor: '#fff',
 	},
 	typeimage: {
-		height: '70px',
+		// height: '80px',
+		width: '80%',
 	},
 	buttonimage: {
 		height: '40px',
@@ -106,9 +108,11 @@ const styles = makeStyles((theme) => ({
 		marginTop: '10px',
 		marginLeft: '5px',
 		transition: '0.3s',
-		height: '120px',
-		minWidth: '140px',
-		maxWidth: 'fit-content',
+		height: '130px',
+		// height: 'fit-content',
+		width: '110px',
+		// minWidth: '140px',
+		// maxWidth: 'fit-content',
 		backgroundColor: '#fff',
 		padding: '5px ',
 		'&:hover': {
@@ -125,9 +129,10 @@ const styles = makeStyles((theme) => ({
 		marginTop: '5px',
 		marginLeft: '5px',
 		transition: '0.3s',
-		height: '120px',
-		minWidth: '130px',
-		maxWidth: 'fit-content',
+		height: '150px',
+		width: '140px',
+		// minWidth: '130px',
+		// maxWidth: '140px',
 		backgroundColor: '#fff',
 		padding: '5px ',
 		'&:hover': {
@@ -149,6 +154,12 @@ const styles = makeStyles((theme) => ({
 		height: '100vh',
 		backgroundColor: '#f0f5ff',
 	},
+	addtocartbutton: {
+		backgroundColor: '#387A76',
+	},
+	aaddtontext: {
+		color: 'white',
+	},
 	mobtabs: {
 		height: '100%',
 		position: 'relative',
@@ -165,7 +176,18 @@ const styles = makeStyles((theme) => ({
 		width: '120px',
 		transition: '0.5s',
 		color: 'white',
-		backgroundColor: '#28334B',
+		backgroundColor: '#f2f2f2',
+	},
+	bigimagecont: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		bckgroundColor: '#f2f2f2',
+	},
+	bigimage: {
+		width: '60%',
+		objectFit: 'contain',
+		bckgroundColor: '#f2f2f2',
 	},
 	addcartbutton: {
 		color: 'white',
@@ -177,12 +199,26 @@ const styles = makeStyles((theme) => ({
 			backgroundColor: '#253049',
 		},
 	},
+	productname: {
+		fontSize: '24px',
+		color: '#282c3f',
+		fontWeight: '500',
+	},
 	adbutontext: {
 		fontSize: '15px',
 		color: 'black',
 		padding: '5px 10px',
 		borderRadius: '5px',
 		backgroundColor: 'white',
+	},
+	customappmob: {
+		padding: '0 16px',
+		height: '8vh',
+		backgroundColor: '#28334B',
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
 	},
 	line: {},
 	variation: {
@@ -226,31 +262,53 @@ function Customize() {
 	const classes = styles();
 	const { id } = useParams();
 
+	// product from content below
+	const { products, setProducts: setproducts } = useContext(productContext);
 	const [product, setproduct] = React.useState([]);
 
-	useEffect(() => {
-		const config = {
-			headers: {
-				'Content-Type': 'application/json',
-				'x-productid': id,
-			},
-		};
-		Axios.get('http://45.13.132.188:5000/products/getproduct-byid', config)
-			.then((resp) => {
-				const response = resp;
-				console.log(resp);
-				// console.log(resp.data);
-				setproduct(resp.data);
+	const [productimages, setproductimages] = React.useState([]);
+	// console.log(id);
 
-				try {
-				} catch (err) {
-					console.log(err);
-				}
+	useEffect(() => {
+		if (products.length) {
+			console.log(products[0].productimages);
+		}
+		setproduct(
+			products.find((product) => {
+				console.log(product.productid);
+				return product.productid === id;
 			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, []);
+		);
+		console.log(product);
+	}, [products]);
+	// product from content above
+
+	// const [product, setproduct] = React.useState();
+
+	// useEffect(() => {
+	// 	const config = {
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			'x-productid': id,
+	// 		},
+	// 	};
+	// 	Axios.get('http://45.13.132.188:5000/products/getproduct-byid', config)
+	// 		.then((resp) => {
+	// 			const response = resp;
+	// 			// console.log(resp);
+	// 			// console.log(resp.data);
+	// 			setproduct(resp.data);
+	// 			console.log(product);
+
+	// 			try {
+	// 			} catch (err) {
+	// 				console.log(err);
+	// 			}
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// }, []);
 
 	// collar value change handling below
 	const [collarnamevalue, setcollarnameValue] = React.useState('');
@@ -455,10 +513,23 @@ function Customize() {
 									</div>
 								);
 							})} */}
+							<Container>
+								{product && product.productimages ? (
+									<>
+										<Typography className={classes.productname} key={product.productid}>
+											{product.productname}
+										</Typography>
+										{/* <br /> */}
+										<Typography style={{ color: '#282c3f' }}>{product.productsaleprice}</Typography>
+									</>
+								) : (
+									'.. . .'
+								)}
+							</Container>
 						</Grid>
 						<Grid item xs={3} justify="center">
-							<Button className={classes.addcartbutton} onClick={hancleclickcart}>
-								<Typography className={classes.adbutontext}>Add to Cart</Typography>
+							<Button className={classes.addtocartbutton} onClick={hancleclickcart}>
+								<Typography className={classes.aaddtontext}>Add to Cart</Typography>
 							</Button>
 							{/* <Button className={classes.addcartbutton}>
 								<Typography className={classes.adbutontext}>Go to Cart</Typography>
@@ -492,21 +563,51 @@ function Customize() {
 						{/* left type selection tab above */}
 
 						{/* middle preview  tab below */}
-						<Grid item container sm={6} style={{ backgroundColor: '#F0F5FF', height: '100%' }}>
-							{/* {productdetail.map((singleproduct) => {
+						<Grid item container sm={7} style={{ backgroundColor: '#fff', height: '100%' }}>
+							{/* {product.productimages.map((productimage, index) => {
 								return (
-									<div key={singleproduct.productid}>
-										<img src={singleproduct.images[0]} />
+									<div key={index}>
+										<img src={`http://45.13.132.188:5000${productimage}`} />
 									</div>
 								);
 							})} */}
+							{product && product.productimages ? (
+								<>
+									<Container className={classes.bigimagecont}>
+										<img
+											className={classes.bigimage}
+											src={`http://45.13.132.188:5000${product.productimages[0]}`}
+										/>
+									</Container>
+
+									{/* {product.productimages.map((bigimage, index) => (
+										<Container className={classes.paneltab} key={index}>
+											<img
+												className={classes.bigimage}
+												src={`http://45.13.132.188:5000${bigimage}`}
+											/>
+										</Container>
+									))} */}
+									{/* <Typography className={classes.productname} key={product.productid}>
+											{product.productname}
+										</Typography> */}
+								</>
+							) : (
+								'.. . .'
+							)}
+							{/* {product.productimages[0]} */}
+							{/* {product.productimages.map((bigimg, index) => (
+								<Container key={index}>
+									<img src={`http://45.13.132.188:5000${bigimg}`} />
+								</Container>
+							))} */}
 
 							{/* {customizedproduct.buttonname} */}
 						</Grid>
 						{/* middle preview  tab above */}
 
 						{/* right subtype selection tab below */}
-						<Grid item container sm={4} style={{ backgroundColor: '#e6eeff', height: '100%' }}>
+						<Grid item container sm={3} style={{ backgroundColor: '#e6eeff', height: '100%' }}>
 							<TabPanel value={tabvalue} index={0} className={classes.rightpane}>
 								<FormControl component="fieldset">
 									{/* <FormLabel component="legend">Gender</FormLabel> */}
@@ -762,23 +863,41 @@ function Customize() {
 			{/* this is for mobile layout below */}
 			<Hidden mdUp>
 				<Grid item container xs={12} className={classes.mobmain}>
-					<Grid item container xs={12} style={{ backgroundColor: '#28334B', height: '8vh' }}>
+					<Grid item container xs={12} className={classes.customappmob}>
 						<Link to="/">
-							<img src={require('../../logos/uniquefitlogowhite.svg')} style={{ height: '42px' }} />
+							<img src={require('../../logos/Uniquefit_white_monogram.svg')} style={{ height: '35px' }} />
 						</Link>
-						<Button className={classes.addcartbutton} onClick={hancleclickcart}>
-							<Typography className={classes.adbutontext}>Add to Cart</Typography>
-						</Button>
+						<Box style={{ float: 'right' }}>
+							<Button className={classes.addcartbutton} onClick={hancleclickcart}>
+								<Typography className={classes.adbutontext}>Add to Cart</Typography>
+							</Button>
+						</Box>
 					</Grid>
-					<Grid item container xs={12} style={{ height: '40vh' }}></Grid>
-					<Grid
+
+					<Grid item container xs={12} style={{ height: '40vh', backgroundColor: '#fff' }}>
+						{product && product.productimages ? (
+							<>
+								<Container className={classes.bigimagecont}>
+									<img
+										className={classes.bigimage}
+										src={`http://45.13.132.188:5000${product.productimages[0]}`}
+									/>
+								</Container>
+							</>
+						) : (
+							'.. . .'
+						)}
+
+						{/* { product && product.productimages ? ():('') } */}
+					</Grid>
+					{/* <Grid
 						item
 						container
 						xs={12}
 						style={{
-							height: '10vh',
-							backgroundColor: '#28334B',
-							borderRadius: '20px 20px 0 0',
+							height: '9vh',
+							// backgroundColor: '#28334B',
+							borderRadius: '10px 10px 0 0',
 							display: 'inline-block',
 							overflowX: 'scroll',
 							zIndex: '10',
@@ -788,6 +907,7 @@ function Customize() {
 							orientation="horizontal"
 							value={tabvalue}
 							onChange={handleTabChange}
+							indicatorColor="primary"
 							aria-label="Vertical tabs example"
 							className={classes.mobtabs}>
 							<Tab className={classes.mobtablink} label="Collar" {...a11yProps(0)} />
@@ -797,93 +917,60 @@ function Customize() {
 							<Tab className={classes.mobtablink} label="Pocket" {...a11yProps(4)} />
 							<Tab className={classes.mobtablink} label="Back & Bottom" {...a11yProps(5)} />
 						</Tabs>
-					</Grid>
-					<Grid
-						item
-						container
-						xs={12}
-						style={{ height: '40vh', backgroundColor: '#e6eeff', overflowY: 'scroll' }}>
-						<TabPanel value={tabvalue} index={0} className={classes.rightpane}>
-							<FormControl component="fieldset">
-								{/* <FormLabel component="legend">Gender</FormLabel> */}
-								<RadioGroup
-									aria-label="gender"
-									name="gender1"
-									value={collarnamevalue}
-									onChange={handlecollarChange}
-									className={classes.typepanel}>
-									{collars.map((collar) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={collar.image} className={classes.typeimage} />
-												<FormControlLabel
-													value={collar.name}
-													control={<Radio />}
-													label={collar.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-								{/* <Typography>value : {collarnamevalue}</Typography> */}
-							</FormControl>
+					</Grid> */}
 
-							<Divider className={classes.divider} />
-							<FormControl component="fieldset">
-								<FormLabel className={classes.variation}>Select collar Stiffness :</FormLabel>
-								<RadioGroup
-									aria-label="gender"
-									name="gender1"
-									value={collarstiff}
-									onChange={handlecollarstiffnesschange}
-									className={classes.typepanel}>
-									{collarstiffness.map((collarstiffness) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={collarstiffness.image} className={classes.typeimage} />
-												<FormControlLabel
-													value={collarstiffness.name}
-													control={<Radio />}
-													label={collarstiffness.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-							</FormControl>
-						</TabPanel>
-						<TabPanel value={tabvalue} index={1} className={classes.typepanel}>
-							<FormControl component="fieldset">
-								{/* <FormLabel component="legend">Gender</FormLabel> */}
-								<RadioGroup
-									aria-label="gender"
-									name="gender1"
-									value={sleevecuffvalue}
-									onChange={handlesleevecuffChange}
-									className={classes.typepanel}>
-									{sleevecuffss.map((sleevecuff) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={sleevecuff.image} className={classes.typeimage} />
-												<FormControlLabel
-													value={sleevecuff.name}
-													control={<Radio />}
-													label={sleevecuff.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-								{/* <Typography>value : {sleevecuffvalue}</Typography> */}
-
-								<Divider className={classes.divider} />
+					<Grid item container xs={12} style={{ height: '50vh', backgroundColor: '#fff' }}>
+						<Box style={{ height: 'fit-content', width: '100%', overflowX: 'scroll' }}>
+							<Tabs
+								indicatorColor="none"
+								orientation="horizontal"
+								value={tabvalue}
+								onChange={handleTabChange}
+								indicatorColor="primary"
+								aria-label="Vertical tabs example"
+								className={classes.mobtabs}>
+								<Tab className={classes.mobtablink} label="Collar" {...a11yProps(0)} />
+								<Tab className={classes.mobtablink} label="Hand Cuffs" {...a11yProps(1)} />
+								<Tab className={classes.mobtablink} label="Button" {...a11yProps(2)} />
+								<Tab className={classes.mobtablink} label="Front" {...a11yProps(3)} />
+								<Tab className={classes.mobtablink} label="Pocket" {...a11yProps(4)} />
+								<Tab className={classes.mobtablink} label="Back & Bottom" {...a11yProps(5)} />
+							</Tabs>
+						</Box>
+						<Box style={{ overflowY: 'scroll', height: '100%' }}>
+							<TabPanel value={tabvalue} index={0} className={classes.rightpane}>
 								<FormControl component="fieldset">
-									<FormLabel className={classes.variation}>Select Cuff Stiffness :</FormLabel>
+									{/* <FormLabel component="legend">Gender</FormLabel> */}
 									<RadioGroup
 										aria-label="gender"
 										name="gender1"
-										value={cuffstiff}
-										onChange={handlesleevecuffstiffness}
+										value={collarnamevalue}
+										onChange={handlecollarChange}
+										className={classes.typepanel}>
+										{collars.map((collar) => {
+											return (
+												<Paper className={classes.mobtypepaper}>
+													<img src={collar.image} className={classes.typeimage} />
+													<FormControlLabel
+														value={collar.name}
+														control={<Radio />}
+														label={collar.name}
+													/>
+												</Paper>
+											);
+										})}
+									</RadioGroup>
+									{/* <Typography>value : {collarnamevalue}</Typography> */}
+								</FormControl>
+
+								<Divider className={classes.divider} />
+								<FormControl component="fieldset">
+									<FormLabel className={classes.variation}>Select collar Stiffness :</FormLabel>
+									<RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={collarstiff}
+										onChange={handlecollarstiffnesschange}
 										className={classes.typepanel}>
 										{collarstiffness.map((collarstiffness) => {
 											return (
@@ -899,153 +986,205 @@ function Customize() {
 										})}
 									</RadioGroup>
 								</FormControl>
-							</FormControl>
-						</TabPanel>
-						<TabPanel value={tabvalue} index={2} className={classes.typepanel}>
-							<FormControl component="fieldset">
-								{/* <FormLabel component="legend">Gender</FormLabel> */}
-								<RadioGroup
-									aria-label="gender"
-									name="gender1"
-									value={butoonvalue}
-									onChange={handlebutoonChange}
-									className={classes.typepanel}>
-									{Butoons.map((butoon) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={butoon.image} className={classes.typeimage} />
-												<FormControlLabel
-													value={butoon.name}
-													control={<Radio />}
-													label={butoon.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-								{/* <Typography>value : {butoonvalue}</Typography> */}
-							</FormControl>
+							</TabPanel>
+							<TabPanel value={tabvalue} index={1} className={classes.typepanel}>
+								<FormControl component="fieldset">
+									{/* <FormLabel component="legend">Gender</FormLabel> */}
+									<RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={sleevecuffvalue}
+										onChange={handlesleevecuffChange}
+										className={classes.typepanel}>
+										{sleevecuffss.map((sleevecuff) => {
+											return (
+												<Paper className={classes.mobtypepaper}>
+													<img src={sleevecuff.image} className={classes.typeimage} />
+													<FormControlLabel
+														value={sleevecuff.name}
+														control={<Radio />}
+														label={sleevecuff.name}
+													/>
+												</Paper>
+											);
+										})}
+									</RadioGroup>
+									{/* <Typography>value : {sleevecuffvalue}</Typography> */}
 
-							<Divider className={classes.divider} />
-							<FormControl component="fieldset">
-								<FormLabel className={classes.variation}>Select button thread :</FormLabel>
-								<RadioGroup
-									aria-label="gender"
-									name="gender1"
-									value={buttonthreadvalue}
-									onChange={handlebuttonthread}
-									className={classes.typepanel}>
-									{buttonthread.map((buttonthread) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={buttonthread.image} className={classes.buttonimage} />
-												<FormControlLabel
-													value={buttonthread.name}
-													control={<Radio />}
-													label={buttonthread.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-							</FormControl>
-						</TabPanel>
-						<TabPanel value={tabvalue} index={3} className={classes.typepanel}>
-							<FormControl component="fieldset">
-								<RadioGroup
-									aria-label="gender"
-									name="gender1"
-									value={frontvalue}
-									onChange={handlefrontChange}
-									className={classes.typepanel}>
-									{frontt.map((frontt) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={frontt.image} className={classes.typeimage} />
-												<FormControlLabel
-													value={frontt.name}
-													control={<Radio />}
-													label={frontt.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-								{/* <Typography>value : {frontvalue}</Typography> */}
-							</FormControl>
-						</TabPanel>
-						<TabPanel value={tabvalue} index={4} className={classes.typepanel}>
-							<FormControl component="fieldset">
-								<RadioGroup
-									aria-label="gender"
-									name="gender1"
-									value={pocketvalue}
-									onChange={handlepocketchange}
-									className={classes.typepanel}>
-									{pocket.map((pocket) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={pocket.image} className={classes.typeimage} />
-												<FormControlLabel
-													value={pocket.name}
-													control={<Radio />}
-													label={pocket.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-								{/* <Typography>value : {frontvalue}</Typography> */}
-							</FormControl>
-						</TabPanel>
-						<TabPanel value={tabvalue} index={5} className={classes.rightpane}>
-							<FormControl component="fieldset">
-								<FormLabel className={classes.variation}>Variations :</FormLabel>
-								<RadioGroup
-									aria-label="gender"
-									value={backvalue}
-									onChange={handlebackchange}
-									className={classes.typepanel}>
-									{/* for bacj anf cbotm */}
-									{back.map((back) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={back.image} className={classes.typeimage} />
-												<FormControlLabel
-													value={back.name}
-													control={<Radio />}
-													label={back.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-								{/* <Typography>value : {frontvalue}</Typography> */}
-							</FormControl>
-							<Divider className={classes.divider} />
-							<FormControl component="fieldset">
-								<FormLabel className={classes.variation}>Select Back Bottom:</FormLabel>
-								<RadioGroup
-									aria-label="gender"
-									name="gender1"
-									value={backbottomvalue}
-									onChange={handlebackbottomchange}
-									className={classes.typepanel}>
-									{backbottom.map((backbottom) => {
-										return (
-											<Paper className={classes.mobtypepaper}>
-												<img src={backbottom.image} className={classes.typeimage} />
-												<FormControlLabel
-													value={backbottom.name}
-													control={<Radio />}
-													label={backbottom.name}
-												/>
-											</Paper>
-										);
-									})}
-								</RadioGroup>
-							</FormControl>
-						</TabPanel>
+									<Divider className={classes.divider} />
+									<FormControl component="fieldset">
+										<FormLabel className={classes.variation}>Select Cuff Stiffness :</FormLabel>
+										<RadioGroup
+											aria-label="gender"
+											name="gender1"
+											value={cuffstiff}
+											onChange={handlesleevecuffstiffness}
+											className={classes.typepanel}>
+											{collarstiffness.map((collarstiffness) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img
+															src={collarstiffness.image}
+															className={classes.typeimage}
+														/>
+														<FormControlLabel
+															value={collarstiffness.name}
+															control={<Radio />}
+															label={collarstiffness.name}
+														/>
+													</Paper>
+												);
+											})}
+										</RadioGroup>
+									</FormControl>
+								</FormControl>
+							</TabPanel>
+							<TabPanel value={tabvalue} index={2} className={classes.typepanel}>
+								<FormControl component="fieldset">
+									{/* <FormLabel component="legend">Gender</FormLabel> */}
+									<RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={butoonvalue}
+										onChange={handlebutoonChange}
+										className={classes.typepanel}>
+										{Butoons.map((butoon) => {
+											return (
+												<Paper className={classes.mobtypepaper}>
+													<img src={butoon.image} className={classes.typeimage} />
+													<FormControlLabel
+														value={butoon.name}
+														control={<Radio />}
+														label={butoon.name}
+													/>
+												</Paper>
+											);
+										})}
+									</RadioGroup>
+									{/* <Typography>value : {butoonvalue}</Typography> */}
+								</FormControl>
+
+								<Divider className={classes.divider} />
+								<FormControl component="fieldset">
+									<FormLabel className={classes.variation}>Select button thread :</FormLabel>
+									<RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={buttonthreadvalue}
+										onChange={handlebuttonthread}
+										className={classes.typepanel}>
+										{buttonthread.map((buttonthread) => {
+											return (
+												<Paper className={classes.mobtypepaper}>
+													<img src={buttonthread.image} className={classes.buttonimage} />
+													<FormControlLabel
+														value={buttonthread.name}
+														control={<Radio />}
+														label={buttonthread.name}
+													/>
+												</Paper>
+											);
+										})}
+									</RadioGroup>
+								</FormControl>
+							</TabPanel>
+							<TabPanel value={tabvalue} index={3} className={classes.typepanel}>
+								<FormControl component="fieldset">
+									<RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={frontvalue}
+										onChange={handlefrontChange}
+										className={classes.typepanel}>
+										{frontt.map((frontt) => {
+											return (
+												<Paper className={classes.mobtypepaper}>
+													<img src={frontt.image} className={classes.typeimage} />
+													<FormControlLabel
+														value={frontt.name}
+														control={<Radio />}
+														label={frontt.name}
+													/>
+												</Paper>
+											);
+										})}
+									</RadioGroup>
+									{/* <Typography>value : {frontvalue}</Typography> */}
+								</FormControl>
+							</TabPanel>
+							<TabPanel value={tabvalue} index={4} className={classes.typepanel}>
+								<FormControl component="fieldset">
+									<RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={pocketvalue}
+										onChange={handlepocketchange}
+										className={classes.typepanel}>
+										{pocket.map((pocket) => {
+											return (
+												<Paper className={classes.mobtypepaper}>
+													<img src={pocket.image} className={classes.typeimage} />
+													<FormControlLabel
+														value={pocket.name}
+														control={<Radio />}
+														label={pocket.name}
+													/>
+												</Paper>
+											);
+										})}
+									</RadioGroup>
+									{/* <Typography>value : {frontvalue}</Typography> */}
+								</FormControl>
+							</TabPanel>
+							<TabPanel value={tabvalue} index={5} className={classes.rightpane}>
+								<FormControl component="fieldset">
+									<FormLabel className={classes.variation}>Variations :</FormLabel>
+									<RadioGroup
+										aria-label="gender"
+										value={backvalue}
+										onChange={handlebackchange}
+										className={classes.typepanel}>
+										{/* for bacj anf cbotm */}
+										{back.map((back) => {
+											return (
+												<Paper className={classes.mobtypepaper}>
+													<img src={back.image} className={classes.typeimage} />
+													<FormControlLabel
+														value={back.name}
+														control={<Radio />}
+														label={back.name}
+													/>
+												</Paper>
+											);
+										})}
+									</RadioGroup>
+									{/* <Typography>value : {frontvalue}</Typography> */}
+								</FormControl>
+								<Divider className={classes.divider} />
+								<FormControl component="fieldset">
+									<FormLabel className={classes.variation}>Select Back Bottom:</FormLabel>
+									<RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={backbottomvalue}
+										onChange={handlebackbottomchange}
+										className={classes.typepanel}>
+										{backbottom.map((backbottom) => {
+											return (
+												<Paper className={classes.mobtypepaper}>
+													<img src={backbottom.image} className={classes.typeimage} />
+													<FormControlLabel
+														value={backbottom.name}
+														control={<Radio />}
+														label={backbottom.name}
+													/>
+												</Paper>
+											);
+										})}
+									</RadioGroup>
+								</FormControl>
+							</TabPanel>
+						</Box>
 					</Grid>
 				</Grid>
 			</Hidden>

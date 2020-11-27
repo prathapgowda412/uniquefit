@@ -323,25 +323,34 @@ function Cartpage() {
 
 		const options = {
 			key: '',
-			name: '',
-			description: 'avodojo',
+			name: 'Uniquefit',
+			description: 'Purchase from Uniquefit',
 			order_id: data.id,
 			handler: async (response) => {
 				try {
+					const amount = cartsaleprice;
 					const paymentId = response.razorpay_payment_id;
 					const url = `${API_URL}capture/${paymentId}`;
-					const captureResponse = await Axios.post(url, {});
+					const captureResponse = await Axios.post(url, { amount });
 					const successObj = JSON.parse(captureResponse.data);
+
 					const captured = successObj.captured;
+					console.log(response);
 					console.log('App -> razorPayPaymentHandler -> captured', successObj);
 					if (captured) {
 						console.log('success');
 						let { data } = await addOrder(cartItems, size, height, shoulders, bodyType, bodyFit);
+						console.log(data.message);
+						toast('done orering');
 						toast(data.message);
+					} else {
+						console.log('paymeny authorised ');
+						toast('payent authroe');
 					}
 				} catch (err) {
 					console.log('error below');
 					console.log(err);
+					toast(err);
 				}
 			},
 			theme: {
@@ -807,51 +816,58 @@ function Cartpage() {
 						<Grid item container></Grid>
 					</Box>
 				</Grid>
-
-				<Container maxWidth="md">
-					<Stepper activeStep={activeStep} alternativeLabel>
-						{steps.map((label) => (
-							<Step key={label}>
-								<StepLabel>
-									<Typography className={classes.labelname}>{label}</Typography>
-								</StepLabel>
-							</Step>
-						))}
-					</Stepper>
-				</Container>
-				<Container>
-					<div>
-						{activeStep === steps.length ? (
+				{cartquantity != 0 ? (
+					<>
+						<Container maxWidth="md">
+							<Stepper activeStep={activeStep} alternativeLabel>
+								{steps.map((label) => (
+									<Step key={label}>
+										<StepLabel>
+											<Typography className={classes.labelname}>{label}</Typography>
+										</StepLabel>
+									</Step>
+								))}
+							</Stepper>
+						</Container>
+						<Container>
 							<div>
-								<Typography className={classes.instructions}>All steps completed</Typography>
-								<Button onClick={handleReset}>Reset</Button>
-							</div>
-						) : (
-							<div>
-								<Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
-								<div>
-									<Button
-										disabled={activeStep === 0}
-										onClick={handleBack}
-										className={classes.backButton}>
-										Back
-									</Button>
-									<Button
-										className={classes.placeorderbutton}
-										variant="contained"
-										color="primary"
-										onClick={handleNext}>
-										<Typography className={classes.placebutontext}>
-											{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+								{activeStep === steps.length ? (
+									<div>
+										<Typography className={classes.instructions}>All steps completed</Typography>
+										<Button onClick={handleReset}>Reset</Button>
+									</div>
+								) : (
+									<div>
+										<Typography className={classes.instructions}>
+											{getStepContent(activeStep)}
 										</Typography>
-									</Button>
-								</div>
+										<div>
+											<Button
+												disabled={activeStep === 0}
+												onClick={handleBack}
+												className={classes.backButton}>
+												Back
+											</Button>
+											<Button
+												className={classes.placeorderbutton}
+												variant="contained"
+												color="primary"
+												onClick={handleNext}>
+												<Typography className={classes.placebutontext}>
+													{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+												</Typography>
+											</Button>
+										</div>
+									</div>
+								)}
 							</div>
-						)}
-					</div>
-				</Container>
+						</Container>
 
-				<Grid xs={12} sm={10} className={classes.adressbox}></Grid>
+						<Grid xs={12} sm={10} className={classes.adressbox}></Grid>
+					</>
+				) : (
+					'empty cart'
+				)}
 			</Grid>
 		</>
 	);
