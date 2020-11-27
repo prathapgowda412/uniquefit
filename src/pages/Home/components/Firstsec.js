@@ -18,11 +18,13 @@ import manimage from './statics/images/manblack.jpg';
 import girlimage from './statics/images/girl.jpg';
 import { Link } from 'react-router-dom';
 // import {} from '@material-ui/core/Button';
+// import { Link } from '@material-ui/core/Link';
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		overflow: 'hidden',
 		height: 'auto',
-		backgroundColor: 'grey',
+		// backgroundColor: 'grey',
 		position: 'relative',
 		// height: '70vh',
 		[theme.breakpoints.down('sm')]: {
@@ -73,10 +75,14 @@ function Firstsec() {
 	return (
 		<Grid item container xs={12} alignContent="stretch" className={classes.root}>
 			<Hidden smUp>
-				<img className={classes.heroimg} src={require('./statics/images/Herosectionmob.png')} />
+				<Link to="/Shop">
+					<img className={classes.heroimg} src={require('./statics/images/Herosectionmob.png')} />
+				</Link>
 			</Hidden>
 			<Hidden xsDown>
-				<img className={classes.heroimg} src={require('./statics/images/Hero_section.jpg')} />
+				<Link to="/Shop">
+					<img className={classes.heroimg} src={require('./statics/images/Hero_section.jpg')} />
+				</Link>
 			</Hidden>
 			{/* <Hidden> two</Hidden> */}
 			{/* <Box className={classes.headingbox}>

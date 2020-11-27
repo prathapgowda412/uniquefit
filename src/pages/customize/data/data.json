@@ -1,0 +1,257 @@
+[
+	{
+		"type": "back",
+		"name": "None",
+		"image": "https://www.bombayshirts.com/static/img/back/none.svg"
+	},
+	{
+		"type": "back",
+		"name": "Box",
+		"image": "https://www.bombayshirts.com/static/img/back/box.svg"
+	},
+	{
+		"type": "back",
+		"name": "Side",
+		"image": "https://www.bombayshirts.com/static/img/back/side.svg"
+	},
+	{
+		"type": "back",
+		"name": "Darts",
+		"image": "https://www.bombayshirts.com/static/img/back/darts.svg"
+	},
+	{
+		"type": "back",
+		"name": "Deep Darts",
+		"image": "https://www.bombayshirts.com/static/img/back/deep-darts.svg"
+	},
+	{
+		"type": "backbottom",
+		"name": "Rounded",
+		"image": "https://www.bombayshirts.com/static/img/back/rounded.svg"
+	},
+	{
+		"type": "backbottom",
+		"name": "Tail",
+		"image": "https://www.bombayshirts.com/static/img/back/tail.svg"
+	},
+	{
+		"type": "backbottom",
+		"name": "Straight",
+		"image": "https://www.bombayshirts.com/static/img/back/straight.svg"
+	},
+	{
+		"type": "buttons",
+		"name": "Natural",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/natural.jpg"
+	},
+	{
+		"type": "buttons",
+		"name": "Black",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/black.jpg"
+	},
+	{
+		"type": "buttons",
+		"name": "grey",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/grey.jpg"
+	},
+	{
+		"type": "buttons",
+		"name": "blue",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/blue.jpg"
+	},
+	{
+		"type": "buttons",
+		"name": "brown",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/brown.jpg"
+	},
+	{
+		"type": "buttons",
+		"name": "wood",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/wood.jpg"
+	},
+	{
+		"type": "buttons",
+		"name": "pink",
+		"image": "https://www.bombayshirts.com/static/images/buttons/new-btn/pink.jpg"
+	},
+	{
+		"type": "collar",
+		"name": "Spread Eagle",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-spread-eagle.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Prince Charlie",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-prince-charlie.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Madmen",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-madmen.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Bandhgala",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-bandhgala.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Hipster",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-hipster.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Hipster Rounded",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-hipster-rounded.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Polo",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-polo.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Concealed Polo",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-concealed-polo.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Club",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-club.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Ozwald Boateng",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-ozwald-boateng.svg"
+	},
+	{
+		"type": "collar",
+		"name": "Wing",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/collars-wing.svg"
+	},
+	{
+		"type": "collarstiffness",
+		"name": "soft",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/soft.svg"
+	},
+	{
+		"type": "collarstiffness",
+		"name": "Stiff",
+		"image": "https://www.bombayshirts.com/static/img/collar-thumb/stiff.svg"
+	},
+	{
+		"type": "front",
+		"name": "Regular",
+		"image": "https://www.bombayshirts.com/static/img/front/front-regular.svg"
+	},
+	{
+		"type": "front",
+		"name": "French",
+		"image": "https://www.bombayshirts.com/static/img/front/front-french.svg"
+	},
+	{
+		"type": "front",
+		"name": "Pencil",
+		"image": "https://www.bombayshirts.com/static/img/front/front-pencil.svg"
+	},
+	{
+		"type": "front",
+		"name": "Concealed",
+		"image": "https://www.bombayshirts.com/static/img/front/front-concealed.svg"
+	},
+	{
+		"type": "pocket",
+		"name": "none",
+		"image": "https://www.bombayshirts.com/static/img/pocket/none.svg"
+	},
+	{
+		"type": "pocket",
+		"name": "Single Angled",
+		"image": "https://www.bombayshirts.com/static/img/pocket/single-angled.svg"
+	},
+	{
+		"type": "pocket",
+		"name": "Single Flap",
+		"image": "https://www.bombayshirts.com/static/img/pocket/single-flap.svg"
+	},
+	{
+		"type": "pocket",
+		"name": "Double Flap",
+		"image": "https://www.bombayshirts.com/static/img/pocket/double-flap.svg"
+	},
+	{
+		"type": "sleevecuffs",
+		"name": "half sleeve",
+		"image": "https://www.bombayshirts.com/static/img/sleeve/half.svg"
+	},
+	{
+		"type": "sleevecuffs",
+		"name": "single convertible",
+		"image": "https://www.bombayshirts.com/static/img/sleeve/single-convertible.svg"
+	},
+	{
+		"type": "sleevecuffs",
+		"name": "double bond",
+		"image": "https://www.bombayshirts.com/static/img/sleeve/double-bond.svg"
+	},
+	{
+		"type": "sleevecuffs",
+		"name": "The Neopolitan",
+		"image": "https://www.bombayshirts.com/static/img/sleeve/the-neopolitan.svg"
+	},
+	{
+		"type": "thread",
+		"name": "White",
+		"image": "https://www.bombayshirts.com/static/img/button/white.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Black",
+		"image": "https://www.bombayshirts.com/static/img/button/black.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Light Blue",
+		"image": "https://www.bombayshirts.com/static/img/button/light-blue.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Pink",
+		"image": "https://www.bombayshirts.com/static/img/button/pink.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Brown",
+		"image": "https://www.bombayshirts.com/static/img/button/brown.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Grey",
+		"image": "https://www.bombayshirts.com/static/img/button/grey.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Maroon",
+		"image": "https://www.bombayshirts.com/static/img/button/maroon.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Purple",
+		"image": "https://www.bombayshirts.com/static/img/button/purple.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Green",
+		"image": "https://www.bombayshirts.com/static/img/button/green.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Red",
+		"image": "https://www.bombayshirts.com/static/img/button/red.jpg"
+	},
+	{
+		"type": "thread",
+		"name": "Navy Blue",
+		"image": "https://www.bombayshirts.com/static/img/button/navy-blue.jpg"
+	}
+]

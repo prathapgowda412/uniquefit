@@ -290,6 +290,8 @@ function Dashboard() {
 		if (resp.status == 200) {
 			window.location.reload();
 			console.log('done succes');
+			toast.success('success uploading');
+			toast.done('done');
 			toast('Product added Successfully');
 		}
 	};

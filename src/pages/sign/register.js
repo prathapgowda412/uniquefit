@@ -33,6 +33,7 @@ import axio from 'axios';
 import Uniquefit_blacklogosvg from '../../logos/Uniquefit logo.svg';
 import Login from './Login';
 import { Toys } from '@material-ui/icons';
+import { toast } from 'react-toastify';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		height: '85vh',
@@ -215,6 +216,7 @@ function Register() {
 				setislogged(true);
 				localStorage.setItem('usertoken', resp.data.token);
 				setresponse('user registered successfully');
+				toast.success('Registered Successfully');
 			})
 			.catch((err) => {
 				seterrorname(err.response.data.msg);

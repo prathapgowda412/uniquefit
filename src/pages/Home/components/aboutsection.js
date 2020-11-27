@@ -44,12 +44,20 @@ const useStyles = makeStyles((theme) => ({
 	},
 	bodytext: {
 		width: '90%',
-		fontSize: '24px',
+		fontSize: '18px',
+		marginTop: '30px',
 		marginBottom: '15px',
 		// fontWeight: 'bold',
 		[theme.breakpoints.down('sm')]: {
 			width: '100%',
 		},
+	},
+	heroimg: {
+		width: '100%',
+	},
+	abouttext: {
+		fontWeight: '700',
+		fontSize: '48px',
 	},
 }));
 
@@ -57,8 +65,10 @@ function Aboutsection() {
 	const classes = useStyles();
 	return (
 		<Grid item container xs={11} sm={10} className={classes.mainabout}>
-			<Grid item container md={6} xs={12}>
-				<Typography variant="h2">About US</Typography>
+			<Grid item md={6} xs={12}>
+				<Typography variant="h2" className={classes.abouttext}>
+					About US
+				</Typography>
 				<Typography variant="body1" className={classes.bodytext}>
 					We are a young and energetic, Hyderabad based ecommerce company who’s primary focus is to provide
 					high quality clothing at very affordable prices. We’ve known and experienced the struggles of a
@@ -66,16 +76,16 @@ function Aboutsection() {
 					best online experience. We’re dedicated to deliver the best fit without compromising on the fabric
 					or the styling.
 				</Typography>
-				<Link className={classes.knowmore} to="/Aboutus">
+				{/* <Link className={classes.knowmore} to="/Aboutus">
 					<Button variant="outlined" className={classes.knowmorebutton}>
 						KNOW MORE
 						<img src={rightarrow} />
 					</Button>
-				</Link>
+				</Link> */}
 				{/* <FontAwesomeIcon style={{ height: '50px' }} icon={(['fas'], ['fa-long-arrow-alt-right'])} /> */}
 				{/* <i class="fas fa-long-arrow-alt-right"> huj</i> */}
 			</Grid>
-			<Grid style={{ position: 'relative' }} item container md={6} xs={12} alignItems="center">
+			<Grid style={{ position: 'relative', marginTop: '10px' }} item container md={6} xs={12} alignItems="center">
 				<Grid item container xs={6}>
 					<img className={classes.aboutimgone} src={require('./statics/images/about1.png')} />
 				</Grid>

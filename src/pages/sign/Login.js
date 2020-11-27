@@ -34,6 +34,7 @@ import Uniquefit_blacklogosvg from '../../logos/Uniquefit logo.svg';
 // import { UserContext } from '../../auth';
 
 import { useAuth } from '../../auth';
+import { toast } from 'react-toastify';
 const useStyles = makeStyles((theme) => ({
 	root: {
 		height: '85vh',
@@ -218,6 +219,7 @@ function Login(props) {
 				// console.log(token);
 
 				localStorage.setItem('usertoken', token);
+				toast.success('Logged In Successfully');
 				setlogggedIn(true);
 			})
 			.catch((err) => {
@@ -226,8 +228,10 @@ function Login(props) {
 				// console.log(err.response.data);
 				console.log(err.response.data.message);
 				if (err.response.data.message == 'User Not Exist') {
+					toast.error('User name does not exist or Wrong user-email');
 					setusernameerror('Username does not exist !!! Please Register');
 				} else {
+					toast.error('Wrong password');
 					setpassworderror('wrong password');
 				}
 				// console.log(err.response.data.errors);

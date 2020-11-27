@@ -1,5 +1,5 @@
 import { Grid, Hidden, Box, Paper, Typography, Button, Divider } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // import { Tab, Tabs } from 'react-tabs';
 
@@ -29,6 +29,7 @@ import Axios from 'axios';
 import { PaletteRounded } from '@material-ui/icons';
 import { addToCart } from '../../services/fetchService';
 import { toast } from 'react-toastify';
+import { productContext } from '../../contexts/ProductContext';
 
 const styles = makeStyles((theme) => ({
 	root: {
@@ -178,7 +179,10 @@ const styles = makeStyles((theme) => ({
 	},
 	adbutontext: {
 		fontSize: '15px',
-		color: 'white',
+		color: 'black',
+		padding: '5px 10px',
+		borderRadius: '5px',
+		backgroundColor: 'white',
 	},
 	line: {},
 	variation: {
@@ -321,12 +325,32 @@ function Customize() {
 	};
 	// tabs handling top
 	// customized total product below
+
+	// gettinf single product below
+	// const { products, setProducts: setproducts } = useContext(productContext);
+	// const [singleproduct, setsingleproduct] = React.useState([]);
+	// useEffect(() => {
+	// 	if (products.length) {
+	// 		console.log(products[0].productimages);
+	// 	}
+	// 	setproduct(
+	// 		products.find((product) => {
+	// 			console.log(product.productid);
+	// 			return product.productid === id;
+	// 		})
+	// 	);
+	// 	console.log(singleproduct);
+	// }, [products]);
+	// gettinf single product above
+
 	const hancleclickcart = async () => {
+		// toast('clicked butn');
 		if (localStorage.getItem('usertoken') == '') {
 			history.push('/Login');
 			toast('please login to add to cart');
 			// <Redirect to="Login" />;
 		}
+
 		// const {productid, productname, productprice, productsaleprice, productmaterial, productcolor, productpattern, productdesc, producttype, productoccassion, productfeel, productimages} = product
 		// const productc = {
 		// 	productid: product.productid,
@@ -406,7 +430,7 @@ function Customize() {
 		// console.log(productc);
 		const { data: response } = await addToCart(productc);
 		toast(response.message);
-		// console.log(response);
+		console.log(response);
 		if (response.message == 'Product added to cart successfully') {
 			history.push('/Cart');
 		}
@@ -739,7 +763,9 @@ function Customize() {
 			<Hidden mdUp>
 				<Grid item container xs={12} className={classes.mobmain}>
 					<Grid item container xs={12} style={{ backgroundColor: '#28334B', height: '8vh' }}>
-						<img src={require('../../logos/uniquefitlogowhite.svg')} style={{ height: '42px' }} />
+						<Link to="/">
+							<img src={require('../../logos/uniquefitlogowhite.svg')} style={{ height: '42px' }} />
+						</Link>
 						<Button className={classes.addcartbutton} onClick={hancleclickcart}>
 							<Typography className={classes.adbutontext}>Add to Cart</Typography>
 						</Button>

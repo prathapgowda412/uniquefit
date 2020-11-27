@@ -91,8 +91,8 @@ function Testimonialsection() {
 					<Grid item container xs={12} justify="center">
 						<Grid item container xs={10} sm={6}>
 							<Typography variant="body2" className={classes.content}>
-								The Tailors customization tool is just beyond expectations. Helped me design the shirt I
-								wanted in the way I wanted. Looking for quality at an affordable price? Tailors is the
+								The Uniquefit customization tool is just beyond expectations. Helped me design the shirt
+								I wanted in the way I wanted. Looking for quality at an affordable price? Tailors is the
 								best place!
 							</Typography>
 						</Grid>

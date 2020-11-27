@@ -1,12 +1,12 @@
 import React from 'react';
-import { makeStyles, Card, CardActionArea, Container, Box, Typography } from '@material-ui/core';
+import { makeStyles, Card, CardActionArea, Container, Box, Typography, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 // import './custom.css';
 
 const useStyles = makeStyles((theme) => ({
 	pro: {
 		height: '370px',
-		width: '350px',
+		width: '100%',
 		marginTop: '20px',
 		position: 'relative',
 	},
@@ -63,6 +63,9 @@ const useStyles = makeStyles((theme) => ({
 	cardbodytext: {
 		margin: '8px',
 	},
+	main: {
+		marginTop: '60px',
+	},
 }));
 
 function Product(props) {
@@ -70,32 +73,37 @@ function Product(props) {
 	// console.log;
 	const classes = useStyles();
 	return (
-		<Container className={classes.pro} key={product.productid}>
-			<Card className={classes.card} elevation="0" square>
-				<Link to={`/ProductPage/${product.productid}`}>
-					<Box className={classes.topimag}>
-						<img className={classes.cardimg} src={`http://45.13.132.188:5000${product.productimages[0]}`} />
-					</Box>
-				</Link>
-				<CardActionArea className={classes.cardbody}>
-					<Box className={classes.cardbodytext} style={{ marginTop: '-20px' }}>
-						<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
-							<Typography variant="h2" className={classes.productname}>
-								{product.productname}
+		<Grid xs={6} md={3} className={classes.main} key={product.productid}>
+			<Container className={classes.pro}>
+				<Card className={classes.card} elevation="0" square>
+					<Link to={`/ProductPage/${product.productid}`}>
+						<Box className={classes.topimag}>
+							<img
+								className={classes.cardimg}
+								src={`http://45.13.132.188:5000${product.productimages[0]}`}
+							/>
+						</Box>
+					</Link>
+					<CardActionArea className={classes.cardbody}>
+						<Box className={classes.cardbodytext} style={{ marginTop: '-20px' }}>
+							<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
+								<Typography variant="h2" className={classes.productname}>
+									{product.productname}
+								</Typography>
+							</Link>
+						</Box>
+						<Container className={classes.pricebox}>
+							<Typography variant="body1" className={classes.saleprice}>
+								₹{product.productsaleprice}
 							</Typography>
-						</Link>
-					</Box>
-					<Container className={classes.pricebox}>
-						<Typography variant="body1" className={classes.saleprice}>
-							₹{product.productsaleprice}
-						</Typography>
-						<Typography variant="body2" className={classes.originprice}>
-							₹<strike className={classes.originprice}> {product.productprice}</strike>
-						</Typography>
-					</Container>
-				</CardActionArea>
-			</Card>
-		</Container>
+							<Typography variant="body2" className={classes.originprice}>
+								₹<strike className={classes.originprice}> {product.productprice}</strike>
+							</Typography>
+						</Container>
+					</CardActionArea>
+				</Card>
+			</Container>
+		</Grid>
 	);
 }
 

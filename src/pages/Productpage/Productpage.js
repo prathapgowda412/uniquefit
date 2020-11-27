@@ -75,11 +75,12 @@ const useStyles = makeStyles((theme) => ({
 		height: '20px',
 	},
 	customizebutton: {
-		width: '350px',
+		width: '237px',
 		marginTop: '20px',
 		margin: 'auto',
 		marginBottom: '20px',
 		height: '60px',
+		textDecoration: 'none',
 		boxShadow: '0 2px 10px -5px #00000060',
 		backgroundColor: '#387A76',
 		color: 'white',
@@ -103,12 +104,32 @@ const useStyles = makeStyles((theme) => ({
 		color: '#6B6E7B',
 		fontSize: '18px',
 	},
+	Link: {
+		textDecoration: 'none',
+	},
+	inclusivetext: {
+		color: '#03A685',
+		fontSize: '16px',
+	},
+	customtext: {
+		color: 'white',
+	},
 	pricebox: {
 		display: 'flex',
 		width: '200px',
 		justifyContent: 'space-between',
 		flexDirection: 'row',
 		alignItems: 'center',
+	},
+	nametitle: {
+		fontSize: '16px',
+		color: '#282C3F',
+	},
+	prodtext: {
+		fontSize: '16px',
+		fontStyle: 'normal',
+		fontWeight: '500',
+		color: '#0022C5',
 	},
 }));
 
@@ -117,6 +138,7 @@ function Productpage() {
 	const { id } = useParams();
 	const { products, setProducts: setproducts } = useContext(productContext);
 	const [product, setproduct] = React.useState([]);
+
 	const [productimages, setproductimages] = React.useState([]);
 	// console.log(id);
 
@@ -182,20 +204,42 @@ function Productpage() {
 									Rs <strike className={classes.salepricetag}> {product.productsaleprice}</strike>{' '}
 								</Typography>
 							</Box>
-							<Link to={`/Customize/${product.productid}`}>
-								<Button className={classes.customizebutton}>Customize now</Button>
+							<Typography className={classes.inclusivetext}> inclusive of all taxes</Typography>
+							<Link className={classes.Link} to={`/Customize/${product.productid}`}>
+								<Button className={classes.customizebutton}>
+									<Typography className={classes.customtext}>Customize Now </Typography>{' '}
+								</Button>
 							</Link>
 							<Box className={classes.spacebox} />
-							<Typography variant="h6"> Product Details </Typography>
+							<Typography className={classes.nametitle} variant="h6">
+								Product Details
+							</Typography>
+							<Box>
+								<Typography variant="body1">
+									Made in India. Wear this to feel and look your best. You can style this to your
+									taste and that fits you.{' '}
+								</Typography>
+							</Box>
 							<br />
-							<Typography variant="body1">
-								Shirt Type:{' '}
-								<Typography className={classes.productdet}>{product.producttype}</Typography>
+							<Typography className={classes.nametitle} variant="body1">
+								Product code : <em className={classes.prodtext}>{product.productid} </em>
 							</Typography>
-							<Typography variant="body1">
-								Product Color:{' '}
-								<Typography className={classes.productdet}>{product.productcolor}</Typography>{' '}
+							<Typography className={classes.nametitle} variant="body1">
+								Shirt type: <em className={classes.prodtext}>{product.producttype} </em>
 							</Typography>
+							<Typography className={classes.nametitle} variant="body1">
+								Shirt pattern: <em className={classes.prodtext}>{product.productpattern} </em>
+							</Typography>
+							<Typography className={classes.nametitle} variant="body1">
+								Product color : <em className={classes.prodtext}>{product.productcolor} </em>
+							</Typography>
+							<Typography className={classes.nametitle} variant="body1">
+								Product material : <em className={classes.prodtext}>{product.productmaterial} </em>
+							</Typography>
+							<Typography className={classes.nametitle} variant="body1">
+								Product feel : <em className={classes.prodtext}>{product.productfeel} </em>
+							</Typography>
+
 							<Typography variant="body1">Product Description: {product.productdesc}</Typography>
 						</Container>
 					</Grid>

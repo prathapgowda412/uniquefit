@@ -201,7 +201,7 @@ function Shop() {
 						</>
 					</Container>
 				</Grid> */}
-				<Grid item container xs={12} sm={10} direction="row" cols={3} className={classes.productsbox}>
+				<Grid item container xs={12} sm={10} direction="row" className={classes.productsbox}>
 					{/* {products.map((product) => {
 						return (
 							<>

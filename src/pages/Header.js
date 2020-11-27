@@ -321,6 +321,11 @@ const styles = (theme) => ({
 		padding: '7px 12px',
 		color: 'white',
 	},
+	signupdrawer: {
+		backgroundColor: 'white',
+		borderRadius: '5px',
+		color: 'black',
+	},
 });
 
 // use popper for drop down
@@ -482,14 +487,14 @@ class Header extends Component {
 		};
 
 		const Mobuserlog = () => {
-			if (localStorage.getItem('usetoken') == '') {
+			if (localStorage.getItem('usertoken') == '') {
 				return (
 					<Container>
 						<Link className={classes.link} to="login">
 							<Button className={classes.logindrawer}>Login</Button>
 						</Link>
 						<Link className={classes.link} to="Signup">
-							<Button className={classes.logindrawer}>signup</Button>
+							<Button className={classes.signupdrawer}>signup</Button>
 						</Link>
 					</Container>
 				);

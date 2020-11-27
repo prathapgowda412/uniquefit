@@ -89,9 +89,7 @@ function App() {
 								<Getsizes />
 								<Footer />
 							</Route>
-							{/* <Route path="/Signup">
-					<Signup />
-				</Route> */}
+
 							<Route path="/Dashboard">
 								<Dashboard />
 							</Route>
@@ -126,3 +124,4 @@ function App() {
 }
 
 export default App;
+// <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_G5cN9Y43rGcXRK"> </script> </form>

@@ -152,10 +152,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Trending() {
+function Secondpro() {
 	const classes = useStyles();
 	// const [products, setproducts] = React.useState([]);
 	const { products, setProducts: setproducts } = useContext(productContext);
+	// const { products, setProducts: setproducts } = useState();
 
 	// console.log(products);
 
@@ -178,7 +179,7 @@ function Trending() {
 	return (
 		<Grid item container xs={12} justify="center" className={classes.root}>
 			<Container justify="center" style={{ marginBottom: '35px' }}>
-				<Typography variant="h5">Trending</Typography>
+				<Typography variant="h5">Recent Products</Typography>
 			</Container>
 
 			<Grid item container xs={12} sm={11} justify="space-evenly">
@@ -312,7 +313,7 @@ function Trending() {
 		</Grid>
 	);
 }
-export default Trending;
+export default Secondpro;
 {
 	/* <Grid xs={12} sm={12} alignContent="stretch" spacing={5} style={{ backgroundColor: 'red' }}>
 				<Grid item container xs={4} sm={4}>
