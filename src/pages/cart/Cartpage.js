@@ -196,6 +196,39 @@ function Cartpage() {
   const [cartmrpvalueprice, setmrpcartvalueprice] = useState();
   const [cartsaleprice, setcartsaleprice] = useState();
   const [cartquantity, setcartquantity] = useState();
+  //  addd adress
+  const [address, setfulladdress] = React.useState('');
+  const [addressname, setaddressname] = React.useState('');
+  const [addressmobile, setaddressmobile] = React.useState('');
+  const [addressfull, setaddressfull] = React.useState('');
+  const [addresscity, setaddresscity] = React.useState('');
+  const [addressstate, setaddressstate] = React.useState('');
+  const [addresspin, setaddresspin] = React.useState('');
+  const handleaddressname = (event) => {
+    setaddressname(event.target.value);
+    toast(addressname);
+  };
+  const handlemobile = (event) => {
+    setaddressmobile(event.target.value);
+  };
+  const handlefulladress = (event) => {
+    setaddressfull(event.target.value);
+  };
+  const handlecity = (event) => {
+    setaddresscity(event.target.value);
+  };
+  const handlestate = (event) => {
+    setaddressstate(event.target.value);
+  };
+  const handlepin = (event) => {
+    setaddresspin(event.target.value);
+  };
+
+  const handlesetfulladress = () => {
+    setfulladdress(
+      `Name:${addressname} , Phone :${addressmobile} , Address :${addressfull} , City : ${addresscity} , State: ${addressstate} , Pin: ${addresspin}`
+    );
+  };
 
   // get sizes below
   const [size, setsize] = React.useState('');
@@ -358,12 +391,14 @@ function Cartpage() {
             console.log('success');
             let { data } = await addOrder(
               cartItems,
+              address,
               size,
               height,
               shoulders,
               bodyType,
               bodyFit
             );
+
             console.log(data.message);
             toast('done orering');
             toast(data.message);
@@ -936,8 +971,46 @@ function Cartpage() {
             <Container classname={classes.adressbox}>
               <FormControl>
                 <FormLabel>Enter adress :</FormLabel>
-                <TextField label='Adress line 1:' variant='standard' />
-                <TextField label='Adress line 2:' variant='standard' />
+                <TextField
+                  onChange={handleaddressname}
+                  label='Name:'
+                  placeholder='enter name '
+                  required
+                  variant='standard'
+                />
+                <TextField
+                  onChange={handlemobile}
+                  label='Phone number:'
+                  placeholder='pin code '
+                  variant='standard'
+                />
+                <TextField
+                  onChange={handlefulladress}
+                  label='Full Adddress :'
+                  placeholder='house no. area'
+                  required
+                  variant='standard'
+                />
+                <TextField
+                  onChange={handlecity}
+                  label='City :'
+                  placeholder='city'
+                  required
+                  variant='standard'
+                />
+                <TextField
+                  onChange={handlestate}
+                  label='State :'
+                  placeholder='state'
+                  variant='standard'
+                />
+                <TextField
+                  onChange={handlepin}
+                  label='Pin Code :'
+                  placeholder='pin code '
+                  variant='standard'
+                />
+                <Button onClick={handlesetfulladress}>Set address</Button>
               </FormControl>
             </Container>
           </Grid>

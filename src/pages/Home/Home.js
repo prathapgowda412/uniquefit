@@ -13,24 +13,26 @@ import UploadHome from './components/UploadHome';
 // import { Category } from '@material-ui/icons';
 import Categorysec from './components/Categorysec';
 import Secondpro from './components/Secondpro';
+import Somesec from './components/Somesec';
 function Home() {
-	let { products } = useContext(productContext);
+  let { products } = useContext(productContext);
 
-	console.log(products);
+  console.log(products);
 
-	return (
-		<Grid item container xs={12} justify="center">
-			<Firstsec />
-			<Trending />
-			{/* <UploadHome /> */}
-			<UploadHome />
-			<Categorysec />
-			<Secondpro />
-			<Shopfav />
-			{/* <Offerssection /> */}
-			<Aboutsection />
-			{/* <Testimonialsection /> */}
-		</Grid>
-	);
+  return (
+    <Grid item container xs={12} justify='center'>
+      <Firstsec />
+      <Trending />
+      {/* <UploadHome /> */}
+      <UploadHome />
+      <Categorysec />
+      <Secondpro />
+      <Shopfav />
+      {/* <Offerssection /> */}
+      {/* <Aboutsection /> */}
+      {/* <Testimonialsection /> */}
+      <Somesec />
+    </Grid>
+  );
 }
 export default Home;
