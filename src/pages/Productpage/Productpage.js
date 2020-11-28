@@ -168,10 +168,7 @@ function Productpage() {
 							})} */}
 								{product.productimages.map((bigimage, index) => (
 									<TabPanel className={classes.paneltab} key={index}>
-										<img
-											className={classes.bigimage}
-											src={`https://45.13.132.188:5000${bigimage}`}
-										/>
+										<img className={classes.bigimage} src={`https://uniquefit.ml${bigimage}`} />
 									</TabPanel>
 								))}
 							</Grid>

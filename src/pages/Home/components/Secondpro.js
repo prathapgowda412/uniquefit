@@ -161,7 +161,7 @@ function Secondpro() {
 	// console.log(products);
 
 	useEffect(() => {
-		Axios.get('https://45.13.132.188:5000/products/get-products')
+		Axios.get('https://uniquefit.ml/products/get-products')
 			.then((resp) => {
 				const result = resp;
 				// console.log(resp);

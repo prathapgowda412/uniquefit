@@ -473,7 +473,7 @@ function Cartpage() {
                         <Paper elevation className={classes.cardpaper}>
                           <img
                             className={classes.itemimg}
-                            src={`http://45.13.132.188:5000${ite.productimages[0]}`}
+                            src={`https://uniquefit.ml${ite.productimages[0]}`}
                           />
                           <Box className={classes.papercontent}>
                             <Container className={classes.papercontainer}>
@@ -1082,7 +1082,7 @@ function Cartpage() {
                         <Paper elevation className={classes.cardpaper}>
                           <img
                             className={classes.itemimg}
-                            src={`http://45.13.132.188:5000${ite.productimages[0]}`}
+                            src={`https://uniquefit.ml${ite.productimages[0]}`}
                           />
                           <Box className={classes.papercontent}>
                             <Container className={classes.papercontainer}>

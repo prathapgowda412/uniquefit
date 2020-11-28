@@ -78,10 +78,7 @@ function Product(props) {
 				<Card className={classes.card} elevation="0" square>
 					<Link to={`/ProductPage/${product.productid}`}>
 						<Box className={classes.topimag}>
-							<img
-								className={classes.cardimg}
-								src={`https://45.13.132.188:5000${product.productimages[0]}`}
-							/>
+							<img className={classes.cardimg} src={`https://uniquefit.ml${product.productimages[0]}`} />
 						</Box>
 					</Link>
 					<CardActionArea className={classes.cardbody}>
