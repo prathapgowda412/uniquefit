@@ -12,6 +12,14 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     marginTop: '120px',
   },
+  link: {
+    textDecoration: 'none',
+    padding: '4px 8px',
+    '&:hover': {
+      Color: '#387A76',
+      cursor: 'pointer',
+    },
+  },
   footertop: {
     display: 'flex',
     paddingTop: '50px',
@@ -161,23 +169,67 @@ function Footer() {
           <Grid item container justify='center' xs={12} sm={6}>
             <Grid item container xs={6}>
               <ul className={classes.listbox}>
-                <li className={classes.listhead}> Shop</li>
-                <li> Formals</li>
-                <li> Casual</li>
-                <li> Design shirt</li>
+                <li className={classes.listhead}> Pattern</li>
+                <li>
+                  {' '}
+                  <Link className={classes.link} to='/Checks'>
+                    Checks
+                  </Link>{' '}
+                </li>
+                <li>
+                  {' '}
+                  <Link className={classes.link} to='/Solids'>
+                    {' '}
+                    Solids{' '}
+                  </Link>{' '}
+                </li>
+                <li>
+                  {' '}
+                  <Link className={classes.link} to='/Printed'>
+                    Printed
+                  </Link>{' '}
+                </li>
+                <li>
+                  {' '}
+                  <Link className={classes.link} to='/Stripes'>
+                    Stripes
+                  </Link>{' '}
+                </li>
               </ul>
             </Grid>
             <Grid item container xs={6}>
               <ul className={classes.listbox}>
-                <li className={classes.listhead}> Shop</li>
-                <li> Strips</li>
-                <li> Plain</li>
-                <li> Design shirt</li>
+                <li className={classes.listhead}> Pattern</li>
+                <li>
+                  {' '}
+                  <Link className={classes.link} to='/Checks'>
+                    Checks
+                  </Link>{' '}
+                </li>
+                <li>
+                  {' '}
+                  <Link className={classes.link} to='/Solids'>
+                    {' '}
+                    Solids{' '}
+                  </Link>{' '}
+                </li>
+                <li>
+                  {' '}
+                  <Link className={classes.link} to='/Printed'>
+                    Printed
+                  </Link>{' '}
+                </li>
+                <li>
+                  {' '}
+                  <Link className={classes.link} to='/Stripes'>
+                    Stripes
+                  </Link>{' '}
+                </li>
               </ul>
             </Grid>
           </Grid>
           <Grid item container xs={12} sm={6}>
-            <Grid xs={6}>
+            {/* <Grid xs={6}>
               <ul className={classes.listbox}>
                 <li className={classes.listhead}> Shop</li>
                 <li> Formals</li>
@@ -192,7 +244,7 @@ function Footer() {
                 <li> Casual</li>
                 <li> Design shirt</li>
               </ul>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Grid>

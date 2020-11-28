@@ -1,50 +1,54 @@
-import { Grid } from "@material-ui/core";
-import React from "react";
+import { Grid } from '@material-ui/core';
+import React from 'react';
 // import logo from './logo.svg';
-import "./App.css";
-import { getProducts } from "./services/fetchService";
+import './App.css';
+import { getProducts } from './services/fetchService';
 
-import { Link, Route, Switch, BrowserRouter } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import Shop from "./pages/Shop/Shop";
+import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import Shop from './pages/Shop/Shop';
 // import About from './pages/About/About';
-import Footer from "./pages/Footer";
-import Aboutus from "./pages/About/AboutUs";
-import Welcom from "./pages/welcom";
-import Productpage from "./pages/Productpage/Productpage";
-import Signup from "./pages/sign/SignUp";
-import Login from "./pages/sign/Login";
-import Profilepage from "./pages/Profilepage/Profilepage";
-import Product from "./pages/Shop/Product";
-import "./css/scrollbar.css";
+import Footer from './pages/Footer';
+import Aboutus from './pages/About/AboutUs';
+import Welcom from './pages/welcom';
+import Productpage from './pages/Productpage/Productpage';
+import Signup from './pages/sign/SignUp';
+import Login from './pages/sign/Login';
+import Profilepage from './pages/Profilepage/Profilepage';
+import Product from './pages/Shop/Product';
+import './css/scrollbar.css';
 // import Main from './pages/Main/Main';
-import Header from "./pages/Header";
-import Cart from "./pages/cart/Cartpage";
-import Customize from "./pages/customize/customize";
-import Registeruser from "./pages/sign/register";
-import { ProductContextProvider } from "./contexts/ProductContext";
+import Header from './pages/Header';
+import Cart from './pages/cart/Cartpage';
+import Customize from './pages/customize/customize';
+import Registeruser from './pages/sign/register';
+import { ProductContextProvider } from './contexts/ProductContext';
 
 // import { BrowserRouter } from 'react-router-dom';
 
-import ScrollToTop from "./common/scrolltop";
+import ScrollToTop from './common/scrolltop';
 
-import { Provider } from "react-redux";
-import { AuthContext } from "./auth";
-import { useMemo, useState } from "react";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import Getsizes from "./pages/getsizes/getsizes";
-import { ToastContainer } from "react-toastify";
-import TestCartCrud from "./pages/TestCartCrud";
-import Uploadshirt from "./pages/contact/uploadshirt";
-import Contact from "./pages/contact/contact";
-import Ordersuccess from "./pages/cart/Ordersuccess";
+import { Provider } from 'react-redux';
+import { AuthContext } from './auth';
+import { useMemo, useState } from 'react';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Getsizes from './pages/getsizes/getsizes';
+import { ToastContainer } from 'react-toastify';
+import TestCartCrud from './pages/TestCartCrud';
+import Uploadshirt from './pages/contact/uploadshirt';
+import Contact from './pages/contact/contact';
+import Ordersuccess from './pages/cart/Ordersuccess';
+import Solids from './pages/Shop/Filters/Solids';
+import Checks from './pages/Shop/Filters/Checks';
+import Stripes from './pages/Shop/Filters/Stripes';
+import Printed from './pages/Shop/Filters/Printed';
 
 function App() {
   const [authTokens, setAuthTokens] = useState(
-    localStorage.getItem("tokens") || ""
+    localStorage.getItem('tokens') || ''
   );
   const setTokens = (data) => {
-    localStorage.setItem("tokens", JSON.stringify(data));
+    localStorage.setItem('tokens', JSON.stringify(data));
     setAuthTokens(data);
   };
   return (
@@ -56,67 +60,87 @@ function App() {
           <ToastContainer />
           <Grid container item xs={12}>
             <Switch>
-              <Route path="/Shop">
+              <Route path='/Shop'>
                 <Header />
                 <Shop />
                 <Footer />
               </Route>
-              <Route path="/Ordersuccess">
+              <Route path='/Ordersuccess'>
                 <Ordersuccess />
               </Route>
 
-              <Route path="/Aboutus">
+              <Route path='/Aboutus'>
                 <Header />
                 <Aboutus />
                 <Footer />
               </Route>
-              <Route path="/Profile">
+              <Route path='/Solids'>
+                <Header />
+                <Solids />
+                <Footer />
+              </Route>
+              <Route path='/Checks'>
+                <Header />
+                <Checks />
+                <Footer />
+              </Route>
+              <Route path='/Stripes'>
+                <Header />
+                <Stripes />
+                <Footer />
+              </Route>
+              <Route path='/Printed'>
+                <Header />
+                <Printed />
+                <Footer />
+              </Route>
+              <Route path='/Profile'>
                 <Header />
                 <Profilepage />
                 <Footer />
               </Route>
 
-              <Route path="/Login">
+              <Route path='/Login'>
                 <Login />
               </Route>
 
-              <Route path="/Signup">
+              <Route path='/Signup'>
                 <Registeruser />
               </Route>
-              <Route path="/Uploadshirt">
+              <Route path='/Uploadshirt'>
                 <Uploadshirt />
               </Route>
-              <Route path="/Contact">
+              <Route path='/Contact'>
                 <Header />
                 <Contact />
                 <Footer />
               </Route>
-              <Route path="/Getsizes">
+              <Route path='/Getsizes'>
                 <Header />
                 <Getsizes />
                 <Footer />
               </Route>
 
-              <Route path="/Dashboard">
+              <Route path='/Dashboard'>
                 <Dashboard />
               </Route>
-              <Route path="/ProductPage/:id">
+              <Route path='/ProductPage/:id'>
                 <Header />
                 <Productpage />
                 <Footer />
               </Route>
-              <Route path="/Cart">
+              <Route path='/Cart'>
                 <Cart />
                 {/* <Header />
 								<Footer /> */}
               </Route>
-              <Route path="/Customize/:id">
+              <Route path='/Customize/:id'>
                 <Customize />
               </Route>
-              <Route path="/testcartcrud">
+              <Route path='/testcartcrud'>
                 <TestCartCrud />
               </Route>
-              <Route path="/">
+              <Route path='/'>
                 <Header />
                 <Home />
                 <Footer />

@@ -165,6 +165,18 @@ const Styles = makeStyles({
     alignItems: 'center',
     margin: '5px 20px',
   },
+  paperaddress: {
+    marginTop: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  setaddressbuton: {
+    // backgroundColor: '#387A76',
+    backgroundColor: 'black',
+
+    padding: '5px 10px',
+  },
   sizeheading: {
     fontSize: '26px',
     textAlign: 'center',
@@ -178,6 +190,14 @@ const Styles = makeStyles({
   emptyimg: {
     width: '100%',
     objectFit: 'contain',
+  },
+  emptyimgmob: {
+    width: '100%',
+    objectFit: 'container',
+  },
+  adressform: {
+    height: 'fit-content',
+    backgroundColor: 'grey',
   },
 });
 
@@ -206,7 +226,6 @@ function Cartpage() {
   const [addresspin, setaddresspin] = React.useState('');
   const handleaddressname = (event) => {
     setaddressname(event.target.value);
-    toast(addressname);
   };
   const handlemobile = (event) => {
     setaddressmobile(event.target.value);
@@ -240,19 +259,15 @@ function Cartpage() {
   // handle chanages
   const handlesizechange = (event) => {
     setsize(event.target.value);
-    toast(event.target.value);
   };
 
   const handleshoulderschange = (event) => {
-    toast(event.target.value);
     setshoulders(event.target.value);
   };
   const handlebodytypechange = (event) => {
-    toast(event.target.value);
     setbodyType(event.target.value);
   };
   const handlebodyfitchange = (event) => {
-    toast(event.target.value);
     setbodyFit(event.target.value);
   };
   const handleheightChange = (event, value) => {
@@ -400,13 +415,13 @@ function Cartpage() {
             );
 
             console.log(data.message);
-            toast('done orering');
+
             toast(data.message);
             history.push('/Ordersuccess');
             // pushSuccess();
           } else {
-            console.log('paymeny authorised ');
-            toast('payent authroe');
+            // console.log('paymenyt authorised ');
+            toast.success('Payment Successful ');
           }
         } catch (err) {
           console.log('error below');
@@ -526,29 +541,10 @@ function Cartpage() {
                     <Grid item xs={5}>
                       <Typography>{cartsaleprice}</Typography>
                     </Grid>
-                    <Button onClick={razorPayPaymentHandler}>
-                      {' '}
-                      pay razorpay
-                    </Button>
                   </Grid>
                   <Divider />
                 </Grid>
                 <Container>
-                  {/* <Button
-										src="https://checkout.razorpay.com/v1/payment-button.js"
-										data-payment_button_id="pl_G5cN9Y43rGcXRK">
-										pay
-									</Button> */}
-                  {/* <Button className={classes.placeorderbutton}>
-										<Typography className={classes.placebutontext}>Place Order</Typography>
-									</Button> */}
-                  {/* <form>
-										<script
-											src="https://checkout.razorpay.com/v1/payment-button.js"
-											data-payment_button_id="pl_G5cN9Y43rGcXRK">
-											{' '}
-										</script>{' '}
-									</form> */}
                   <Button
                     className={classes.placeorderbutton}
                     variant='contained'
@@ -567,12 +563,13 @@ function Cartpage() {
       case 1:
         return (
           <Grid>
-            <Container>
+            <Container style={{ display: 'flex', justifyContent: 'center' }}>
               <FormControl>
-                <FormLabel>Enter height</FormLabel>
+                <FormLabel>Enter height {'(in feet)'}</FormLabel>
                 <TextField
                   label='Height'
-                  variant='filled'
+                  variant='outlined'
+                  placeholder='eg. 5.5'
                   onChange={handleheightChange}
                 />
               </FormControl>
@@ -967,56 +964,215 @@ function Cartpage() {
         );
       case 2:
         return (
-          <Grid>
-            <Container classname={classes.adressbox}>
-              <FormControl>
+          <Container maxWidth='md'>
+            <FormControl
+              style={{ display: 'flex', justifyContent: 'center' }}
+              noValidate
+            >
+              <Grid
+                xs={6}
+                style={{ backgroundColor: 'white' }}
+                item
+                container
+                spacing={2}
+              >
                 <FormLabel>Enter adress :</FormLabel>
-                <TextField
-                  onChange={handleaddressname}
-                  label='Name:'
-                  placeholder='enter name '
-                  required
-                  variant='standard'
-                />
-                <TextField
-                  onChange={handlemobile}
-                  label='Phone number:'
-                  placeholder='pin code '
-                  variant='standard'
-                />
-                <TextField
-                  onChange={handlefulladress}
-                  label='Full Adddress :'
-                  placeholder='house no. area'
-                  required
-                  variant='standard'
-                />
-                <TextField
-                  onChange={handlecity}
-                  label='City :'
-                  placeholder='city'
-                  required
-                  variant='standard'
-                />
-                <TextField
-                  onChange={handlestate}
-                  label='State :'
-                  placeholder='state'
-                  variant='standard'
-                />
-                <TextField
-                  onChange={handlepin}
-                  label='Pin Code :'
-                  placeholder='pin code '
-                  variant='standard'
-                />
-                <Button onClick={handlesetfulladress}>Set address</Button>
-              </FormControl>
-            </Container>
-          </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    onChange={handleaddressname}
+                    label='Name:'
+                    placeholder='enter name '
+                    required
+                    fullWidth
+                    variant='outlined'
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    onChange={handlemobile}
+                    label='Phone number:'
+                    fullWidth
+                    placeholder='pin code '
+                    variant='outlined'
+                  />
+                </Grid>
+                <Grid xs={12}>
+                  <TextField
+                    onChange={handlefulladress}
+                    label='Full Adddress :'
+                    placeholder='house no. area'
+                    required
+                    fullWidth
+                    variant='outlined'
+                  />
+                </Grid>
+                <Grid xs={12}>
+                  <TextField
+                    onChange={handlecity}
+                    label='City :'
+                    fullWidth
+                    placeholder='city'
+                    required
+                    variant='outlined'
+                  />
+                </Grid>
+                <Grid xs={12}>
+                  <TextField
+                    onChange={handlestate}
+                    label='State :'
+                    fullWidth
+                    placeholder='state'
+                    variant='outlined'
+                  />
+                </Grid>
+                <Grid xs={12}>
+                  <TextField
+                    onChange={handlepin}
+                    label='Pin Code :'
+                    fullWidth
+                    placeholder='pin code '
+                    variant='outlined'
+                  />
+                </Grid>
+              </Grid>
+              <Divider />
+              <Button
+                classname={classes.setaddressbuton}
+                style={{ backgroundColor: '#387A76', padding: '5px 10px' }}
+                onClick={handlesetfulladress}
+              >
+                Set address
+              </Button>
+            </FormControl>
+
+            {/* <Container classname={classes.adressbox}>
+              <FormControl></FormControl>
+            </Container> */}
+          </Container>
         );
       case 3:
-        return <Grid></Grid>;
+        return (
+          <Grid
+            item
+            container
+            xs={12}
+            sm={10}
+            className={classes.cartbox}
+            justify='center'
+          >
+            <Grid
+              item
+              container
+              xs={12}
+              sm={7}
+              className={classes.leftbox}
+              justify='center'
+            >
+              {/* single item */}
+              {cartItems.map((ite, index) => {
+                return (
+                  <>
+                    <Card
+                      elevation
+                      square
+                      className={classes.itemcard}
+                      key={index}
+                    >
+                      <CardContent className={classes.cardcontent}>
+                        <Paper elevation className={classes.cardpaper}>
+                          <img
+                            className={classes.itemimg}
+                            src={`http://45.13.132.188:5000${ite.productimages[0]}`}
+                          />
+                          <Box className={classes.papercontent}>
+                            <Container className={classes.papercontainer}>
+                              <Typography
+                                className={classes.productnametag}
+                                variant='h3'
+                              >
+                                {ite.productname}
+                              </Typography>
+                              <Typography>{ite.productsaleprice}</Typography>
+                              <Typography variant='body1'>
+                                Product id:{ite.productid}
+                              </Typography>
+                            </Container>
+                          </Box>
+                        </Paper>
+                      </CardContent>
+                      <CardActions className={classes.actioncard}>
+                        <Button
+                          className={classes.removebutton}
+                          onClick={() => removeFromCartUI(ite.productid)}
+                          size='medium'
+                        >
+                          <DeleteIcon />
+                          Remove
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  </>
+                );
+              })}
+
+              {/* single item */}
+            </Grid>
+            <Grid
+              item
+              container
+              xs={10}
+              sm={5}
+              justify='center'
+              className={classes.rightbox}
+            >
+              <Container className={classes.cartcalcont}>
+                <Grid container justify='center'>
+                  <Grid item container xs={10}>
+                    <Grid item xs={7}>
+                      <Typography>No of Products:</Typography>
+                    </Grid>
+                    <Grid item xs={5}>
+                      <Typography>{cartquantity}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container xs={10}>
+                    <Grid item xs={7}>
+                      <Typography>MRP Price:</Typography>
+                    </Grid>
+                    <Grid item xs={5}>
+                      <Typography>{cartmrpvalueprice}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Grid item container xs={10}>
+                    <Grid item xs={7}>
+                      <Typography>Sale Price:</Typography>
+                    </Grid>
+                    <Grid item xs={5}>
+                      <Typography>{cartsaleprice}</Typography>
+                    </Grid>
+                  </Grid>
+                  <Divider />
+                </Grid>
+                <Container>
+                  <Button
+                    className={classes.placeorderbutton}
+                    variant='contained'
+                    color='primary'
+                    onClick={handleNext}
+                  >
+                    <Button
+                      className={classes.placebutontext}
+                      onClick={razorPayPaymentHandler}
+                    >
+                      Pay Now
+                      {/* {activeStep === steps.length - 1 ? 'CheckOut' : 'Next'} */}
+                    </Button>
+                  </Button>
+                </Container>
+              </Container>
+            </Grid>
+          </Grid>
+        );
       default:
         return 'Unknown stepIndex';
     }
@@ -1061,8 +1217,8 @@ function Cartpage() {
                 ))}
               </Stepper>
             </Container>
-            <Container>
-              <div>
+            <Container style={{ display: 'flex', justifyContent: 'center' }}>
+              <Box>
                 {activeStep === steps.length ? (
                   <div>
                     <Typography className={classes.instructions}>
@@ -1075,46 +1231,62 @@ function Cartpage() {
                     <Typography className={classes.instructions}>
                       {getStepContent(activeStep)}
                     </Typography>
-                    <div>
-                      <Button
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        className={classes.backButton}
+                    <Container
+                      style={{ display: 'flex', justifyContent: 'center' }}
+                    >
+                      <div
+                        style={{
+                          width: 'fit-content',
+                        }}
                       >
-                        Back
-                      </Button>
-                      <Button
-                        className={classes.placeorderbutton}
-                        variant='contained'
-                        color='primary'
-                        onClick={handleNext}
-                      >
-                        <Typography className={classes.placebutontext}>
-                          {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                        </Typography>
-                      </Button>
-                    </div>
+                        <Button
+                          disabled={activeStep === 0}
+                          onClick={handleBack}
+                          className={classes.backButton}
+                        >
+                          Back
+                        </Button>
+                        <Button
+                          className={classes.placeorderbutton}
+                          variant='contained'
+                          color='primary'
+                          onClick={handleNext}
+                        >
+                          <Typography className={classes.placebutontext}>
+                            {activeStep === steps.length - 1
+                              ? 'Finish'
+                              : 'Next'}
+                          </Typography>
+                        </Button>
+                      </div>
+                    </Container>
                   </div>
                 )}
-              </div>
+              </Box>
             </Container>
 
             <Grid xs={12} sm={10} className={classes.adressbox}></Grid>
           </>
         ) : (
-          <Grid xs={12} style={{ backgroundColor: 'white' }}>
+          <Grid xs={12}>
             <Header />
             <Hidden smUp>
-              <img
-                classname={classes.emptyimg}
-                src={require('./statics/emptybagmo.png')}
-              />
+              <Container>
+                <Link to='/Shop'>
+                  <img
+                    classname={classes.emptyimgmob}
+                    src={require('./statics/Empty_Bag_Mobile.svg')}
+                  />
+                </Link>
+              </Container>
             </Hidden>
             <Hidden xsDown>
-              <img
-                className={classes.emptyimg}
-                src={require('./statics/Empty_Bag_1.svg')}
-              />
+              <Link to='/Shop'>
+                <img
+                  className={classes.emptyimg}
+                  src={require('./statics/Empty_Bag_1.svg')}
+                />
+              </Link>
             </Hidden>
           </Grid>
         )}
