@@ -108,7 +108,7 @@ function Shop() {
 	const [products, setproducts] = React.useState([]);
 
 	useEffect(() => {
-		Axios.get('http://45.13.132.188:5000/products/get-products')
+		Axios.get('https://45.13.132.188:5000/products/get-products')
 			.then((resp) => {
 				const result = resp;
 				// console.log(resp);
