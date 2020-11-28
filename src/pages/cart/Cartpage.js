@@ -324,7 +324,7 @@ function Cartpage() {
   // payments codew below
   const razorPayPaymentHandler = async () => {
     // const orderamount = 125;
-    const API_URL = `http://localhost:5000/razorpay/`;
+    const API_URL = `https://uniquefit.ml/razorpay/`;
     const orderUrl = `${API_URL}order`;
     const amount = cartsaleprice;
     // const amount = this.state.amount;
