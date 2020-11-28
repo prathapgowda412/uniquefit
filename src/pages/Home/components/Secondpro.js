@@ -191,7 +191,8 @@ function Secondpro() {
 									<Box className={classes.topimag}>
 										<img
 											className={classes.cardimg}
-											src={`http://45.13.132.188:5000${product.productimages[0]}`}
+											src={`https://uniquefit.ml${product.productimages[0]}`}
+											// src={`https://45.13.132.188:5000${product.productimages[0]}`}
 										/>
 									</Box>
 								</Link>
