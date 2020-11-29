@@ -89,7 +89,7 @@ class Header extends Component {
 	componentDidMount = async () => {
 		let token = localStorage.getItem('usertoken');
 
-		if (token != '') {
+		if (token) {
 			console.log('user logged');
 			this.setState({ islogged: true });
 			const config = {
@@ -102,6 +102,9 @@ class Header extends Component {
 			// const resp = await Axios.get('https://uniquefit.ml/users/me', config);
 			const resp = await Axios.get(`${process.env.REACT_APP_API_URL}/users/me`, config);
 			console.log(resp.data);
+		} else {
+			console.log('not logged');
+			this.setState({ islogged: false });
 		}
 
 		// this.setState({usertoken:})
@@ -118,8 +121,8 @@ class Header extends Component {
 	handlelogout = () => {
 		this.setState({ username: '', islogged: false });
 
-		localStorage.setItem('usertoken', '');
-		localStorage.setItem('tokens', '');
+		localStorage.removeItem('usertoken');
+		localStorage.removeItem('tokens');
 		window.location.reload();
 	};
 
