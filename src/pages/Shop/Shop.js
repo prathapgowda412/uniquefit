@@ -15,7 +15,7 @@ import {
 	Hidden,
 	Button,
 } from '@material-ui/core';
-import React, { Component, useEffect } from 'react';
+import React, { Component, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import imgs from './images/suitwalink.jpg';
 import { findDOMNode, ReactDOM } from 'react-dom';
@@ -24,6 +24,7 @@ import { findDOMNode, ReactDOM } from 'react-dom';
 import Product from './Product';
 import Axios, { axio } from 'axios';
 import { CodeSharp } from '@material-ui/icons';
+import { productContext } from '../../contexts/ProductContext';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -105,22 +106,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Shop() {
 	const classes = useStyles();
-	const [products, setproducts] = React.useState([]);
-
-	useEffect(() => {
-		Axios.get('https://uniquefit.ml/products/get-products')
-			.then((resp) => {
-				const result = resp;
-				// console.log(resp);
-				// console.log(resp.data);
-				// console.log(resp.data);
-				setproducts(resp.data);
-			})
-			.catch((err) => {
-				console.log('err : ');
-				console.log(err);
-			}, []);
-	}, []);
+	const { products, setProducts: setproducts } = useContext(productContext);
 
 	return (
 		<Grid item container xs={12} className={classes.root} justify="center">

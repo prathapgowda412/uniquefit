@@ -207,7 +207,7 @@ function Register() {
 			},
 		};
 
-		axio.post('https://uniquefit.ml/users/register', JSON.stringify(formdata), config)
+		axio.post(`${process.env.REACT_APP_API_URL}/users/register`, JSON.stringify(formdata), config)
 			.then((resp) => {
 				// console.log(resp);
 				// console.log(resp.data);

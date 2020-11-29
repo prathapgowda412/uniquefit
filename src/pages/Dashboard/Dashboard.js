@@ -283,7 +283,7 @@ function Dashboard() {
 		// let resp = await Axios.post('https://uniquefit.ml/products/insert-product', productdata);
 		// let resp = await Axios.post('http://localhost:5000/products/insert-product', productdata);
 
-		let resp = await Axios.post('https://uniquefit.ml/products/insert-product', productdata);
+		let resp = await Axios.post(`${process.env.REACT_APP_API_URL}/products/insert-product`, productdata);
 		console.log(resp);
 		console.log(resp.data.message);
 		console.log(resp.status);

@@ -8,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import { Container, Grid, Hidden } from '@material-ui/core';
 import { width } from '@material-ui/system';
 import { useParams } from 'react-router-dom';
+import Axios from 'axios';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -83,7 +84,24 @@ const useStyles = makeStyles((theme) => ({
 function Profilepage(pops) {
 	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
-
+	const [user, setuser] = React.useState();
+	useEffect(async () => {
+		let token = localStorage.getItem('usertoken');
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				token: token,
+			},
+		};
+		// Axios.get()
+		// const resp = await Axios.get('https://uniquefit.ml/users/me', config);
+		const resp = await Axios.get(`${process.env.REACT_APP_API_URL}`, config);
+		console.log(resp);
+		console.log(resp.data);
+		console.log(resp.data.username);
+		console.log(resp.data.email);
+		console.log(resp.data.mobile);
+	});
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
@@ -110,7 +128,9 @@ function Profilepage(pops) {
 				</Hidden>
 			</Grid>
 			<Grid item container xs={12} md={9}>
-				<TabPanel value={value} index={0} className={classes.rightpanel}></TabPanel>
+				<TabPanel value={value} index={0} className={classes.rightpanel}>
+					<Typography> </Typography>
+				</TabPanel>
 				<TabPanel value={value} index={1} className={classes.rightpanel}>
 					My orders
 				</TabPanel>

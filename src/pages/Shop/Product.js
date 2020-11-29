@@ -70,7 +70,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Product(props) {
 	let { product } = props;
-	// console.log;
 	const classes = useStyles();
 	return (
 		<Grid xs={6} md={3} className={classes.main} key={product.productid}>
@@ -78,7 +77,7 @@ function Product(props) {
 				<Card className={classes.card} elevation="0" square>
 					<Link to={`/ProductPage/${product.productid}`}>
 						<Box className={classes.topimag}>
-							<img className={classes.cardimg} src={`https://uniquefit.ml${product.productimages[0]}`} />
+							<img className={classes.cardimg} src={product.productimages[0]} />
 						</Box>
 					</Link>
 					<CardActionArea className={classes.cardbody}>

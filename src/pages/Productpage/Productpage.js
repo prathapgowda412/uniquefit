@@ -168,7 +168,7 @@ function Productpage() {
 							})} */}
 								{product.productimages.map((bigimage, index) => (
 									<TabPanel className={classes.paneltab} key={index}>
-										<img className={classes.bigimage} src={`https://uniquefit.ml${bigimage}`} />
+										<img className={classes.bigimage} src={bigimage} />
 									</TabPanel>
 								))}
 							</Grid>
@@ -177,10 +177,7 @@ function Productpage() {
 								<TabList className={classes.tablist}>
 									{product.productimages.map((tabimage, index) => (
 										<Tab className={classes.tabitem} key={index}>
-											<img
-												className={classes.iconimage}
-												src={`https://uniquefit.ml${tabimage}`}
-											/>
+											<img className={classes.iconimage} src={tabimage} />
 										</Tab>
 									))}
 								</TabList>
@@ -195,10 +192,10 @@ function Productpage() {
 							<Box className={classes.spacebox} />
 							<Box className={classes.pricebox}>
 								<Typography variant="body1" className={classes.pricetag}>
-									Rs :{product.productprice}
+									Rs :{product.productsaleprice}
 								</Typography>
 								<Typography>
-									Rs <strike className={classes.salepricetag}> {product.productsaleprice}</strike>{' '}
+									Rs <strike className={classes.salepricetag}> {product.productprice}</strike>{' '}
 								</Typography>
 							</Box>
 							<Typography className={classes.inclusivetext}> inclusive of all taxes</Typography>
