@@ -9,6 +9,7 @@ import { Container, Grid, Hidden } from '@material-ui/core';
 import { width } from '@material-ui/system';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
+import { getOrders } from './../../services/fetchService';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -93,14 +94,14 @@ function Profilepage(pops) {
 				token: token,
 			},
 		};
-		// Axios.get()
-		// const resp = await Axios.get('https://uniquefit.ml/users/me', config);
-		const resp = await Axios.get(`${process.env.REACT_APP_API_URL}`, config);
-		console.log(resp);
+
+		const resp = await Axios.get(`${process.env.REACT_APP_API_URL}/users/me`, config);
 		console.log(resp.data);
-		console.log(resp.data.username);
-		console.log(resp.data.email);
-		console.log(resp.data.mobile);
+
+		const resporder = await getOrders();
+		console.log(resporder.data);
+		console.log(resporder.data.orders);
+		console.log(resporder.data.orders.length);
 	});
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -132,7 +133,7 @@ function Profilepage(pops) {
 					<Typography> </Typography>
 				</TabPanel>
 				<TabPanel value={value} index={1} className={classes.rightpanel}>
-					My orders
+					<Container></Container>
 				</TabPanel>
 				{/* <TabPanel value={value} index={2} className={classes.rightpanel}>
 					My cart
