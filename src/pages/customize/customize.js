@@ -1,4 +1,16 @@
-import { Grid, Hidden, Box, Paper, Typography, Button, Divider, Container, AppBar } from '@material-ui/core';
+import {
+	Grid,
+	Hidden,
+	Box,
+	Paper,
+	Typography,
+	Button,
+	Divider,
+	Container,
+	AppBar,
+	CircularProgress,
+	LinearProgress,
+} from '@material-ui/core';
 import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 // import { Tab, Tabs } from 'react-tabs';
@@ -317,6 +329,7 @@ function Customize() {
 	const [collarstiff, setcollarstiffness] = React.useState('');
 	// let collarname = '';
 	const handlecollarChange = (event) => {
+		console.log('collar clicked');
 		// collarname = event.value;
 		setcollarnameValue(event.target.value);
 		setcollarimage(event.target.image);
@@ -507,13 +520,6 @@ function Customize() {
 							</Link>
 						</Grid>
 						<Grid item xs={7}>
-							{/* {productdetail.map((singleproduct) => {
-								return (
-									<div key={singleproduct.productid}>
-										<Typography> {singleproduct.name} </Typography>
-									</div>
-								);
-							})} */}
 							<Container>
 								{product && product.productimages ? (
 									<>
@@ -524,7 +530,9 @@ function Customize() {
 										<Typography style={{ color: '#282c3f' }}>{product.productsaleprice}</Typography>
 									</>
 								) : (
-									'.. . .'
+									<Container maxWidth="xs">
+										<LinearProgress />
+									</Container>
 								)}
 							</Container>
 						</Grid>
@@ -532,9 +540,6 @@ function Customize() {
 							<Button className={classes.addtocartbutton} onClick={hancleclickcart}>
 								<Typography className={classes.aaddtontext}>Add to Cart</Typography>
 							</Button>
-							{/* <Button className={classes.addcartbutton}>
-								<Typography className={classes.adbutontext}>Go to Cart</Typography>
-							</Button> */}
 						</Grid>
 					</Grid>
 					<Grid item container xs={12} className={classes.botombox}>
@@ -558,49 +563,21 @@ function Customize() {
 								<Tab className={classes.tablink} label="Front" {...a11yProps(3)} />
 								<Tab className={classes.tablink} label="Pocket" {...a11yProps(4)} />
 								<Tab className={classes.tablink} label="Back & Bottom" {...a11yProps(5)} />
-								{/* <Tab className={classes.tablink} label="Back" {...a11yProps(3)} /> */}
 							</Tabs>
 						</Grid>
 						{/* left type selection tab above */}
 
 						{/* middle preview  tab below */}
 						<Grid item container sm={7} style={{ backgroundColor: '#fff', height: '100%' }}>
-							{/* {product.productimages.map((productimage, index) => {
-								return (
-									<div key={index}>
-										<img src={`http://45.13.132.188:5000${productimage}`} />
-									</div>
-								);
-							})} */}
-							{product && product.productimages ? (
-								<>
-									<Container className={classes.bigimagecont}>
+							<Container className={classes.bigimagecont}>
+								{product && product.productimages ? (
+									<>
 										<img className={classes.bigimage} src={product.productimages[0]} />
-									</Container>
-
-									{/* {product.productimages.map((bigimage, index) => (
-										<Container className={classes.paneltab} key={index}>
-											<img
-												className={classes.bigimage}
-												src={`http://45.13.132.188:5000${bigimage}`}
-											/>
-										</Container>
-									))} */}
-									{/* <Typography className={classes.productname} key={product.productid}>
-											{product.productname}
-										</Typography> */}
-								</>
-							) : (
-								'.. . .'
-							)}
-							{/* {product.productimages[0]} */}
-							{/* {product.productimages.map((bigimg, index) => (
-								<Container key={index}>
-									<img src={`http://45.13.132.188:5000${bigimg}`} />
-								</Container>
-							))} */}
-
-							{/* {customizedproduct.buttonname} */}
+									</>
+								) : (
+									<CircularProgress color="secondary" />
+								)}
+							</Container>
 						</Grid>
 						{/* middle preview  tab above */}
 
@@ -613,14 +590,15 @@ function Customize() {
 									<RadioGroup
 										aria-label="gender"
 										name="gender1"
-										value={collarnamevalue}
-										onChange={handlecollarChange}
+										// onChange={handlecollarChange}
 										className={classes.typepanel}>
 										{collars.map((collar) => {
 											return (
 												<Paper className={classes.typepaper}>
 													<img src={collar.image} className={classes.typeimage} />
 													<FormControlLabel
+														image={collar.image}
+														onChange={handlecollarChange}
 														value={collar.name}
 														control={<Radio />}
 														label={collar.name}

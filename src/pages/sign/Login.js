@@ -224,7 +224,7 @@ function Login(props) {
 			})
 			.catch((err) => {
 				console.log('error came');
-				console.log(err);
+				// console.log(err);
 				// console.log(err.response.data);
 				console.log(err.response.data.message);
 				if (err.response.data.message == 'User Not Exist') {
