@@ -7,13 +7,10 @@ import {
 	Button,
 	Divider,
 	Container,
-	AppBar,
 	CircularProgress,
 	LinearProgress,
 } from '@material-ui/core';
 import React, { useContext, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-// import { Tab, Tabs } from 'react-tabs';
 
 import './style.css';
 
@@ -21,225 +18,31 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 
-import collars from './data/collar.json';
-import frontt from './data/front.json';
-import Butoons from './data/buttons.json';
-import sleevecuffss from './data/sleevecuffs.json';
-import pocket from './data/pocket.json';
-import collarstiffness from './data/collarstiffness.json';
-import buttonthread from './data/thread.json';
-import back from './data/back.json';
-import backbottom from './data/backbottom.json';
 import { Link, Redirect, useHistory, useParams } from 'react-router-dom';
+
+// import collars from './data/collar.json';
+// import frontt from './data/front.json';
+// import Butoons from './data/buttons.json';
+// import sleevecuffss from './data/sleevecuffs.json';
+// import pocket from './data/pocket.json';
+// import collarstiffness from './data/collarstiffness.json';
+// import buttonthread from './data/thread.json';
+// import back from './data/back.json';
+// import backbottom from './data/backbottom.json';
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import Axios from 'axios';
-import { PaletteRounded } from '@material-ui/icons';
 import { addToCart } from '../../services/fetchService';
 import { toast } from 'react-toastify';
 import { productContext } from '../../contexts/ProductContext';
-import { width } from '@material-ui/system';
+import { getCustomisations } from './../../services/fetchService';
+import CustomiseStyles from './Customizestyles';
+import { customizationContext } from '../../contexts/CustomizationContext';
 
-const styles = makeStyles((theme) => ({
-	root: {
-		backgroundColor: '#f0f5ff',
-		height: '100vh',
-		position: 'relative',
-	},
-	topbar: {
-		height: '12%',
-		backgroundColor: '#F0F5FF',
-	},
-	logobox: {
-		backgroundColor: '#28334B',
-		height: '100%',
-		position: 'relative',
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-	},
-	logo: {
-		height: '55px',
-	},
-	tablink: {
-		backgroundColor: '#f2f2f2',
-		margin: '10px 0',
-		color: '#111',
-		width: '75%',
-		borderRadius: '5px',
-		'&:active': {
-			backgroundColor: '#fff',
-		},
-	},
-	botombox: {
-		backgroundColor: '#f0f5ff',
-		height: '88%',
-		position: 'relative',
-	},
-	typepanel: {
-		width: '100%',
-		height: 'fit-content',
-		display: 'flex',
-		flexWrap: 'wrap',
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		alignItems: 'center',
-		overflowY: 'scroll',
-		// backgroundColor: '#fff',
-	},
-	typeimage: {
-		// height: '80px',
-		width: '80%',
-	},
-	buttonimage: {
-		height: '40px',
-	},
-	rightpane: {
-		width: '100%',
-		height: '100%',
-		position: 'relative',
-		overflowY: 'scroll',
-		// backgroundColor: 'purple',
-	},
-	divider: {
-		height: '2px',
-		margin: '25px 0',
-		backgroundColor: 'grey',
-	},
-	typepaper: {
-		display: 'flex',
-		flexDirection: 'column',
-		transition: '0.3s',
-		alignItems: 'center',
-		marginBottom: '10px',
-		justifyContent: 'space-between',
-		marginTop: '10px',
-		marginLeft: '5px',
-		transition: '0.3s',
-		height: '130px',
-		// height: 'fit-content',
-		width: '110px',
-		// minWidth: '140px',
-		// maxWidth: 'fit-content',
-		backgroundColor: '#fff',
-		padding: '5px ',
-		'&:hover': {
-			cursor: 'pointer',
-		},
-	},
-	mobtypepaper: {
-		display: 'flex',
-		flexDirection: 'column',
-		transition: '0.3s',
-		alignItems: 'center',
-		marginBottom: '10px',
-		justifyContent: 'space-between',
-		marginTop: '5px',
-		marginLeft: '5px',
-		transition: '0.3s',
-		height: '150px',
-		width: '140px',
-		// minWidth: '130px',
-		// maxWidth: '140px',
-		backgroundColor: '#fff',
-		padding: '5px ',
-		'&:hover': {
-			cursor: 'pointer',
-		},
-	},
-	buttonpaper: {
-		width: '90px',
-		// minWidth: '80px',
-		// maxWidth: 'fit-content',
-		margin: '5px 6px',
-		padding: '4px',
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-	},
-	mobmain: {
-		height: '100vh',
-		backgroundColor: '#f0f5ff',
-	},
-	addtocartbutton: {
-		backgroundColor: '#387A76',
-	},
-	aaddtontext: {
-		color: 'white',
-	},
-	mobtabs: {
-		height: '100%',
-		position: 'relative',
-		width: 'fit-content',
-		// overflowX: 'scroll',
-		display: 'flex',
-		alignItems: 'center',
-		flexDirection: 'row',
-		backgroundColor: 'white',
-		borderRadius: '20px 20px 0 0',
-	},
-	mobtablink: {
-		height: '90px',
-		width: '120px',
-		transition: '0.5s',
-		color: 'white',
-		backgroundColor: '#f2f2f2',
-	},
-	bigimagecont: {
-		display: 'flex',
-		justifyContent: 'center',
-		alignItems: 'center',
-		bckgroundColor: '#f2f2f2',
-	},
-	bigimage: {
-		width: '50%',
-		height: '80%',
-		objectFit: 'contain',
-		bckgroundColor: '#f2f2f2',
-	},
-	addcartbutton: {
-		color: 'white',
-		// padding: '8px 16px',
-		height: '44px',
-		width: '139px',
-		backgroundColor: '#28334B',
-		'&:hover': {
-			backgroundColor: '#253049',
-		},
-	},
-	productname: {
-		fontSize: '24px',
-		color: '#282c3f',
-		fontWeight: '500',
-	},
-	adbutontext: {
-		fontSize: '15px',
-		color: 'black',
-		padding: '5px 10px',
-		borderRadius: '5px',
-		backgroundColor: 'white',
-	},
-	customappmob: {
-		padding: '0 16px',
-		height: '8vh',
-		backgroundColor: '#28334B',
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-	},
-	line: {},
-	variation: {
-		color: '#303030',
-		fontSize: '18px',
-	},
-}));
-
+const styles = CustomiseStyles;
 // tabs handling functions below
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -272,80 +75,59 @@ function a11yProps(index) {
 // main functin here
 
 function Customize() {
+	const history = useHistory();
 	const classes = styles();
 	const { id } = useParams();
+	const [fullCustomization, setfullCustomization] = React.useState([]);
+	const getcustomizationdata = async () => {
+		let resp = await getCustomisations();
 
+		setfullCustomization(resp.data.customisations);
+		console.log(fullCustomization);
+	};
 	// product from content below
+
 	const { products, setProducts: setproducts } = useContext(productContext);
 	const [product, setproduct] = React.useState([]);
-
+	const [colarimg, setcolarimg] = React.useState([]);
 	const [productimages, setproductimages] = React.useState([]);
-	// console.log(id);
-
+	// const { customizationsdata, setCustomizationsdata } = useContext(customizationContext);
+	// console.log(customizationsdata);
 	useEffect(() => {
-		if (products.length) {
-			console.log(products[0].productimages);
-		}
+		// console.log(customizations);
+		// if (products.length) {
+		// 	console.log(products[0].productimages);
+		// }
+		// console.log(products);
 		setproduct(
 			products.find((product) => {
-				console.log(product.productid);
+				// console.log(product.productid);
 				return product.productid === id;
 			})
 		);
-		console.log(product);
+		// console.log(product);
+
+		getcustomizationdata();
 	}, [products]);
-	// product from content above
-
-	// const [product, setproduct] = React.useState();
-
-	// useEffect(() => {
-	// 	const config = {
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 			'x-productid': id,
-	// 		},
-	// 	};
-	// 	Axios.get('http://45.13.132.188:5000/products/getproduct-byid', config)
-	// 		.then((resp) => {
-	// 			const response = resp;
-	// 			// console.log(resp);
-	// 			// console.log(resp.data);
-	// 			setproduct(resp.data);
-	// 			console.log(product);
-
-	// 			try {
-	// 			} catch (err) {
-	// 				console.log(err);
-	// 			}
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// }, []);
 
 	// collar value change handling below
-	const [collarnamevalue, setcollarnameValue] = React.useState('');
-	const [collarimage, setcollarimage] = React.useState('');
-	const [collarstiff, setcollarstiffness] = React.useState('');
+	const [collarnamevalue, setcollarnameValue] = React.useState('Spread Eagle');
+
+	const [collarimage, setcollarimage] = React.useState();
+	const [collarstiff, setcollarstiffness] = React.useState('soft');
 	// let collarname = '';
 	const handlecollarChange = (event) => {
-		console.log('collar clicked');
-		// collarname = event.value;
 		setcollarnameValue(event.target.value);
-		setcollarimage(event.target.image);
-		console.log(collarimage);
-		console.log(collarnamevalue);
-
-		// customizedproduct[0].collarname=
 	};
+
 	const handlecollarstiffnesschange = (event) => {
 		setcollarstiffness(event.target.value);
 	};
 	// collar value change handling above
 
 	// sleevecuff value change handling below
-	const [sleevecuffvalue, setsleevecuffValue] = React.useState('');
-	const [cuffstiff, setcuffstiff] = React.useState('');
+	const [sleevecuffvalue, setsleevecuffValue] = React.useState('half sleeve');
+	const [cuffstiff, setcuffstiff] = React.useState('soft');
 	const handlesleevecuffChange = (event) => {
 		setsleevecuffValue(event.target.value);
 	};
@@ -356,8 +138,8 @@ function Customize() {
 	// sleevecuff value change handling above
 
 	// butoons  value change handling below
-	const [butoonvalue, setbutoonvalue] = React.useState('');
-	const [buttonthreadvalue, setbuttonthreadvalue] = React.useState('');
+	const [butoonvalue, setbutoonvalue] = React.useState('Natural');
+	const [buttonthreadvalue, setbuttonthreadvalue] = React.useState('Black');
 	const handlebutoonChange = (event) => {
 		setbutoonvalue(event.target.value);
 	};
@@ -367,21 +149,21 @@ function Customize() {
 	// butoons  value change handling above
 
 	// butoons  value change handling below
-	const [frontvalue, setfrontvalue] = React.useState('');
+	const [frontvalue, setfrontvalue] = React.useState('Regular');
 	const handlefrontChange = (event) => {
 		setfrontvalue(event.target.value);
 	};
 	// butoons  value change handling above
 
 	//pocket handling
-	const [pocketvalue, setpocketvalue] = React.useState('');
+	const [pocketvalue, setpocketvalue] = React.useState('none');
 	const handlepocketchange = (event) => {
 		setpocketvalue(event.target.value);
 	};
 
 	// back and bac bottom hanfling below
-	const [backvalue, setbackvalue] = React.useState('');
-	const [backbottomvalue, setbackbottomvalue] = React.useState('');
+	const [backvalue, setbackvalue] = React.useState('None');
+	const [backbottomvalue, setbackbottomvalue] = React.useState('Rounded');
 	const handlebackchange = (event) => {
 		setbackvalue(event.target.value);
 	};
@@ -389,89 +171,32 @@ function Customize() {
 		setbackbottomvalue(event.target.value);
 	};
 	// back and bac bottom hanfling above
-	const history = useHistory();
 	// tabs handling below
 	const [tabvalue, settabValue] = React.useState(0);
 	const handleTabChange = (event, newValue) => {
 		settabValue(newValue);
 	};
-	// tabs handling top
-	// customized total product below
-
-	// gettinf single product below
-	// const { products, setProducts: setproducts } = useContext(productContext);
-	// const [singleproduct, setsingleproduct] = React.useState([]);
-	// useEffect(() => {
-	// 	if (products.length) {
-	// 		console.log(products[0].productimages);
-	// 	}
-	// 	setproduct(
-	// 		products.find((product) => {
-	// 			console.log(product.productid);
-	// 			return product.productid === id;
-	// 		})
-	// 	);
-	// 	console.log(singleproduct);
-	// }, [products]);
-	// gettinf single product above
 
 	const hancleclickcart = async () => {
 		// toast('clicked butn');
-		if (localStorage.getItem('usertoken') == '') {
+		if (localStorage.getItem('usertoken') == null) {
 			history.push('/Login');
 			toast('please login to add to cart');
 			// <Redirect to="Login" />;
 		}
 
-		// const {productid, productname, productprice, productsaleprice, productmaterial, productcolor, productpattern, productdesc, producttype, productoccassion, productfeel, productimages} = product
-		// const productc = {
-		// 	productid: product.productid,
-		// 	productname: screen,
-		// 	productprice: screen,
-		// 	productsaleprice: jn,
-		// 	productmaterial: df,
-		// 	productcolor: color,
-		// 	productpattern: patenrb,
-		// 	productdesc: desc,
-		// 	producttype: type,
-		// 	productoccassion: ocasion,
-		// 	productfeel: frameElement,
-		// 	productimages: img,
-		// };
-
 		const productc = { ...product };
 
 		let customisations = {
-			collar: {
-				name: collarnamevalue,
-			},
-			collarstiff: {
-				name: collarstiff,
-			},
-			cuffs: {
-				name: sleevecuffvalue,
-			},
-			cuffstiff: {
-				name: cuffstiff,
-			},
-			button: {
-				name: butoonvalue,
-			},
-			buttontherad: {
-				name: buttonthreadvalue,
-			},
-			front: {
-				name: frontvalue,
-			},
-			pocket: {
-				name: pocketvalue,
-			},
-			back: {
-				name: backvalue,
-			},
-			backbottom: {
-				name: backbottomvalue,
-			},
+			collar: fullCustomization.find((custom) => custom.name === collarnamevalue),
+			cuffs: fullCustomization.find((custom) => custom.name === sleevecuffvalue),
+			cuffstiff: fullCustomization.find((custom) => custom.name === cuffstiff),
+			button: fullCustomization.find((custom) => custom.name === butoonvalue),
+			buttontherad: fullCustomization.find((custom) => custom.name === buttonthreadvalue),
+			front: fullCustomization.find((custom) => custom.name === frontvalue),
+			pocket: fullCustomization.find((custom) => custom.name === pocketvalue),
+			back: fullCustomization.find((custom) => custom.name === backvalue),
+			backbottom: fullCustomization.find((custom) => custom.name === backbottomvalue),
 		};
 
 		productc.customisations = customisations;
@@ -479,27 +204,6 @@ function Customize() {
 		delete productc._id;
 		delete productc.__v;
 
-		// customproduct={
-		// 	productid: cd,
-		// 	productname: screen,
-		// 	productprice: screen,
-		// 	productsaleprice: jn,
-		// 	productmaterial: df,
-		// 	productcolor: color,
-		// 	productpattern: patenrb,
-		// 	productdesc: desc,
-		// 	producttype: type,
-		// 	productoccassion: ocasion,
-		// 	productfeel: frameElement,
-		// 	productimages: img,
-		// 	customisations:
-		// }
-		// const cartproduct = {
-		// 	userId: userid,
-		// 	items: customproduct,
-		// };
-
-		// console.log(productc);
 		const { data: response } = await addToCart(productc);
 		toast(response.message);
 		console.log(response);
@@ -511,6 +215,8 @@ function Customize() {
 	return (
 		<>
 			{/* this is is for desktop tool below */}
+			{/* 
+wa.link/54ag6i */}
 			<Hidden smDown>
 				<Grid item container xs={12} className={classes.root}>
 					<Grid item container xs={12} alignItems="center" className={classes.topbar}>
@@ -570,6 +276,12 @@ function Customize() {
 						{/* middle preview  tab below */}
 						<Grid item container sm={7} style={{ backgroundColor: '#fff', height: '100%' }}>
 							<Container className={classes.bigimagecont}>
+								{/* {fullCustomization.map((colar) => {
+									if (colar.type == 'collar') {
+										return <Typography> |. {colar.name} .| </Typography>;
+									}
+								})} */}
+
 								{product && product.productimages ? (
 									<>
 										<img className={classes.bigimage} src={product.productimages[0]} />
@@ -587,12 +299,50 @@ function Customize() {
 								<FormControl component="fieldset">
 									{/* <FormLabel component="legend">Gender</FormLabel> */}
 									<FormLabel className={classes.variation}>Variations</FormLabel>
+									{/*  */}
 									<RadioGroup
 										aria-label="gender"
 										name="gender1"
-										// onChange={handlecollarChange}
+										value={collarnamevalue}
+										onChange={handlecollarChange}
 										className={classes.typepanel}>
-										{collars.map((collar) => {
+										{fullCustomization
+											.filter((colr) => colr.type == 'collar')
+											.map((colar) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={colar.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={colar.name}
+															control={<Radio />}
+															label={colar.name}
+														/>
+													</Paper>
+												);
+											})}
+									</RadioGroup>
+									{/*  */}
+									{/* <RadioGroup
+										
+										value={collarnamevalue}
+										onChange={handlecollarChange}
+										className={classes.typepanel}>
+										{fullCustomization
+											.filter((colr) => colr.type == 'collar')
+											.map((collar) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={collar.image} className={classes.typeimage} />
+														<FormControlLabel
+															image={collar.image}
+															control={<Radio />}
+															label={collar.name}
+														/>
+													</Paper>
+												);
+											})}
+									</RadioGroup> */}
+									{/* {collars.map((collar) => {
 											return (
 												<Paper className={classes.typepaper}>
 													<img src={collar.image} className={classes.typeimage} />
@@ -605,32 +355,55 @@ function Customize() {
 													/>
 												</Paper>
 											);
-										})}
-									</RadioGroup>
+										})} */}
 									{/* <Typography>value : {collarnamevalue}</Typography> */}
 								</FormControl>
 								<Divider className={classes.divider} />
 								<FormControl component="fieldset">
 									<FormLabel className={classes.variation}>Select collar Stiffness :</FormLabel>
 									<RadioGroup
+										value={collarstiff}
+										onChange={handlecollarstiffnesschange}
+										className={classes.typepanel}>
+										{fullCustomization
+											.filter((colr) => colr.type == 'collarstiffness')
+											.map((colarstif) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={colarstif.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={colarstif.name}
+															control={<Radio />}
+															label={colarstif.name}
+														/>
+													</Paper>
+												);
+											})}
+									</RadioGroup>
+									{/* <RadioGroup
 										aria-label="gender"
 										name="gender1"
 										value={collarstiff}
 										onChange={handlecollarstiffnesschange}
 										className={classes.typepanel}>
-										{collarstiffness.map((collarstiffness) => {
-											return (
-												<Paper className={classes.typepaper}>
-													<img src={collarstiffness.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={collarstiffness.name}
-														control={<Radio />}
-														label={collarstiffness.name}
-													/>
-												</Paper>
-											);
-										})}
-									</RadioGroup>
+										{fullCustomization
+											.filter((colr) => colr.type == 'collarstiffness')
+											.map((collarstiffness) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img
+															src={collarstiffness.image}
+															className={classes.typeimage}
+														/>
+														<FormControlLabel
+															value={collarstiffness.name}
+															control={<Radio />}
+															label={collarstiffness.name}
+														/>
+													</Paper>
+												);
+											})}
+									</RadioGroup> */}
 								</FormControl>
 							</TabPanel>
 							<TabPanel value={tabvalue} index={1} className={classes.rightpane}>
@@ -643,18 +416,20 @@ function Customize() {
 										value={sleevecuffvalue}
 										onChange={handlesleevecuffChange}
 										className={classes.typepanel}>
-										{sleevecuffss.map((sleevecuff) => {
-											return (
-												<Paper className={classes.typepaper}>
-													<img src={sleevecuff.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={sleevecuff.name}
-														control={<Radio />}
-														label={sleevecuff.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'sleevecuffs')
+											.map((sleevecuff) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={sleevecuff.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={sleevecuff.name}
+															control={<Radio />}
+															label={sleevecuff.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {sleevecuffvalue}</Typography> */}
 								</FormControl>
@@ -667,19 +442,45 @@ function Customize() {
 										value={cuffstiff}
 										onChange={handlesleevecuffstiffness}
 										className={classes.typepanel}>
-										{collarstiffness.map((collarstiffness) => {
-											return (
-												<Paper className={classes.typepaper}>
-													<img src={collarstiffness.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={collarstiffness.name}
-														control={<Radio />}
-														label={collarstiffness.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'collarstiffness')
+											.map((sleevecuff) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={sleevecuff.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={sleevecuff.name}
+															control={<Radio />}
+															label={sleevecuff.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
+									{/* <RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={cuffstiff}
+										onChange={handlesleevecuffstiffness}
+										className={classes.typepanel}>
+										{fullCustomization
+											.filter((colr) => colr.type == 'collarstiffness')
+											.map((collarstiffness) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img
+															src={collarstiffness.image}
+															className={classes.typeimage}
+														/>
+														<FormControlLabel
+															value={collarstiffness.name}
+															control={<Radio />}
+															label={collarstiffness.name}
+														/>
+													</Paper>
+												);
+											})}
+									</RadioGroup> */}
 								</FormControl>
 							</TabPanel>
 							<TabPanel value={tabvalue} index={2} className={classes.rightpane}>
@@ -691,18 +492,20 @@ function Customize() {
 										value={butoonvalue}
 										onChange={handlebutoonChange}
 										className={classes.typepanel}>
-										{Butoons.map((butoon) => {
-											return (
-												<Paper className={classes.typepaper}>
-													<img src={butoon.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={butoon.name}
-														control={<Radio />}
-														label={butoon.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'buttons')
+											.map((butoon) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={butoon.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={butoon.name}
+															control={<Radio />}
+															label={butoon.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {butoonvalue}</Typography> */}
 								</FormControl>
@@ -715,18 +518,20 @@ function Customize() {
 										value={buttonthreadvalue}
 										onChange={handlebuttonthread}
 										className={classes.typepanel}>
-										{buttonthread.map((buttonthread) => {
-											return (
-												<Paper className={classes.buttonpaper}>
-													<img src={buttonthread.image} className={classes.buttonimage} />
-													<FormControlLabel
-														value={buttonthread.name}
-														control={<Radio />}
-														label={buttonthread.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'thread')
+											.map((buttonthread) => {
+												return (
+													<Paper className={classes.buttonpaper}>
+														<img src={buttonthread.image} className={classes.buttonimage} />
+														<FormControlLabel
+															value={buttonthread.name}
+															control={<Radio />}
+															label={buttonthread.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 								</FormControl>
 							</TabPanel>
@@ -740,18 +545,20 @@ function Customize() {
 										value={frontvalue}
 										onChange={handlefrontChange}
 										className={classes.typepanel}>
-										{frontt.map((frontt) => {
-											return (
-												<Paper className={classes.typepaper}>
-													<img src={frontt.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={frontt.name}
-														control={<Radio />}
-														label={frontt.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'front')
+											.map((frontt) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={frontt.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={frontt.name}
+															control={<Radio />}
+															label={frontt.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {frontvalue}</Typography> */}
 								</FormControl>
@@ -765,18 +572,20 @@ function Customize() {
 										value={pocketvalue}
 										onChange={handlepocketchange}
 										className={classes.typepanel}>
-										{pocket.map((pocket) => {
-											return (
-												<Paper className={classes.typepaper}>
-													<img src={pocket.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={pocket.name}
-														control={<Radio />}
-														label={pocket.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'pocket')
+											.map((pocket) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={pocket.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={pocket.name}
+															control={<Radio />}
+															label={pocket.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {frontvalue}</Typography> */}
 								</FormControl>
@@ -790,18 +599,20 @@ function Customize() {
 										onChange={handlebackchange}
 										className={classes.typepanel}>
 										{/* for bacj anf cbotm */}
-										{back.map((back) => {
-											return (
-												<Paper className={classes.typepaper}>
-													<img src={back.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={back.name}
-														control={<Radio />}
-														label={back.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'back')
+											.map((back) => {
+												return (
+													<Paper className={classes.typepaper}>
+														<img src={back.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={back.name}
+															control={<Radio />}
+															label={back.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {frontvalue}</Typography> */}
 								</FormControl>
@@ -814,18 +625,20 @@ function Customize() {
 										value={backbottomvalue}
 										onChange={handlebackbottomchange}
 										className={classes.typepanel}>
-										{backbottom.map((backbottom) => {
-											return (
-												<Paper className={classes.buttonpaper}>
-													<img src={backbottom.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={backbottom.name}
-														control={<Radio />}
-														label={backbottom.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'backbottom')
+											.map((backbottom) => {
+												return (
+													<Paper className={classes.buttonpaper}>
+														<img src={backbottom.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={backbottom.name}
+															control={<Radio />}
+															label={backbottom.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 								</FormControl>
 							</TabPanel>
@@ -851,18 +664,15 @@ function Customize() {
 					</Grid>
 
 					<Grid item container xs={12} style={{ height: '40vh', backgroundColor: '#fff' }}>
-						{product && product.productimages ? (
-							<>
-								<Container className={classes.bigimagecont}>
-									<img
-										className={classes.bigimage}
-										src={`https://uniquefit.ml${product.productimages[0]}`}
-									/>
-								</Container>
-							</>
-						) : (
-							'.. . .'
-						)}
+						<Container className={classes.bigimagecont}>
+							{product && product.productimages ? (
+								<>
+									<img className={classes.bigimage} src={product.productimages[0]} />
+								</>
+							) : (
+								<CircularProgress />
+							)}
+						</Container>
 
 						{/* { product && product.productimages ? ():('') } */}
 					</Grid>
@@ -928,18 +738,20 @@ function Customize() {
 										value={collarnamevalue}
 										onChange={handlecollarChange}
 										className={classes.typepanel}>
-										{collars.map((collar) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={collar.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={collar.name}
-														control={<Radio />}
-														label={collar.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'collar')
+											.map((collar) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img src={collar.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={collar.name}
+															control={<Radio />}
+															label={collar.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {collarnamevalue}</Typography> */}
 								</FormControl>
@@ -953,55 +765,9 @@ function Customize() {
 										value={collarstiff}
 										onChange={handlecollarstiffnesschange}
 										className={classes.typepanel}>
-										{collarstiffness.map((collarstiffness) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={collarstiffness.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={collarstiffness.name}
-														control={<Radio />}
-														label={collarstiffness.name}
-													/>
-												</Paper>
-											);
-										})}
-									</RadioGroup>
-								</FormControl>
-							</TabPanel>
-							<TabPanel value={tabvalue} index={1} className={classes.typepanel}>
-								<FormControl component="fieldset">
-									{/* <FormLabel component="legend">Gender</FormLabel> */}
-									<RadioGroup
-										aria-label="gender"
-										name="gender1"
-										value={sleevecuffvalue}
-										onChange={handlesleevecuffChange}
-										className={classes.typepanel}>
-										{sleevecuffss.map((sleevecuff) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={sleevecuff.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={sleevecuff.name}
-														control={<Radio />}
-														label={sleevecuff.name}
-													/>
-												</Paper>
-											);
-										})}
-									</RadioGroup>
-									{/* <Typography>value : {sleevecuffvalue}</Typography> */}
-
-									<Divider className={classes.divider} />
-									<FormControl component="fieldset">
-										<FormLabel className={classes.variation}>Select Cuff Stiffness :</FormLabel>
-										<RadioGroup
-											aria-label="gender"
-											name="gender1"
-											value={cuffstiff}
-											onChange={handlesleevecuffstiffness}
-											className={classes.typepanel}>
-											{collarstiffness.map((collarstiffness) => {
+										{fullCustomization
+											.filter((colr) => colr.type == 'collarstiffness')
+											.map((collarstiffness) => {
 												return (
 													<Paper className={classes.mobtypepaper}>
 														<img
@@ -1016,6 +782,61 @@ function Customize() {
 													</Paper>
 												);
 											})}
+									</RadioGroup>
+								</FormControl>
+							</TabPanel>
+							<TabPanel value={tabvalue} index={1} className={classes.typepanel}>
+								<FormControl component="fieldset">
+									{/* <FormLabel component="legend">Gender</FormLabel> */}
+									<RadioGroup
+										aria-label="gender"
+										name="gender1"
+										value={sleevecuffvalue}
+										onChange={handlesleevecuffChange}
+										className={classes.typepanel}>
+										{fullCustomization
+											.filter((colr) => colr.type == 'sleevecuffs')
+											.map((sleevecuff) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img src={sleevecuff.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={sleevecuff.name}
+															control={<Radio />}
+															label={sleevecuff.name}
+														/>
+													</Paper>
+												);
+											})}
+									</RadioGroup>
+									{/* <Typography>value : {sleevecuffvalue}</Typography> */}
+
+									<Divider className={classes.divider} />
+									<FormControl component="fieldset">
+										<FormLabel className={classes.variation}>Select Cuff Stiffness :</FormLabel>
+										<RadioGroup
+											aria-label="gender"
+											name="gender1"
+											value={cuffstiff}
+											onChange={handlesleevecuffstiffness}
+											className={classes.typepanel}>
+											{fullCustomization
+												.filter((colr) => colr.type == 'collarstiffness')
+												.map((collarstiffness) => {
+													return (
+														<Paper className={classes.mobtypepaper}>
+															<img
+																src={collarstiffness.image}
+																className={classes.typeimage}
+															/>
+															<FormControlLabel
+																value={collarstiffness.name}
+																control={<Radio />}
+																label={collarstiffness.name}
+															/>
+														</Paper>
+													);
+												})}
 										</RadioGroup>
 									</FormControl>
 								</FormControl>
@@ -1029,18 +850,20 @@ function Customize() {
 										value={butoonvalue}
 										onChange={handlebutoonChange}
 										className={classes.typepanel}>
-										{Butoons.map((butoon) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={butoon.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={butoon.name}
-														control={<Radio />}
-														label={butoon.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'buttons')
+											.map((butoon) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img src={butoon.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={butoon.name}
+															control={<Radio />}
+															label={butoon.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {butoonvalue}</Typography> */}
 								</FormControl>
@@ -1054,18 +877,20 @@ function Customize() {
 										value={buttonthreadvalue}
 										onChange={handlebuttonthread}
 										className={classes.typepanel}>
-										{buttonthread.map((buttonthread) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={buttonthread.image} className={classes.buttonimage} />
-													<FormControlLabel
-														value={buttonthread.name}
-														control={<Radio />}
-														label={buttonthread.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'thread')
+											.map((buttonthread) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img src={buttonthread.image} className={classes.buttonimage} />
+														<FormControlLabel
+															value={buttonthread.name}
+															control={<Radio />}
+															label={buttonthread.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 								</FormControl>
 							</TabPanel>
@@ -1077,18 +902,20 @@ function Customize() {
 										value={frontvalue}
 										onChange={handlefrontChange}
 										className={classes.typepanel}>
-										{frontt.map((frontt) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={frontt.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={frontt.name}
-														control={<Radio />}
-														label={frontt.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'front')
+											.map((frontt) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img src={frontt.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={frontt.name}
+															control={<Radio />}
+															label={frontt.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {frontvalue}</Typography> */}
 								</FormControl>
@@ -1101,18 +928,20 @@ function Customize() {
 										value={pocketvalue}
 										onChange={handlepocketchange}
 										className={classes.typepanel}>
-										{pocket.map((pocket) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={pocket.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={pocket.name}
-														control={<Radio />}
-														label={pocket.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'pocket')
+											.map((pocket) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img src={pocket.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={pocket.name}
+															control={<Radio />}
+															label={pocket.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {frontvalue}</Typography> */}
 								</FormControl>
@@ -1126,18 +955,20 @@ function Customize() {
 										onChange={handlebackchange}
 										className={classes.typepanel}>
 										{/* for bacj anf cbotm */}
-										{back.map((back) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={back.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={back.name}
-														control={<Radio />}
-														label={back.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'back')
+											.map((back) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img src={back.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={back.name}
+															control={<Radio />}
+															label={back.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 									{/* <Typography>value : {frontvalue}</Typography> */}
 								</FormControl>
@@ -1150,18 +981,20 @@ function Customize() {
 										value={backbottomvalue}
 										onChange={handlebackbottomchange}
 										className={classes.typepanel}>
-										{backbottom.map((backbottom) => {
-											return (
-												<Paper className={classes.mobtypepaper}>
-													<img src={backbottom.image} className={classes.typeimage} />
-													<FormControlLabel
-														value={backbottom.name}
-														control={<Radio />}
-														label={backbottom.name}
-													/>
-												</Paper>
-											);
-										})}
+										{fullCustomization
+											.filter((colr) => colr.type == 'backbottom')
+											.map((backbottom) => {
+												return (
+													<Paper className={classes.mobtypepaper}>
+														<img src={backbottom.image} className={classes.typeimage} />
+														<FormControlLabel
+															value={backbottom.name}
+															control={<Radio />}
+															label={backbottom.name}
+														/>
+													</Paper>
+												);
+											})}
 									</RadioGroup>
 								</FormControl>
 							</TabPanel>

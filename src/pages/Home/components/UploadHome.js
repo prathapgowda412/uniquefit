@@ -36,12 +36,12 @@ function Uploadhome() {
 		<Grid item container xs={11} alignContent="stretch" className={classes.root}>
 			<Hidden smUp>
 				<Link to="/Contact">
-					<img className={classes.heroimg} src={require('./statics/images/uplaodhomemob.webp')} />
+					<img className={classes.heroimg} src={require('./statics/images/yellowboymob.png')} />
 				</Link>
 			</Hidden>
 			<Hidden xsDown>
 				<Link to="/Contact">
-					<img className={classes.heroimg} src={require('./statics/images/uplaodhome.webp')} />
+					<img className={classes.heroimg} src={require('./statics/images/yellowboydesk.png')} />
 				</Link>
 			</Hidden>
 			{/* <Hidden> two</Hidden> */}

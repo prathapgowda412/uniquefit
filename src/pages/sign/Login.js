@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	loginButton: {
-		background: '#114A82',
+		background: '#387a76',
 		borderRadius: '5px',
 		fontFamily: 'Lora',
 		fontStyle: 'normal',
@@ -111,14 +111,18 @@ const useStyles = makeStyles((theme) => ({
 		lineHeight: '18px',
 		textAlign: 'center',
 		padding: '1rem 0',
+		color: 'white',
 		textTransform: 'capitalize',
 		'&:hover': {
-			background: '#1f4f8f',
+			background: '#034b46',
 		},
 		[theme.breakpoints.down('sm')]: {
 			fontSize: '14px',
 			lineHeight: '16px',
 		},
+	},
+	butontext: {
+		color: 'white',
 	},
 	logo: {
 		height: '53px',
@@ -260,24 +264,6 @@ function Login(props) {
 				{/* <Grid container> */}
 				<Grid item container sm={12} md={6} direction="column">
 					<Container maxWidth="sm">
-						{/* <Box component="div"> */}
-						{/* <Box component="div"> */}
-						{/* <Box my={4}>
-										<Typography align="center" color="initial" className={classes.loginHeading}>
-											Login
-										</Typography>
-									</Box> */}
-						{/* <Button
-										variant="contained"
-										className={classes.googleLoginButton}
-										fullWidth
-										size="large">
-										<Avatar
-											className={classes.iconSize}
-											src={'https://www.flaticon.com/svg/static/icons/svg/300/300221.svg'}
-										/>
-										Login with Google
-									</Button> */}
 						<Box my={5}>
 							<Typography component="div" align="center" color="initial">
 								<Box component="div" className={classes.lineText}>
@@ -346,10 +332,8 @@ function Login(props) {
 									size="large"
 									onClick={OnLogClicked}
 									disableElevation
-									color="primary"
-									endIcon={<ArrowRightAltSharpIcon />}
 									className={classes.loginButton}>
-									Login
+									<Typography className={classes.butontext}>Login</Typography>
 								</Button>
 								<Container>
 									<Typography className={classes.success}>{loginsuccessful}</Typography>

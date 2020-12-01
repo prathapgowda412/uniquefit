@@ -25,7 +25,6 @@ import {
 } from '@material-ui/core';
 import { addOrder, getCartItems } from '../../services/fetchService';
 import DeleteIcon from '@material-ui/icons/Delete';
-import itemimg from '../Home/components/statics/images/girl.jpg';
 import { removeFromCart } from './../../services/fetchService';
 import { toast } from 'react-toastify';
 import { Link, Redirect, useHistory } from 'react-router-dom';

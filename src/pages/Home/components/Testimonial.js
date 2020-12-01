@@ -107,9 +107,9 @@ function Testimonialsection() {
 							// justifyContent="center"
 							style={{ height: 'fit-content' }}>
 							<Grid item container xs={4} sm={10} className={classes.justcent}>
-								<Avatar
+								{/* <Avatar
 									className={classes.avatar}
-									src={require('./statics/images/avatr1.jpg')}></Avatar>
+									src={require('./statics/images/avatr1.jpg')}></Avatar> */}
 							</Grid>
 							<Grid item container xs={7} sm={10} className={classes.justcent}>
 								<Typography>Rohith Dhanala</Typography>

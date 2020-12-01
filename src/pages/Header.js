@@ -2,8 +2,6 @@ import React, { Component, useContext, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Uniquefit_blacklogosvg from '../logos/Uniquefit logo.svg';
 import uniquefit_monogramblack from '../logos/Unique fit monogram.svg';
-import profileavat from './Home/components/statics/images/avatr1.jpg';
-import shopingcart from '../statics/icons/shopping-cart.svg';
 
 import Grow from '@material-ui/core/Grow';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -65,7 +63,7 @@ class Header extends Component {
 			username: '',
 			islogged: false,
 			tshirtcomingsoon: 'Tshirts',
-			usertoken: '',
+			usertoken: null,
 		};
 	}
 
@@ -98,16 +96,13 @@ class Header extends Component {
 					token: token,
 				},
 			};
-			// Axios.get()
-			// const resp = await Axios.get('https://uniquefit.ml/users/me', config);
+
 			const resp = await Axios.get(`${process.env.REACT_APP_API_URL}/users/me`, config);
 			console.log(resp.data);
 		} else {
 			console.log('not logged');
 			this.setState({ islogged: false });
 		}
-
-		// this.setState({usertoken:})
 	};
 
 	handlecomingsoon = () => {
@@ -147,7 +142,7 @@ class Header extends Component {
 								Signup
 							</Link>
 						</Button>
-						<Link to="/login">
+						<Link to="/Signup">
 							<Button>
 								<img src={require('../statics/header/bag_icon.svg')} />
 							</Button>
@@ -174,7 +169,7 @@ class Header extends Component {
 		};
 
 		const Mobcartbag = () => {
-			if (localStorage.getItem('usertoken') == '') {
+			if (localStorage.getItem('usertoken') == null) {
 				return (
 					<Link to="/Login">
 						<Button>
@@ -194,11 +189,13 @@ class Header extends Component {
 		};
 
 		const Mobuserlog = () => {
-			if (localStorage.getItem('usertoken') == '') {
+			if (localStorage.getItem('usertoken') == null) {
 				return (
 					<Container>
 						<Link className={classes.link} to="login">
-							<Button className={classes.logindrawer}>Login</Button>
+							<Button className={classes.logindrawer}>
+								<Typography style={{ color: 'white' }}> Login </Typography>
+							</Button>
 						</Link>
 						<Link className={classes.link} to="Signup">
 							<Button className={classes.signupdrawer}>signup</Button>
@@ -264,11 +261,11 @@ class Header extends Component {
 									<Link className={classes.limob} onClick={this.handleToggle} to="/Aboutus">
 										About us
 									</Link>
-									<Link className={classes.limob} to="/Contact">
+									<Link className={classes.limob} onClick={this.handleToggle} to="/Contact">
 										Contact
 									</Link>
 
-									<Link className={classes.uploadshirt} to="/Contact">
+									<Link className={classes.uploadshirt} onClick={this.handleToggle} to="/Contact">
 										Shirt On Mind ?
 									</Link>
 								</ul>

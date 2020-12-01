@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	loginButton: {
-		background: '#114A82',
+		background: '#387a76',
 		borderRadius: '5px',
 		fontFamily: 'Lora',
 		fontStyle: 'normal',
@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: '1rem 0',
 		textTransform: 'capitalize',
 		'&:hover': {
-			background: '#1f4f8f',
+			background: '#034b46',
 		},
 		[theme.breakpoints.down('sm')]: {
 			fontSize: '14px',
@@ -227,11 +227,12 @@ function Register() {
 	} else {
 		return (
 			<Grid item container className={classes.root} xs={12}>
-				<AppBar className={classes.appbar} position="sticky" elevation="0">
+				{/* <AppBar className={classes.appbar} position="sticky" elevation="0">
 					<Link to="/">
 						<img className={classes.logo} src={Uniquefit_blacklogosvg} />
 					</Link>
-				</AppBar>
+				</AppBar> */}
+				<Hidden smUp></Hidden>
 				{/* <Grid container> */}
 				<Grid item container sm={12} md={6} direction="column">
 					<Container maxWidth="sm">
@@ -348,9 +349,8 @@ function Register() {
 									disableElevation
 									color="primary"
 									onClick={OnloginClick}
-									endIcon={<ArrowRightAltSharpIcon />}
 									className={classes.loginButton}>
-									Login
+									<Typography style={{ color: 'white', fontSize: '16px' }}>Sign Up</Typography>
 								</Button>
 								<Typography className={classes.response} variant="caption">
 									{response}

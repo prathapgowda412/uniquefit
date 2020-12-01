@@ -158,7 +158,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Secondpro() {
+function ThirdProducts() {
 	const classes = useStyles();
 	// const [products, setproducts] = React.useState([]);
 	const { products, setProducts: setproducts } = useContext(productContext);
@@ -184,12 +184,12 @@ function Secondpro() {
 	return (
 		<Grid item container xs={12} justify="center" className={classes.root}>
 			<Container justify="center" className={classes.trendingtextbox}>
-				<Typography variant="h5">Solids Shirts</Typography>
+				<Typography variant="h5">Checks Shirts</Typography>
 			</Container>
 
 			<Grid item container xs={12} sm={11} justify="space-evenly">
 				{products
-					.filter((prod) => prod.productpattern === 'Solids')
+					.filter((prod) => prod.productpattern === 'Checks')
 					.slice(0, 4)
 					.reverse()
 					.map((product) => {
@@ -225,12 +225,12 @@ function Secondpro() {
 					})}
 			</Grid>
 			<Container justify="center" className={classes.trendingtextbox}>
-				<Typography variant="h5">Stripes Shirts</Typography>
+				<Typography variant="h5">Printed Shirts</Typography>
 			</Container>
 
 			<Grid item container xs={12} sm={11} justify="space-evenly">
 				{products
-					.filter((prod) => prod.productpattern === 'Stripes')
+					.filter((prod) => prod.productpattern === 'Printed')
 					.slice(0, 4)
 					.reverse()
 					.map((product) => {
@@ -361,7 +361,7 @@ function Secondpro() {
 		</Grid>
 	);
 }
-export default Secondpro;
+export default ThirdProducts;
 {
 	/* <Grid xs={12} sm={12} alignContent="stretch" spacing={5} style={{ backgroundColor: 'red' }}>
 				<Grid item container xs={4} sm={4}>

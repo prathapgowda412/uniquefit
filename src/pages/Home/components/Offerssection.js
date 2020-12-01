@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import { Grid, Card, CardMedia, Typography, Box, Button } from '@material-ui/core';
-import oferimg from './statics/images/mancolor.jpg';
 const useStyles = makeStyles((theme) => ({
 	main: {
 		marginTop: '100px',
@@ -37,7 +36,7 @@ function Offerssection() {
 		<Grid item container xs={12} alignContent="stretch" className={classes.main}>
 			<Grid item container xs={12} sm={6}>
 				<Card elevation={0} square className={classes.card}>
-					<CardMedia component="img" image={oferimg} title="" />
+					<CardMedia component="img" title="" />
 					<Box className={classes.offerbox}>
 						<Typography variant="body1" className={classes.offertext}>
 							50% off on casual shirts
@@ -48,7 +47,7 @@ function Offerssection() {
 			</Grid>
 			<Grid item container xs={12} sm={6}>
 				<Card elevation={0} square className={classes.card}>
-					<CardMedia component="img" image={oferimg} title="" />
+					<CardMedia component="img" title="" />
 					<Box className={classes.offerbox}>
 						<Typography variant="body1" className={classes.offertext}>
 							50% off on Formal shirts
@@ -59,7 +58,7 @@ function Offerssection() {
 			</Grid>
 			<Grid item container xs={12} sm={6}>
 				<Card elevation={0} square className={classes.card}>
-					<CardMedia component="img" image={oferimg} title="" />
+					<CardMedia component="img" title="" />
 					<Box className={classes.offerbox}>
 						<Typography variant="body1" className={classes.offertext}>
 							50% off on Suits
@@ -70,7 +69,7 @@ function Offerssection() {
 			</Grid>
 			<Grid item container xs={12} sm={6}>
 				<Card elevation={0} square className={classes.card}>
-					<CardMedia component="img" image={oferimg} title="" />
+					<CardMedia component="img" title="" />
 					<Box className={classes.offerbox}>
 						<Typography variant="body1" className={classes.offertext}>
 							50% off on women shirts

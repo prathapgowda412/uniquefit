@@ -40,11 +40,12 @@ export function getOrders() {
 	return httpService.post(config.getOrders, data);
 }
 
-export function addOrder(products, size, height, shoulders, bodyType, bodyFit) {
+export function addOrder(products, address, size, height, shoulders, bodyType, bodyFit) {
 	const userId = getUserData();
 	let data = {
 		userId,
 		products,
+		address,
 		size,
 		height,
 		shoulders,

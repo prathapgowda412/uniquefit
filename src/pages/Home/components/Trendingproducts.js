@@ -17,8 +17,6 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { styled } from '@material-ui/core/styles';
-import imgs from './statics/images/girlwhite.jpg';
-import dummydata from '../../../data/dummydata.json';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import { productContext } from './../../../contexts/ProductContext';
@@ -106,7 +104,11 @@ const useStyles = makeStyles((theme) => ({
 	card: {
 		backgroundColor: '#fff',
 		height: '370px',
-		borderRadius: '0px',
+		borderRadius: '2px',
+		[theme.breakpoints.down('sm')]: {
+			height: '305px',
+			margin: '10px 8px',
+		},
 		'&:hover': {
 			boxShadow: '0px 2px 2px rgba(50,50,71,0.06) , 0px 2px 4px rgba(50,50,71,0.06)',
 		},
@@ -150,6 +152,13 @@ const useStyles = makeStyles((theme) => ({
 	cardbodytext: {
 		margin: '8px',
 	},
+	trendingtextbox: {
+		width: '80%',
+		padding: '10px 0',
+		[theme.breakpoints.down('sm')]: {
+			width: '98%',
+		},
+	},
 }));
 
 function Trending() {
@@ -158,14 +167,14 @@ function Trending() {
 
 	return (
 		<Grid item container xs={12} justify="center" className={classes.root}>
-			<Container justify="center" style={{ marginBottom: '35px' }}>
-				<Typography variant="h5">Trending</Typography>
+			<Container className={classes.trendingtextbox}>
+				<Typography variant="h5">New Arrivals</Typography>
 			</Container>
 
 			<Grid item container xs={12} sm={11} justify="space-evenly">
-				{products.slice(0, 5).map((product) => {
+				{products.slice(products.length - 4, products.length).map((product) => {
 					return (
-						<Grid xs={5} sm={4} md={2}>
+						<Grid xs={6} sm={4} md={2}>
 							<Card className={classes.card} elevation="0" square>
 								<Link to={`/ProductPage/${product.productid}`}>
 									<Box className={classes.topimag}>

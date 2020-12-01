@@ -18,7 +18,9 @@ import Cart from './pages/cart/Cartpage';
 import Customize from './pages/customize/customize';
 import Registeruser from './pages/sign/register';
 import { ProductContextProvider } from './contexts/ProductContext';
+// import { customizationContext } from './contexts/CustomizationContext';
 
+import { CustomizationContextProvider } from './contexts/CustomizationContext';
 import ScrollToTop from './common/scrolltop';
 
 import { Provider } from 'react-redux';
@@ -36,6 +38,8 @@ import Checks from './pages/Shop/Filters/Checks';
 import Stripes from './pages/Shop/Filters/Stripes';
 import Printed from './pages/Shop/Filters/Printed';
 import { userContext } from './contexts/UserContext';
+import { WhatsApp } from '@material-ui/icons';
+import Whatsapp from './pages/whatsapp';
 
 function App() {
 	const [authTokens, setAuthTokens] = useState(localStorage.getItem('tokens') || '');
@@ -48,100 +52,105 @@ function App() {
 			<AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
 				{/* <UserContext.Provider uservalue={uservalue}> */}
 				<ProductContextProvider>
-					<userContext.Provider>
-						<ScrollToTop />
-						<ToastContainer />
-						<Grid container item xs={12}>
-							<Switch>
-								<Route path="/Shop">
-									<Header />
-									<Shop />
-									<Footer />
-								</Route>
-								<Route path="/Ordersuccess">
-									<Ordersuccess />
-								</Route>
+					<CustomizationContextProvider>
+						<userContext.Provider>
+							<ScrollToTop />
+							<ToastContainer />
+							<Grid container item xs={12}>
+								<Switch>
+									<Route path="/Shop">
+										<Header />
+										<Shop />
+										<Footer />
+									</Route>
+									<Route path="/Ordersuccess">
+										<Ordersuccess />
+									</Route>
 
-								<Route path="/Aboutus">
-									<Header />
-									<Aboutus />
-									<Footer />
-								</Route>
-								<Route path="/Solids">
-									<Header />
-									<Solids />
-									<Footer />
-								</Route>
-								<Route path="/Checks">
-									<Header />
-									<Checks />
-									<Footer />
-								</Route>
-								<Route path="/Stripes">
-									<Header />
-									<Stripes />
-									<Footer />
-								</Route>
-								<Route path="/Printed">
-									<Header />
-									<Printed />
-									<Footer />
-								</Route>
-								<Route path="/Profile">
-									<Header />
-									<Profilepage />
-									<Footer />
-								</Route>
+									<Route path="/Aboutus">
+										<Header />
+										<Aboutus />
+										<Footer />
+									</Route>
+									<Route path="/Solids">
+										<Header />
+										<Solids />
+										<Footer />
+									</Route>
+									<Route path="/Checks">
+										<Header />
+										<Checks />
+										<Footer />
+									</Route>
+									<Route path="/Stripes">
+										<Header />
+										<Stripes />
+										<Footer />
+									</Route>
+									<Route path="/Printed">
+										<Header />
+										<Printed />
+										<Footer />
+									</Route>
+									<Route path="/Profile">
+										<Header />
+										<Profilepage />
+										<Footer />
+									</Route>
 
-								<Route path="/Login">
-									<Login />
-								</Route>
+									<Route path="/Login">
+										{/* <Header /> */}
+										<Login />
+									</Route>
 
-								<Route path="/Signup">
-									<Registeruser />
-								</Route>
-								<Route path="/Uploadshirt">
-									<Uploadshirt />
-								</Route>
-								<Route path="/Contact">
-									<Header />
-									<Contact />
-									<Footer />
-								</Route>
-								<Route path="/Getsizes">
-									<Header />
-									<Getsizes />
-									<Footer />
-								</Route>
+									<Route path="/Signup">
+										{/* <Header /> */}
+										<Registeruser />
+									</Route>
+									<Route path="/Uploadshirt">
+										<Uploadshirt />
+									</Route>
+									<Route path="/Contact">
+										<Header />
+										<Contact />
+										<Footer />
+									</Route>
+									<Route path="/Getsizes">
+										<Header />
+										<Getsizes />
+										<Footer />
+									</Route>
 
-								<Route path="/Dashboard">
-									<Dashboard />
-								</Route>
-								<Route path="/ProductPage/:id">
-									<Header />
-									<Productpage />
-									<Footer />
-								</Route>
-								<Route path="/Cart">
-									<Cart />
-									{/* <Header />
+									<Route path="/Dashboard">
+										<Dashboard />
+									</Route>
+									<Route path="/ProductPage/:id">
+										<Header />
+										<Productpage />
+										<Footer />
+									</Route>
+									<Route path="/Cart">
+										<Cart />
+										{/* <Header />
 								<Footer /> */}
-								</Route>
-								<Route path="/Customize/:id">
-									<Customize />
-								</Route>
-								<Route path="/testcartcrud">
-									<TestCartCrud />
-								</Route>
-								<Route path="/">
-									<Header />
-									<Home />
-									<Footer />
-								</Route>
-							</Switch>
-						</Grid>
-						{/* </UserContext.Provider> */}
-					</userContext.Provider>
+									</Route>
+									<Route path="/Customize/:id">
+										<Customize />
+									</Route>
+									<Route path="/testcartcrud">
+										<TestCartCrud />
+									</Route>
+									<Route path="/">
+										{/* <Whatsapp /> */}
+										<Header />
+										<Home />
+										<Footer />
+									</Route>
+								</Switch>
+							</Grid>
+							{/* </UserContext.Provider> */}
+						</userContext.Provider>
+					</CustomizationContextProvider>
 				</ProductContextProvider>
 			</AuthContext.Provider>
 		</BrowserRouter>

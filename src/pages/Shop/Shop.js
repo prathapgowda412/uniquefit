@@ -110,11 +110,11 @@ function Shop() {
 
 	return (
 		<Grid item container xs={12} className={classes.root} justify="center">
-			<Container maxWidth="lg" className={classes.topbox}>
+			{/* <Container maxWidth="lg" className={classes.topbox}>
 				<Typography variant="h2" align="center">
 					Shop From Variety of Fabric and collection across india
 				</Typography>
-			</Container>
+			</Container> */}
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
 				{/* <Grid xs={12} sm={3} id="filterbox" className={classes.filterbox}>
 					<Hidden smUp>
