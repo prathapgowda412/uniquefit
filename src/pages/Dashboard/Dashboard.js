@@ -242,6 +242,8 @@ function Dashboard() {
 		// 	productimages: files,
 		// };
 		const productdata = new FormData();
+
+		productdata.append('productid', Math.round(Math.random() * 100000000));
 		productdata.append('productname', productname);
 		productdata.append('productprice', +productprice);
 		productdata.append('productcolor', productcolor);
