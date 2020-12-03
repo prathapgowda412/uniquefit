@@ -149,13 +149,32 @@ const CustomiseStyles = makeStyles((theme) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		bckgroundColor: '#f2f2f2',
+		height: '65%',
+		// backgroundColor: 'red',
 	},
 	bigimage: {
 		width: '50%',
 		height: '80%',
 		objectFit: 'contain',
 		bckgroundColor: '#f2f2f2',
+	},
+	bigimagedesk: {
+		// width: '50%',
+		// height: '80%',
+		objectFit: 'contain',
+		bckgroundColor: '#f2f2f2',
+	},
+	selectedbox: {
+		padding: '20px 0',
+		height: 'fit-content',
+		backgroundColor: 'red',
+	},
+	selectedpaper: {
+		height: '50px',
+		padding: '5px',
+		// width: '120px',
+		backgroundColor: 'white',
+		boxShadow: '0 0 8px -5px rgba(1,1,1,0.3)',
 	},
 	addcartbutton: {
 		color: 'white',

@@ -5,11 +5,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { Container, Grid, Hidden } from '@material-ui/core';
-import { width } from '@material-ui/system';
-import { useParams } from 'react-router-dom';
+import { Button, CircularProgress, Container, Grid, Hidden } from '@material-ui/core';
+import { Link, useParams, useHistory } from 'react-router-dom';
+import { getOrders } from '../../services/fetchService';
 import Axios from 'axios';
-import { getOrders } from './../../services/fetchService';
+import { toast } from 'react-toastify';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
@@ -21,10 +21,15 @@ function TabPanel(props) {
 			id={`vertical-tabpanel-${index}`}
 			aria-labelledby={`vertical-tab-${index}`}
 			{...other}>
-			{value === index && <Box p={3}>{children}</Box>}
+			{value === index && (
+				<Box p={3}>
+					<Typography>{children}</Typography>
+				</Box>
+			)}
 		</div>
 	);
 }
+
 TabPanel.propTypes = {
 	children: PropTypes.node,
 	index: PropTypes.any.isRequired,
@@ -39,110 +44,136 @@ function a11yProps(index) {
 }
 
 const useStyles = makeStyles((theme) => ({
-	main: {
-		flexGrow: 1,
-		backgroundColor: '#fff',
-		display: 'flex',
-		minHeight: '60vh',
-		maxHeight: 'fit-content',
-		padding: '50px 0',
-	},
 	root: {
-		color: '#387A76',
-		backgroundColor: 'white',
+		flexGrow: 1,
+		backgroundColor: theme.palette.background.paper,
+		display: 'flex',
+		height: 224,
+		paddingTop: '80px',
+		// backgroundColor: '#f2f2f2',
 	},
 	tabs: {
-		width: 'fit-content',
-		margin: 'auto',
+		borderRight: `1px solid ${theme.palette.divider}`,
 	},
-	tablink: {
-		backgroundColor: '#f2f2f2',
-		margin: '10px 0',
-		color: '#111',
-		width: '250px',
-		borderRadius: '5px',
-		'&:active': {
-			backgroundColor: '#fff',
-		},
+	tabindicator: {
+		backgroundColor: 'green',
 	},
-	rightpanel: {
-		backgroundColor: '#f2f2f2',
-		width: '92%',
-		[theme.breakpoints.down('sm')]: {
-			margin: 'auto',
-		},
+	tabselected: {
+		color: 'red',
 	},
-	mobleftpanel: {
-		width: '90%',
-		backgroundColor: '#f2f2f2',
-		margin: 'auto',
-		height: '65px',
-		marginBottom: '20px',
-		borderRadius: '10px',
-		padding: '5px 10px',
+	link: {
+		textDecoration: 'none',
+		margin: '4px 2px',
 	},
 }));
-function Profilepage(pops) {
+
+function Profilepage() {
+	const { tab } = useParams();
 	const classes = useStyles();
-	const [value, setValue] = React.useState(0);
-	const [user, setuser] = React.useState();
-	useEffect(async () => {
-		let token = localStorage.getItem('usertoken');
-		const config = {
-			headers: {
-				'Content-Type': 'application/json',
-				token: token,
-			},
-		};
-
-		const resp = await Axios.get(`${process.env.REACT_APP_API_URL}/users/me`, config);
-		console.log(resp.data);
-
-		const resporder = await getOrders();
-		console.log(resporder.data);
-		console.log(resporder.data.orders);
-		console.log(resporder.data.orders.length);
-	});
+	const [value, setValue] = React.useState(tab);
+	const [userdata, setuserdata] = React.useState([]);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
+	const history = useHistory();
+	useEffect(async () => {
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				token: localStorage.getItem('usertoken'),
+			},
+		};
+
+		const respuser = await Axios.get(`${process.env.REACT_APP_API_URL}/users/me`, config);
+		let data = respuser;
+		if (respuser.data.message == 'Token has expired') {
+			toast.warning('User session has Expired \n Please Login');
+			localStorage.removeItem('usertoken');
+			localStorage.removeItem('tokens');
+
+			window.location.reload();
+			window.history.push('/');
+		}
+		console.log(respuser);
+		setuserdata(respuser.data);
+
+		console.log(userdata);
+		const resp = await getOrders();
+
+		console.log(resp.data.orders);
+	}, []);
 
 	return (
-		<Grid item container xs={12} className={classes.main}>
-			<Grid item container xs={12} md={3}>
-				<Hidden mdUp>
-					<Container className={classes.mobleftpanel}>for mob</Container>
-				</Hidden>
-				<Hidden smDown>
-					<Tabs
-						indicatorColor="none"
+		<Grid item container justify="center" xs={12} className={classes.root}>
+			<Hidden smDown>
+				<Grid sm={4}>
+					<Link className={classes.link} to="/Profile/info">
+						<Button>to info</Button>
+					</Link>
+					<br />
+					<Link className={classes.link} to="/Profile/orders">
+						<Button>to orders</Button>
+					</Link>
+					{/* <Tabs
 						orientation="vertical"
 						value={value}
 						onChange={handleChange}
 						aria-label="Vertical tabs example"
 						className={classes.tabs}>
-						<Tab className={classes.tablink} label="Account Info" {...a11yProps(0)} />
-						<Tab className={classes.tablink} label="My orders" {...a11yProps(1)} />
-						{/* <Tab className={classes.tablink} label="My cart" {...a11yProps(2)} /> */}
-						<Tab className={classes.tablink} label="Settings" {...a11yProps(3)} />
-					</Tabs>
-				</Hidden>
-			</Grid>
-			<Grid item container xs={12} md={9}>
-				<TabPanel value={value} index={0} className={classes.rightpanel}>
-					<Typography> </Typography>
+						<Tab label="Account Info" {...a11yProps('info')} />
+						<Tab label="My Orders" {...a11yProps('orders')} />
+					</Tabs> */}
+				</Grid>
+			</Hidden>
+			<Grid xs={11} sm={6}>
+				<TabPanel value={value} index={'info'}>
+					<Container maxWidth="md">
+						<Typography> My Account Details</Typography>
+						<br />
+						<Grid item container xs={12} justify="center" item container style={{ height: '50px' }}>
+							<Grid item xs={5}>
+								Name:
+							</Grid>
+							<Grid item xs={5}>
+								{userdata ? (
+									<Typography>{userdata.username} </Typography>
+								) : (
+									<CircularProgress color="secondary" />
+								)}
+							</Grid>
+						</Grid>
+						<Grid item container xs={12} justify="center" item container style={{ height: '50px' }}>
+							<Grid item xs={5}>
+								Email-Id:
+							</Grid>
+							<Grid item xs={5}>
+								{userdata ? (
+									<Typography>{userdata.email} </Typography>
+								) : (
+									<CircularProgress color="secondary" />
+								)}
+							</Grid>
+						</Grid>
+						<Grid item container xs={12} justify="center" item container style={{ height: '50px' }}>
+							<Grid item xs={5}>
+								Mobile number:
+							</Grid>
+							<Grid item xs={5}>
+								{userdata ? (
+									<Typography>{userdata.mobile} </Typography>
+								) : (
+									<CircularProgress color="secondary" />
+								)}
+							</Grid>
+						</Grid>
+					</Container>
 				</TabPanel>
-				<TabPanel value={value} index={1} className={classes.rightpanel}>
-					<Container></Container>
-				</TabPanel>
-				{/* <TabPanel value={value} index={2} className={classes.rightpanel}>
-					My cart
-				</TabPanel> */}
-				<TabPanel value={value} index={3} className={classes.rightpanel}>
-					Settings
+				<TabPanel value={value} index={'orders'}>
+					Orders section in development
 				</TabPanel>
 			</Grid>
 		</Grid>
 	);
 }
+
 export default Profilepage;

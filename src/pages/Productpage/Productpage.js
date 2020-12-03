@@ -140,19 +140,18 @@ function Productpage() {
 	const [product, setproduct] = React.useState([]);
 
 	const [productimages, setproductimages] = React.useState([]);
-	// console.log(id);
 
 	useEffect(() => {
 		if (products.length) {
-			console.log(products[0].productimages);
+			// console.log(products[0].productimages);
 		}
 		setproduct(
 			products.find((product) => {
-				console.log(product.productid);
+				// console.log(product.productid);
 				return product.productid === id;
 			})
 		);
-		console.log(product);
+		// console.log(product);
 	}, [products]);
 
 	return (
@@ -168,7 +167,11 @@ function Productpage() {
 							})} */}
 								{product.productimages.map((bigimage, index) => (
 									<TabPanel className={classes.paneltab} key={index}>
-										<img className={classes.bigimage} src={bigimage} />
+										<img
+											alt={`Uniquefit ${product.productname}`}
+											className={classes.bigimage}
+											src={bigimage}
+										/>
 									</TabPanel>
 								))}
 							</Grid>

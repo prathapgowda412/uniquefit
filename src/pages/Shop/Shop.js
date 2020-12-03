@@ -199,7 +199,7 @@ function Shop() {
 					{/* {products.forEach((pro) => {
 						return <> {pro.productname} </>;
 					})} */}
-					{products.map((product) => {
+					{products.reverse().map((product) => {
 						return <Product key={product.productid} product={product} />;
 					})}
 					{/* {products.map((product) => {

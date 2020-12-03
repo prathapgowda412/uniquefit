@@ -265,26 +265,6 @@ function Dashboard() {
 			},
 		};
 
-		// const headers = new Headers({
-		// 	'Content-Type': 'multipart/form-data',
-		// });
-
-		// let resp = await fetch('https://uniquefit.ml/products/insert-product', {
-		// 	method: 'POST',
-		// 	headers,
-		// });
-
-		// let resp = await fetch.post('https://uniquefit.ml/products/insert-product', productdata);
-		// Axios.post('https://uniquefit.ml/products/insert-product', JSON.stringify(productdata), config)
-		// 	.then((resp) => {
-		// 		console.log(resp);
-		// 	})
-		// 	.catch((err) => {
-		// 		console.log(err);
-		// 	});
-		// let resp = await Axios.post('https://uniquefit.ml/products/insert-product', productdata);
-		// let resp = await Axios.post('http://localhost:5000/products/insert-product', productdata);
-
 		let resp = await Axios.post(`${process.env.REACT_APP_API_URL}/products/insert-product`, productdata);
 		console.log(resp);
 		console.log(resp.data.message);

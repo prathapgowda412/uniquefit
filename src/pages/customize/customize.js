@@ -83,7 +83,7 @@ function Customize() {
 		let resp = await getCustomisations();
 
 		setfullCustomization(resp.data.customisations);
-		console.log(fullCustomization);
+		// console.log(fullCustomization);
 	};
 	// product from content below
 
@@ -179,7 +179,7 @@ function Customize() {
 
 	const hancleclickcart = async () => {
 		// toast('clicked butn');
-		if (localStorage.getItem('usertoken') == null) {
+		if (localStorage.getItem('usertoken')) {
 			history.push('/Login');
 			toast('please login to add to cart');
 			// <Redirect to="Login" />;
@@ -188,15 +188,16 @@ function Customize() {
 		const productc = { ...product };
 
 		let customisations = {
-			collar: fullCustomization.find((custom) => custom.name === collarnamevalue),
-			cuffs: fullCustomization.find((custom) => custom.name === sleevecuffvalue),
-			cuffstiff: fullCustomization.find((custom) => custom.name === cuffstiff),
-			button: fullCustomization.find((custom) => custom.name === butoonvalue),
-			buttontherad: fullCustomization.find((custom) => custom.name === buttonthreadvalue),
-			front: fullCustomization.find((custom) => custom.name === frontvalue),
-			pocket: fullCustomization.find((custom) => custom.name === pocketvalue),
 			back: fullCustomization.find((custom) => custom.name === backvalue),
 			backbottom: fullCustomization.find((custom) => custom.name === backbottomvalue),
+			buttons: fullCustomization.find((custom) => custom.name === butoonvalue),
+			collar: fullCustomization.find((custom) => custom.name === collarnamevalue),
+			collarstiffness: fullCustomization.find((custom) => custom.name === collarstiff),
+			front: fullCustomization.find((custom) => custom.name === frontvalue),
+			pocket: fullCustomization.find((custom) => custom.name === pocketvalue),
+			sleevecuffs: fullCustomization.find((custom) => custom.name === sleevecuffvalue),
+			buttonthread: fullCustomization.find((custom) => custom.name === buttonthreadvalue),
+			cuffstiffness: fullCustomization.find((custom) => custom.name === cuffstiff),
 		};
 
 		productc.customisations = customisations;
@@ -261,8 +262,7 @@ wa.link/54ag6i */}
 								orientation="vertical"
 								value={tabvalue}
 								onChange={handleTabChange}
-								aria-label="Vertical tabs example"
-								className={classes.tabs}>
+								aria-label="Vertical tabs example">
 								<Tab className={classes.tablink} label="Collar" {...a11yProps(0)}></Tab>
 								<Tab className={classes.tablink} label="Hand Cuffs" {...a11yProps(1)} />
 								<Tab className={classes.tablink} label="Button & Thread" {...a11yProps(2)} />
@@ -275,21 +275,95 @@ wa.link/54ag6i */}
 
 						{/* middle preview  tab below */}
 						<Grid item container sm={7} style={{ backgroundColor: '#fff', height: '100%' }}>
-							<Container className={classes.bigimagecont}>
-								{/* {fullCustomization.map((colar) => {
+							<Grid xs={12} className={classes.bigimagecont}>
+								<Container className={classes.bigimagecont}>
+									{/* {fullCustomization.map((colar) => {
 									if (colar.type == 'collar') {
 										return <Typography> |. {colar.name} .| </Typography>;
 									}
 								})} */}
 
-								{product && product.productimages ? (
-									<>
-										<img className={classes.bigimage} src={product.productimages[0]} />
-									</>
-								) : (
-									<CircularProgress color="secondary" />
-								)}
-							</Container>
+									{product && product.productimages ? (
+										<>
+											<img
+												className={classes.bigimagedesk}
+												height="350px"
+												src={product.productimages[0]}
+											/>
+										</>
+									) : (
+										<CircularProgress color="secondary" />
+									)}
+								</Container>
+							</Grid>
+							<Grid item container xs={12} justify="center" style={{ height: '35%' }}>
+								{/* <Container classname={classes.selectedbox}> */}
+								<Grid item container justify="space-between" xs={11}>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Collar name :</Typography>
+											{collarnamevalue}
+										</Paper>
+									</Grid>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Collar Stiffness :</Typography>
+											{collarstiff}
+										</Paper>
+									</Grid>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Sleeves and Cuffs :</Typography>
+											{sleevecuffvalue}
+										</Paper>
+									</Grid>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Cuff Stiffness :</Typography>
+											{cuffstiff}
+										</Paper>
+									</Grid>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Pocket name :</Typography>
+											{pocketvalue}
+										</Paper>
+									</Grid>
+								</Grid>
+								<Grid item container justify="space-between" container xs={11}>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Button name :</Typography>
+											{butoonvalue}
+										</Paper>
+									</Grid>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Button Thread color :</Typography>
+											{buttonthreadvalue}
+										</Paper>
+									</Grid>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Front Value :</Typography>
+											{frontvalue}
+										</Paper>
+									</Grid>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Back Value :</Typography>
+											{backvalue}
+										</Paper>
+									</Grid>
+									<Grid xs={2} item>
+										<Paper elevation className={classes.selectedpaper}>
+											<Typography> Back Bottom name :</Typography>
+											{backbottomvalue}
+										</Paper>
+									</Grid>
+								</Grid>
+								{/* </Container> */}
+							</Grid>
 						</Grid>
 						{/* middle preview  tab above */}
 
@@ -321,41 +395,7 @@ wa.link/54ag6i */}
 												);
 											})}
 									</RadioGroup>
-									{/*  */}
-									{/* <RadioGroup
-										
-										value={collarnamevalue}
-										onChange={handlecollarChange}
-										className={classes.typepanel}>
-										{fullCustomization
-											.filter((colr) => colr.type == 'collar')
-											.map((collar) => {
-												return (
-													<Paper className={classes.typepaper}>
-														<img src={collar.image} className={classes.typeimage} />
-														<FormControlLabel
-															image={collar.image}
-															control={<Radio />}
-															label={collar.name}
-														/>
-													</Paper>
-												);
-											})}
-									</RadioGroup> */}
-									{/* {collars.map((collar) => {
-											return (
-												<Paper className={classes.typepaper}>
-													<img src={collar.image} className={classes.typeimage} />
-													<FormControlLabel
-														image={collar.image}
-														onChange={handlecollarChange}
-														value={collar.name}
-														control={<Radio />}
-														label={collar.name}
-													/>
-												</Paper>
-											);
-										})} */}
+
 									{/* <Typography>value : {collarnamevalue}</Typography> */}
 								</FormControl>
 								<Divider className={classes.divider} />
@@ -380,30 +420,6 @@ wa.link/54ag6i */}
 												);
 											})}
 									</RadioGroup>
-									{/* <RadioGroup
-										aria-label="gender"
-										name="gender1"
-										value={collarstiff}
-										onChange={handlecollarstiffnesschange}
-										className={classes.typepanel}>
-										{fullCustomization
-											.filter((colr) => colr.type == 'collarstiffness')
-											.map((collarstiffness) => {
-												return (
-													<Paper className={classes.typepaper}>
-														<img
-															src={collarstiffness.image}
-															className={classes.typeimage}
-														/>
-														<FormControlLabel
-															value={collarstiffness.name}
-															control={<Radio />}
-															label={collarstiffness.name}
-														/>
-													</Paper>
-												);
-											})}
-									</RadioGroup> */}
 								</FormControl>
 							</TabPanel>
 							<TabPanel value={tabvalue} index={1} className={classes.rightpane}>
@@ -457,30 +473,6 @@ wa.link/54ag6i */}
 												);
 											})}
 									</RadioGroup>
-									{/* <RadioGroup
-										aria-label="gender"
-										name="gender1"
-										value={cuffstiff}
-										onChange={handlesleevecuffstiffness}
-										className={classes.typepanel}>
-										{fullCustomization
-											.filter((colr) => colr.type == 'collarstiffness')
-											.map((collarstiffness) => {
-												return (
-													<Paper className={classes.typepaper}>
-														<img
-															src={collarstiffness.image}
-															className={classes.typeimage}
-														/>
-														<FormControlLabel
-															value={collarstiffness.name}
-															control={<Radio />}
-															label={collarstiffness.name}
-														/>
-													</Paper>
-												);
-											})}
-									</RadioGroup> */}
 								</FormControl>
 							</TabPanel>
 							<TabPanel value={tabvalue} index={2} className={classes.rightpane}>
@@ -663,7 +655,7 @@ wa.link/54ag6i */}
 						</Box>
 					</Grid>
 
-					<Grid item container xs={12} style={{ height: '40vh', backgroundColor: '#fff' }}>
+					<Grid item container xs={12} style={{ height: '40vh', backgroundColor: '#f2f2f2' }}>
 						<Container className={classes.bigimagecont}>
 							{product && product.productimages ? (
 								<>

@@ -48,6 +48,7 @@ import Axios from 'axios';
 import { green } from '@material-ui/core/colors';
 import { ImageSearchRounded } from '@material-ui/icons';
 import HeaderStyles from '../css/HeaderStyles';
+import { toast } from 'react-toastify';
 
 const styles = HeaderStyles();
 
@@ -98,7 +99,14 @@ class Header extends Component {
 			};
 
 			const resp = await Axios.get(`${process.env.REACT_APP_API_URL}/users/me`, config);
-			console.log(resp.data);
+			// console.log(resp.data);
+			if (resp.data.message == 'Token has expired') {
+				toast.warning('User session has Expired \n Please Login');
+				localStorage.removeItem('usertoken');
+				localStorage.removeItem('tokens');
+				this.setState({ islogged: false });
+				window.location.reload();
+			}
 		} else {
 			console.log('not logged');
 			this.setState({ islogged: false });
@@ -153,7 +161,7 @@ class Header extends Component {
 				return (
 					<Box className={classes.loginsignup}>
 						<Button onClick={this.handlelogout}>Logout</Button>
-						<Link className={classes.profilelink} to={`/Profile`}>
+						<Link className={classes.profilelink} to={`/Profile/info`}>
 							<Button>
 								<img src={require('../statics/header/header_profile_icon.svg')} />
 							</Button>
@@ -185,6 +193,23 @@ class Header extends Component {
 						</Button>
 					</Link>
 				);
+			}
+		};
+		const Userprofileroutes = () => {
+			if (this.state.islogged) {
+				return (
+					<Container>
+						<Link className={classes.link} onClick={this.handleToggle} to="/Profile/info">
+							My Account
+						</Link>
+						<br />
+						<Link className={classes.link} onClick={this.handleToggle} to="/Profile/orders">
+							My Orders
+						</Link>
+					</Container>
+				);
+			} else {
+				return <> </>;
 			}
 		};
 
@@ -272,6 +297,7 @@ class Header extends Component {
 								<Box>{/* <Userlog /> */}</Box>
 							</nav>
 						</Container>
+						<Userprofileroutes />
 					</Paper>
 				</Drawer>
 				{/* drawer setion here end */}

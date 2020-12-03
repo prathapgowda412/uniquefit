@@ -185,6 +185,13 @@ function Register() {
 	const handleMouseDownPassword = (event) => {
 		event.preventDefault();
 	};
+	const isEmail = () => {
+		if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+			return true;
+		}
+		alert('You have entered an invalid email address!');
+		return false;
+	};
 	const [islogged, setislogged] = React.useState(false);
 	let [errorname, seterrorname] = React.useState();
 	let [response, setresponse] = React.useState();
@@ -209,7 +216,7 @@ function Register() {
 
 		axio.post(`${process.env.REACT_APP_API_URL}/users/register`, JSON.stringify(formdata), config)
 			.then((resp) => {
-				// console.log(resp);
+				console.log(resp);
 				// console.log(resp.data);
 				// console.log(resp.data.token);
 
@@ -217,6 +224,7 @@ function Register() {
 				localStorage.setItem('usertoken', resp.data.token);
 				setresponse('user registered successfully');
 				toast.success('Registered Successfully');
+				window.location.reload();
 			})
 			.catch((err) => {
 				seterrorname(err.response.data.msg);
@@ -232,7 +240,7 @@ function Register() {
 						<img className={classes.logo} src={Uniquefit_blacklogosvg} />
 					</Link>
 				</AppBar> */}
-				<Hidden smUp></Hidden>
+				{/* <Hidden smUp></Hidden> */}
 				{/* <Grid container> */}
 				<Grid item container sm={12} md={6} direction="column">
 					<Container maxWidth="sm">

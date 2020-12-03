@@ -22,6 +22,8 @@ import {
 	Slider,
 	useFormControl,
 	Hidden,
+	Select,
+	InputLabel,
 } from '@material-ui/core';
 import { addOrder, getCartItems } from '../../services/fetchService';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -35,170 +37,9 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Axios from 'axios';
 import { ReorderRounded } from '@material-ui/icons';
 import Header from '../Header';
+import cartStyles from './cartPageStyles';
 
-const Styles = makeStyles({
-	root: {
-		backgroundColor: 'white',
-	},
-
-	cartappbar: {
-		backgroundColor: '#fff',
-		padding: '20px',
-		height: '75px',
-		width: '100%',
-		marginBottom: '5px',
-		position: 'relative',
-		boxShadow: '2px 0px 5px -2px rgba(10,10,10,0.3)',
-	},
-	removebutton: {
-		backgroundColor: 'white',
-		float: 'right',
-	},
-	cartbox: {
-		// backgroundColor: '#f9f9f9',
-		minHeight: '100px',
-		maxHeight: 'fit-content',
-		// marginTop: '15px',
-	},
-	cardpaper: {
-		width: '100%',
-		position: 'relative',
-		display: 'flex',
-		flexDirection: 'row',
-		height: '150px',
-	},
-	leftbox: {
-		minHeight: '100px',
-		maxHeight: 'fit-content',
-		paddingTop: '20px',
-	},
-	rightbox: {
-		height: '500px',
-		// backgroundColor: '#dcd',
-		borderLeft: '1.5px solid rgba(100,100,100,0.40)',
-		marginTop: '20px',
-	},
-	itemcard: {
-		width: '90%',
-		// minHeight: 'fit-content',
-		height: 'fit-content',
-		marginTop: '10px',
-		boxShadow: '0px 1px 10px -5px rgba(10,10,10,0.3)',
-		// border: '1.5px solid #52525275',
-		borderRadius: '10px',
-	},
-	itemimg: {
-		width: '25%',
-		position: 'relative',
-		height: '100%',
-		objectFit: 'contain',
-	},
-	papercontent: {
-		width: '75%',
-		position: 'relative',
-		height: '100%',
-	},
-	papercontainer: {
-		marginTop: '5px',
-	},
-	productpricetag: {
-		fontSize: '16px',
-		color: '#282C3F',
-	},
-	productnametag: {
-		fontSize: '18px',
-		color: '#282C3F',
-	},
-	cartcalcont: {
-		borderRadius: '5px ',
-		boxShadow: '0px 0px 10px -5px rgba(50,50,71,0.26)',
-		// border: '1px solid black',
-		height: 'fit-content',
-		width: '80%',
-		padding: '20px 0 20px',
-	},
-	placeorderbutton: {
-		margin: '24px 0 24px',
-		padding: '16px 80px',
-		backgroundColor: '#387A76',
-		color: 'white',
-		borderRadius: '0px',
-		'&:hover': {
-			backgroundColor: '#034b46',
-		},
-	},
-	placebutontext: {
-		color: 'white',
-		fontSize: '18px',
-	},
-	adressbox: {
-		height: 'fit-content',
-		marginTop: '20px',
-	},
-	labelname: {
-		color: '#387A76',
-		fontSize: '20px',
-	},
-	sizebox: {
-		height: 'fit-content',
-		padding: '20px 0',
-		backgroundColor: '#fff',
-		textAlign: 'center',
-		marginTop: '50px',
-	},
-	sizeimages: {
-		display: 'flex',
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		alignItems: 'space-evenly',
-	},
-	sizeimg: {
-		width: '90%',
-	},
-	sizepaper: {
-		width: '115px',
-		display: 'flex',
-		justifyContent: 'center',
-		flexDirection: 'column',
-		flexWrap: 'wrap',
-		alignItems: 'center',
-		margin: '5px 20px',
-	},
-	paperaddress: {
-		marginTop: '10px',
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-	},
-	setaddressbuton: {
-		// backgroundColor: '#387A76',
-		backgroundColor: 'black',
-
-		padding: '5px 10px',
-	},
-	sizeheading: {
-		fontSize: '26px',
-		textAlign: 'center',
-		margin: '50px 0',
-		color: 'red',
-	},
-	adressbox: {
-		display: 'flex',
-		justifyContent: 'center',
-	},
-	emptyimg: {
-		width: '100%',
-		objectFit: 'contain',
-	},
-	emptyimgmob: {
-		width: '100%',
-		objectFit: 'container',
-	},
-	adressform: {
-		height: 'fit-content',
-		backgroundColor: 'grey',
-	},
-});
+const Styles = cartStyles;
 
 // for stepper below
 function getSteps() {
@@ -227,6 +68,7 @@ function Cartpage() {
 		setaddressname(event.target.value);
 	};
 	const handlemobile = (event) => {
+		setmobileerror('');
 		setaddressmobile(event.target.value);
 	};
 	const handlefulladress = (event) => {
@@ -237,15 +79,24 @@ function Cartpage() {
 	};
 	const handlestate = (event) => {
 		setaddressstate(event.target.value);
+		console.log(addressstate);
 	};
 	const handlepin = (event) => {
 		setaddresspin(event.target.value);
 	};
-
+	const [doneadress, setdoneadress] = React.useState();
+	const [mobileerror, setmobileerror] = React.useState();
 	const handlesetfulladress = () => {
-		setfulladdress(
-			`Name:${addressname} , Phone :${addressmobile} , Address :${addressfull} , City : ${addresscity} , State: ${addressstate} , Pin: ${addresspin}`
-		);
+		if (addressmobile.length == 10) {
+			console.log('lenght is 10');
+			setdoneadress('Done adding address');
+			setfulladdress(
+				`Name:${addressname} , Phone :${addressmobile} , Address :${addressfull} , City : ${addresscity} , State: ${addressstate} , Pin: ${addresspin}`
+			);
+		} else {
+			console.log('not 10');
+			setmobileerror('enter 10-digit mobile number');
+		}
 	};
 
 	// get sizes below
@@ -335,7 +186,7 @@ function Cartpage() {
 			setCartItems(cartIts.items);
 			// console.log(cartIts);
 			// console.log(cartItems);
-			console.log(cartIts.items);
+			// console.log(cartIts.items);
 		});
 	}, []);
 	useEffect(() => {
@@ -847,9 +698,9 @@ function Cartpage() {
 				);
 			case 2:
 				return (
-					<Container maxWidth="md">
+					<Container maxWidth="sm">
 						<FormControl style={{ display: 'flex', justifyContent: 'center' }} noValidate>
-							<Grid xs={6} style={{ backgroundColor: 'white' }} item container spacing={2}>
+							<Grid item container xs={6} spacing={2}>
 								<FormLabel>Enter adress :</FormLabel>
 								<Grid item xs={12}>
 									<TextField
@@ -866,11 +717,15 @@ function Cartpage() {
 										onChange={handlemobile}
 										label="Phone number:"
 										fullWidth
-										placeholder="pin code "
+										required
+										placeholder="phone number "
 										variant="outlined"
 									/>
+									{/* <input type="text" maxLength="10" minLength="10" /> */}
+									<Typography style={{ color: 'red', fontSize: '13px' }}>{mobileerror} </Typography>
+									{/* <Input type="number" /> */}
 								</Grid>
-								<Grid xs={12}>
+								<Grid item xs={12}>
 									<TextField
 										onChange={handlefulladress}
 										label="Full Adddress :"
@@ -880,7 +735,7 @@ function Cartpage() {
 										variant="outlined"
 									/>
 								</Grid>
-								<Grid xs={12}>
+								<Grid item xs={12}>
 									<TextField
 										onChange={handlecity}
 										label="City :"
@@ -890,32 +745,80 @@ function Cartpage() {
 										variant="outlined"
 									/>
 								</Grid>
-								<Grid xs={12}>
-									<TextField
+								<Grid item xs={12} sm={6}>
+									<FormControl>
+										<InputLabel htmlFor="adress-state">State</InputLabel>
+										<Select
+											native
+											variant="outlined"
+											value={addressstate}
+											onChange={handlestate}
+											name="age"
+											required
+											inputProps={{
+												id: 'adress-state',
+											}}>
+											<option aria-label="None" value="" />
+											<option value="Andhra Pradesh">Andhra Pradesh</option>
+											<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+											<option value="Assam">Assam</option>
+											<option value="Bihar">Bihar</option>
+											<option value="Chhattisgarh">Chhattisgarh</option>
+											<option value="Delhi">Delhi</option>
+											<option value="Goa">Goa</option>
+											<option value="Gujarat">Gujarat</option>
+											<option value="Haryana">Haryana</option>
+											<option value="Himachal Pradesh">Himachal Pradesh </option>
+											<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+											<option value="Jharkhand">Jharkhand </option>
+											<option value="Karnataka">Karnataka </option>
+											<option value="Kerala">Kerala </option>
+											<option value="Ladakh">Ladakh</option>
+											<option value="Madhya Pradesh">Madhya Pradesh </option>
+											<option value="Maharashtra">Maharashtra </option>
+											<option value="Manipur">Manipur </option>
+											<option value="Meghalaya">Meghalaya </option>
+											<option value="Mizoram">Mizoram </option>
+											<option value="Nagaland">Nagaland </option>
+											<option value="Odisha">Odisha </option>
+											<option value="Punjab">Punjab </option>
+											<option value="Puducherry">Puducherry</option>
+											<option value="Rajasthan">Rajasthan </option>
+											<option value="Sikkim">Sikkim </option>
+											<option value="Tamil Nadu">Tamil Nadu </option>
+											<option value="Telangana">Telangana </option>
+											<option value="Tripura">Tripura </option>
+											<option value="Uttar Pradesh">Uttar Pradesh </option>
+											<option value="Uttarakhand">Uttarakhand </option>
+											<option value="West Bengal">West Bengal </option>
+										</Select>
+									</FormControl>
+									{/* <TextField
 										onChange={handlestate}
 										label="State :"
 										fullWidth
 										placeholder="state"
 										variant="outlined"
-									/>
+									/> */}
 								</Grid>
-								<Grid xs={12}>
+								<Grid item xs={12} sm={6}>
 									<TextField
 										onChange={handlepin}
 										label="Pin Code :"
 										fullWidth
+										required
 										placeholder="pin code "
 										variant="outlined"
 									/>
 								</Grid>
+								<Button
+									classname={classes.setaddressbuton}
+									style={{ backgroundColor: '#387A76', padding: '5px 10px', marginTop: '5px' }}
+									onClick={handlesetfulladress}>
+									Set address
+								</Button>
+								<Typography style={{ color: 'green', fontSize: '13px' }}>{doneadress}</Typography>
 							</Grid>
-							<Divider />
-							<Button
-								classname={classes.setaddressbuton}
-								style={{ backgroundColor: '#387A76', padding: '5px 10px' }}
-								onClick={handlesetfulladress}>
-								Set address
-							</Button>
 						</FormControl>
 
 						{/* <Container classname={classes.adressbox}>
@@ -995,7 +898,7 @@ function Cartpage() {
 								</Grid>
 								<Container>
 									<Button className={classes.placebutontext} onClick={razorPayPaymentHandler}>
-										Pay Now da
+										Pay Now
 										{/* {activeStep === steps.length - 1 ? 'CheckOut' : 'Next'} */}
 									</Button>
 								</Container>

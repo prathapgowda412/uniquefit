@@ -1,5 +1,5 @@
 import { Grid } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { getProducts } from './services/fetchService';
@@ -92,7 +92,7 @@ function App() {
 										<Printed />
 										<Footer />
 									</Route>
-									<Route path="/Profile">
+									<Route path="/Profile/:tab">
 										<Header />
 										<Profilepage />
 										<Footer />

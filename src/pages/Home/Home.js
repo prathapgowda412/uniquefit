@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Firstsec from './components/Firstsec';
 import Trending from './components/Trendingproducts';
 import Shopfav from './components/shopfavaroite';
