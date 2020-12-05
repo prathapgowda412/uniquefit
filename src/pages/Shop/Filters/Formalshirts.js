@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Checks() {
+function FormalShirts() {
 	const classes = useStyles();
 	//   const [products, setproducts] = React.useState([]);
 
@@ -70,7 +70,7 @@ function Checks() {
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
 				<Grid item container xs={12} sm={10} direction="row" className={classes.productsbox}>
 					{products.map((product) => {
-						if (product.productpattern == 'Checks') {
+						if (product.producttype == 'Formal') {
 							return <Product key={product.productid} product={product} />;
 						}
 					})}
@@ -80,4 +80,4 @@ function Checks() {
 	);
 }
 
-export default Checks;
+export default FormalShirts;

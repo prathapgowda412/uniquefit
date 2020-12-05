@@ -40,6 +40,11 @@ import Printed from './pages/Shop/Filters/Printed';
 import { userContext } from './contexts/UserContext';
 import { WhatsApp } from '@material-ui/icons';
 import Whatsapp from './pages/whatsapp';
+import FormalShirts from './pages/Shop/Filters/Formalshirts';
+import FilterType from './pages/Shop/Filters/FilterType';
+import PrivacyPolicy from './pages/Common/PrivacyPolicy';
+import ShippingPolicy from './pages/Common/ShippingPolicy';
+import TermsPolicy from './pages/Common/Terms';
 
 function App() {
 	const [authTokens, setAuthTokens] = useState(localStorage.getItem('tokens') || '');
@@ -59,6 +64,7 @@ function App() {
 							<Grid container item xs={12}>
 								<Switch>
 									<Route path="/Shop">
+										<Whatsapp />
 										<Header />
 										<Shop />
 										<Footer />
@@ -68,28 +74,45 @@ function App() {
 									</Route>
 
 									<Route path="/Aboutus">
+										<Whatsapp />
 										<Header />
 										<Aboutus />
 										<Footer />
 									</Route>
 									<Route path="/Solids">
+										<Whatsapp />
 										<Header />
 										<Solids />
 										<Footer />
 									</Route>
 									<Route path="/Checks">
+										<Whatsapp />
 										<Header />
 										<Checks />
 										<Footer />
 									</Route>
 									<Route path="/Stripes">
+										<Whatsapp />
 										<Header />
 										<Stripes />
 										<Footer />
 									</Route>
 									<Route path="/Printed">
+										<Whatsapp />
 										<Header />
 										<Printed />
+										<Footer />
+									</Route>
+									<Route path="/Formal">
+										<Whatsapp />
+										<Header />
+										<FormalShirts />
+										<Footer />
+									</Route>
+									<Route path="/filterType/:type">
+										<Whatsapp />
+										<Header />
+										<FilterType />
 										<Footer />
 									</Route>
 									<Route path="/Profile/:tab">
@@ -111,6 +134,7 @@ function App() {
 										<Uploadshirt />
 									</Route>
 									<Route path="/Contact">
+										<Whatsapp />
 										<Header />
 										<Contact />
 										<Footer />
@@ -120,11 +144,30 @@ function App() {
 										<Getsizes />
 										<Footer />
 									</Route>
+									<Route path="/PrivacyPolicy">
+										<Whatsapp />
+										<Header />
+										<PrivacyPolicy />
+										<Footer />
+									</Route>
+									<Route path="/ShippingPolicy">
+										<Whatsapp />
+										<Header />
+										<ShippingPolicy />
+										<Footer />
+									</Route>
+									<Route path="/Terms">
+										<Header />
+										<TermsPolicy />
+										<Footer />
+										<Whatsapp />
+									</Route>
 
 									<Route path="/Dashboard">
 										<Dashboard />
 									</Route>
 									<Route path="/ProductPage/:id">
+										<Whatsapp />
 										<Header />
 										<Productpage />
 										<Footer />
@@ -141,7 +184,7 @@ function App() {
 										<TestCartCrud />
 									</Route>
 									<Route path="/">
-										{/* <Whatsapp /> */}
+										<Whatsapp />
 										<Header />
 										<Home />
 										<Footer />

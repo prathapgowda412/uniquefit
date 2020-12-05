@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	pro: {
-		height: '370px',
+		height: 'fit-content',
 		width: '100%',
 		marginTop: '20px',
 		position: 'relative',
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 	card: {
 		backgroundColor: '#f2f2f2',
-		height: '420px',
+		height: '370px',
 		borderRadius: '5px',
 	},
 	topimag: {
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 	cardbody: {
 		height: '30%',
 		position: 'relative',
+		backgroundColor: 'white',
 	},
 	productname: {
 		color: 'black',

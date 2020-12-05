@@ -364,6 +364,39 @@ function Cartpage() {
 								</Container>
 							</Container>
 						</Grid>
+						<Container>
+							{activeStep === steps.length ? (
+								<div>
+									<Typography className={classes.instructions}>All steps completed</Typography>
+									<Button onClick={handleReset}>Reset</Button>
+								</div>
+							) : (
+								<div>
+									<Container style={{ display: 'flex', justifyContent: 'center' }}>
+										<div
+											style={{
+												width: 'fit-content',
+											}}>
+											<Button
+												disabled={activeStep === 0}
+												onClick={handleBack}
+												className={classes.backButton}>
+												Back
+											</Button>
+											<Button
+												className={classes.placeorderbutton}
+												variant="contained"
+												color="primary"
+												onClick={handleNext}>
+												<Typography className={classes.placebutontext}>
+													{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+												</Typography>
+											</Button>
+										</div>
+									</Container>
+								</div>
+							)}
+						</Container>
 					</Grid>
 				);
 			case 1:
@@ -694,6 +727,39 @@ function Cartpage() {
 								</RadioGroup>
 							</Container>
 						</Container>
+						<Container>
+							{activeStep === steps.length ? (
+								<div>
+									<Typography className={classes.instructions}>All steps completed</Typography>
+									<Button onClick={handleReset}>Reset</Button>
+								</div>
+							) : (
+								<div>
+									<Container style={{ display: 'flex', justifyContent: 'center' }}>
+										<div
+											style={{
+												width: 'fit-content',
+											}}>
+											<Button
+												disabled={activeStep === 0}
+												onClick={handleBack}
+												className={classes.backButton}>
+												Back
+											</Button>
+											<Button
+												className={classes.placeorderbutton}
+												variant="contained"
+												color="primary"
+												onClick={handleNext}>
+												<Typography className={classes.placebutontext}>
+													{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+												</Typography>
+											</Button>
+										</div>
+									</Container>
+								</div>
+							)}
+						</Container>
 					</Grid>
 				);
 			case 2:
@@ -820,6 +886,39 @@ function Cartpage() {
 								<Typography style={{ color: 'green', fontSize: '13px' }}>{doneadress}</Typography>
 							</Grid>
 						</FormControl>
+						<Container>
+							{activeStep === steps.length ? (
+								<div>
+									<Typography className={classes.instructions}>All steps completed</Typography>
+									<Button onClick={handleReset}>Reset</Button>
+								</div>
+							) : (
+								<div>
+									<Container style={{ display: 'flex', justifyContent: 'center' }}>
+										<div
+											style={{
+												width: 'fit-content',
+											}}>
+											<Button
+												disabled={activeStep === 0}
+												onClick={handleBack}
+												className={classes.backButton}>
+												Back
+											</Button>
+											<Button
+												className={classes.placeorderbutton}
+												variant="contained"
+												color="primary"
+												onClick={handleNext}>
+												<Typography className={classes.placebutontext}>
+													{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+												</Typography>
+											</Button>
+										</div>
+									</Container>
+								</div>
+							)}
+						</Container>
 
 						{/* <Container classname={classes.adressbox}>
               <FormControl></FormControl>
@@ -897,8 +996,9 @@ function Cartpage() {
 									<Divider />
 								</Grid>
 								<Container>
-									<Button className={classes.placebutontext} onClick={razorPayPaymentHandler}>
-										Pay Now
+									<Button className={classes.paynowbutton} onClick={razorPayPaymentHandler}>
+										<Typography style={{ color: 'white' }}> Pay Now</Typography>
+
 										{/* {activeStep === steps.length - 1 ? 'CheckOut' : 'Next'} */}
 									</Button>
 								</Container>
@@ -951,7 +1051,7 @@ function Cartpage() {
 										<Typography className={classes.instructions}>
 											{getStepContent(activeStep)}
 										</Typography>
-										<Container style={{ display: 'flex', justifyContent: 'center' }}>
+										{/* <Container style={{ display: 'flex', justifyContent: 'center' }}>
 											<div
 												style={{
 													width: 'fit-content',
@@ -972,7 +1072,7 @@ function Cartpage() {
 													</Typography>
 												</Button>
 											</div>
-										</Container>
+										</Container> */}
 									</div>
 								)}
 							</Box>

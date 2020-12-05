@@ -4,7 +4,16 @@ const cartStyles = makeStyles((theme) => ({
 	root: {
 		backgroundColor: 'white',
 	},
-
+	paynowbutton: {
+		margin: '24px 0 24px',
+		padding: '16px 80px',
+		backgroundColor: '#387A76',
+		color: 'white',
+		borderRadius: '4px',
+		'&:hover': {
+			backgroundColor: '#034b46',
+		},
+	},
 	cartappbar: {
 		backgroundColor: '#fff',
 		padding: '20px',
@@ -86,7 +95,7 @@ const cartStyles = makeStyles((theme) => ({
 		padding: '16px 80px',
 		backgroundColor: '#387A76',
 		color: 'white',
-		borderRadius: '0px',
+		borderRadius: '4px',
 		'&:hover': {
 			backgroundColor: '#034b46',
 		},

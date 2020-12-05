@@ -16,15 +16,16 @@ function Whatsapp() {
 
 	const goToWhatsapp = () => {
 		// global.window.location.href = 'wa.link/54ag6i';
-		window.location.pathname = 'wa.link/54ag6i';
+		// window.location.pathname = 'wa.link/54ag6i';
 	};
+	// https://wa.link/pyw6h9
 	return (
 		<Box className={classes.whatsapp}>
-			{/* <a  href="wa.link/54ag6i"> */}
-			<Button onClick={goToWhatsapp}>
-				<img height="60px" src={require('../logos/whatsapp.svg')} />
-			</Button>
-			{/* </a> */}
+			<a href="https://wa.link/pyw6h9">
+				<Button onClick={goToWhatsapp}>
+					<img height="60px" src={require('../logos/whatsapp.svg')} />
+				</Button>
+			</a>
 		</Box>
 	);
 }

@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Grid, List, ListItem, ListItemText, Paper, Typography } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import uniquefitlogo from '../logos/Uniquefit logo.svg';
@@ -14,6 +14,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	link: {
 		textDecoration: 'none',
+		width: 'fit-content',
+		// backgroundColor: 'red',
 		padding: '4px 8px',
 		'&:hover': {
 			Color: '#387A76',
@@ -70,6 +72,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	listbox: {
 		listStyleType: 'none',
+		backgroundColor: 'blue',
+		width: 'auto',
 	},
 	listhead: {
 		fontWeight: 'bold',
@@ -152,75 +156,90 @@ function Footer() {
 					{/* <Link to="/Dashboard">dashboard</Link> */}
 					<Grid item container justify="center" xs={12} sm={6}>
 						<Grid item container xs={6}>
-							<ul className={classes.listbox}>
-								<li className={classes.listhead}> Pattern</li>
-								<li>
-									<Link className={classes.link} to="/Checks">
-										Checks
-									</Link>
-								</li>
-								<li>
-									<Link className={classes.link} to="/Solids">
-										Solids
-									</Link>
-								</li>
-								<li>
-									<Link className={classes.link} to="/Printed">
-										Printed
-									</Link>
-								</li>
-								<li>
-									<Link className={classes.link} to="/Stripes">
-										Stripes
-									</Link>
-								</li>
-							</ul>
+							<List>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/Checks">
+											Checks
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/Stripes">
+											Stripes
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/Printed">
+											Printed
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/Solids">
+											Solids
+										</Link>
+									</ListItemText>
+								</ListItem>
+							</List>
 						</Grid>
 						<Grid item container xs={6}>
-							<ul className={classes.listbox}>
-								<li className={classes.listhead}> Pattern</li>
-								<li>
-									<Link className={classes.link} to="/Checks">
-										Checks
-									</Link>
-								</li>
-								<li>
-									<Link className={classes.link} to="/Solids">
-										Solids
-									</Link>
-								</li>
-								<li>
-									{' '}
-									<Link className={classes.link} to="/Printed">
-										Printed
-									</Link>{' '}
-								</li>
-								<li>
-									{' '}
-									<Link className={classes.link} to="/Stripes">
-										Stripes
-									</Link>{' '}
-								</li>
-							</ul>
+							<List>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/filterType/Semi-Formal">
+											Semi Formal
+										</Link>
+									</ListItemText>
+								</ListItem>
+
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/filterType/Formal">
+											Formal
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/filterType/Casual">
+											Casual
+										</Link>
+									</ListItemText>
+								</ListItem>
+							</List>
 						</Grid>
 					</Grid>
 					<Grid item container xs={12} sm={6}>
-						{/* <Grid xs={6}>
-              <ul className={classes.listbox}>
-                <li className={classes.listhead}> Shop</li>
-                <li> Formals</li>
-                <li> Casual</li>
-                <li> Design shirt</li>
-              </ul>
-            </Grid>
-            <Grid xs={6}>
-              <ul className={classes.listbox}>
-                <li className={classes.listhead}> Shop</li>
-                <li> Formals</li>
-                <li> Casual</li>
-                <li> Design shirt</li>
-              </ul>
-            </Grid> */}
+						<Grid item container xs={6}>
+							<List>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/PrivacyPolicy">
+											Privacy
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/ShippingPolicy">
+											Shipping
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										<Link className={classes.link} to="/Terms">
+											Terms
+										</Link>
+									</ListItemText>
+								</ListItem>
+							</List>
+						</Grid>
 					</Grid>
 				</Grid>
 			</Grid>
