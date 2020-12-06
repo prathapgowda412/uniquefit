@@ -138,10 +138,6 @@ function Cartpage() {
 		},
 
 		{
-			value: 5.8,
-			label: '37°C',
-		},
-		{
 			value: 170,
 			label: '5.6 ft',
 		},
@@ -215,7 +211,22 @@ function Cartpage() {
 	};
 
 	const classes = Styles();
+	const [coupon, setcoupon] = React.useState();
+	const [nocouponerror, setnocouponerror] = React.useState('');
+	const handlecouponadd = async () => {
+		let code = coupon;
+		console.log(coupon);
+		// const couponValue = coupons.find((coup) => coup.code === coupon);
+		const resp = await Axios.post(`${process.env.REACT_APP_API_URL}/coupons/getCouponByCode`, { code });
+		// console.log(resp);
+		// console.log(resp.data);
+		// console.log(resp.data.value);
 
+		const couponDiscount = resp.data.value;
+		setcartsaleprice(cartsaleprice - couponDiscount);
+		// console.log(couponValue);
+		// console.log(couponValue.value);
+	};
 	const history = useHistory();
 	// payments codew below
 	const razorPayPaymentHandler = async () => {
@@ -985,15 +996,35 @@ function Cartpage() {
 											<Typography>{cartmrpvalueprice}</Typography>
 										</Grid>
 									</Grid>
+									<Divider />
 									<Grid item container xs={10}>
 										<Grid item xs={7}>
-											<Typography>Sale Price:</Typography>
+											<Typography> Enter Coupon : </Typography>
+										</Grid>
+										<Grid item xs={8}>
+											<TextField
+												placeholder="COUPON CODE ?"
+												onChange={(event) => {
+													setcoupon(event.target.value);
+													setnocouponerror('');
+												}}
+												variant="outlined"
+											/>
+											<Typography style={{ color: 'red', fontSize: '12px' }}>
+												{' '}
+												{nocouponerror}{' '}
+											</Typography>
+											<Button onClick={handlecouponadd}> add coupon</Button>
+										</Grid>
+									</Grid>
+									<Grid item container xs={10}>
+										<Grid item xs={7}>
+											<Typography>Cart Value:</Typography>
 										</Grid>
 										<Grid item xs={5}>
 											<Typography>{cartsaleprice}</Typography>
 										</Grid>
 									</Grid>
-									<Divider />
 								</Grid>
 								<Container>
 									<Button className={classes.paynowbutton} onClick={razorPayPaymentHandler}>

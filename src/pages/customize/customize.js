@@ -179,9 +179,11 @@ function Customize() {
 
 	const hancleclickcart = async () => {
 		// toast('clicked butn');
-		if (localStorage.getItem('usertoken')) {
-			history.push('/Login');
+		console.log(localStorage.getItem('usertoken'));
+		let toke = localStorage.getItem('usertoken');
+		if (toke == null) {
 			toast('please login to add to cart');
+			history.push('/Login');
 			// <Redirect to="Login" />;
 		}
 
