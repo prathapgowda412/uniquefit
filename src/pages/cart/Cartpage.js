@@ -211,22 +211,23 @@ function Cartpage() {
 	};
 
 	const classes = Styles();
+	// for coupon code below
 	const [coupon, setcoupon] = React.useState();
 	const [nocouponerror, setnocouponerror] = React.useState('');
 	const handlecouponadd = async () => {
-		let code = coupon;
-		console.log(coupon);
+		// let code = coupon;
+		// console.log(coupon);
 		// const couponValue = coupons.find((coup) => coup.code === coupon);
-		const resp = await Axios.post(`${process.env.REACT_APP_API_URL}/coupons/getCouponByCode`, { code });
+		// const resp = await Axios.post(`${process.env.REACT_APP_API_URL}/coupons/getCouponByCode`, { code });
 		// console.log(resp);
 		// console.log(resp.data);
 		// console.log(resp.data.value);
-
-		const couponDiscount = resp.data.value;
-		setcartsaleprice(cartsaleprice - couponDiscount);
+		// const couponDiscount = resp.data.value;
+		// setcartsaleprice(cartsaleprice - couponDiscount);
 		// console.log(couponValue);
 		// console.log(couponValue.value);
 	};
+	// for coupon code above
 	const history = useHistory();
 	// payments codew below
 	const razorPayPaymentHandler = async () => {
@@ -998,10 +999,11 @@ function Cartpage() {
 									</Grid>
 									<Divider />
 									<Grid item container xs={10}>
-										<Grid item xs={7}>
+										{/* uncomment for coupon */}
+										{/* <Grid item xs={7}>
 											<Typography> Enter Coupon : </Typography>
-										</Grid>
-										<Grid item xs={8}>
+										</Grid> */}
+										{/* <Grid item xs={8}>
 											<TextField
 												placeholder="COUPON CODE ?"
 												onChange={(event) => {
@@ -1015,7 +1017,10 @@ function Cartpage() {
 												{nocouponerror}{' '}
 											</Typography>
 											<Button onClick={handlecouponadd}> add coupon</Button>
-										</Grid>
+										</Grid> */}
+										{/* <Grid xs={10}> 
+
+										</Grid> */}
 									</Grid>
 									<Grid item container xs={10}>
 										<Grid item xs={7}>
