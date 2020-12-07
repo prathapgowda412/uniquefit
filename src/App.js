@@ -64,7 +64,7 @@ function App() {
 							<Grid container item xs={12}>
 								<Switch>
 									<Route path="/Shop">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Shop />
 										<Footer />
@@ -74,43 +74,43 @@ function App() {
 									</Route>
 
 									<Route path="/Aboutus">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Aboutus />
 										<Footer />
 									</Route>
 									<Route path="/Solids">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Solids />
 										<Footer />
 									</Route>
 									<Route path="/Checks">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Checks />
 										<Footer />
 									</Route>
 									<Route path="/Stripes">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Stripes />
 										<Footer />
 									</Route>
 									<Route path="/Printed">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Printed />
 										<Footer />
 									</Route>
 									<Route path="/Formal">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<FormalShirts />
 										<Footer />
 									</Route>
 									<Route path="/filterType/:type">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<FilterType />
 										<Footer />
@@ -134,7 +134,7 @@ function App() {
 										<Uploadshirt />
 									</Route>
 									<Route path="/Contact">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Contact />
 										<Footer />
@@ -145,13 +145,13 @@ function App() {
 										<Footer />
 									</Route>
 									<Route path="/PrivacyPolicy">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<PrivacyPolicy />
 										<Footer />
 									</Route>
 									<Route path="/ShippingPolicy">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<ShippingPolicy />
 										<Footer />
@@ -160,14 +160,14 @@ function App() {
 										<Header />
 										<TermsPolicy />
 										<Footer />
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 									</Route>
 
 									<Route path="/Dashboard">
 										<Dashboard />
 									</Route>
 									<Route path="/ProductPage/:id">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Productpage />
 										<Footer />
@@ -184,7 +184,7 @@ function App() {
 										<TestCartCrud />
 									</Route>
 									<Route path="/">
-										<Whatsapp />
+										{/* 	<Whatsapp />*/}
 										<Header />
 										<Home />
 										<Footer />
