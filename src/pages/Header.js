@@ -1,11 +1,11 @@
-import React, { Component, useContext, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
-import Uniquefit_blacklogosvg from '../logos/Uniquefit logo.svg';
-import uniquefit_monogramblack from '../logos/Unique fit monogram.svg';
+import React, { Component, useContext, useEffect } from "react";
+import Button from "@material-ui/core/Button";
+import Uniquefit_blacklogosvg from "../logos/Uniquefit logo.svg";
+import uniquefit_monogramblack from "../logos/Unique fit monogram.svg";
 
-import Grow from '@material-ui/core/Grow';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import { withStyles } from '@material-ui/styles';
+import Grow from "@material-ui/core/Grow";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import { withStyles } from "@material-ui/styles";
 import {
   AppBar,
   Avatar,
@@ -28,31 +28,32 @@ import {
   ButtonGroup,
   Popover,
   Popper,
-} from '@material-ui/core';
-import '../custom.css';
-import MenuIcon from '@material-ui/icons/Menu';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from "@material-ui/core";
+import "../custom.css";
+import MenuIcon from "@material-ui/icons/Menu";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faShoppingCart,
   faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 // import Aboutsection from './aboutsection';
-import { Link, NavLink } from 'react-router-dom';
-import { render } from '@testing-library/react';
-import { styled } from '@material-ui/core/styles';
-import breakpoint from 'styled-components-breakpoint';
-import users from '../data/users.json';
-import { width } from '@material-ui/system';
-import { UserContext } from '../auth';
-import CloseIcon from '@material-ui/icons/Close';
-import axio from 'axios';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import Axios from 'axios';
-import { green } from '@material-ui/core/colors';
-import { ImageSearchRounded } from '@material-ui/icons';
-import HeaderStyles from '../css/HeaderStyles';
-import { toast } from 'react-toastify';
+import { Link, NavLink } from "react-router-dom";
+import { render } from "@testing-library/react";
+import { styled } from "@material-ui/core/styles";
+import breakpoint from "styled-components-breakpoint";
+import users from "../data/users.json";
+import { width } from "@material-ui/system";
+import { UserContext } from "../auth";
+import CloseIcon from "@material-ui/icons/Close";
+import axio from "axios";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import Axios from "axios";
+import { green } from "@material-ui/core/colors";
+import { ImageSearchRounded } from "@material-ui/icons";
+import HeaderStyles from "../css/HeaderStyles";
+import { toast } from "react-toastify";
+import { getProfileDetails } from "./../services/fetchService";
 
 const styles = HeaderStyles();
 
@@ -65,9 +66,9 @@ class Header extends Component {
     this.state = {
       open: false,
       anchorEl: null,
-      username: '',
+      username: "",
       islogged: false,
-      tshirtcomingsoon: 'Tshirts',
+      tshirtcomingsoon: "Tshirts",
       usertoken: null,
     };
   }
@@ -90,49 +91,46 @@ class Header extends Component {
   };
 
   componentDidMount = async () => {
-    let token = localStorage.getItem('usertoken');
+    let token = localStorage.getItem("usertoken");
 
     if (token) {
-      console.log('user logged');
+      console.log("user logged");
       this.setState({ islogged: true });
       const config = {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           token: token,
         },
       };
 
-      const resp = await Axios.get(
-        `${process.env.REACT_APP_API_URL}/users/me`,
-        config
-      );
+      const resp = await getProfileDetails(config);
       // console.log(resp.data);
-      if (resp.data.message == 'Token has expired') {
-        toast.warning('User session has Expired \n Please Login');
-        localStorage.removeItem('usertoken');
-        localStorage.removeItem('tokens');
+      if (resp.data.message == "Token has expired") {
+        toast.warning("User session has Expired \n Please Login");
+        localStorage.removeItem("usertoken");
+        localStorage.removeItem("tokens");
         this.setState({ islogged: false });
         // window.location.reload();
       }
     } else {
-      console.log('not logged');
+      console.log("not logged");
       this.setState({ islogged: false });
     }
   };
 
   handlecomingsoon = () => {
-    this.setState({ tshirtcomingsoon: 'Coming soon *' });
+    this.setState({ tshirtcomingsoon: "Coming soon *" });
   };
   handlecomingsoonchange = () => {
-    this.setState({ tshirtcomingsoon: 'Tshirts' });
+    this.setState({ tshirtcomingsoon: "Tshirts" });
   };
   // coming soon change above
 
   handlelogout = () => {
-    this.setState({ username: '', islogged: false });
+    this.setState({ username: "", islogged: false });
 
-    localStorage.removeItem('usertoken');
-    localStorage.removeItem('tokens');
+    localStorage.removeItem("usertoken");
+    localStorage.removeItem("tokens");
     window.location.reload();
   };
 
@@ -141,25 +139,25 @@ class Header extends Component {
     const { classes } = this.props;
 
     const popoveropen = Boolean(this.state.anchorEl);
-    const id = popoveropen ? 'simple-popover' : undefined;
+    const id = popoveropen ? "simple-popover" : undefined;
 
     const Userlog = () => {
       if (!this.state.islogged) {
         return (
           <Box className={classes.loginsignup}>
             <Button>
-              <Link className={classes.loginbuton} to='/Login'>
+              <Link className={classes.loginbuton} to="/Login">
                 Login
               </Link>
             </Button>
             <Button>
-              <Link className={classes.signupboton} to='/Signup'>
+              <Link className={classes.signupboton} to="/Signup">
                 Signup
               </Link>
             </Button>
-            <Link to='/Signup'>
+            <Link to="/Signup">
               <Button>
-                <img src={require('../statics/header/bag_icon.svg')} />
+                <img src={require("../statics/header/bag_icon.svg")} />
               </Button>
             </Link>
           </Box>
@@ -171,13 +169,13 @@ class Header extends Component {
             <Link className={classes.profilelink} to={`/Profile/info`}>
               <Button>
                 <img
-                  src={require('../statics/header/header_profile_icon.svg')}
+                  src={require("../statics/header/header_profile_icon.svg")}
                 />
               </Button>
             </Link>
-            <Link to='/Cart'>
+            <Link to="/Cart">
               <Button>
-                <img src={require('../statics/header/bag_icon.svg')} />
+                <img src={require("../statics/header/bag_icon.svg")} />
               </Button>
             </Link>
           </Box>
@@ -186,19 +184,19 @@ class Header extends Component {
     };
 
     const Mobcartbag = () => {
-      if (localStorage.getItem('usertoken') == null) {
+      if (localStorage.getItem("usertoken") == null) {
         return (
-          <Link to='/Login'>
+          <Link to="/Login">
             <Button>
-              <img src={require('../statics/header/bag_icon.svg')} />
+              <img src={require("../statics/header/bag_icon.svg")} />
             </Button>
           </Link>
         );
       } else {
         return (
-          <Link to='/Cart'>
+          <Link to="/Cart">
             <Button>
-              <img src={require('../statics/header/bag_icon.svg')} />
+              <img src={require("../statics/header/bag_icon.svg")} />
             </Button>
           </Link>
         );
@@ -211,7 +209,7 @@ class Header extends Component {
             <Link
               className={classes.link}
               onClick={this.handleToggle}
-              to='/Profile/info'
+              to="/Profile/info"
             >
               My Account
             </Link>
@@ -219,7 +217,7 @@ class Header extends Component {
             <Link
               className={classes.link}
               onClick={this.handleToggle}
-              to='/Profile/orders'
+              to="/Profile/orders"
             >
               My Orders
             </Link>
@@ -231,15 +229,15 @@ class Header extends Component {
     };
 
     const Mobuserlog = () => {
-      if (localStorage.getItem('usertoken') == null) {
+      if (localStorage.getItem("usertoken") == null) {
         return (
           <Container>
-            <Link className={classes.link} to='login'>
+            <Link className={classes.link} to="login">
               <Button className={classes.logindrawer}>
-                <Typography style={{ color: 'white' }}> Login </Typography>
+                <Typography style={{ color: "white" }}> Login </Typography>
               </Button>
             </Link>
-            <Link className={classes.link} to='Signup'>
+            <Link className={classes.link} to="Signup">
               <Button className={classes.signupdrawer}>signup</Button>
             </Link>
           </Container>
@@ -249,7 +247,7 @@ class Header extends Component {
           <Container className={classes.drawerprofile}>
             <Link className={classes.profilelink} to={`/Profile`}>
               <Button onClick={this.handleToggle}>
-                <img src={require('../statics/header/profilepicmob.svg')} />
+                <img src={require("../statics/header/profilepicmob.svg")} />
               </Button>
             </Link>
 
@@ -268,12 +266,12 @@ class Header extends Component {
           <Toolbar className={classes.mobtoolbar}>
             <Button onClick={this.handleToggle}>
               {/* <Typography variant="h6">hello</Typography> */}
-              <MenuIcon style={{ color: 'white' }} fontSize='large' />
+              <MenuIcon style={{ color: "white" }} fontSize="large" />
             </Button>
-            <Link to='/'>
+            <Link to="/">
               <img
                 className={classes.logo}
-                src={require('../logos/Unique fit name.svg')}
+                src={require("../logos/Unique fit name.svg")}
               />
             </Link>
             <Mobcartbag />
@@ -290,10 +288,10 @@ class Header extends Component {
           <Paper elevation={0} square className={classes.drawerpaper}>
             <Box className={classes.drawerheader}>
               <div className={classes.closebox}>
-                <Button onClick={this.handleToggle} style={{ float: 'right' }}>
+                <Button onClick={this.handleToggle} style={{ float: "right" }}>
                   <CloseIcon
-                    fontSize='large'
-                    color='green'
+                    fontSize="large"
+                    color="green"
                     className={classes.closebuton}
                   />
                 </Button>
@@ -301,11 +299,11 @@ class Header extends Component {
               <Mobuserlog />
             </Box>
             <Container className={classes.drawercont}>
-              <nav style={{ position: 'relative' }}>
+              <nav style={{ position: "relative" }}>
                 <ul className={classes.ulmob}>
                   <Link
                     className={classes.limob}
-                    to='/Home'
+                    to="/Home"
                     onClick={this.handleToggle}
                   >
                     Home
@@ -313,7 +311,7 @@ class Header extends Component {
 
                   <Link
                     className={classes.limob}
-                    to='/Shop'
+                    to="/Shop"
                     onClick={this.handleToggle}
                   >
                     Shop Products
@@ -322,14 +320,14 @@ class Header extends Component {
                   <Link
                     className={classes.limob}
                     onClick={this.handleToggle}
-                    to='/Aboutus'
+                    to="/Aboutus"
                   >
                     About us
                   </Link>
                   <Link
                     className={classes.limob}
                     onClick={this.handleToggle}
-                    to='/Contact'
+                    to="/Contact"
                   >
                     Contact
                   </Link>
@@ -337,7 +335,7 @@ class Header extends Component {
                   <Link
                     className={classes.uploadshirt}
                     onClick={this.handleToggle}
-                    to='/Contact'
+                    to="/Contact"
                   >
                     Shirt On Mind ?
                   </Link>
@@ -352,14 +350,14 @@ class Header extends Component {
 
         <Hidden smDown>
           <Toolbar className={classes.toolbar}>
-            <Link to='/'>
+            <Link to="/">
               <img className={classes.logo} src={uniquefit_monogramblack} />
             </Link>
             <Box className={classes.navprofile}>
               <nav className={classes.nav}>
                 <ul className={classes.ul}>
                   <li className={classes.li}>
-                    <Link className={classes.li} to='/Shop'>
+                    <Link className={classes.li} to="/Shop">
                       Shirts
                     </Link>
                   </li>
@@ -368,7 +366,7 @@ class Header extends Component {
                       onMouseEnter={this.handlecomingsoon}
                       onMouseLeave={this.handlecomingsoonchange}
                       className={classes.comingsoon}
-                      to='/'
+                      to="/"
                     >
                       {/* T shirts  */}
                       {this.state.tshirtcomingsoon}
@@ -378,17 +376,17 @@ class Header extends Component {
                     </Link>
                   </li>
                   <li className={classes.li}>
-                    <Link className={classes.li} to='/Aboutus'>
+                    <Link className={classes.li} to="/Aboutus">
                       About Us
                     </Link>
                   </li>
                   <li className={classes.li}>
-                    <Link className={classes.li} to='/Contact'>
+                    <Link className={classes.li} to="/Contact">
                       Contact
                     </Link>
                   </li>
                   <li className={classes.li}>
-                    <Link className={classes.uploadshirt} to='/Contact'>
+                    <Link className={classes.uploadshirt} to="/Contact">
                       Shirt On Mind ?
                     </Link>
                   </li>

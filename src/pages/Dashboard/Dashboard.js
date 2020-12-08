@@ -27,6 +27,7 @@ import Axios from 'axios';
 import DropZone from './../../common/Dropzone';
 import { Redirect, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { addProduct } from '../../services/fetchService';
 
 const useStyles = makeStyles((theme) => ({
 	header: {
@@ -265,7 +266,7 @@ function Dashboard() {
 			},
 		};
 
-		let resp = await Axios.post(`${process.env.REACT_APP_API_URL}/products/insert-product`, productdata);
+		let resp = await addProduct(productdata);
 		console.log(resp);
 		console.log(resp.data.message);
 		console.log(resp.status);
