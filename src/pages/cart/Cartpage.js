@@ -219,10 +219,14 @@ function Cartpage() {
   const classes = Styles();
   // for coupon code below
   const [coupon, setcoupon] = React.useState("");
+  const [couponUsed, setCouponUsed] = React.useState(false);
   const [nocouponerror, setnocouponerror] = React.useState("");
   const handlecouponadd = async () => {
     if (!coupon) {
       return toast.error("Please enter a coupon code first");
+    }
+    if (couponUsed) {
+      return toast.error("Coupon already used");
     }
     let { data } = await getCouponByCode(coupon);
     if (data.message) {
@@ -230,6 +234,7 @@ function Cartpage() {
     }
     if (data.value) {
       setcartsaleprice(cartsaleprice - data.value);
+      setCouponUsed(true);
       toast.success("Coupon applied successfully");
     } else {
       toast.error("Invalid coupon");
