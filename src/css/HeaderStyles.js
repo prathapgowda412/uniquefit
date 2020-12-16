@@ -12,7 +12,6 @@ const Headerstyles = (theme) => ({
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
-		textDecoration: 'none',
 		boxShadow: '0 5px 8px -8px rgba(17, 17, 17, 0.329)',
 		// box-shadow: '0 5px 10px #111',
 	},
@@ -95,7 +94,6 @@ const Headerstyles = (theme) => ({
 		display: 'flex',
 		width: 'auto',
 		flexDirection: 'row',
-		width: 'fit-content',
 		justifyContent: 'space-between',
 	},
 

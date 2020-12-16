@@ -107,6 +107,8 @@ const cartStyles = makeStyles((theme) => ({
 	adressbox: {
 		height: 'fit-content',
 		marginTop: '20px',
+		display: 'flex',
+		justifyContent: 'center',
 	},
 	labelname: {
 		color: '#387A76',
@@ -155,10 +157,7 @@ const cartStyles = makeStyles((theme) => ({
 		margin: '50px 0',
 		color: 'red',
 	},
-	adressbox: {
-		display: 'flex',
-		justifyContent: 'center',
-	},
+
 	emptyimg: {
 		width: '100%',
 		objectFit: 'contain',

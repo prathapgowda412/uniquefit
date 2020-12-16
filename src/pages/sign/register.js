@@ -1,28 +1,12 @@
-import React, { useState } from 'react';
-import {
-	makeStyles,
-	Grid,
-	Hidden,
-	AppBar,
-	Container,
-	CssBaseline,
-	Box,
-	Typography,
-	Button,
-	Avatar,
-} from '@material-ui/core';
+import React from 'react';
+import { makeStyles, Grid, Container, Box, Typography, Button, Avatar } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import FilledInput from '@material-ui/core/FilledInput';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import ArrowRightAltSharpIcon from '@material-ui/icons/ArrowRightAltSharp';
 import { Link, Redirect } from 'react-router-dom';
 import Group from './images/Group.svg';
 
@@ -30,9 +14,6 @@ import axio from 'axios';
 
 // not used
 
-import Uniquefit_blacklogosvg from '../../logos/Uniquefit logo.svg';
-import Login from './Login';
-import { Toys } from '@material-ui/icons';
 import { toast } from 'react-toastify';
 const useStyles = makeStyles((theme) => ({
 	root: {

@@ -18,8 +18,6 @@ import ThirdProducts from './components/ThirdProducts';
 function Home() {
 	let { products } = useContext(productContext);
 
-	console.log(products);
-
 	return (
 		<Grid item container xs={12} justify="center">
 			<Firstsec />

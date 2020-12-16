@@ -86,7 +86,19 @@ function Customize() {
 		// console.log(fullCustomization);
 	};
 	// product from content below
-
+	const setcust = async () => {
+		setcustbuton(fullCustomization.find((custom) => custom.name === butoonvalue));
+		setcustback(fullCustomization.find((custom) => custom.name === backvalue));
+		setcustbutonthread(fullCustomization.find((custom) => custom.name === buttonthreadvalue));
+		setcustcollar(fullCustomization.find((custom) => custom.name === collarnamevalue));
+		setcustcollarstiff(fullCustomization.find((custom) => custom.name === collarstiff));
+		setcustfront(fullCustomization.find((custom) => custom.name === frontvalue));
+		setcustpocket(fullCustomization.find((custom) => custom.name === pocketvalue));
+		setcustsleeve(fullCustomization.find((custom) => custom.name === sleevecuffvalue));
+		setcustsuffstiff(fullCustomization.find((custom) => custom.name === cuffstiff));
+		setcustbackbottom(fullCustomization.find((custom) => custom.name === backbottomvalue));
+	};
+	console.log(custcollar.name);
 	const { products, setProducts: setproducts } = useContext(productContext);
 	const [product, setproduct] = React.useState([]);
 	const [colarimg, setcolarimg] = React.useState([]);
@@ -105,6 +117,7 @@ function Customize() {
 				return product.productid === id;
 			})
 		);
+		setcust();
 		// console.log(product);
 
 		getcustomizationdata();
@@ -118,10 +131,12 @@ function Customize() {
 	// let collarname = '';
 	const handlecollarChange = (event) => {
 		setcollarnameValue(event.target.value);
+		setcust();
 	};
 
 	const handlecollarstiffnesschange = (event) => {
 		setcollarstiffness(event.target.value);
+		setcust();
 	};
 	// collar value change handling above
 
@@ -129,10 +144,12 @@ function Customize() {
 	const [sleevecuffvalue, setsleevecuffValue] = React.useState('half sleeve');
 	const [cuffstiff, setcuffstiff] = React.useState('soft');
 	const handlesleevecuffChange = (event) => {
+		setcust();
 		setsleevecuffValue(event.target.value);
 	};
 
 	const handlesleevecuffstiffness = (event) => {
+		setcust();
 		setcuffstiff(event.target.value);
 	};
 	// sleevecuff value change handling above
@@ -142,8 +159,10 @@ function Customize() {
 	const [buttonthreadvalue, setbuttonthreadvalue] = React.useState('Black');
 	const handlebutoonChange = (event) => {
 		setbutoonvalue(event.target.value);
+		setcust();
 	};
 	const handlebuttonthread = (event) => {
+		setcust();
 		setbuttonthreadvalue(event.target.value);
 	};
 	// butoons  value change handling above
@@ -151,6 +170,7 @@ function Customize() {
 	// butoons  value change handling below
 	const [frontvalue, setfrontvalue] = React.useState('Regular');
 	const handlefrontChange = (event) => {
+		setcust();
 		setfrontvalue(event.target.value);
 	};
 	// butoons  value change handling above
@@ -158,6 +178,7 @@ function Customize() {
 	//pocket handling
 	const [pocketvalue, setpocketvalue] = React.useState('none');
 	const handlepocketchange = (event) => {
+		setcust();
 		setpocketvalue(event.target.value);
 	};
 
@@ -165,15 +186,18 @@ function Customize() {
 	const [backvalue, setbackvalue] = React.useState('None');
 	const [backbottomvalue, setbackbottomvalue] = React.useState('Rounded');
 	const handlebackchange = (event) => {
+		setcust();
 		setbackvalue(event.target.value);
 	};
 	const handlebackbottomchange = (event) => {
+		setcust();
 		setbackbottomvalue(event.target.value);
 	};
 	// back and bac bottom hanfling above
 	// tabs handling below
 	const [tabvalue, settabValue] = React.useState(0);
 	const handleTabChange = (event, newValue) => {
+		setcust();
 		settabValue(newValue);
 	};
 
@@ -214,7 +238,17 @@ function Customize() {
 			history.push('/Cart');
 		}
 	};
-
+	let [custbuton, setcustbuton] = React.useState([]);
+	let [custcollar, setcustcollar] = React.useState([]);
+	let [custback, setcustback] = React.useState([]);
+	let [custbackbottom, setcustbackbottom] = React.useState([]);
+	let [custcollarstiff, setcustcollarstiff] = React.useState([]);
+	let [custfront, setcustfront] = React.useState([]);
+	let [custpocket, setcustpocket] = React.useState([]);
+	let [custsleeve, setcustsleeve] = React.useState([]);
+	let [custsuffstiff, setcustsuffstiff] = React.useState([]);
+	let [custbutonthread, setcustbutonthread] = React.useState([]);
+	console.log(custbuton);
 	return (
 		<>
 			{/* this is is for desktop tool below */}
@@ -303,64 +337,154 @@ wa.link/54ag6i */}
 								<Grid item container justify="space-between" xs={11}>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Collar name :</Typography>
-											{collarnamevalue}
+											<Typography style={{ fontSize: '12px' }}> Collar name :</Typography>
+											{/* {collarnamevalue} */}
+											{custcollar ? (
+												<Typography style={{ fontSize: '15px' }}>
+													{' '}
+													{custcollar.name}{' '}
+												</Typography>
+											) : (
+												'.. .'
+											)}
+											{/* {fullCustomization.find((custom) => custom.name === backbottomvalue).name} */}
+											{custcollar ? <img height="50px" src={custcollar.image} /> : '.. .'}
 										</Paper>
 									</Grid>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Collar Stiffness :</Typography>
-											{collarstiff}
+											<Typography style={{ fontSize: '12px' }}> Collar Stiffness :</Typography>
+											{/* {collarstiff} */}
+											{custcollarstiff ? (
+												<Typography style={{ fontSize: '15px' }}>
+													{' '}
+													{custcollarstiff.name}{' '}
+												</Typography>
+											) : (
+												'.. .'
+											)}
+											{custcollarstiff ? (
+												<img height="50px" src={custcollarstiff.image} />
+											) : (
+												'.. .'
+											)}
 										</Paper>
 									</Grid>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Sleeves and Cuffs :</Typography>
-											{sleevecuffvalue}
+											<Typography style={{ fontSize: '12px' }}> Sleeves and Cuffs :</Typography>
+											{/* {sleevecuffvalue} */}
+											{custsleeve ? (
+												<Typography style={{ fontSize: '15px' }}>
+													{' '}
+													{custsleeve.name}{' '}
+												</Typography>
+											) : (
+												'.. .'
+											)}
+											{custsleeve ? <img height="50px" src={custsleeve.image} /> : '.. .'}
 										</Paper>
 									</Grid>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Cuff Stiffness :</Typography>
-											{cuffstiff}
+											<Typography style={{ fontSize: '12px' }}> Cuff Stiffness :</Typography>
+											{/* {cuffstiff} */}
+											{custsuffstiff ? (
+												<Typography style={{ fontSize: '15px' }}>
+													{' '}
+													{custsuffstiff.name}{' '}
+												</Typography>
+											) : (
+												'.. .'
+											)}
+											{custsuffstiff ? <img height="50px" src={custsuffstiff.image} /> : '.. .'}
 										</Paper>
 									</Grid>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Pocket name :</Typography>
-											{pocketvalue}
+											<Typography style={{ fontSize: '12px' }}> Pocket name :</Typography>
+											{/* {pocketvalue} */}
+											{custpocket ? (
+												<Typography style={{ fontSize: '15px' }}>
+													{' '}
+													{custpocket.name}{' '}
+												</Typography>
+											) : (
+												'.. .'
+											)}
+											{custpocket ? <img height="50px" src={custpocket.image} /> : '.. .'}
 										</Paper>
 									</Grid>
 								</Grid>
 								<Grid item container justify="space-between" container xs={11}>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Button name :</Typography>
-											{butoonvalue}
+											<Typography style={{ fontSize: '12px' }}> Button name :</Typography>
+											{/* {butoonvalue} */}
+											{custbuton ? (
+												<Typography style={{ fontSize: '15px' }}>{custbuton.name} </Typography>
+											) : (
+												''
+											)}
+											{custbuton ? <img height="50px" src={custbuton.image} /> : '.. .'}
 										</Paper>
 									</Grid>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Button Thread color :</Typography>
-											{buttonthreadvalue}
+											<Typography style={{ fontSize: '12px' }}> Button Thread color :</Typography>
+											{/* {buttonthreadvalue} */}
+											{custbutonthread ? (
+												<Typography style={{ fontSize: '15px' }}>
+													{' '}
+													{custbutonthread.name}{' '}
+												</Typography>
+											) : (
+												'.. .'
+											)}
+											{custbutonthread ? (
+												<img height="50px" src={custbutonthread.image} />
+											) : (
+												'.. .'
+											)}
 										</Paper>
 									</Grid>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Front Value :</Typography>
-											{frontvalue}
+											<Typography style={{ fontSize: '12px' }}> Front Value :</Typography>
+											{/* {frontvalue} */}
+											{custfront ? (
+												<Typography style={{ fontSize: '15px' }}> {custfront.name} </Typography>
+											) : (
+												'.. .'
+											)}
+											{custfront ? <img height="50px" src={custfront.image} /> : '.. .'}
 										</Paper>
 									</Grid>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Back Value :</Typography>
-											{backvalue}
+											<Typography style={{ fontSize: '12px' }}> Back Value :</Typography>
+											{/* {backvalue} */}
+											{custback ? (
+												<Typography style={{ fontSize: '15px' }}> {custback.name} </Typography>
+											) : (
+												'.. .'
+											)}
+											{custback ? <img height="50px" src={custback.image} /> : '.. .'}
 										</Paper>
 									</Grid>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
-											<Typography> Back Bottom name :</Typography>
-											{backbottomvalue}
+											<Typography style={{ fontSize: '12px' }}> Back Bottom name :</Typography>
+											{/* {backbottomvalue} */}
+											{custbackbottom ? (
+												<Typography style={{ fontSize: '15px' }}>
+													{' '}
+													{custbackbottom.name}{' '}
+												</Typography>
+											) : (
+												'.. .'
+											)}
+											{custbackbottom ? <img height="50px" src={custbackbottom.image} /> : '.. .'}
 										</Paper>
 									</Grid>
 								</Grid>

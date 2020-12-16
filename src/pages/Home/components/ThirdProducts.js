@@ -163,24 +163,6 @@ function ThirdProducts() {
 	// const [products, setproducts] = React.useState([]);
 	const { products, setProducts: setproducts } = useContext(productContext);
 
-	// console.log(products);
-
-	// useEffect(() => {
-	// 	Axios.get('https://uniquefit.ml/products/get-products')
-	// 		.then((resp) => {
-	// 			const result = resp;
-	// 			// console.log(resp);
-	// 			// console.log(resp.data);
-	// 			// console.log(resp.data);
-	// 			setproducts(resp.data);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log('err : ');
-	// 			console.log(err);
-	// 		}, []);
-	// }, []);
-	// console.log(products);
-
 	return (
 		<Grid item container xs={12} justify="center" className={classes.root}>
 			<Container justify="center" className={classes.trendingtextbox}>
@@ -192,10 +174,10 @@ function ThirdProducts() {
 					.filter((prod) => prod.productpattern === 'Checks')
 					.slice(0, 4)
 					.reverse()
-					.map((product) => {
+					.map((product, index) => {
 						return (
-							<Grid xs={6} sm={4} md={2}>
-								<Card className={classes.card} elevation="0" square>
+							<Grid item xs={6} sm={4} md={2} key={index}>
+								<Card className={classes.card} elevation={0} square>
 									<Link to={`/ProductPage/${product.productid}`}>
 										<Box className={classes.topimag}>
 											<img className={classes.cardimg} src={product.productimages[0]} />
@@ -233,10 +215,10 @@ function ThirdProducts() {
 					.filter((prod) => prod.productpattern === 'Printed')
 					.slice(0, 4)
 					.reverse()
-					.map((product) => {
+					.map((product, index) => {
 						return (
-							<Grid xs={6} sm={4} md={2}>
-								<Card className={classes.card} elevation="0" square>
+							<Grid item xs={6} sm={4} md={2} key={index}>
+								<Card className={classes.card} elevation={0} square>
 									<Link to={`/ProductPage/${product.productid}`}>
 										<Box className={classes.topimag}>
 											<img className={classes.cardimg} src={product.productimages[0]} />
@@ -265,119 +247,7 @@ function ThirdProducts() {
 						);
 					})}
 			</Grid>
-
-			{/* <div className={classes.grid}>
-				<GridList className={classes.gridList} cols={1.7}>
-					<GridListTile className={classes.gridcard}>
-						<Card elevation={0} className={classes.trendcard}>
-							<img className={classes.imgcard} src={imgs} />
-							<Typography>bluse</Typography>
-						</Card>
-					</GridListTile>
-					<GridListTile>
-						<Card className={classes.trendcard}>
-							<img className={classes.imgcard} src={imgs} />
-							<Typography>bluse</Typography>
-						</Card>
-					</GridListTile>
-					<GridListTile>
-						<Card className={classes.trendcard}>
-							<img className={classes.imgcard} src={imgs} />
-							<Typography>bluse</Typography>
-						</Card>
-					</GridListTile>
-					<GridListTile>
-						<Card className={classes.trendcard}>
-							<img className={classes.imgcard} src={imgs} />
-							<Typography>bluse</Typography>
-						</Card>
-					</GridListTile>
-				</GridList>
-			</div> */}
-
-			{/* <Container className={classes.cardbox}>
-				<Card elevation="0" square className={classes.card}>
-					<CardMedia component="img" image={imgs} title="" />
-					<CardContent>
-						<Typography className={classes.name}> blue girl </Typography>
-
-						<Link component={Button} to="/ProductPage/10" className={classes.shopbutton}>
-							Shop now
-						</Link>
-					</CardContent>
-				</Card>
-
-				<Card elevation="0" square className={classes.card}>
-					<CardMedia component="img" image={imgs} title="" />
-					<CardContent>
-						<Typography className={classes.name}> blue man </Typography>
-
-						<Link component={Button} to="/ProductPage/10" className={classes.shopbutton}>
-							Shop now
-						</Link>
-					</CardContent>
-				</Card>
-			</Container> */}
-
-			{/* new one below */}
-			{/* <Grid item container xs={12} alignContent="stretch" spacing={2} justify="space-around">
-				<Grid item container xs={10} sm={3}>
-					<Card elevation={0} square>
-						<CardMedia component="img" image={imgs} title="" />
-						<CardContent>
-							<Typography className={classes.name}> heding </Typography>
-
-							<Link component={Button} to="/ProductPage/1" className={classes.shopbutton}>
-								Shop now
-							</Link>
-						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item container xs={10} sm={3}>
-					<Card elevation={0} square>
-						<CardMedia component="img" image={imgs} title="" />
-						<CardContent>
-							<Typography className={classes.name}> heding </Typography>
-
-							<Link component={Button} to="/ProductPage/2" className={classes.shopbutton}>
-								Shop now
-							</Link>
-						</CardContent>
-					</Card>
-				</Grid>
-				<Grid item container xs={10} sm={3}>
-					<Card elevation={0} square>
-						<CardMedia component="img" image={imgs} title="" />
-						<CardContent>
-							<Typography className={classes.name}> heding </Typography>
-
-							<Link component={Button} to="/ProductPage/3" className={classes.shopbutton}>
-								Shop now
-							</Link>
-						</CardContent>
-					</Card>
-				</Grid>
-			</Grid> */}
 		</Grid>
 	);
 }
 export default ThirdProducts;
-{
-	/* <Grid xs={12} sm={12} alignContent="stretch" spacing={5} style={{ backgroundColor: 'red' }}>
-				<Grid item container xs={4} sm={4}>
-					<Card>
-						<CardMedia component="img" image={require('../statics/images/blackdog.jpg')} />
-					</Card>
-				</Grid>
-				<Grid item container xs={4} sm={3}>
-					<Card>
-						<CardMedia component="img" image={require('../statics/images/blackdog.jpg')} />
-					</Card>
-				</Grid>
-				<Grid item container xs={4} sm={3}>
-					<Paper>
-						<CardMedia component="img" image={require('../statics/images/blackdog.jpg')} />
-					</Paper>
-				</Grid>
-			</Grid> */
-}

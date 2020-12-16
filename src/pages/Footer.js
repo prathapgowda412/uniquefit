@@ -112,16 +112,16 @@ function Footer() {
 						</Grid>
 						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
-							{/* <a className={classes.sociolink} href="https://www.instagram.com/uniquefitindia/?hl=en"> */}
-							<Paper square elevation={0} className={classes.socialbox}>
-								{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
-								<img
-									className={classes.mediaicon}
-									src={require('../logos/socialicons/instagram-brands.svg')}
-								/>
-								@uniquefit
-							</Paper>
-							{/* </a> */}
+							<a className={classes.sociolink} href="https://www.instagram.com/uniquefitindia/?hl=en">
+								<Paper square elevation={0} className={classes.socialbox}>
+									{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
+									<img
+										className={classes.mediaicon}
+										src={require('../logos/socialicons/instagram-brands.svg')}
+									/>
+									@uniquefit
+								</Paper>
+							</a>
 						</Grid>
 						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
@@ -136,14 +136,16 @@ function Footer() {
 						</Grid>
 						<Grid item container xs={6} sm={3}>
 							{/* <i class="fab fa-facebook-f"></i> */}
-							<Paper square elevation={0} className={classes.socialbox}>
-								{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
-								<img
-									className={classes.mediaicon}
-									src={require('../logos/socialicons/whatsapp-brands.svg')}
-								/>
-								756 93 27 026
-							</Paper>
+							<a href="https://wa.link/ag507j">
+								<Paper square elevation={0} className={classes.socialbox}>
+									{/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
+									<img
+										className={classes.mediaicon}
+										src={require('../logos/socialicons/whatsapp-brands.svg')}
+									/>
+									756 93 27 026
+								</Paper>
+							</a>
 						</Grid>
 					</Grid>
 				</div>

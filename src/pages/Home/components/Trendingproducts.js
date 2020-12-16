@@ -172,10 +172,10 @@ function Trending() {
 			</Container>
 
 			<Grid item container xs={12} sm={11} justify="space-evenly">
-				{products.slice(products.length - 4, products.length).map((product) => {
+				{products.slice(products.length - 4, products.length).map((product, index) => {
 					return (
-						<Grid xs={6} sm={4} md={2}>
-							<Card className={classes.card} elevation="0" square>
+						<Grid item xs={6} sm={4} md={2} key={index}>
+							<Card className={classes.card} elevation={0} square>
 								<Link to={`/ProductPage/${product.productid}`}>
 									<Box className={classes.topimag}>
 										<img className={classes.cardimg} src={product.productimages[0]} />
