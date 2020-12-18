@@ -24,12 +24,8 @@ import PropTypes from 'prop-types';
 import Axios from 'axios';
 
 import { toast } from 'react-toastify';
-<<<<<<< HEAD
 import AddProduct from './AddProduct/addProduct';
 import DeleteProduct from './DeleteProduct/deleteProduct';
-=======
-import { addProduct } from '../../services/fetchService';
->>>>>>> 516f2cdec25b6f75ab8b5f7bd29f6dea5d8af755
 
 const useStyles = makeStyles((theme) => ({
 	header: {
@@ -97,131 +93,6 @@ function Dashboard() {
 		settabValue(newValue);
 	};
 
-<<<<<<< HEAD
-=======
-	const productnamechange = (e) => {
-		setproductname(e.target.value);
-	}; //done
-	const productpricechange = (e) => {
-		setproductprice(e.target.value);
-	}; //done
-	const productsalepricechange = (e) => {
-		setproductsaleprice(e.target.value);
-	}; //done
-	const productmaterialchange = (e) => {
-		setproductmaterial(e.target.value);
-	}; //doe
-	const producttypechange = (e) => {
-		setproducttype(e.target.value);
-	}; //done
-	const productdescriptionchange = (e) => {
-		setproductdescription(e.target.value);
-	}; //done
-	const productcolorchange = (e) => {
-		setproductcolor(e.target.value);
-	}; //done
-	const productpatternchange = (e) => {
-		setproductpattern(e.target.value);
-	}; //done
-	const productoccasionchange = (e) => {
-		setproductoccasion(e.target.value);
-	}; //done
-	const productfeelchange = (e) => {
-		setproductfeel(e.target.value);
-	}; //done
-	const [files, setfiles] = React.useState();
-	const [selectedfile, setselectedfile] = React.useState();
-	const [preview, setpreview] = React.useState();
-
-	useEffect(() => {
-		if (!selectedfile) {
-			setpreview(undefined);
-			return;
-		}
-
-		const objecturl = URL.createObjectURL(selectedfile);
-		setpreview(objecturl);
-
-		return () => URL.revokeObjectURL(objecturl);
-	}, [selectedfile]);
-
-	const imagechange = (e) => {
-		if (!e.target.files || e.target.files.length == 0) {
-			setselectedfile(undefined);
-			return;
-		}
-
-		//putting only one image for preview
-
-		setselectedfile(e.target.files[0]);
-		setfiles(e.target.files);
-		// console.log(e.target.files);
-	};
-
-	const [productname, setproductname] = React.useState();
-	const [productprice, setproductprice] = React.useState();
-	const [productsaleprice, setproductsaleprice] = React.useState();
-	const [productmaterial, setproductmaterial] = React.useState();
-	const [productcolor, setproductcolor] = React.useState();
-	// const [productcategory, setproductcategory] = React.useState();
-	const [producttype, setproducttype] = React.useState();
-	const [productdescription, setproductdescription] = React.useState();
-	const [productpattern, setproductpattern] = React.useState();
-	const [productoccasion, setproductoccasion] = React.useState();
-	const [productfeel, setproductfeel] = React.useState();
-
-	const onsubmitproduct = async () => {
-		// const productdata = {
-		// 	productname: productname,
-		// 	productprice: productprice,
-		// 	productsaleprice: productsaleprice,
-		// 	productmaterial: productmaterial,
-		// 	productcolor: productcolor,
-		// 	producttype: producttype,
-		// 	productdescription: productdescription,
-		// 	productpattern: productpattern,
-		// 	productoccasion: productoccasion,
-		// 	productfeel: productfeel,
-		// 	productimages: files,
-		// };
-		const productdata = new FormData();
-
-		productdata.append('productid', Math.round(Math.random() * 100000000));
-		productdata.append('productname', productname);
-		productdata.append('productprice', +productprice);
-		productdata.append('productcolor', productcolor);
-		productdata.append('productdescription', productdescription);
-		productdata.append('productsaleprice', +productsaleprice);
-		productdata.append('productmaterial', productmaterial);
-		productdata.append('productfeel', productfeel);
-		productdata.append('productoccasion', productoccasion);
-		productdata.append('producttype', producttype);
-		productdata.append('productpattern', productpattern);
-		console.log(files);
-		files.map((file) => {
-			productdata.append('pimages', file);
-		});
-		console.log(productdata);
-		const config = {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-			},
-		};
-
-		let resp = await addProduct(productdata);
-		console.log(resp);
-		console.log(resp.data.message);
-		console.log(resp.status);
-		if (resp.status == 200) {
-			window.location.reload();
-			console.log('done succes');
-			toast.success('success uploading');
-			toast.done('done');
-			toast('Product added Successfully');
-		}
-	};
-
->>>>>>> 516f2cdec25b6f75ab8b5f7bd29f6dea5d8af755
 	const classes = useStyles();
 	return (
 		<Grid item container xs={12}>

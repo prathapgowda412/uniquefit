@@ -248,7 +248,7 @@ function Customize() {
 	let [custsleeve, setcustsleeve] = React.useState([]);
 	let [custsuffstiff, setcustsuffstiff] = React.useState([]);
 	let [custbutonthread, setcustbutonthread] = React.useState([]);
-	console.log(custbuton);
+
 	return (
 		<>
 			{/* this is is for desktop tool below */}
@@ -259,11 +259,7 @@ wa.link/54ag6i */}
 					<Grid item container xs={12} alignItems="center" className={classes.topbar}>
 						<Grid item xs={2} className={classes.logobox}>
 							<Link to="/">
-								<img
-									alt={`Uniquefit , shirts , ${product.producttype} shirt , ${product.productmaterial}shirts, ${product.productname}`}
-									className={classes.logo}
-									src={require('../../logos/uniquefitlogowhite.svg')}
-								/>
+								<img className={classes.logo} src={require('../../logos/uniquefitlogowhite.svg')} />
 							</Link>
 						</Grid>
 						<Grid item xs={7}>
@@ -789,11 +785,7 @@ wa.link/54ag6i */}
 						<Container className={classes.bigimagecont}>
 							{product && product.productimages ? (
 								<>
-									<img
-										alt={`Uniquefit , shirts , ${product.producttype} shirt , ${product.productmaterial}shirts, ${product.productname}`}
-										className={classes.bigimage}
-										src={product.productimages[0]}
-									/>
+									<img className={classes.bigimage} src={product.productimages[0]} />
 								</>
 							) : (
 								<CircularProgress />

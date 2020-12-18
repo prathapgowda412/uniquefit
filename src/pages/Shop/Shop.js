@@ -14,6 +14,7 @@ import {
 	Checkbox,
 	Hidden,
 	Button,
+	CircularProgress,
 } from '@material-ui/core';
 import React, { Component, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -199,9 +200,17 @@ function Shop() {
 					{/* {products.forEach((pro) => {
 						return <> {pro.productname} </>;
 					})} */}
-					{products.reverse().map((product) => {
-						return <Product key={product.productid} product={product} />;
-					})}
+					{products ? (
+						<>
+							{' '}
+							{products.reverse().map((product) => {
+								return <Product key={product.productid} product={product} />;
+							})}{' '}
+						</>
+					) : (
+						'Loading Products .. . '
+					)}
+
 					{/* {products.map((product) => {
 						return <Product key={product.productid} product={product} />;
 					})} */}
