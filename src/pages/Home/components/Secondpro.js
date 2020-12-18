@@ -114,12 +114,18 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'white',
 		position: 'relative',
 		overflow: 'hidden',
+		[theme.breakpoints.down('sm')]: {
+			height: '60%',
+		},
 	},
 	cardbody: {
 		height: '30%',
 		paddingTop: '12px',
 		position: 'relative',
 		backgroundColor: 'white',
+		[theme.breakpoints.down('sm')]: {
+			height: '40%',
+		},
 	},
 	productname: {
 		color: 'black',
@@ -167,48 +173,55 @@ function Secondpro() {
 			<Container justify="center" className={classes.trendingtextbox}>
 				<Typography variant="h5">Solids Shirts</Typography>
 			</Container>
-
-			<Grid item container xs={12} sm={11} justify="space-evenly">
-				{products
-					.filter((prod) => prod.productpattern === 'Solids')
-					.slice(0, 4)
-					.reverse()
-					.map((product, index) => {
-						return (
-							<Grid item xs={6} sm={4} md={2} key={index}>
-								<Card className={classes.card} elevation={0} square>
-									<Link to={`/ProductPage/${product.productid}`}>
-										<Box className={classes.topimag}>
-											<img
-												alt={`Uniquefit , shirts , ${product.producttype} shirt , ${product.productmaterial}shirts, ${product.productname}`}
-												className={classes.cardimg}
-												src={product.productimages[0]}
-											/>
-										</Box>
-									</Link>
-									<CardActionArea className={classes.cardbody}>
-										<Box className={classes.cardbodytext} style={{ marginTop: '-20px' }}>
-											<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
-												<Typography variant="h1" className={classes.productname}>
-													{product.productname}
+			{products ? (
+				<Grid item container xs={12} sm={11} justify="space-evenly">
+					{products
+						.filter((prod) => prod.productpattern === 'Solids')
+						.slice(0, 4)
+						.reverse()
+						.map((product, index) => {
+							return (
+								<Grid item xs={6} sm={4} md={2} key={index}>
+									<Card className={classes.card} elevation={0} square>
+										<Link to={`/ProductPage/${product.productid}`}>
+											<Box className={classes.topimag}>
+												<img
+													alt={`Uniquefit , shirts , ${product.producttype} shirt , ${product.productmaterial}shirts, ${product.productname}`}
+													className={classes.cardimg}
+													src={product.productimages[0]}
+												/>
+											</Box>
+										</Link>
+										<CardActionArea className={classes.cardbody}>
+											<Box className={classes.cardbodytext} style={{ marginTop: '-20px' }}>
+												<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
+													<Typography variant="h1" className={classes.productname}>
+														{product.productname}
+													</Typography>
+												</Link>
+											</Box>
+											<Container className={classes.pricebox}>
+												<Typography variant="body1" className={classes.saleprice}>
+													₹{product.productsaleprice}
 												</Typography>
-											</Link>
-										</Box>
-										<Container className={classes.pricebox}>
-											<Typography variant="body1" className={classes.saleprice}>
-												₹{product.productsaleprice}
-											</Typography>
-											<Typography variant="body2" className={classes.originprice}>
-												₹
-												<strike className={classes.originprice}> {product.productprice}</strike>
-											</Typography>
-										</Container>
-									</CardActionArea>
-								</Card>
-							</Grid>
-						);
-					})}
-			</Grid>
+												<Typography variant="body2" className={classes.originprice}>
+													₹
+													<strike className={classes.originprice}>
+														{' '}
+														{product.productprice}
+													</strike>
+												</Typography>
+											</Container>
+										</CardActionArea>
+									</Card>
+								</Grid>
+							);
+						})}
+				</Grid>
+			) : (
+				'Loading products .. .'
+			)}
+
 			<Container justify="center" className={classes.trendingtextbox}>
 				<Typography variant="h5">Stripes Shirts</Typography>
 			</Container>

@@ -64,11 +64,6 @@ function FilterType() {
 
 	return (
 		<Grid item container xs={12} className={classes.root} justify="center">
-			<Container maxWidth="lg" className={classes.topbox}>
-				<Typography variant="h2" align="center">
-					Shop Solids From Variety of Fabric and collection across india
-				</Typography>
-			</Container>
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
 				<Grid item container xs={12} sm={10} direction="row" className={classes.productsbox}>
 					{products.map((product) => {

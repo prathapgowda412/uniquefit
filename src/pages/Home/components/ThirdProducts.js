@@ -114,12 +114,18 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: 'white',
 		position: 'relative',
 		overflow: 'hidden',
+		[theme.breakpoints.down('sm')]: {
+			height: '60%',
+		},
 	},
 	cardbody: {
 		height: '30%',
 		paddingTop: '12px',
 		position: 'relative',
 		backgroundColor: 'white',
+		[theme.breakpoints.down('sm')]: {
+			height: '40%',
+		},
 	},
 	productname: {
 		color: 'black',

@@ -29,6 +29,8 @@ function DeleteProduct() {
 	const [errmsg, seterrmsg] = React.useState('');
 	const deleteidchange = (event) => {
 		setproductid(event.target.value);
+		seterrmsg('');
+		seterrmsg('');
 	};
 	console.log(productid);
 
@@ -46,7 +48,7 @@ function DeleteProduct() {
 		console.log(resp);
 		if (resp.status == 200) {
 			setsuccessmsg('Done deleting');
-		} else if (resp.status == 500) {
+		} else {
 			seterrmsg('wrong id');
 		}
 	};
