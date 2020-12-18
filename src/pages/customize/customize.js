@@ -98,7 +98,7 @@ function Customize() {
 		setcustsuffstiff(fullCustomization.find((custom) => custom.name === cuffstiff));
 		setcustbackbottom(fullCustomization.find((custom) => custom.name === backbottomvalue));
 	};
-	console.log(custcollar.name);
+	// console.log(custcollar.name);
 	const { products, setProducts: setproducts } = useContext(productContext);
 	const [product, setproduct] = React.useState([]);
 	const [colarimg, setcolarimg] = React.useState([]);
@@ -259,7 +259,11 @@ wa.link/54ag6i */}
 					<Grid item container xs={12} alignItems="center" className={classes.topbar}>
 						<Grid item xs={2} className={classes.logobox}>
 							<Link to="/">
-								<img className={classes.logo} src={require('../../logos/uniquefitlogowhite.svg')} />
+								<img
+									alt={`Uniquefit , shirts , ${product.producttype} shirt , ${product.productmaterial}shirts, ${product.productname}`}
+									className={classes.logo}
+									src={require('../../logos/uniquefitlogowhite.svg')}
+								/>
 							</Link>
 						</Grid>
 						<Grid item xs={7}>
@@ -785,7 +789,11 @@ wa.link/54ag6i */}
 						<Container className={classes.bigimagecont}>
 							{product && product.productimages ? (
 								<>
-									<img className={classes.bigimage} src={product.productimages[0]} />
+									<img
+										alt={`Uniquefit , shirts , ${product.producttype} shirt , ${product.productmaterial}shirts, ${product.productname}`}
+										className={classes.bigimage}
+										src={product.productimages[0]}
+									/>
 								</>
 							) : (
 								<CircularProgress />

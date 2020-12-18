@@ -42,7 +42,7 @@ function Productpage() {
 				<Grid item container xs={12} className={classes.main} key={product.productid}>
 					<Grid item container xs={12} sm={6} className={classes.leftgrid}>
 						<Tabs className={classes.tabss}>
-							<Grid xs={12} className={classes.tabpanelbox}>
+							<Grid item xs={12} className={classes.tabpanelbox}>
 								{/* {productimages} */}
 								{/* {productimages.forEach((index) => {
 								return <> {index} </>;
@@ -50,7 +50,7 @@ function Productpage() {
 								{product.productimages.map((bigimage, index) => (
 									<TabPanel className={classes.paneltab} key={index}>
 										<img
-											alt={`Uniquefit ${product.productname}`}
+											alt={`Uniquefit , shirts , ${product.producttype} shirt , ${product.productmaterial}shirts, ${product.productname}`}
 											className={classes.bigimage}
 											src={bigimage}
 										/>
@@ -58,11 +58,15 @@ function Productpage() {
 								))}
 							</Grid>
 
-							<Grid xs={12} className={classes.tablistbotom}>
+							<Grid item xs={12} className={classes.tablistbotom}>
 								<TabList className={classes.tablist}>
 									{product.productimages.map((tabimage, index) => (
 										<Tab className={classes.tabitem} key={index}>
-											<img className={classes.iconimage} src={tabimage} />
+											<img
+												alt={`Uniquefit , shirts , ${product.producttype} shirt , ${product.productmaterial}shirts, ${product.productname}`}
+												className={classes.iconimage}
+												src={tabimage}
+											/>
 										</Tab>
 									))}
 								</TabList>

@@ -5,5 +5,10 @@
     "getCartItems":"/products/get-cart-items",
     "getOrders":"/products/get-orders",
     "addOrder":"/products/add-order",
-    "getCustomisations":"/products/get-customisations"
+    "getCustomisations":"/products/get-customisations",
+    "getCouponByCode":"/coupons/getCouponByCode",
+    "login":"/users/login",
+    "register":"/users/register",
+    "getProfileDetails":"/users/me",
+    "addProduct":"/products/insert-product"
 }
