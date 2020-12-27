@@ -43,6 +43,7 @@ import FilterType from './pages/Shop/Filters/FilterType';
 import PrivacyPolicy from './pages/Common/PrivacyPolicy';
 import ShippingPolicy from './pages/Common/ShippingPolicy';
 import TermsPolicy from './pages/Common/Terms';
+import AdminLogin from './pages/Dashboard/adminLogin';
 
 function App() {
 	const [authTokens, setAuthTokens] = useState(localStorage.getItem('tokens') || '');
@@ -163,6 +164,9 @@ function App() {
 
 									<Route path="/Dashboard">
 										<Dashboard />
+									</Route>
+									<Route path="/adminLogin">
+										<AdminLogin />
 									</Route>
 									<Route path="/ProductPage/:id">
 										<Whatsapp />
