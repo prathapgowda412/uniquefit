@@ -79,6 +79,10 @@ const shopStyles = makeStyles((theme) => ({
 		width: '96%',
 		// backgroundColor: 'grey',
 	},
+	applybutton: {
+		backgroundColor: '#387a76',
+		color: 'white',
+	},
 }));
 
 export default shopStyles;
