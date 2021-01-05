@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Grid, withStyles, makeStyles, Box, Container, Button } from '@material-ui/core';
+import { Grid, Box, Container, Button } from '@material-ui/core';
 // import { render } from 'react-dom';
 
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +10,6 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import '../../custom.css';
 
 // import products from '../../data/dummydata.json';
-import Axios from 'axios';
 import { productContext } from './../../contexts/ProductContext';
 import productStyles from './productStyles';
 
@@ -18,10 +18,10 @@ const useStyles = productStyles;
 function Productpage() {
 	const classes = useStyles();
 	const { id } = useParams();
-	const { products, setProducts: setproducts } = useContext(productContext);
+	const { products } = useContext(productContext);
 	const [product, setproduct] = React.useState([]);
 
-	const [productimages, setproductimages] = React.useState([]);
+	// const [productimages, setproductimages] = React.useState([]);
 
 	useEffect(() => {
 		if (products.length) {
@@ -123,7 +123,7 @@ function Productpage() {
 								Product feel : <em className={classes.prodtext}>{product.productfeel} </em>
 							</Typography>
 
-							<Typography variant="body1">Product Description: {product.productdesc}</Typography>
+							{/* <Typography variant="body1">Product Description: {product.productdesc}</Typography> */}
 						</Container>
 					</Grid>
 				</Grid>

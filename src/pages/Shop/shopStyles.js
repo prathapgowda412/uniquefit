@@ -25,6 +25,7 @@ const shopStyles = makeStyles((theme) => ({
 		padding: '20px 0',
 		overflow: 'hidden',
 		backgroundColor: '#fff',
+		justifyContent: 'center',
 		position: 'sticky',
 		[theme.breakpoints.down('sm')]: {
 			height: '50px',
@@ -46,7 +47,8 @@ const shopStyles = makeStyles((theme) => ({
 		height: 'fit-content',
 		width: '80%',
 		position: 'relative',
-		// backgroundColor: 'white',
+		// justifyContent: 'center',
+		// backgroundColor: 'grey',
 	},
 	ul: {
 		listStyleType: 'none',
@@ -76,8 +78,10 @@ const shopStyles = makeStyles((theme) => ({
 	},
 	hidecomp: {
 		height: '50px',
-		width: '96%',
-		// backgroundColor: 'grey',
+		width: '100%',
+		position: 'fixed',
+		bottom: 0,
+		backgroundColor: 'white',
 	},
 	applybutton: {
 		backgroundColor: '#387a76',

@@ -20,14 +20,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 
 	card: {
-		backgroundColor: '#f2f2f2',
-		height: '370px',
+		height: '390px',
 		borderRadius: '5px',
+		'&:hover': {
+			boxShadow: '0px 2px 2px rgba(50,50,71,0.06) , 0px 2px 4px rgba(50,50,71,0.06)',
+		},
 	},
 	topimag: {
 		width: '100%',
-		height: '70%',
-		backgroundColor: 'white',
+		// height: '68%',
+		height: '260px',
+		// backgroundColor: 'white',
 		position: 'relative',
 		overflow: 'hidden',
 		[theme.breakpoints.down('sm')]: {
@@ -35,9 +38,12 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	cardbody: {
-		height: '30%',
+		// height: '32%',
+		height: '135px',
 		position: 'relative',
 		backgroundColor: 'white',
+		paddingTop: '10px',
+		// marginTop: '10px',
 		[theme.breakpoints.down('sm')]: {
 			height: '40%',
 		},
@@ -68,7 +74,8 @@ const useStyles = makeStyles((theme) => ({
 		height: 'fit-content',
 	},
 	cardbodytext: {
-		margin: '8px',
+		padding: '2px 5px ',
+		backgroundColor: 'white',
 	},
 	main: {
 		marginTop: '60px',
@@ -91,7 +98,7 @@ function Product(props) {
 							/>
 						</Box>
 					</Link>
-					<CardActionArea className={classes.cardbody}>
+					<Box className={classes.cardbody}>
 						<Box className={classes.cardbodytext} style={{ marginTop: '-20px' }}>
 							<Link className={classes.link} to={`/ProductPage/${product.productid}`}>
 								<Typography variant="h2" className={classes.productname}>
@@ -107,7 +114,7 @@ function Product(props) {
 								₹<strike className={classes.originprice}> {product.productprice}</strike>
 							</Typography>
 						</Container>
-					</CardActionArea>
+					</Box>
 				</Card>
 			</Container>
 		</Grid>
