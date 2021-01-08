@@ -1,6 +1,6 @@
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable array-callback-return */
+import { Grid, makeStyles } from '@material-ui/core';
+import React, { useContext } from 'react';
 
 // import dummydata from '../../data/dummydata.json';
 import Product from '../Product';
@@ -54,8 +54,8 @@ function Checks() {
 	const classes = useStyles();
 	//   const [products, setproducts] = React.useState([]);
 
+	// eslint-disable-next-line no-unused-vars
 	const { products, setProducts: setproducts } = useContext(productContext);
-	const [solidproducts, setsolidproducts] = React.useState();
 	//   console.log(products);
 
 	//   console.log(solids);
@@ -65,7 +65,7 @@ function Checks() {
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
 				<Grid item container xs={12} sm={10} direction="row" className={classes.productsbox}>
 					{products.map((product) => {
-						if (product.productpattern == 'Checks') {
+						if (product.productpattern === 'Checks') {
 							return <Product key={product.productid} product={product} />;
 						}
 					})}

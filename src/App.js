@@ -1,8 +1,7 @@
 import { Grid } from '@material-ui/core';
-import React, { useEffect } from 'react';
-import { getProducts } from './services/fetchService';
+import React from 'react';
 
-import { Link, Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import Shop from './pages/Shop/Shop';
 import Footer from './pages/Footer';
@@ -21,9 +20,8 @@ import { ProductContextProvider } from './contexts/ProductContext';
 import { CustomizationContextProvider } from './contexts/CustomizationContext';
 import ScrollToTop from './common/scrolltop';
 
-import { Provider } from 'react-redux';
 import { AuthContext } from './auth';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Getsizes from './pages/getsizes/getsizes';
 import { ToastContainer } from 'react-toastify';
@@ -36,7 +34,6 @@ import Checks from './pages/Shop/Filters/Checks';
 import Stripes from './pages/Shop/Filters/Stripes';
 import Printed from './pages/Shop/Filters/Printed';
 import { userContext } from './contexts/UserContext';
-import { WhatsApp } from '@material-ui/icons';
 import Whatsapp from './pages/whatsapp';
 import FormalShirts from './pages/Shop/Filters/Formalshirts';
 import FilterType from './pages/Shop/Filters/FilterType';
@@ -203,4 +200,3 @@ function App() {
 }
 
 export default App;
-// <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_G5cN9Y43rGcXRK"> </script> </form>

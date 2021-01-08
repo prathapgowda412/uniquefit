@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, Card, CardActionArea, Container, Box, Typography, Grid } from '@material-ui/core';
+import { makeStyles, Card, Container, Box, Typography, Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 // import './custom.css';
 

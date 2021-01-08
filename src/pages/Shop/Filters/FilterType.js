@@ -1,6 +1,7 @@
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
-import React, { useContext, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+/* eslint-disable array-callback-return */
+import { Grid, makeStyles } from '@material-ui/core';
+import React, { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 
 // import dummydata from '../../data/dummydata.json';
 import Product from '../Product';
@@ -56,8 +57,8 @@ function FilterType() {
 	console.log(type);
 	//   const [products, setproducts] = React.useState([]);
 
-	const { products, setProducts: setproducts } = useContext(productContext);
-	const [solidproducts, setsolidproducts] = React.useState();
+	// eslint-disable-next-line no-unused-vars
+	const { products } = useContext(productContext);
 	//   console.log(products);
 
 	//   console.log(solids);
@@ -67,7 +68,7 @@ function FilterType() {
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
 				<Grid item container xs={12} sm={10} direction="row" className={classes.productsbox}>
 					{products.map((product) => {
-						if (product.producttype == type) {
+						if (product.producttype === type) {
 							return <Product key={product.productid} product={product} />;
 						}
 					})}

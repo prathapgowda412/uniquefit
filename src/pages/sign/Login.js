@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import { makeStyles, Grid, AppBar, Container, Box, Typography, Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
@@ -212,7 +213,7 @@ function Login(props) {
 				// console.log(err);
 				// console.log(err.response.data);
 				// console.log(err.response.data.message);
-				if (err.response.data.message == 'User Not Exist') {
+				if (err.response.data.message === 'User Not Exist') {
 					toast.error('User name does not exist or Wrong user-email');
 					setusernameerror('Username does not exist !!! Please Register');
 				} else {

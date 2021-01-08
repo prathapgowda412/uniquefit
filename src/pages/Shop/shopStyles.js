@@ -82,10 +82,24 @@ const shopStyles = makeStyles((theme) => ({
 		position: 'fixed',
 		bottom: 0,
 		backgroundColor: 'white',
+		zIndex: 10,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	applybutton: {
 		backgroundColor: '#387a76',
 		color: 'white',
+	},
+	mobfilterbox: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'space-around',
+	},
+	mobFiltContainer: {
+		width: '100%',
+		height: 'fit-content',
+		padding: '10px 10px',
 	},
 }));
 

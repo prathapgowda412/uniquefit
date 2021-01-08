@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -113,7 +114,6 @@ export default function SignIn() {
 										label="Email Address"
 										name="email"
 										autoComplete="email"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -124,7 +124,6 @@ export default function SignIn() {
 										label="First name"
 										name="firstname"
 										autoComplete="name"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -135,7 +134,6 @@ export default function SignIn() {
 										label="Last name"
 										name="lastname"
 										autoComplete="name"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -146,7 +144,6 @@ export default function SignIn() {
 										label="Mobile no."
 										name="mobile"
 										autoComplete="number"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -156,7 +153,6 @@ export default function SignIn() {
 										id="lookinffor"
 										label="Looking For ?"
 										name="lookingfor"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -166,7 +162,6 @@ export default function SignIn() {
 										id="typofocassion"
 										label="Type of occasion ?"
 										name="lookingfor"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -176,7 +171,6 @@ export default function SignIn() {
 										id="typofocassion"
 										label="Type of occasion ?"
 										name="occasion"
-										autoFocus
 									/>
 									<Button type="submit" fullWidth variant="contained" className={classes.submit}>
 										<Typography className={classes.submitname}>Submit</Typography>
@@ -202,7 +196,6 @@ export default function SignIn() {
 										label="Email Address"
 										name="email"
 										autoComplete="email"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -213,7 +206,6 @@ export default function SignIn() {
 										label="First name"
 										name="firstname"
 										autoComplete="name"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -224,7 +216,6 @@ export default function SignIn() {
 										label="Last name"
 										name="lastname"
 										autoComplete="name"
-										autoFocus
 									/>
 									<TextField
 										variant="outlined"
@@ -235,7 +226,6 @@ export default function SignIn() {
 										label="Mobile no."
 										name="mobile"
 										autoComplete="number"
-										autoFocus
 									/>
 									<DropzoneArea onChange={handleuploadchange} />
 

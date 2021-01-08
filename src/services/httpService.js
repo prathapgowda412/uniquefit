@@ -1,5 +1,5 @@
+/* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 

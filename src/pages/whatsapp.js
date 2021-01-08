@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import { Box, Button, Link, makeStyles } from '@material-ui/core';
+import { Box, Button, makeStyles } from '@material-ui/core';
 
 const Styles = makeStyles((theme) => ({
 	whatsapp: {

@@ -1,3 +1,7 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
 	Grid,
 	Hidden,
@@ -18,7 +22,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 
-import { Link, Redirect, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 // import collars from './data/collar.json';
 // import frontt from './data/front.json';
@@ -40,7 +44,6 @@ import { toast } from 'react-toastify';
 import { productContext } from '../../contexts/ProductContext';
 import { getCustomisations } from './../../services/fetchService';
 import CustomiseStyles from './Customizestyles';
-import { customizationContext } from '../../contexts/CustomizationContext';
 
 const styles = CustomiseStyles;
 // tabs handling functions below
@@ -99,10 +102,9 @@ function Customize() {
 		setcustbackbottom(fullCustomization.find((custom) => custom.name === backbottomvalue));
 	};
 	// console.log(custcollar.name);
-	const { products, setProducts: setproducts } = useContext(productContext);
+	const { products } = useContext(productContext);
 	const [product, setproduct] = React.useState([]);
-	const [colarimg, setcolarimg] = React.useState([]);
-	const [productimages, setproductimages] = React.useState([]);
+
 	// const { customizationsdata, setCustomizationsdata } = useContext(customizationContext);
 	// console.log(customizationsdata);
 	useEffect(() => {
@@ -126,7 +128,6 @@ function Customize() {
 	// collar value change handling below
 	const [collarnamevalue, setcollarnameValue] = React.useState('Spread Eagle');
 
-	const [collarimage, setcollarimage] = React.useState();
 	const [collarstiff, setcollarstiffness] = React.useState('soft');
 	// let collarname = '';
 	const handlecollarChange = (event) => {
@@ -416,7 +417,7 @@ wa.link/54ag6i */}
 										</Paper>
 									</Grid>
 								</Grid>
-								<Grid item container justify="space-between" container xs={11}>
+								<Grid item container justify="space-between" xs={11}>
 									<Grid xs={2} item>
 										<Paper elevation className={classes.selectedpaper}>
 											<Typography style={{ fontSize: '12px' }}> Button name :</Typography>
@@ -507,7 +508,7 @@ wa.link/54ag6i */}
 										onChange={handlecollarChange}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'collar')
+											.filter((colr) => colr.type === 'collar')
 											.map((colar) => {
 												return (
 													<Paper className={classes.typepaper}>
@@ -532,7 +533,7 @@ wa.link/54ag6i */}
 										onChange={handlecollarstiffnesschange}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'collarstiffness')
+											.filter((colr) => colr.type === 'collarstiffness')
 											.map((colarstif) => {
 												return (
 													<Paper className={classes.typepaper}>
@@ -559,7 +560,7 @@ wa.link/54ag6i */}
 										onChange={handlesleevecuffChange}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'sleevecuffs')
+											.filter((colr) => colr.type === 'sleevecuffs')
 											.map((sleevecuff) => {
 												return (
 													<Paper className={classes.typepaper}>
@@ -585,7 +586,7 @@ wa.link/54ag6i */}
 										onChange={handlesleevecuffstiffness}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'collarstiffness')
+											.filter((colr) => colr.type === 'collarstiffness')
 											.map((sleevecuff) => {
 												return (
 													<Paper className={classes.typepaper}>
@@ -611,7 +612,7 @@ wa.link/54ag6i */}
 										onChange={handlebutoonChange}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'buttons')
+											.filter((colr) => colr.type === 'buttons')
 											.map((butoon) => {
 												return (
 													<Paper className={classes.typepaper}>
@@ -637,7 +638,7 @@ wa.link/54ag6i */}
 										onChange={handlebuttonthread}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'thread')
+											.filter((colr) => colr.type === 'thread')
 											.map((buttonthread) => {
 												return (
 													<Paper className={classes.buttonpaper}>
@@ -664,7 +665,7 @@ wa.link/54ag6i */}
 										onChange={handlefrontChange}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'front')
+											.filter((colr) => colr.type === 'front')
 											.map((frontt) => {
 												return (
 													<Paper className={classes.typepaper}>
@@ -691,7 +692,7 @@ wa.link/54ag6i */}
 										onChange={handlepocketchange}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'pocket')
+											.filter((colr) => colr.type === 'pocket')
 											.map((pocket) => {
 												return (
 													<Paper className={classes.typepaper}>
@@ -718,7 +719,7 @@ wa.link/54ag6i */}
 										className={classes.typepanel}>
 										{/* for bacj anf cbotm */}
 										{fullCustomization
-											.filter((colr) => colr.type == 'back')
+											.filter((colr) => colr.type === 'back')
 											.map((back) => {
 												return (
 													<Paper className={classes.typepaper}>
@@ -744,7 +745,7 @@ wa.link/54ag6i */}
 										onChange={handlebackbottomchange}
 										className={classes.typepanel}>
 										{fullCustomization
-											.filter((colr) => colr.type == 'backbottom')
+											.filter((colr) => colr.type === 'backbottom')
 											.map((backbottom) => {
 												return (
 													<Paper className={classes.buttonpaper}>

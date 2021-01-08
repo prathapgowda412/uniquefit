@@ -1,6 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles, Grid, Typography, Box, CardMedia, Paper, Button, Hidden, Container } from '@material-ui/core';
+import { makeStyles, Grid, Typography, Box, Container } from '@material-ui/core';
 // import { sizing, width } from "@material-ui/system";
 // import InstagramIcon from "@material-ui/icons/Instagram";
 // import FacebookIcon from "@material-ui/icons/Facebook";
@@ -298,67 +299,6 @@ function AboutUs() {
 						<Grid item sm={12} md={1}></Grid>
 					</Grid>
 				</Box>
-				{/* <Box component="div" style={{ backgroundColor: '#f2f2f2' }}> */}
-				{/* <Box>
-						<Typography variant="body1" align="center" className={classes.followQuote}>
-							Show case your perfect fit!
-						</Typography>
-					</Box> */}
-				{/* <Box>
-						<Typography variant="h2" align="center" className={classes.followHeading}>
-							#MyUniquefit
-						</Typography>
-					</Box> */}
-				{/* <Box
-						display="flex"
-						flexDirection="row"
-						my={6}
-						py={4}
-						alignItems="center"
-						justifyContent="space-evenly">
-						<Box>
-							<InstagramIcon fontSize="large" />
-							<Hidden smDown>
-								<Typography variant="body1" className={classes.followTag}>
-									@Uniquefit
-								</Typography>
-							</Hidden>
-						</Box> */}
-				{/* <Box> */}
-				{/* <FacebookIcon fontSize="large" className={classes.followIcon} /> */}
-				{/* <Hidden smDown>
-								<Typography variant="body1" className={classes.followTag}>
-									/Uniquefit
-								</Typography>
-							</Hidden>
-						</Box> */}
-				{/* <Box>
-							<TwitterIcon fontSize="large" />
-							<Hidden smDown>
-								<Typography variant="body1" className={classes.followTag}>
-									#Uniquefit
-								</Typography>
-							</Hidden>
-						</Box> */}
-				{/* <Box>
-							<WhatsAppIcon fontSize="large" />
-							<Hidden smDown>
-								<Typography variant="body1" className={classes.followTag}>
-									1800 123 456
-								</Typography>
-							</Hidden>
-						</Box> */}
-				{/* </Box> */}
-				{/* <Box mt={15}>
-						<Box display="flex" flexDirection="row">
-							<Box>
-								<Typography variant="h5" className={classes.measure}>
-									Ready to get started ?
-								</Typography>
-							</Box>
-						</Box>
-					</Box> */}
-				{/* </Box> */}
 			</Container>
 		</React.Fragment>
 	);

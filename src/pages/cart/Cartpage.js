@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable array-callback-return */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import {
 	Container,
@@ -87,7 +90,7 @@ function Cartpage() {
 	const [doneadress, setdoneadress] = React.useState();
 	const [mobileerror, setmobileerror] = React.useState();
 	const handlesetfulladress = () => {
-		if (addressmobile.length == 10) {
+		if (addressmobile.length === 10) {
 			console.log('lenght is 10');
 			setdoneadress('Done adding address');
 			setfulladdress(
@@ -205,7 +208,7 @@ function Cartpage() {
 	// console.log(cartItems.length);
 
 	const removeFromCartUI = async (productid) => {
-		setCartItems(cartItems.filter((cartItem) => cartItem.productid != productid));
+		setCartItems(cartItems.filter((cartItem) => cartItem.productid !== productid));
 		let { data } = await removeFromCart(productid);
 		toast(data.message);
 	};
@@ -1072,7 +1075,7 @@ function Cartpage() {
 	return (
 		<>
 			<Grid item container xs={12} className={classes.root} justify="center">
-				{cartquantity != 0 ? (
+				{cartquantity !== 0 ? (
 					<>
 						<Grid xs={12} item justify="center" container className={classes.cartappbar}>
 							<Box style={{ width: '95%' }}>

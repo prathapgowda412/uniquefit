@@ -1,28 +1,24 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable no-unused-vars */
+/* eslint-disable array-callback-return */
 import React, { useEffect } from 'react';
 import {
 	Container,
 	Grid,
-	Hidden,
 	Box,
 	FormControl,
 	FormLabel,
-	FormControlLabel,
 	FormGroup,
 	TextField,
-	Input,
 	Button,
-	Typography,
-	Avatar,
-	Select,
 	makeStyles,
 } from '@material-ui/core';
 import Axios from 'axios';
 
-import { Redirect, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import DropZone from './../../../common/Dropzone';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
 	menulinks: {
 		textAlign: 'left',
 		// backgroundColor: '#387A76',
@@ -138,19 +134,6 @@ function AddProduct() {
 		return () => URL.revokeObjectURL(objecturl);
 	}, [selectedfile]);
 
-	const imagechange = (e) => {
-		if (!e.target.files || e.target.files.length == 0) {
-			setselectedfile(undefined);
-			return;
-		}
-
-		//putting only one image for preview
-
-		setselectedfile(e.target.files[0]);
-		setfiles(e.target.files);
-		// console.log(e.target.files);
-	};
-
 	const [productname, setproductname] = React.useState();
 	const [productprice, setproductprice] = React.useState();
 	const [productsaleprice, setproductsaleprice] = React.useState();
@@ -195,17 +178,12 @@ function AddProduct() {
 			productdata.append('pimages', file);
 		});
 		console.log(productdata);
-		const config = {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-			},
-		};
 
 		let resp = await Axios.post(`${process.env.REACT_APP_API_URL}/products/insert-product`, productdata);
 		console.log(resp);
 		console.log(resp.data.message);
 		console.log(resp.status);
-		if (resp.status == 200) {
+		if (resp.status === 200) {
 			window.location.reload();
 			console.log('done succes');
 			toast.success('success uploading');

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react-hooks/exhaustive-deps */
 import {
 	Container,
@@ -11,6 +12,7 @@ import {
 	Hidden,
 	Button,
 	CircularProgress,
+	Popover,
 } from '@material-ui/core';
 import React, { useContext, useEffect, useState } from 'react';
 
@@ -36,7 +38,7 @@ function Shop() {
 	let [filteredProducts, setFilteredProducts] = useState([]);
 	let [filter, setFilter] = useState(filterBluePrint);
 	const onClickApplyFilter = () => {
-		console.log('filter changed');
+		// console.log('filter changed');
 		// let filtProducts = products.map((product) => {
 		// 	if (product.productpattern === filter.productpattern || product.producttype === filter.category) {
 		// 		console.log(product);
@@ -79,14 +81,189 @@ function Shop() {
 			setFilter((oldFilter) => ({ ...oldFilter, [event.target.name]: '' }));
 		}
 	};
-
+	const [mobFilterBox, setMobFilterBox] = React.useState(null);
+	const handleFilterBoxOpen = (event) => {
+		setMobFilterBox(event.currentTarget);
+	};
+	const handleFilterBoxClose = () => {
+		setMobFilterBox(null);
+	};
+	const mobFilterCont = Boolean(mobFilterBox);
+	const filtID = mobFilterCont ? 'filter-box' : undefined;
 	// const filteredProducts=products.filter()
 
 	return (
 		<Grid item container xs={12} className={classes.root} justify="center">
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
 				<Hidden mdUp>
-					<Box className={classes.hidecomp}> heloo </Box>
+					<Button aria-describedby={filtID} onClick={handleFilterBoxOpen}>
+						<Box className={classes.hidecomp}>
+							<Container className={classes.mobfilterbox}>
+								<img src={require('./images/filter.svg')} />
+								<Typography>Filter </Typography>
+							</Container>
+						</Box>
+					</Button>
+					<Popover
+						anchorReference="anchorPosition"
+						anchorPosition={{ top: 750 }}
+						anchorOrigin={{
+							vertical: 'top',
+							horizontal: 'right',
+						}}
+						transformOrigin={{
+							vertical: 'bottom',
+							horizontal: 'right',
+						}}
+						anchorEl={mobFilterBox}
+						onClose={handleFilterBoxClose}
+						open={mobFilterCont}
+						id={filtID}>
+						<Container className={classes.mobFiltContainer}>
+							<Container className={classes.flitercont}>
+								<Typography className={classes.filterproducts}>Filter Products</Typography>
+								{/* <FormControl>
+								<FormLabel>Color</FormLabel>
+								<FormGroup column>
+									<FormControlLabel
+										value="Blue"
+										control={<Checkbox size="small" className={classes.inputcheckbox} />}
+										label="Blue"
+										labelPlacement="end"
+									/>
+									<FormControlLabel
+										value="top"
+										control={<Checkbox size="small" className={classes.inputcheckbox} />}
+										label="Blue"
+										labelPlacement="end"
+									/>
+									<FormControlLabel
+										value="top"
+										control={<Checkbox size="small" className={classes.inputcheckbox} />}
+										label="Blue"
+										labelPlacement="end"
+									/>
+									<FormControlLabel
+										value="top"
+										control={<Checkbox size="small" className={classes.inputcheckbox} />}
+										label="Blue"
+										labelPlacement="end"
+									/>
+								</FormGroup>
+							</FormControl> */}
+								<Container maxWidth="xs" className={classes.divider} />
+								<FormControl>
+									<FormLabel>Pattern</FormLabel>
+									<FormGroup column>
+										<FormControlLabel
+											value="Stripes"
+											control={
+												<Checkbox
+													name="pattern"
+													value="Stripes"
+													onChange={handleFilterChange}
+													size="small"
+													className={classes.inputcheckbox}
+												/>
+											}
+											label="Stripes"
+											labelPlacement="end"
+										/>
+										<FormControlLabel
+											control={
+												<Checkbox
+													size="small"
+													onChange={handleFilterChange}
+													value="Solids"
+													name="pattern"
+													className={classes.inputcheckbox}
+												/>
+											}
+											label="Solids"
+											labelPlacement="end"
+										/>
+										<FormControlLabel
+											control={
+												<Checkbox
+													size="small"
+													onChange={handleFilterChange}
+													value="Checks"
+													name="pattern"
+													className={classes.inputcheckbox}
+												/>
+											}
+											label="Checks"
+											labelPlacement="end"
+										/>
+										<FormControlLabel
+											control={
+												<Checkbox
+													size="small"
+													onChange={handleFilterChange}
+													value="Printed"
+													name="pattern"
+													className={classes.inputcheckbox}
+												/>
+											}
+											label="Printed"
+											labelPlacement="end"
+										/>
+									</FormGroup>
+								</FormControl>
+								<Container maxWidth="xs" className={classes.divider} />
+								<FormControl>
+									<FormLabel>Category</FormLabel>
+									<FormGroup column>
+										<FormControlLabel
+											value="Formal"
+											control={
+												<Checkbox
+													onChange={handleFilterChange}
+													value="Formal"
+													name="category"
+													size="small"
+													className={classes.inputcheckbox}
+												/>
+											}
+											label="Formal"
+											labelPlacement="end"
+										/>
+										<FormControlLabel
+											value="Casual"
+											control={
+												<Checkbox
+													onChange={handleFilterChange}
+													value="Casual"
+													name="category"
+													size="small"
+													className={classes.inputcheckbox}
+												/>
+											}
+											label="Casual"
+											labelPlacement="end"
+										/>
+										<FormControlLabel
+											value="Semi Formal"
+											control={
+												<Checkbox
+													onChange={handleFilterChange}
+													value="Semi-Formal"
+													name="category"
+													size="small"
+													className={classes.inputcheckbox}
+												/>
+											}
+											label="Semi Formal"
+											labelPlacement="end"
+										/>
+									</FormGroup>
+								</FormControl>
+							</Container>
+							<Button className={classes.applybutton} onClick={onClickApplyFilter}>
+								<Typography style={{ color: 'white' }}>Apply</Typography>{' '}
+							</Button>
+						</Container>{' '}
+					</Popover>
 				</Hidden>
 				<Hidden smDown>
 					<Grid xs={12} justify="center" sm={3} id="filterbox" className={classes.filterbox}>

@@ -125,9 +125,7 @@ const Headerstyles = (theme) => ({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},
-	drawer: {
-		width: '400px',
-	},
+
 	requestcallbutton: {
 		color: 'white',
 		backgroundColor: '#387A76',
@@ -238,6 +236,7 @@ const Headerstyles = (theme) => ({
 	},
 	drawer: {
 		transition: '1s',
+		width: '400px',
 	},
 	requestbuton: {
 		color: 'white',

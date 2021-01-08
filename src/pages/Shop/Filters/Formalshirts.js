@@ -1,6 +1,7 @@
-import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
-import React, { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
+/* eslint-disable array-callback-return */
+import { Grid, makeStyles } from '@material-ui/core';
+import React, { useContext } from 'react';
 
 // import dummydata from '../../data/dummydata.json';
 import Product from '../Product';
@@ -55,7 +56,6 @@ function FormalShirts() {
 	//   const [products, setproducts] = React.useState([]);
 
 	const { products, setProducts: setproducts } = useContext(productContext);
-	const [solidproducts, setsolidproducts] = React.useState();
 	//   console.log(products);
 
 	//   console.log(solids);
@@ -65,7 +65,7 @@ function FormalShirts() {
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
 				<Grid item container xs={12} sm={10} direction="row" className={classes.productsbox}>
 					{products.map((product) => {
-						if (product.producttype == 'Formal') {
+						if (product.producttype === 'Formal') {
 							return <Product key={product.productid} product={product} />;
 						}
 					})}

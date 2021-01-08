@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable array-callback-return */
 import { Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -54,8 +56,8 @@ function Printed() {
 	const classes = useStyles();
 	//   const [products, setproducts] = React.useState([]);
 
+	// eslint-disable-next-line no-unused-vars
 	const { products, setProducts: setproducts } = useContext(productContext);
-	const [solidproducts, setsolidproducts] = React.useState();
 	//   console.log(products);
 
 	//   console.log(solids);
@@ -65,7 +67,7 @@ function Printed() {
 			<Grid item container xs={12} justify="space-evenly" className={classes.shopbox}>
 				<Grid item container xs={12} sm={10} direction="row" className={classes.productsbox}>
 					{products.map((product) => {
-						if (product.productpattern == 'Printed') {
+						if (product.productpattern === 'Printed') {
 							return <Product key={product.productid} product={product} />;
 						}
 					})}
