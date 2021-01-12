@@ -1,28 +1,27 @@
 // import classes from '*.module.css';
-import { Grid, Hidden, Typography } from '@material-ui/core';
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Hidden } from "@material-ui/core";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 // import shopfavimag from '../statics/images/shopfav.png';
-import shopfavimag from './statics/images/formalboy.jpg';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   mainshop: {
-    minHeight: '500px',
-    maxHeight: 'fit-content',
-    marginTop: '64px',
-    position: 'relative',
+    minHeight: "500px",
+    maxHeight: "fit-content",
+    marginTop: "64px",
+    position: "relative",
   },
   shopimg: {
-    height: '438px',
-    width: '100%',
+    height: "438px",
+    width: "100%",
   },
   bodytext: {
-    width: '90%',
-    fontSize: '24px',
+    width: "90%",
+    fontSize: "24px",
   },
   heroimg: {
-    width: '100%',
+    width: "100%",
   },
 }));
 
@@ -32,25 +31,27 @@ function Shopfav() {
     <Grid
       item
       container
-      justify='center'
+      justify="center"
       xs={12}
       sm={12}
       className={classes.mainshop}
     >
       <Hidden smUp>
-        <Link to='/Shop'>
+        <Link to="/Shop">
           <img
+            alt="Uniquefit ,clothing brand"
             className={classes.heroimg}
-            src={require('./statics/images/Personalise_selection_mobile.webp')}
+            src={require("./statics/images/Personalise_selection_mobile.webp")}
           />
         </Link>
       </Hidden>
 
       <Hidden xsDown>
-        <Link to='/Shop'>
+        <Link to="/Shop">
           <img
+            alt="Uniquefit ,clothing brand"
             className={classes.heroimg}
-            src={require('./statics/images/Personalise_selection.webp')}
+            src={require("./statics/images/Personalise_selection.webp")}
           />
         </Link>
       </Hidden>
