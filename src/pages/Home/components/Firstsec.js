@@ -1,18 +1,19 @@
-import React from "react";
-import { Grid, makeStyles, Hidden } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Grid, makeStyles, Hidden } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 // import {} from '@material-ui/core/Button';
 // import { Link } from '@material-ui/core/Link';
-
+import HeroImageDesk from './statics/images/Hero_section.jpg';
+import HeroImageMobile from './statics/images/Herosectionmob.png';
 const useStyles = makeStyles((theme) => ({
   root: {
-    overflow: "hidden",
-    height: "auto",
+    overflow: 'hidden',
+    height: 'auto',
     // backgroundColor: 'grey',
-    position: "relative",
+    position: 'relative',
     // height: '70vh',
-    [theme.breakpoints.down("sm")]: {
-      height: "fit-content",
+    [theme.breakpoints.down('sm')]: {
+      height: 'fit-content',
     },
   },
 
@@ -20,37 +21,37 @@ const useStyles = makeStyles((theme) => ({
     height: 500,
   },
   headingbox: {
-    position: "absolute",
-    display: "flex",
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
+    position: 'absolute',
+    display: 'flex',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
   },
   headingone: {
-    fontSize: "49px",
-    color: "white",
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "29px",
+    fontSize: '49px',
+    color: 'white',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '29px',
     },
   },
   link: {
-    textDecoration: "none",
-    color: "white",
+    textDecoration: 'none',
+    color: 'white',
   },
   Shopnowbutton: {
-    color: "white",
-    backgroundColor: "#387A76",
-    padding: "10px 69px",
-    fontSize: "18px",
-    borderRadius: "8px",
-    "&:hover": {
-      backgroundColor: "#034b46",
+    color: 'white',
+    backgroundColor: '#387A76',
+    padding: '10px 69px',
+    fontSize: '18px',
+    borderRadius: '8px',
+    '&:hover': {
+      backgroundColor: '#034b46',
     },
   },
   heroimg: {
-    width: "100%",
+    width: '100%',
   },
 }));
 
@@ -61,24 +62,24 @@ function Firstsec() {
       item
       container
       xs={12}
-      alignContent="stretch"
+      alignContent='stretch'
       className={classes.root}
     >
       <Hidden smUp>
-        <Link to="/Shop">
+        <Link to='/Shop'>
           <img
-            alt="Uniquefit ,clothing brand"
+            alt='Uniquefit ,clothing brand'
             className={classes.heroimg}
-            src={require("./statics/images/Herosectionmob.png")}
+            src={HeroImageMobile}
           />
         </Link>
       </Hidden>
       <Hidden xsDown>
-        <Link to="/Shop">
+        <Link to='/Shop'>
           <img
-            alt="Uniquefit ,clothing brand"
+            alt='Uniquefit ,clothing brand'
             className={classes.heroimg}
-            src={require("./statics/images/Hero_section.jpg")}
+            src={HeroImageDesk}
           />
         </Link>
       </Hidden>

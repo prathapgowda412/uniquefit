@@ -1,21 +1,22 @@
-import React from "react";
-import { Grid, makeStyles, Hidden } from "@material-ui/core";
-import { Link } from "react-router-dom";
-
+import React from 'react';
+import { Grid, makeStyles, Hidden } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import ContactHome from './statics/images/yellowboymob.png';
+import ContactHome2 from './statics/images/yellowboydesk.png';
 const useStyles = makeStyles((theme) => ({
   root: {
-    overflow: "hidden",
-    height: "auto",
-    position: "relative",
-    marginTop: "76px",
+    overflow: 'hidden',
+    height: 'auto',
+    position: 'relative',
+    marginTop: '76px',
 
-    [theme.breakpoints.down("sm")]: {
-      height: "fit-content",
+    [theme.breakpoints.down('sm')]: {
+      height: 'fit-content',
     },
   },
 
   heroimg: {
-    width: "100%",
+    width: '100%',
   },
 }));
 
@@ -26,24 +27,24 @@ function Uploadhome() {
       item
       container
       xs={11}
-      alignContent="stretch"
+      alignContent='stretch'
       className={classes.root}
     >
       <Hidden smUp>
-        <Link to="/Contact">
+        <Link to='/Contact'>
           <img
-            alt="Uniquefit ,clothing brand"
+            alt='Uniquefit ,clothing brand'
             className={classes.heroimg}
-            src={require("./statics/images/yellowboymob.png")}
+            src={ContactHome}
           />
         </Link>
       </Hidden>
       <Hidden xsDown>
-        <Link to="/Contact">
+        <Link to='/Contact'>
           <img
-            alt="Uniquefit ,clothing brand"
+            alt='Uniquefit ,clothing brand'
             className={classes.heroimg}
-            src={require("./statics/images/yellowboydesk.png")}
+            src={ContactHome2}
           />
         </Link>
       </Hidden>

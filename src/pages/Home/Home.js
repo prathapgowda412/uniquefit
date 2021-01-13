@@ -11,21 +11,17 @@ import Secondpro from './components/Secondpro';
 import Somesec from './components/Somesec';
 import ThirdProducts from './components/ThirdProducts';
 function Home() {
-	return (
-		<Grid item container xs={12} justify="center">
-			<Firstsec />
-			<Trending />
-			{/* <UploadHome /> */}
-			<UploadHome />
-			<Categorysec />
-			<Shopfav />
-			<Secondpro />
-			{/* <Offerssection /> */}
-			{/* <Aboutsection /> */}
-			{/* <Testimonialsection /> */}
-			<Somesec />
-			<ThirdProducts />
-		</Grid>
-	);
+  return (
+    <Grid item container xs={12} justify='center'>
+      <Firstsec />
+      <Trending />
+      <UploadHome />
+      <Categorysec />
+      <Shopfav />
+      <Secondpro />
+      <Somesec />
+      <ThirdProducts />
+    </Grid>
+  );
 }
 export default Home;

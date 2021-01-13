@@ -13,16 +13,16 @@ import {
   Container,
   CircularProgress,
   LinearProgress,
-} from "@material-ui/core";
-import React, { useContext, useEffect } from "react";
+} from '@material-ui/core';
+import React, { useContext, useEffect } from 'react';
 
-import "./style.css";
+import './style.css';
 
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import PropTypes from "prop-types";
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PropTypes from 'prop-types';
 
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 // import collars from './data/collar.json';
 // import frontt from './data/front.json';
@@ -34,16 +34,16 @@ import { Link, useHistory, useParams } from "react-router-dom";
 // import back from './data/back.json';
 // import backbottom from './data/backbottom.json';
 
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import { addToCart } from "../../services/fetchService";
-import { toast } from "react-toastify";
-import { productContext } from "../../contexts/ProductContext";
-import { getCustomisations } from "./../../services/fetchService";
-import CustomiseStyles from "./Customizestyles";
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import { addToCart } from '../../services/fetchService';
+import { toast } from 'react-toastify';
+import { productContext } from '../../contexts/ProductContext';
+import { getCustomisations } from './../../services/fetchService';
+import CustomiseStyles from './Customizestyles';
 
 const styles = CustomiseStyles;
 // tabs handling functions below
@@ -52,7 +52,7 @@ function TabPanel(props) {
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
@@ -71,7 +71,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
 // tabs handling functions above
@@ -145,22 +145,22 @@ function Customize() {
   }, [products]);
 
   // collar value change handling below
-  const [collarnamevalue, setcollarnameValue] = React.useState("Spread Eagle");
+  const [collarnamevalue, setcollarnameValue] = React.useState('Spread Eagle');
 
   // let collarname = '';
   const handlecollarChange = (event) => {
     setcollarnameValue(event.target.value);
   };
 
-  const [collarstiff, setcollarstiffness] = React.useState("soft");
+  const [collarstiff, setcollarstiffness] = React.useState('soft');
   const handlecollarstiffnesschange = (event) => {
     setcollarstiffness(event.target.value);
   };
   // collar value change handling above
 
   // sleevecuff value change handling below
-  const [sleevecuffvalue, setsleevecuffValue] = React.useState("half sleeve");
-  const [cuffstiff, setcuffstiff] = React.useState("soft");
+  const [sleevecuffvalue, setsleevecuffValue] = React.useState('half sleeve');
+  const [cuffstiff, setcuffstiff] = React.useState('soft');
   const handlesleevecuffChange = (event) => {
     setsleevecuffValue(event.target.value);
   };
@@ -170,9 +170,9 @@ function Customize() {
   };
   // sleevecuff value change handling above
 
-  const [butoonvalue, setbutoonvalue] = React.useState("Natural");
+  const [butoonvalue, setbutoonvalue] = React.useState('Natural');
   // butoons  value change handling below
-  const [buttonthreadvalue, setbuttonthreadvalue] = React.useState("Black");
+  const [buttonthreadvalue, setbuttonthreadvalue] = React.useState('Black');
   const handlebutoonChange = (event) => {
     setbutoonvalue(event.target.value);
   };
@@ -182,21 +182,21 @@ function Customize() {
   // butoons  value change handling above
 
   // butoons  value change handling below
-  const [frontvalue, setfrontvalue] = React.useState("Regular");
+  const [frontvalue, setfrontvalue] = React.useState('Regular');
   const handlefrontChange = (event) => {
     setfrontvalue(event.target.value);
   };
   // butoons  value change handling above
 
   //pocket handling
-  const [pocketvalue, setpocketvalue] = React.useState("none");
+  const [pocketvalue, setpocketvalue] = React.useState('none');
   const handlepocketchange = (event) => {
     setpocketvalue(event.target.value);
   };
 
   // back and bac bottom hanfling below
-  const [backvalue, setbackvalue] = React.useState("None");
-  const [backbottomvalue, setbackbottomvalue] = React.useState("Rounded");
+  const [backvalue, setbackvalue] = React.useState('None');
+  const [backbottomvalue, setbackbottomvalue] = React.useState('Rounded');
   const handlebackchange = (event) => {
     setbackvalue(event.target.value);
   };
@@ -228,11 +228,11 @@ function Customize() {
 
   const hancleclickcart = async () => {
     // toast('clicked butn');
-    console.log(localStorage.getItem("usertoken"));
-    let toke = localStorage.getItem("usertoken");
+    console.log(localStorage.getItem('usertoken'));
+    let toke = localStorage.getItem('usertoken');
     if (toke == null) {
-      toast("please login to add to cart");
-      history.push("/Login");
+      toast('please login to add to cart');
+      history.push('/Login');
       // <Redirect to="Login" />;
     }
 
@@ -271,8 +271,8 @@ function Customize() {
     const { data: response } = await addToCart(productc);
     toast(response.message);
     console.log(response);
-    if (response.message == "Product added to cart successfully") {
-      history.push("/Cart");
+    if (response.message == 'Product added to cart successfully') {
+      history.push('/Cart');
     }
   };
 
@@ -284,14 +284,14 @@ function Customize() {
             item
             container
             xs={12}
-            alignItems="center"
+            alignItems='center'
             className={classes.topbar}
           >
             <Grid item xs={2} className={classes.logobox}>
-              <Link to="/">
+              <Link to='/'>
                 <img
                   className={classes.logo}
-                  src={require("../../logos/uniquefitlogowhite.svg")}
+                  src={require('../../logos/uniquefitlogowhite.svg')}
                 />
               </Link>
             </Grid>
@@ -306,18 +306,18 @@ function Customize() {
                       {product.productname}
                     </Typography>
                     {/* <br /> */}
-                    <Typography style={{ color: "#282c3f" }}>
+                    <Typography style={{ color: '#282c3f' }}>
                       {product.productsaleprice}
                     </Typography>
                   </>
                 ) : (
-                  <Container maxWidth="xs">
+                  <Container maxWidth='xs'>
                     <LinearProgress />
                   </Container>
                 )}
               </Container>
             </Grid>
-            <Grid item xs={3} container justify="center">
+            <Grid item xs={3} container justify='center'>
               <Button
                 className={classes.addtocartbutton}
                 onClick={hancleclickcart}
@@ -333,45 +333,45 @@ function Customize() {
             <Grid
               item
               container
-              justify="center"
+              justify='center'
               sm={2}
-              style={{ backgroundColor: "#28334B", height: "100%" }}
+              style={{ backgroundColor: '#28334B', height: '100%' }}
             >
               <Tabs
-                indicatorColor="none"
-                orientation="vertical"
+                indicatorColor='none'
+                orientation='vertical'
                 value={tabvalue}
                 onChange={handleTabChange}
-                aria-label="Vertical tabs example"
+                aria-label='Vertical tabs example'
               >
                 <Tab
                   className={classes.tablink}
-                  label="Collar"
+                  label='Collar'
                   {...a11yProps(0)}
                 ></Tab>
                 <Tab
                   className={classes.tablink}
-                  label="Hand Cuffs"
+                  label='Hand Cuffs'
                   {...a11yProps(1)}
                 />
                 <Tab
                   className={classes.tablink}
-                  label="Button & Thread"
+                  label='Button & Thread'
                   {...a11yProps(2)}
                 />
                 <Tab
                   className={classes.tablink}
-                  label="Front"
+                  label='Front'
                   {...a11yProps(3)}
                 />
                 <Tab
                   className={classes.tablink}
-                  label="Pocket"
+                  label='Pocket'
                   {...a11yProps(4)}
                 />
                 <Tab
                   className={classes.tablink}
-                  label="Back & Bottom"
+                  label='Back & Bottom'
                   {...a11yProps(5)}
                 />
               </Tabs>
@@ -383,7 +383,7 @@ function Customize() {
               item
               container
               sm={7}
-              style={{ backgroundColor: "#fff", height: "100%" }}
+              style={{ backgroundColor: '#fff', height: '100%' }}
             >
               <Grid item xs={12} className={classes.bigimagecont}>
                 <Container className={classes.bigimagecont}>
@@ -397,12 +397,12 @@ function Customize() {
                     <>
                       <img
                         className={classes.bigimagedesk}
-                        height="350px"
+                        height='350px'
                         src={product.productimages[0]}
                       />
                     </>
                   ) : (
-                    <CircularProgress color="secondary" />
+                    <CircularProgress color='secondary' />
                   )}
                 </Container>
               </Grid>
@@ -410,229 +410,229 @@ function Customize() {
                 item
                 container
                 xs={12}
-                justify="center"
-                style={{ height: "35%" }}
+                justify='center'
+                style={{ height: '35%' }}
               >
                 {/* <Container classname={classes.selectedbox}> */}
-                <Grid item container justify="space-between" xs={11}>
+                <Grid item container justify='space-between' xs={11}>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
+                      <Typography style={{ fontSize: '12px' }}>
                         Collar name :
                       </Typography>
                       {/* {collarnamevalue} */}
                       {custcollar ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custcollar.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custcollar.name}{' '}
                         </Typography>
                       ) : (
-                        ".. "
+                        '.. '
                       )}
                       {/* {fullCustomization.find((custom) => custom.name === backbottomvalue).name} */}
                       {custcollar ? (
-                        <img height="50px" src={custcollar.image} />
+                        <img height='50px' src={custcollar.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Collar Stiffness :
                       </Typography>
                       {/* {collarstiff} */}
                       {custcollarstiff ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custcollarstiff.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custcollarstiff.name}{' '}
                         </Typography>
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                       {custcollarstiff ? (
-                        <img height="50px" src={custcollarstiff.image} />
+                        <img height='50px' src={custcollarstiff.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Sleeves and Cuffs :
                       </Typography>
                       {/* {sleevecuffvalue} */}
                       {custsleeve ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custsleeve.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custsleeve.name}{' '}
                         </Typography>
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                       {custsleeve ? (
-                        <img height="50px" src={custsleeve.image} />
+                        <img height='50px' src={custsleeve.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Cuff Stiffness :
                       </Typography>
                       {/* {cuffstiff} */}
                       {custsuffstiff ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custsuffstiff.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custsuffstiff.name}{' '}
                         </Typography>
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                       {custsuffstiff ? (
-                        <img height="50px" src={custsuffstiff.image} />
+                        <img height='50px' src={custsuffstiff.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Pocket name :
                       </Typography>
                       {/* {pocketvalue} */}
                       {custpocket ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custpocket.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custpocket.name}{' '}
                         </Typography>
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                       {custpocket ? (
-                        <img height="50px" src={custpocket.image} />
+                        <img height='50px' src={custpocket.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                 </Grid>
-                <Grid item container justify="space-between" xs={11}>
+                <Grid item container justify='space-between' xs={11}>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Button name :
                       </Typography>
                       {/* {butoonvalue} */}
                       {custbuton ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {custbuton.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {custbuton.name}{' '}
                         </Typography>
                       ) : (
-                        ""
+                        ''
                       )}
                       {custbuton ? (
-                        <img height="50px" src={custbuton.image} />
+                        <img height='50px' src={custbuton.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Button Thread color :
                       </Typography>
                       {/* {buttonthreadvalue} */}
                       {custbutonthread ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custbutonthread.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custbutonthread.name}{' '}
                         </Typography>
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                       {custbutonthread ? (
-                        <img height="50px" src={custbutonthread.image} />
+                        <img height='50px' src={custbutonthread.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Front Value :
                       </Typography>
                       {/* {frontvalue} */}
                       {custfront ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custfront.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custfront.name}{' '}
                         </Typography>
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                       {custfront ? (
-                        <img height="50px" src={custfront.image} />
+                        <img height='50px' src={custfront.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Back Value :
                       </Typography>
                       {/* {backvalue} */}
                       {custback ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custback.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custback.name}{' '}
                         </Typography>
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                       {custback ? (
-                        <img height="50px" src={custback.image} />
+                        <img height='50px' src={custback.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
                   <Grid xs={2} item>
                     <Paper elevation className={classes.selectedpaper}>
-                      <Typography style={{ fontSize: "12px" }}>
-                        {" "}
+                      <Typography style={{ fontSize: '12px' }}>
+                        {' '}
                         Back Bottom name :
                       </Typography>
                       {/* {backbottomvalue} */}
                       {custbackbottom ? (
-                        <Typography style={{ fontSize: "15px" }}>
-                          {" "}
-                          {custbackbottom.name}{" "}
+                        <Typography style={{ fontSize: '15px' }}>
+                          {' '}
+                          {custbackbottom.name}{' '}
                         </Typography>
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                       {custbackbottom ? (
-                        <img height="50px" src={custbackbottom.image} />
+                        <img height='50px' src={custbackbottom.image} />
                       ) : (
-                        ".. ."
+                        '.. .'
                       )}
                     </Paper>
                   </Grid>
@@ -647,28 +647,28 @@ function Customize() {
               item
               container
               sm={3}
-              style={{ backgroundColor: "#e6eeff", height: "100%" }}
+              style={{ backgroundColor: '#e6eeff', height: '100%' }}
             >
               <TabPanel
                 value={tabvalue}
                 index={0}
                 className={classes.rightpane}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   {/* <FormLabel component="legend">Gender</FormLabel> */}
                   <FormLabel className={classes.variation}>
                     Variations
                   </FormLabel>
                   {/*  */}
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={collarnamevalue}
                     onChange={handlecollarChange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "collar")
+                      .filter((colr) => colr.type === 'collar')
                       .map((colar, index) => {
                         return (
                           <Paper className={classes.typepaper} key={index}>
@@ -689,7 +689,7 @@ function Customize() {
                   {/* <Typography>value : {collarnamevalue}</Typography> */}
                 </FormControl>
                 <Divider className={classes.divider} />
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Select collar Stiffness :
                   </FormLabel>
@@ -699,7 +699,7 @@ function Customize() {
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "collarstiffness")
+                      .filter((colr) => colr.type === 'collarstiffness')
                       .map((colarstif, index) => {
                         return (
                           <Paper className={classes.typepaper} key={index}>
@@ -723,20 +723,20 @@ function Customize() {
                 index={1}
                 className={classes.rightpane}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   {/* <FormLabel component="legend">Gender</FormLabel> */}
                   <FormLabel className={classes.variation}>
                     Variations
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={sleevecuffvalue}
                     onChange={handlesleevecuffChange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "sleevecuffs")
+                      .filter((colr) => colr.type === 'sleevecuffs')
                       .map((sleevecuff, index) => {
                         return (
                           <Paper className={classes.typepaper} key={index}>
@@ -756,19 +756,19 @@ function Customize() {
                   {/* <Typography>value : {sleevecuffvalue}</Typography> */}
                 </FormControl>
                 <Divider className={classes.divider} />
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Select Cuff Stiffness :
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={cuffstiff}
                     onChange={handlesleevecuffstiffness}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "collarstiffness")
+                      .filter((colr) => colr.type === 'collarstiffness')
                       .map((sleevecuff, index) => {
                         return (
                           <Paper className={classes.typepaper} key={index}>
@@ -792,19 +792,19 @@ function Customize() {
                 index={2}
                 className={classes.rightpane}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Variations
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={butoonvalue}
                     onChange={handlebutoonChange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "buttons")
+                      .filter((colr) => colr.type === 'buttons')
                       .map((butoon, index) => {
                         return (
                           <Paper className={classes.typepaper} key={index}>
@@ -824,19 +824,19 @@ function Customize() {
                   {/* <Typography>value : {butoonvalue}</Typography> */}
                 </FormControl>
                 <Divider className={classes.divider} />
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Select button thread :
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={buttonthreadvalue}
                     onChange={handlebuttonthread}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "thread")
+                      .filter((colr) => colr.type === 'thread')
                       .map((buttonthread, index) => {
                         return (
                           <Paper className={classes.buttonpaper} key={index}>
@@ -860,20 +860,20 @@ function Customize() {
                 index={3}
                 className={classes.rightpane}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Variations
                   </FormLabel>
 
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={frontvalue}
                     onChange={handlefrontChange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "front")
+                      .filter((colr) => colr.type === 'front')
                       .map((frontt, index) => {
                         return (
                           <Paper className={classes.typepaper} key={index}>
@@ -898,19 +898,19 @@ function Customize() {
                 index={4}
                 className={classes.rightpane}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Variations :
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={pocketvalue}
                     onChange={handlepocketchange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "pocket")
+                      .filter((colr) => colr.type === 'pocket')
                       .map((pocket, index) => {
                         return (
                           <Paper className={classes.typepaper} key={index}>
@@ -935,19 +935,19 @@ function Customize() {
                 index={5}
                 className={classes.rightpane}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Variations :
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
+                    aria-label='gender'
                     value={backvalue}
                     onChange={handlebackchange}
                     className={classes.typepanel}
                   >
                     {/* for bacj anf cbotm */}
                     {fullCustomization
-                      .filter((colr) => colr.type === "back")
+                      .filter((colr) => colr.type === 'back')
                       .map((back, index) => {
                         return (
                           <Paper className={classes.typepaper} key={index}>
@@ -967,19 +967,19 @@ function Customize() {
                   {/* <Typography>value : {frontvalue}</Typography> */}
                 </FormControl>
                 <Divider className={classes.divider} />
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Select Back Bottom:
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={backbottomvalue}
                     onChange={handlebackbottomchange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type === "backbottom")
+                      .filter((colr) => colr.type === 'backbottom')
                       .map((backbottom, index) => {
                         return (
                           <Paper className={classes.buttonpaper} key={index}>
@@ -1009,13 +1009,13 @@ function Customize() {
       <Hidden mdUp>
         <Grid item container xs={12} className={classes.mobmain}>
           <Grid item container xs={12} className={classes.customappmob}>
-            <Link to="/">
+            <Link to='/'>
               <img
-                src={require("../../logos/Uniquefit_white_monogram.svg")}
-                style={{ height: "35px" }}
+                src={require('../../logos/Uniquefit_white_monogram.svg')}
+                style={{ height: '35px' }}
               />
             </Link>
-            <Box style={{ float: "right" }}>
+            <Box style={{ float: 'right' }}>
               <Button
                 className={classes.addcartbutton}
                 onClick={hancleclickcart}
@@ -1026,8 +1026,8 @@ function Customize() {
               </Button>
             </Box>
           </Grid>
-
-          <Grid
+          {/* below */}
+          {/* <Grid
             item
             container
             xs={12}
@@ -1134,79 +1134,79 @@ function Customize() {
                 }}
               ></Paper>
             </Box>
-          </Grid>
+          </Grid> */}
 
           <Grid
             item
             container
             xs={12}
-            style={{ height: "50vh", backgroundColor: "#fff" }}
+            style={{ height: '50vh', backgroundColor: '#fff' }}
           >
             <Box
               style={{
-                height: "fit-content",
-                width: "100%",
-                overflowX: "scroll",
+                height: 'fit-content',
+                width: '100%',
+                overflowX: 'scroll',
               }}
             >
               <Tabs
-                indicatorColor="none"
-                orientation="horizontal"
+                indicatorColor='none'
+                orientation='horizontal'
                 value={tabvalue}
                 onChange={handleTabChange}
-                indicatorColor="primary"
-                aria-label="Vertical tabs example"
+                indicatorColor='primary'
+                aria-label='Vertical tabs example'
                 className={classes.mobtabs}
               >
                 <Tab
                   className={classes.mobtablink}
-                  label="Collar"
+                  label='Collar'
                   {...a11yProps(0)}
                 />
                 <Tab
                   className={classes.mobtablink}
-                  label="Hand Cuffs"
+                  label='Hand Cuffs'
                   {...a11yProps(1)}
                 />
                 <Tab
                   className={classes.mobtablink}
-                  label="Button"
+                  label='Button'
                   {...a11yProps(2)}
                 />
                 <Tab
                   className={classes.mobtablink}
-                  label="Front"
+                  label='Front'
                   {...a11yProps(3)}
                 />
                 <Tab
                   className={classes.mobtablink}
-                  label="Pocket"
+                  label='Pocket'
                   {...a11yProps(4)}
                 />
                 <Tab
                   className={classes.mobtablink}
-                  label="Back & Bottom"
+                  label='Back & Bottom'
                   {...a11yProps(5)}
                 />
               </Tabs>
             </Box>
-            <Box style={{ overflowY: "scroll", height: "100%" }}>
+            <Box style={{ overflowY: 'scroll', height: '100%' }}>
               <TabPanel
                 value={tabvalue}
                 index={0}
                 className={classes.rightpane}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   {/* <FormLabel component="legend">Gender</FormLabel> */}
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={collarnamevalue}
                     onChange={handlecollarChange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type == "collar")
+                      .filter((colr) => colr.type == 'collar')
                       .map((collar, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>
@@ -1227,19 +1227,19 @@ function Customize() {
                 </FormControl>
 
                 <Divider className={classes.divider} />
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Select collar Stiffness :
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={collarstiff}
                     onChange={handlecollarstiffnesschange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type == "collarstiffness")
+                      .filter((colr) => colr.type == 'collarstiffness')
                       .map((collarstiffness, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>
@@ -1263,17 +1263,17 @@ function Customize() {
                 index={1}
                 className={classes.typepanel}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   {/* <FormLabel component="legend">Gender</FormLabel> */}
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={sleevecuffvalue}
                     onChange={handlesleevecuffChange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type == "sleevecuffs")
+                      .filter((colr) => colr.type == 'sleevecuffs')
                       .map((sleevecuff, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>
@@ -1293,19 +1293,19 @@ function Customize() {
                   {/* <Typography>value : {sleevecuffvalue}</Typography> */}
 
                   <Divider className={classes.divider} />
-                  <FormControl component="fieldset">
+                  <FormControl component='fieldset'>
                     <FormLabel className={classes.variation}>
                       Select Cuff Stiffness :
                     </FormLabel>
                     <RadioGroup
-                      aria-label="gender"
-                      name="gender1"
+                      aria-label='gender'
+                      name='gender1'
                       value={cuffstiff}
                       onChange={handlesleevecuffstiffness}
                       className={classes.typepanel}
                     >
                       {fullCustomization
-                        .filter((colr) => colr.type == "collarstiffness")
+                        .filter((colr) => colr.type == 'collarstiffness')
                         .map((collarstiffness, index) => {
                           return (
                             <Paper className={classes.mobtypepaper} key={index}>
@@ -1330,17 +1330,17 @@ function Customize() {
                 index={2}
                 className={classes.typepanel}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   {/* <FormLabel component="legend">Gender</FormLabel> */}
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={butoonvalue}
                     onChange={handlebutoonChange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type == "buttons")
+                      .filter((colr) => colr.type == 'buttons')
                       .map((butoon, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>
@@ -1361,19 +1361,19 @@ function Customize() {
                 </FormControl>
 
                 <Divider className={classes.divider} />
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Select button thread :
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={buttonthreadvalue}
                     onChange={handlebuttonthread}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type == "thread")
+                      .filter((colr) => colr.type == 'thread')
                       .map((buttonthread, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>
@@ -1397,16 +1397,16 @@ function Customize() {
                 index={3}
                 className={classes.typepanel}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={frontvalue}
                     onChange={handlefrontChange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type == "front")
+                      .filter((colr) => colr.type == 'front')
                       .map((frontt, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>
@@ -1431,16 +1431,16 @@ function Customize() {
                 index={4}
                 className={classes.typepanel}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={pocketvalue}
                     onChange={handlepocketchange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type == "pocket")
+                      .filter((colr) => colr.type == 'pocket')
                       .map((pocket, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>
@@ -1465,19 +1465,19 @@ function Customize() {
                 index={5}
                 className={classes.rightpane}
               >
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Variations :
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
+                    aria-label='gender'
                     value={backvalue}
                     onChange={handlebackchange}
                     className={classes.typepanel}
                   >
                     {/* for bacj anf cbotm */}
                     {fullCustomization
-                      .filter((colr) => colr.type == "back")
+                      .filter((colr) => colr.type == 'back')
                       .map((back, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>
@@ -1497,19 +1497,19 @@ function Customize() {
                   {/* <Typography>value : {frontvalue}</Typography> */}
                 </FormControl>
                 <Divider className={classes.divider} />
-                <FormControl component="fieldset">
+                <FormControl component='fieldset'>
                   <FormLabel className={classes.variation}>
                     Select Back Bottom:
                   </FormLabel>
                   <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
+                    aria-label='gender'
+                    name='gender1'
                     value={backbottomvalue}
                     onChange={handlebackbottomchange}
                     className={classes.typepanel}
                   >
                     {fullCustomization
-                      .filter((colr) => colr.type == "backbottom")
+                      .filter((colr) => colr.type == 'backbottom')
                       .map((backbottom, index) => {
                         return (
                           <Paper className={classes.mobtypepaper} key={index}>

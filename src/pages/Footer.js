@@ -11,6 +11,9 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import uniquefitlogo from '../logos/Uniquefit logo.svg';
 import { Link } from 'react-router-dom';
+
+import { Facebook, Instagram, Twitter, WhatsApp } from '@material-ui/icons';
+
 const useStyles = makeStyles((theme) => ({
   footer: {
     minHeight: '400px',
@@ -117,10 +120,8 @@ function Footer() {
               {/* <i class="fab fa-facebook-f"></i> */}
               <Paper square elevation={0} className={classes.socialbox}>
                 {/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
-                <img
-                  className={classes.mediaicon}
-                  src={require('../logos/socialicons/facebook-f-brands.svg')}
-                />
+                {/* <img className={classes.mediaicon} src={facebookIcon} /> */}
+                <Facebook />
                 @uniquefit
               </Paper>
             </Grid>
@@ -132,10 +133,11 @@ function Footer() {
               >
                 <Paper square elevation={0} className={classes.socialbox}>
                   {/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
-                  <img
+                  {/* <img
                     className={classes.mediaicon}
                     src={require('../logos/socialicons/instagram-brands.svg')}
-                  />
+                  /> */}
+                  <Instagram />
                   @uniquefit
                 </Paper>
               </a>
@@ -144,10 +146,11 @@ function Footer() {
               {/* <i class="fab fa-facebook-f"></i> */}
               <Paper square elevation={0} className={classes.socialbox}>
                 {/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
-                <img
+                {/* <img
                   className={classes.mediaicon}
                   src={require('../logos/socialicons/twitter-brands.svg')}
-                />
+                /> */}
+                <Twitter />
                 @uniquefit
               </Paper>
             </Grid>
@@ -156,10 +159,11 @@ function Footer() {
               <a href='https://wa.link/ag507j'>
                 <Paper square elevation={0} className={classes.socialbox}>
                   {/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
-                  <img
+                  {/* <img
                     className={classes.mediaicon}
                     src={require('../logos/socialicons/whatsapp-brands.svg')}
-                  />
+                  /> */}
+                  <WhatsApp />
                   756 93 27 026
                 </Paper>
               </a>
