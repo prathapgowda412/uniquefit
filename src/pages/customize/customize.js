@@ -24,16 +24,6 @@ import PropTypes from 'prop-types';
 
 import { Link, useHistory, useParams } from 'react-router-dom';
 
-// import collars from './data/collar.json';
-// import frontt from './data/front.json';
-// import Butoons from './data/buttons.json';
-// import sleevecuffss from './data/sleevecuffs.json';
-// import pocket from './data/pocket.json';
-// import collarstiffness from './data/collarstiffness.json';
-// import buttonthread from './data/thread.json';
-// import back from './data/back.json';
-// import backbottom from './data/backbottom.json';
-
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
