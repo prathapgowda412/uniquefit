@@ -15,7 +15,9 @@ import {
   LinearProgress,
 } from '@material-ui/core';
 import React, { useContext, useEffect } from 'react';
-
+import uniquefitlogowhite from '../../logos/uniquefitlogowhite.svg';
+// import uniquefitlogowhite from './logoscustomize/logoname.svg';
+import uniquefitmono from './logoscustomize/Uniquefit_white_monogram.svg';
 import './style.css';
 
 import Tabs from '@material-ui/core/Tabs';
@@ -288,11 +290,9 @@ function Customize() {
             className={classes.topbar}
           >
             <Grid item xs={2} className={classes.logobox}>
+              {/* logo in desktop */}
               <Link to='/'>
-                <img
-                  className={classes.logo}
-                  src={require('../../logos/uniquefitlogowhite.svg')}
-                />
+                <img className={classes.logo} src={uniquefitlogowhite} />
               </Link>
             </Grid>
             <Grid item xs={7}>
@@ -1010,11 +1010,9 @@ function Customize() {
         <Grid item container xs={12} className={classes.mobmain}>
           <Grid item container xs={12} className={classes.customappmob}>
             <Link to='/'>
-              <img
-                src={require('../../logos/Uniquefit_white_monogram.svg')}
-                style={{ height: '35px' }}
-              />
+              <img src={uniquefitmono} style={{ height: '35px' }} />
             </Link>
+
             <Box style={{ float: 'right' }}>
               <Button
                 className={classes.addcartbutton}
@@ -1027,12 +1025,7 @@ function Customize() {
             </Box>
           </Grid>
           {/* below */}
-          {/* <Grid
-            item
-            container
-            xs={12}
-            style={{ height: "40vh", backgroundColor: "#f2f2f2" }}
-          >
+          <Grid item container xs={12} style={{ height: '50vh' }}>
             <Container className={classes.bigimagecont}>
               {product && product.productimages ? (
                 <>
@@ -1045,102 +1038,226 @@ function Customize() {
                 <CircularProgress />
               )}
             </Container>
-            <Typography> Customizations :</Typography>
-            <Box
-              style={{
-                backgroundColor: "red",
-                height: "27%",
-                width: "400px",
-                overflowX: "scroll",
-                display: "flex",
-                flexDirection: "row",
-              }}
-            >
+            <Container style={{ height: '45%' }}>
+              <Typography style={{ fontSize: '15px' }}>
+                {' '}
+                Customizations :
+              </Typography>
               <Box
                 style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
+                  position: 'relative',
+                  width: '100%',
+                  overflowX: 'scroll',
+                  padding: '0px 5px',
                 }}
-              ></Box>
-              <Box
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Box>
-              <Box
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Box>
-              <Paper
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Paper>
-              <Paper
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Paper>
-              <Paper
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Paper>
-              <Paper
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Paper>
-              <Paper
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Paper>
-              <Paper
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Paper>
-              <Paper
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Paper>
-              <Paper
-                style={{
-                  backgroundColor: "wheat",
-                  height: "80px",
-                  width: "100px",
-                }}
-              ></Paper>
-            </Box>
-          </Grid> */}
+              >
+                <Box
+                  style={{
+                    display: 'inline-flex',
+                    position: 'relative',
+                    overflowX: 'scroll',
+                  }}
+                >
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>
+                      Collar name
+                    </Typography>
+                    {custcollar ? (
+                      <img height='60px' src={custcollar.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custcollar ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custcollar.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>
+                      Collar Stiffness
+                    </Typography>
+                    {custcollarstiff ? (
+                      <img height='60px' src={custcollarstiff.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custcollarstiff ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custcollarstiff.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>
+                      Hand Cuffs
+                    </Typography>
+                    {custsleeve ? (
+                      <img height='60px' src={custsleeve.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custsleeve ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custsleeve.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>
+                      Cuff Stiffness
+                    </Typography>
+                    {custsuffstiff ? (
+                      <img height='60px' src={custsuffstiff.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custsuffstiff ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custsuffstiff.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>
+                      Buttons
+                    </Typography>
+                    {custbuton ? (
+                      <img height='60px' src={custbuton.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custbuton ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custbuton.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>
+                      Buttons Thread
+                    </Typography>
+                    {custbutonthread ? (
+                      <img height='60px' src={custbutonthread.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custbutonthread ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custbutonthread.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>Front</Typography>
+                    {custfront ? (
+                      <img height='60px' src={custfront.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custfront ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custfront.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>Back</Typography>
+                    {custbackbottom ? (
+                      <img height='60px' src={custbackbottom.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custbackbottom ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custbackbottom.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>Back</Typography>
+                    {custpocket ? (
+                      <img height='60px' src={custpocket.image} />
+                    ) : (
+                      ''
+                    )}
+
+                    <Typography>
+                      {custpocket ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custpocket.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                  <Paper className={classes.mobSelectedPaper}>
+                    <Typography style={{ fontSize: '12px' }}>Back</Typography>
+                    {custback ? <img height='60px' src={custback.image} /> : ''}
+
+                    <Typography>
+                      {custback ? (
+                        <Typography style={{ fontSize: '14px' }}>
+                          {custback.name}
+                        </Typography>
+                      ) : (
+                        '..'
+                      )}
+                    </Typography>
+                  </Paper>
+                </Box>
+              </Box>
+            </Container>
+          </Grid>
 
           <Grid
             item
             container
             xs={12}
-            style={{ height: '50vh', backgroundColor: '#fff' }}
+            style={{
+              height: '40vh',
+            }}
           >
             <Box
               style={{
@@ -1190,7 +1307,14 @@ function Customize() {
                 />
               </Tabs>
             </Box>
-            <Box style={{ overflowY: 'scroll', height: '100%' }}>
+            <Box
+              style={{
+                overflowY: 'scroll',
+                height: '100%',
+                position: 'relative',
+                backgroundColor: '#f0f5ff',
+              }}
+            >
               <TabPanel
                 value={tabvalue}
                 index={0}
@@ -1217,7 +1341,11 @@ function Customize() {
                             <FormControlLabel
                               value={collar.name}
                               control={<Radio />}
-                              label={collar.name}
+                              label={
+                                <Typography style={{ fontSize: '12px' }}>
+                                  {collar.name}
+                                </Typography>
+                              }
                             />
                           </Paper>
                         );

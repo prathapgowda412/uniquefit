@@ -156,7 +156,7 @@ function Footer() {
             </Grid>
             <Grid item container xs={6} sm={3}>
               {/* <i class="fab fa-facebook-f"></i> */}
-              <a href='https://wa.link/ag507j'>
+              <a href='https://wa.link/ag507j' className={classes.link}>
                 <Paper square elevation={0} className={classes.socialbox}>
                   {/* <FontAwesomeIcon style={{ fontSize: '20px' }} icon={facebook-f} /> */}
                   {/* <img

@@ -270,13 +270,22 @@ function Shop() {
                   </FormGroup>
                 </FormControl>
               </Container>
-              <Button
-                className={classes.applybutton}
-                onClick={onClickApplyFilter}
+              <Box
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  width: '100%',
+                  marginTop: '10px',
+                }}
               >
-                <Typography style={{ color: 'white' }}>Apply</Typography>{' '}
-              </Button>
-            </Container>{' '}
+                <Button
+                  className={classes.applybutton}
+                  onClick={onClickApplyFilter}
+                >
+                  <Typography style={{ color: 'white' }}>Apply</Typography>
+                </Button>
+              </Box>
+            </Container>
           </Popover>
         </Hidden>
         <Hidden smDown>
@@ -428,12 +437,22 @@ function Shop() {
                 </FormGroup>
               </FormControl>
             </Container>
-            <Button
-              className={classes.applybutton}
-              onClick={onClickApplyFilter}
+            <Box
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                width: '100%',
+                marginTop: '10px',
+                boxSizing: 'border-box',
+              }}
             >
-              <Typography style={{ color: 'white' }}>Apply</Typography>{' '}
-            </Button>
+              <Button
+                className={classes.applybutton}
+                onClick={onClickApplyFilter}
+              >
+                <Typography style={{ color: 'white' }}>Apply</Typography>
+              </Button>
+            </Box>
           </Grid>
         </Hidden>
 
@@ -447,10 +466,9 @@ function Shop() {
         >
           {filteredProducts && filteredProducts.length ? (
             <>
-              {' '}
               {filteredProducts.reverse().map((product) => {
                 return <Product key={product.productid} product={product} />;
-              })}{' '}
+              })}
             </>
           ) : (
             <Grid

@@ -14,6 +14,7 @@ import {
   Paper,
   Container,
   Hidden,
+  Icon,
 } from '@material-ui/core';
 import '../custom.css';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -23,7 +24,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import Axios from 'axios';
 import HeaderStyles from '../css/HeaderStyles';
 import { toast } from 'react-toastify';
-import { LocalMallOutlined, PersonOutlineOutlined } from '@material-ui/icons';
+import {
+  LocalMallOutlined,
+  MenuOpenRounded,
+  PersonOutlineOutlined,
+} from '@material-ui/icons';
 
 const styles = HeaderStyles();
 
@@ -136,7 +141,12 @@ class Header extends Component {
       } else {
         return (
           <Box className={classes.loginsignup}>
-            <Button onClick={this.handlelogout}>Logout</Button>
+            <Button
+              className={classes.logoutbutton}
+              onClick={this.handlelogout}
+            >
+              <Typography style={{ color: 'white' }}> Logout </Typography>
+            </Button>
             <Link className={classes.profilelink} to={`/Profile/info`}>
               <Button>
                 {/* <img
@@ -240,8 +250,7 @@ class Header extends Component {
         <Hidden mdUp>
           <Toolbar className={classes.mobtoolbar}>
             <Button onClick={this.handleToggle}>
-              {/* <Typography variant="h6">hello</Typography> */}
-              <MenuIcon style={{ color: 'white' }} fontSize='large' />
+              <MenuIcon fontSize='large' />
             </Button>
             <Link to='/'>
               <img className={classes.logo} src={Uniquefitname} />

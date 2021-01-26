@@ -9,7 +9,7 @@ import UploadHome from './components/UploadHome';
 import Categorysec from './components/Categorysec';
 import Secondpro from './components/Secondpro';
 import Somesec from './components/Somesec';
-import ThirdProducts from './components/ThirdProducts';
+// import ThirdProducts from './components/ThirdProducts';
 function Home() {
   return (
     <Grid item container xs={12} justify='center'>
@@ -20,7 +20,7 @@ function Home() {
       <Shopfav />
       <Secondpro />
       <Somesec />
-      <ThirdProducts />
+      {/* <ThirdProducts /> */}
     </Grid>
   );
 }
