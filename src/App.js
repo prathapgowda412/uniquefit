@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React from 'react';
 
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
@@ -178,15 +178,17 @@ function App() {
                   <Route path='/testcartcrud'>
                     <TestCartCrud />
                   </Route>
-                  <Route path='/'>
+                  <Route exact path='/'>
                     <Whatsapp />
                     <Header />
                     <Home />
                     <Footer />
                   </Route>
-                  {/* <Route path='/*'>
+                  <Route path='/*'>
+                    <Header />
                     <NotFound />
-                  </Route> */}
+                    <Footer />
+                  </Route>
                 </Switch>
               </Grid>
               {/* </UserContext.Provider> */}

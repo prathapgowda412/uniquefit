@@ -38,13 +38,6 @@ function Shop() {
   let [filteredProducts, setFilteredProducts] = useState([]);
   let [filter, setFilter] = useState(filterBluePrint);
   const onClickApplyFilter = () => {
-    // console.log('filter changed');
-    // let filtProducts = products.map((product) => {
-    // 	if (product.productpattern === filter.productpattern || product.producttype === filter.category) {
-    // 		console.log(product);
-    // 		return product;
-    // 	}
-    // });
     let filtProducts = products.filter(
       (product) =>
         product.productpattern === filter.pattern ||
@@ -59,20 +52,6 @@ function Shop() {
     }
   }, [products]);
 
-  // useEffect(() => {
-  // 	console.log('filter changed');
-  // 	// let filtProducts = products.map((product) => {
-  // 	// 	if (product.productpattern === filter.productpattern || product.producttype === filter.category) {
-  // 	// 		console.log(product);
-  // 	// 		return product;
-  // 	// 	}
-  // 	// });
-  // 	let filtProducts = products.filter(
-  // 		(product) => product.productpattern === filter.pattern || product.producttype === filter.category
-  // 	);
-  // 	console.log(filtProducts);
-  // 	setFilteredProducts(filtProducts);
-  // }, [filter]);
   const handleFilterChange = (event) => {
     if (event.target.checked) {
       setFilter((oldFilter) => ({
@@ -133,35 +112,7 @@ function Shop() {
                 <Typography className={classes.filterproducts}>
                   Filter Products
                 </Typography>
-                {/* <FormControl>
-								<FormLabel>Color</FormLabel>
-								<FormGroup column>
-									<FormControlLabel
-										value="Blue"
-										control={<Checkbox size="small" className={classes.inputcheckbox} />}
-										label="Blue"
-										labelPlacement="end"
-									/>
-									<FormControlLabel
-										value="top"
-										control={<Checkbox size="small" className={classes.inputcheckbox} />}
-										label="Blue"
-										labelPlacement="end"
-									/>
-									<FormControlLabel
-										value="top"
-										control={<Checkbox size="small" className={classes.inputcheckbox} />}
-										label="Blue"
-										labelPlacement="end"
-									/>
-									<FormControlLabel
-										value="top"
-										control={<Checkbox size="small" className={classes.inputcheckbox} />}
-										label="Blue"
-										labelPlacement="end"
-									/>
-								</FormGroup>
-							</FormControl> */}
+
                 <Container maxWidth='xs' className={classes.divider} />
                 <FormControl>
                   <FormLabel>Pattern</FormLabel>
@@ -300,35 +251,7 @@ function Shop() {
               <Typography className={classes.filterproducts}>
                 Filter Products
               </Typography>
-              {/* <FormControl>
-								<FormLabel>Color</FormLabel>
-								<FormGroup column>
-									<FormControlLabel
-										value="Blue"
-										control={<Checkbox size="small" className={classes.inputcheckbox} />}
-										label="Blue"
-										labelPlacement="end"
-									/>
-									<FormControlLabel
-										value="top"
-										control={<Checkbox size="small" className={classes.inputcheckbox} />}
-										label="Blue"
-										labelPlacement="end"
-									/>
-									<FormControlLabel
-										value="top"
-										control={<Checkbox size="small" className={classes.inputcheckbox} />}
-										label="Blue"
-										labelPlacement="end"
-									/>
-									<FormControlLabel
-										value="top"
-										control={<Checkbox size="small" className={classes.inputcheckbox} />}
-										label="Blue"
-										labelPlacement="end"
-									/>
-								</FormGroup>
-							</FormControl> */}
+
               <Container maxWidth='xs' className={classes.divider} />
               <FormControl>
                 <FormLabel>Pattern</FormLabel>
